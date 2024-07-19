@@ -1,0 +1,86 @@
+'use client';
+
+import { useDictionaryCtx } from '@/providers/dictionary';
+import { useFormSteps } from '@/zustand/form-steps';
+import { useFormContext } from 'react-hook-form';
+import { Button } from '@typeweave/react';
+import React from 'react';
+
+interface StepperProps {
+  onSubmit?: () => void;
+}
+
+const displayName = 'Stepper';
+
+export const Stepper = (props: StepperProps) => {
+  const { onSubmit } = props;
+
+  const dictionary = useDictionaryCtx(displayName);
+
+  const {
+    formState: { submitCount, errors },
+  } = useFormContext();
+
+  const hasErrors = !!Object.keys(errors).length;
+
+  const {
+    currentStep,
+    nextStep,
+    prevStep,
+    totalSteps,
+    isThankYouStep,
+    thankYouSetp,
+  } = useFormSteps();
+
+  if (isThankYouStep) return;
+
+  return (
+    <div className="absolute bottom-0 left-0 right-0 flex items-center bg-background px-5 py-3">
+      {currentStep !== 1 && (
+        <Button
+          type="button"
+          variant="text"
+          color="primary"
+          onPress={prevStep}
+        >
+          {dictionary.buttons.previous}
+        </Button>
+      )}
+
+      <div className="grow"></div>
+
+      {currentStep !== totalSteps && (
+        <Button
+          type="button"
+          variant="solid"
+          color="primary"
+          onPress={() => {
+            if (currentStep === 3 && (!submitCount || hasErrors))
+              onSubmit?.();
+            else nextStep();
+          }}
+        >
+          {currentStep === 3 && (!submitCount || hasErrors)
+            ? dictionary.buttons.validate
+            : dictionary.buttons.next}
+        </Button>
+      )}
+
+      {currentStep === totalSteps && (
+        <Button
+          type="button"
+          variant="solid"
+          color="primary"
+          onPress={() => {
+            onSubmit?.();
+            thankYouSetp();
+          }}
+        >
+          {dictionary.buttons.confirm}
+        </Button>
+      )}
+    </div>
+  );
+};
+
+Stepper.displayName = displayName;
