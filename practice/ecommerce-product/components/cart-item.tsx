@@ -1,4 +1,4 @@
-import { Button } from '@typeweave/react';
+import { Button } from '@typeweave/react/button';
 import { useCart } from '@/zustand/cart';
 import { XIcon } from 'lucide-react';
 import Image from 'next/image';

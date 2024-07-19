@@ -1,4 +1,7 @@
-import { ToggleButton, ToggleButtonGroup } from '@typeweave/react';
+import {
+  ToggleButton,
+  ToggleButtonGroup,
+} from '@typeweave/react/toggle-button';
 import { MonitorIcon, MoonIcon, SunIcon } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import React from 'react';

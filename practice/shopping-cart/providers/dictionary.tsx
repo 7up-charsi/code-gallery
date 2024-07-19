@@ -1,6 +1,6 @@
 'use client';
 
-import { createContextScope } from '@typeweave/react';
+import { createContextScope } from '@typeweave/react/context';
 import { Dictionary } from '@/types/dictionary';
 
 interface I18nProviderProps {

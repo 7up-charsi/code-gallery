@@ -1,5 +1,5 @@
+import { Button } from '@typeweave/react/button';
 import { ArrowLeftIcon } from 'lucide-react';
-import { Button } from '@typeweave/react';
 import Link from 'next/link';
 
 const NotFoundPage = () => {

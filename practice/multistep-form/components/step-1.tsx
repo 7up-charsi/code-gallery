@@ -4,8 +4,8 @@ import { useDictionaryCtx } from '@/providers/dictionary';
 import { useFormSteps } from '@/zustand/form-steps';
 import { FormValues } from '@/app/[locale]/page';
 import { useFormContext } from 'react-hook-form';
+import { Input } from '@typeweave/react/input';
 import { StepHeader } from './step-header';
-import { Input } from '@typeweave/react';
 import React from 'react';
 
 interface Step1Props {}

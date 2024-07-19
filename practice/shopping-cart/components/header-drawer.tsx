@@ -1,16 +1,15 @@
 'use client';
 
 import {
-  Button,
   DrawerContent,
   DrawerOverlay,
   DrawerPortal,
   DrawerRoot,
   DrawerTrigger,
-  FocusTrap,
-  Skeleton,
-  useIsMounted,
-} from '@typeweave/react';
+} from '@typeweave/react/drawer';
+import { useIsMounted } from '@typeweave/react/use-is-mounted';
+import { Skeleton } from '@typeweave/react/skeleton';
+import { Button } from '@typeweave/react/button';
 import { LocaleChanger } from './locale-changer';
 import { ThemeSwitcher } from './theme-switcher';
 import { MenuIcon } from 'lucide-react';

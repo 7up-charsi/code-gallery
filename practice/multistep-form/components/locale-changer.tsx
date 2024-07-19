@@ -1,5 +1,5 @@
 import { useParams, useRouter } from 'next/navigation';
-import { Combobox, Input } from '@typeweave/react';
+import { Combobox } from '@typeweave/react/combobox';
 import { LanguagesIcon } from 'lucide-react';
 import React from 'react';
 

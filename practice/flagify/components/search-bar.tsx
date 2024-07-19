@@ -5,7 +5,9 @@ import {
   useRouter,
   useSearchParams,
 } from 'next/navigation';
-import { Button, Combobox, Input } from '@typeweave/react';
+import { Combobox } from '@typeweave/react/combobox';
+import { Button } from '@typeweave/react/button';
+import { Input } from '@typeweave/react/input';
 import debounce from 'lodash.debounce';
 import { XIcon } from 'lucide-react';
 import React from 'react';

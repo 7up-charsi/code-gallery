@@ -7,9 +7,10 @@ import {
   wait,
 } from '@/utils';
 import { CalculatorIcon, EuroIcon, PercentIcon } from 'lucide-react';
-import { Button, inputStyles, NumberInput } from '@typeweave/react';
+import { inputStyles, NumberInput } from '@typeweave/react/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, useForm } from 'react-hook-form';
+import { Button } from '@typeweave/react/button';
 import { useDictionaryCtx } from '@/providers';
 import { CustomRadio } from './custom-radio';
 import { Results } from './results';
@@ -216,10 +217,8 @@ export const Form = (props: FormProps) => {
 
           <span
             id={typeId}
-            className={styles.helperText({
-              error: true,
-              className: 'w-full',
-            })}
+            data-error={true}
+            className={styles.helperText({ className: 'w-full' })}
           >
             <span className="inline-block first-letter:uppercase">
               {errors.type

@@ -1,6 +1,6 @@
 'use client';
 
-import { Input, InputProps } from '@typeweave/react';
+import { Input, InputProps } from '@typeweave/react/input';
 import React from 'react';
 
 interface CustomInputProps

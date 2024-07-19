@@ -1,5 +1,5 @@
-import type { Config } from 'tailwindcss';
 import { typeweave } from '@typeweave/plugin';
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
@@ -10,4 +10,3 @@ const config: Config = {
   plugins: [typeweave()],
 };
 export default config;
-

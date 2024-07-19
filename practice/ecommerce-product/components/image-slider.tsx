@@ -1,8 +1,8 @@
 'use client';
 
+import { PointerEvents } from '@typeweave/react/pointer-events';
 import useEmblaCarousel from 'embla-carousel-react';
 import { EmblaCarouselType } from 'embla-carousel';
-import { PointerEvents } from '@typeweave/react';
 import Image from 'next/image';
 import React from 'react';
 

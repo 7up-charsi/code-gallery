@@ -5,9 +5,9 @@ import {
   DrawerOverlay,
   DrawerPortal,
   DrawerRoot,
-  useIsMounted,
-} from '@typeweave/react';
+} from '@typeweave/react/drawer';
 import { useOrderConfirmedDrawer } from '@/zustand/order-confirmed-drawer';
+import { useIsMounted } from '@typeweave/react/use-is-mounted';
 import { OrderConfirmed } from '../order-confirmed';
 import React from 'react';
 

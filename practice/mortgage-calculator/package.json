@@ -10,8 +10,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
-    "@typeweave/plugin": "^1.0.1",
-    "@typeweave/react": "^3.0.12",
+    "@typeweave/react": "^4.0.0",
     "lucide-react": "^0.407.0",
     "next": "14.2.4",
     "next-i18n-router": "^5.5.1",
@@ -26,6 +25,7 @@
     "@types/node": "^20.14.10",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "@typeweave/plugin": "^1.1.4",
     "autoprefixer": "^10.4.19",
     "eslint": "^8.57.0",
     "eslint-config-next": "14.2.4",

@@ -1,12 +1,12 @@
 'use client';
 
 import {
-  Skeleton,
   ToggleButton,
   ToggleButtonGroup,
-  useIsMounted,
-} from '@typeweave/react';
+} from '@typeweave/react/toggle-button';
+import { useIsMounted } from '@typeweave/react/use-is-mounted';
 import { MonitorIcon, MoonIcon, SunIcon } from 'lucide-react';
+import { Skeleton } from '@typeweave/react/skeleton';
 import { useTheme } from 'next-themes';
 import React from 'react';
 

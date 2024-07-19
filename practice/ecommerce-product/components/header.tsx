@@ -1,18 +1,17 @@
 'use client';
 
 import {
-  AvatarImage,
-  AvatarRoot,
-  Button,
   DrawerClose,
   DrawerContent,
   DrawerOverlay,
   DrawerPortal,
   DrawerRoot,
   DrawerTrigger,
-  Skeleton,
-  useIsMounted,
-} from '@typeweave/react';
+} from '@typeweave/react/drawer';
+import { AvatarImage, AvatarRoot } from '@typeweave/react/avatar';
+import { useIsMounted } from '@typeweave/react/use-is-mounted';
+import { Skeleton } from '@typeweave/react/skeleton';
+import { Button } from '@typeweave/react/button';
 import { ThemeSwitcher } from './theme-switcher';
 import { MenuIcon, XIcon } from 'lucide-react';
 import { usePathname } from 'next/navigation';

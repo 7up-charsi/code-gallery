@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, ButtonProps } from '@typeweave/react';
+import { Button, ButtonProps } from '@typeweave/react/button';
 import React from 'react';
 
 interface TipButtonProps extends ButtonProps {

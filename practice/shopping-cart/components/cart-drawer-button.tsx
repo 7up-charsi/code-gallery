@@ -2,7 +2,8 @@
 
 import { useCartDrawer } from '@/zustand/cart-drawer';
 import { ShoppingBasketIcon } from 'lucide-react';
-import { Badge, Button } from '@typeweave/react';
+import { Button } from '@typeweave/react/button';
+import { Badge } from '@typeweave/react/badge';
 import { useCart } from '@/zustand/cart';
 import React from 'react';
 

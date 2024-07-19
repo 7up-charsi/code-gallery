@@ -1,8 +1,9 @@
 'use client';
 
 import { MinusIcon, PlusIcon, ShoppingCart } from 'lucide-react';
-import { Button, PointerEvents } from '@typeweave/react';
+import { PointerEvents } from '@typeweave/react/pointer-events';
 import { ImageSlider } from '@/components/image-slider';
+import { Button } from '@typeweave/react/button';
 import { useCart } from '@/zustand/cart';
 
 export default function Home() {
@@ -88,4 +89,3 @@ export default function Home() {
     </main>
   );
 }
-

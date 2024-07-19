@@ -4,8 +4,8 @@ import { useOrderConfirmedDialog } from '@/zustand/order-confirmed-dialog';
 import { useOrderConfirmedDrawer } from '@/zustand/order-confirmed-drawer';
 import { OrderConfirmedItem } from './order-confirmed-item';
 import { useDictionaryCtx } from '@/providers/dictionary';
+import { Button } from '@typeweave/react/button';
 import { CheckCircleIcon } from 'lucide-react';
-import { Button } from '@typeweave/react';
 import { useCart } from '@/zustand/cart';
 import React, { Fragment } from 'react';
 

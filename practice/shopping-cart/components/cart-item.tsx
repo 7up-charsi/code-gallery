@@ -1,7 +1,7 @@
 'use client';
 
+import { Button } from '@typeweave/react/button';
 import { ProductItem } from '@/types/product';
-import { Button } from '@typeweave/react';
 import { useCart } from '@/zustand/cart';
 import { XIcon } from 'lucide-react';
 import Image from 'next/image';

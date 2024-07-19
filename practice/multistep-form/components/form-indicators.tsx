@@ -1,8 +1,8 @@
 'use client';
 
+import { PointerEvents } from '@typeweave/react/pointer-events';
 import { useDictionaryCtx } from '@/providers/dictionary';
 import { useFormSteps } from '@/zustand/form-steps';
-import { PointerEvents } from '@typeweave/react';
 import { useFormContext } from 'react-hook-form';
 import React from 'react';
 

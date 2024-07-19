@@ -1,9 +1,10 @@
 'use client';
 
+import { PointerEvents } from '@typeweave/react/pointer-events';
 import { useFormContext, useWatch } from 'react-hook-form';
 import { useDictionaryCtx } from '@/providers/dictionary';
-import { PointerEvents, Switch } from '@typeweave/react';
 import { useFormSteps } from '@/zustand/form-steps';
+import { Switch } from '@typeweave/react/switch';
 import { FormValues } from '@/app/[locale]/page';
 import { StepHeader } from './step-header';
 import Image from 'next/image';

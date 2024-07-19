@@ -12,8 +12,8 @@ importers:
         specifier: ^6.0.1
         version: 6.0.1
       turbo:
-        specifier: ^2.0.7
-        version: 2.0.7
+        specifier: ^2.0.8
+        version: 2.0.8
 
   packages/typescript-config: {}
 
@@ -103,8 +103,8 @@ importers:
         specifier: ^3.9.0
         version: 3.9.0(react-hook-form@7.52.1)
       '@typeweave/react':
-        specifier: 4.0.0-next.1
-        version: 4.0.0-next.1(react-dom@18.3.1)(react@18.3.1)(tailwindcss@3.4.6)
+        specifier: ^4.0.0
+        version: 4.0.0(react-dom@18.3.1)(react@18.3.1)(tailwindcss@3.4.6)
       lucide-react:
         specifier: ^0.403.0
         version: 0.403.0(react@18.3.1)
@@ -143,8 +143,8 @@ importers:
         specifier: ^18.3.0
         version: 18.3.0
       '@typeweave/plugin':
-        specifier: 1.1.3-next.5
-        version: 1.1.3-next.5(tailwindcss@3.4.6)
+        specifier: ^1.1.4
+        version: 1.1.4(tailwindcss@3.4.6)
       autoprefixer:
         specifier: ^10.4.19
         version: 10.4.19(postcss@8.4.39)
@@ -176,8 +176,8 @@ importers:
   practice/ecommerce-product:
     dependencies:
       '@typeweave/react':
-        specifier: ^3.0.21
-        version: 3.1.0(react-dom@18.3.1)(react@18.3.1)(tailwindcss@3.4.6)
+        specifier: ^4.0.0
+        version: 4.0.0(react-dom@18.3.1)(react@18.3.1)(tailwindcss@3.4.6)
       embla-carousel:
         specifier: ^8.1.6
         version: 8.1.6
@@ -216,8 +216,8 @@ importers:
         specifier: ^18
         version: 18.3.0
       '@typeweave/plugin':
-        specifier: ^1.1.1
-        version: 1.1.2(tailwindcss@3.4.6)
+        specifier: ^1.1.4
+        version: 1.1.4(tailwindcss@3.4.6)
       autoprefixer:
         specifier: ^10.4.19
         version: 10.4.19(postcss@8.4.39)
@@ -254,12 +254,9 @@ importers:
       '@radix-ui/colors':
         specifier: ^3.0.0
         version: 3.0.0
-      '@typeweave/plugin':
-        specifier: ^1.1.1
-        version: 1.1.2(tailwindcss@3.4.6)
       '@typeweave/react':
-        specifier: ^3.0.21
-        version: 3.1.0(react-dom@18.3.1)(react@18.3.1)(tailwindcss@3.4.6)
+        specifier: ^4.0.0
+        version: 4.0.0(react-dom@18.3.1)(react@18.3.1)(tailwindcss@3.4.6)
       lodash.debounce:
         specifier: ^4.0.8
         version: 4.0.8
@@ -300,6 +297,9 @@ importers:
       '@types/react-dom':
         specifier: ^18.3.0
         version: 18.3.0
+      '@typeweave/plugin':
+        specifier: ^1.1.4
+        version: 1.1.4(tailwindcss@3.4.6)
       autoprefixer:
         specifier: ^10.4.19
         version: 10.4.19(postcss@8.4.39)
@@ -336,12 +336,9 @@ importers:
       '@hookform/resolvers':
         specifier: ^3.9.0
         version: 3.9.0(react-hook-form@7.52.1)
-      '@typeweave/plugin':
-        specifier: ^1.0.1
-        version: 1.1.2(tailwindcss@3.4.6)
       '@typeweave/react':
-        specifier: ^3.0.12
-        version: 3.1.0(react-dom@18.3.1)(react@18.3.1)(tailwindcss@3.4.6)
+        specifier: ^4.0.0
+        version: 4.0.0(react-dom@18.3.1)(react@18.3.1)(tailwindcss@3.4.6)
       lucide-react:
         specifier: ^0.407.0
         version: 0.407.0(react@18.3.1)
@@ -379,6 +376,9 @@ importers:
       '@types/react-dom':
         specifier: ^18.3.0
         version: 18.3.0
+      '@typeweave/plugin':
+        specifier: ^1.1.4
+        version: 1.1.4(tailwindcss@3.4.6)
       autoprefixer:
         specifier: ^10.4.19
         version: 10.4.19(postcss@8.4.39)
@@ -413,8 +413,8 @@ importers:
         specifier: ^3.9.0
         version: 3.9.0(react-hook-form@7.52.1)
       '@typeweave/react':
-        specifier: ^3.0.21
-        version: 3.1.0(react-dom@18.3.1)(react@18.3.1)(tailwindcss@3.4.6)
+        specifier: ^4.0.0
+        version: 4.0.0(react-dom@18.3.1)(react@18.3.1)(tailwindcss@3.4.6)
       lucide-react:
         specifier: ^0.408.0
         version: 0.408.0(react@18.3.1)
@@ -456,8 +456,8 @@ importers:
         specifier: ^18
         version: 18.3.0
       '@typeweave/plugin':
-        specifier: ^1.1.1
-        version: 1.1.2(tailwindcss@3.4.6)
+        specifier: ^1.1.4
+        version: 1.1.4(tailwindcss@3.4.6)
       autoprefixer:
         specifier: ^10.4.19
         version: 10.4.19(postcss@8.4.39)
@@ -543,12 +543,9 @@ importers:
 
   practice/shopping-cart:
     dependencies:
-      '@typeweave/plugin':
-        specifier: ^1.1.0
-        version: 1.1.2(tailwindcss@3.4.6)
       '@typeweave/react':
-        specifier: ^3.0.19
-        version: 3.1.0(react-dom@18.3.1)(react@18.3.1)(tailwindcss@3.4.6)
+        specifier: ^4.0.0
+        version: 4.0.0(react-dom@18.3.1)(react@18.3.1)(tailwindcss@3.4.6)
       lucide-react:
         specifier: ^0.407.0
         version: 0.407.0(react@18.3.1)
@@ -589,6 +586,9 @@ importers:
       '@types/react-dom':
         specifier: ^18.3.0
         version: 18.3.0
+      '@typeweave/plugin':
+        specifier: ^1.1.4
+        version: 1.1.4(tailwindcss@3.4.6)
       autoprefixer:
         specifier: ^10.4.19
         version: 10.4.19(postcss@8.4.39)
@@ -629,8 +629,8 @@ importers:
         specifier: ^3.9.0
         version: 3.9.0(react-hook-form@7.52.1)
       '@typeweave/react':
-        specifier: ^3.0.24
-        version: 3.1.0(react-dom@18.3.1)(react@18.3.1)(tailwindcss@3.4.6)
+        specifier: ^4.0.0
+        version: 4.0.0(react-dom@18.3.1)(react@18.3.1)(tailwindcss@3.4.6)
       lucide-react:
         specifier: ^0.408.0
         version: 0.408.0(react@18.3.1)
@@ -660,8 +660,8 @@ importers:
         specifier: ^18.3.0
         version: 18.3.0
       '@typeweave/plugin':
-        specifier: ^1.1.2
-        version: 1.1.2(tailwindcss@3.4.6)
+        specifier: ^1.1.4
+        version: 1.1.4(tailwindcss@3.4.6)
       autoprefixer:
         specifier: ^10.4.19
         version: 10.4.19(postcss@8.4.39)
@@ -1453,20 +1453,8 @@ packages:
       eslint-visitor-keys: 3.4.3
     dev: true
 
-  /@typeweave/plugin@1.1.2(tailwindcss@3.4.6):
-    resolution: {integrity: sha512-9afIXMJt+9nBRg6nt6kMeq7ACukf+0aSw/5QBCDAJCRw83Wgh7ABZHzd+UUvKjIeLQ/xTfq7hcOWP3Qtl3KiaA==}
-    peerDependencies:
-      tailwindcss: ^3.4.3
-    dependencies:
-      '@radix-ui/colors': 3.0.0
-      color: 4.2.3
-      deepmerge: 4.3.1
-      flat: 6.0.1
-      lodash.kebabcase: 4.1.1
-      tailwindcss: 3.4.6
-
-  /@typeweave/plugin@1.1.3-next.5(tailwindcss@3.4.6):
-    resolution: {integrity: sha512-S7JJ+wWjj487mLJTlrvhxy/x5wXB7uKtyKqyqhwInxA9kl3ainnMK2ow8EaDiOC+PKFiSt/LnunJxP4Y0Tuh3g==}
+  /@typeweave/plugin@1.1.4(tailwindcss@3.4.6):
+    resolution: {integrity: sha512-lvpi3nBnuXr4A5aTVD8wFKSuSfNNv4bM2uw4mngP+ElxDW4NHQyv5+iPSU0jjADeNhd9ik5jw0eexKYNRz3mAA==}
     peerDependencies:
       tailwindcss: ^3.4.3
     dependencies:
@@ -1478,19 +1466,8 @@ packages:
       tailwindcss: 3.4.6
     dev: true
 
-  /@typeweave/react-utils@1.1.3(react-dom@18.3.1)(react@18.3.1):
-    resolution: {integrity: sha512-3d6kuApZmDTMxmluH/W6Vvt5WqpJwdwojUTbmRc5BJt1V6DeiEIltrQg0BGCogMIEM9LgXjrtRVnS+Zbzd8YqA==}
-    peerDependencies:
-      react: '>=18'
-      react-dom: '>=18'
-    dependencies:
-      clsx: 2.1.1
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-    dev: false
-
-  /@typeweave/react-utils@1.1.4-next.1(react@18.3.1):
-    resolution: {integrity: sha512-5pknMbDl/82g/gmsb6LiX6P5I7Z1CPWpy4bykJYHN7m9noIo5MwgZwqQmTlwYYzh/0s0bsOvAxgIh2IfnCuTaw==}
+  /@typeweave/react-utils@1.1.5(react@18.3.1):
+    resolution: {integrity: sha512-8Tks8MKlf8yuljefmRmV1dfIa4lubsLprBGsl+egZmGZltWdbV9Cl4PVPI/Or+4HTjdLMpdDU2yKAOMIaicxMA==}
     peerDependencies:
       react: '>=18'
     dependencies:
@@ -1498,30 +1475,14 @@ packages:
       react: 18.3.1
     dev: false
 
-  /@typeweave/react@3.1.0(react-dom@18.3.1)(react@18.3.1)(tailwindcss@3.4.6):
-    resolution: {integrity: sha512-X36b85+15qkeD4xtNl3FoXQP8rZYY/xGRYj544gWpwvD6KNwuTxDCRVgzDEfkz6SE3bq1BBh5a6dA2yoJ7wIbg==}
+  /@typeweave/react@4.0.0(react-dom@18.3.1)(react@18.3.1)(tailwindcss@3.4.6):
+    resolution: {integrity: sha512-iem644MnZGqzDF1VSqpqMZXpnVYuGELhpYRC8NvvbFEIEN6wIMz0WljnFVqkusiwThAeH2kH2Sqc3gdZFRM9Pg==}
     peerDependencies:
       react: '>=18'
       react-dom: '>=18'
     dependencies:
       '@floating-ui/react-dom': 2.1.1(react-dom@18.3.1)(react@18.3.1)
-      '@typeweave/react-utils': 1.1.3(react-dom@18.3.1)(react@18.3.1)
-      lucide-react: 0.376.0(react@18.3.1)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-      tailwind-variants: 0.1.20(tailwindcss@3.4.6)
-    transitivePeerDependencies:
-      - tailwindcss
-    dev: false
-
-  /@typeweave/react@4.0.0-next.1(react-dom@18.3.1)(react@18.3.1)(tailwindcss@3.4.6):
-    resolution: {integrity: sha512-prbnnkrdD1sNmOY+tQhPvgmTNvrUV/BXc0+50tmL2b4jWQXAkLDajKmSxnugszYhoxz12EyTmGMQNd2hpvP7FQ==}
-    peerDependencies:
-      react: '>=18'
-      react-dom: '>=18'
-    dependencies:
-      '@floating-ui/react-dom': 2.1.1(react-dom@18.3.1)(react@18.3.1)
-      '@typeweave/react-utils': 1.1.4-next.1(react@18.3.1)
+      '@typeweave/react-utils': 1.1.5(react@18.3.1)
       lucide-react: 0.376.0(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
@@ -2082,6 +2043,7 @@ packages:
   /deepmerge@4.3.1:
     resolution: {integrity: sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==}
     engines: {node: '>=0.10.0'}
+    dev: true
 
   /define-data-property@1.1.1:
     resolution: {integrity: sha512-E7uGkTzkk1d0ByLeSc6ZsFS79Axg+m1P/VsgYsxHgiuc3tFSj+MjMIwe90FC4lOAZzNBdY7kkO2P2wKdsQ1vgQ==}
@@ -2960,6 +2922,7 @@ packages:
     resolution: {integrity: sha512-/3FfIa8mbrg3xE7+wAhWeV+bd7L2Mof+xtZb5dRDKZ+wDvYJK4WDYeIOuOhre5Yv5aQObZrlbRmk3RTSiuQBtw==}
     engines: {node: '>=18'}
     hasBin: true
+    dev: true
 
   /flatted@3.3.1:
     resolution: {integrity: sha512-X8cqMLLie7KsNUDSdzeN8FYK9rEt4Dt67OsG/DNGnYTSDBG4uFAJFBnUeiV+zCVAvwFy56IjM9sH51jVaEhNxw==}
@@ -3637,6 +3600,7 @@ packages:
 
   /lodash.kebabcase@4.1.1:
     resolution: {integrity: sha512-N8XRTIMMqqDgSy4VLKPnJ/+hpGZN+PHQiJnSenYqPaVV/NCqEogTnAdZLQiGKhxX+JCs8waWq2t1XHWKOmlY8g==}
+    dev: true
 
   /lodash.merge@4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
@@ -4818,10 +4782,6 @@ packages:
       use-sync-external-store: 1.2.2(react@18.3.1)
     dev: false
 
-  /tailwind-merge@1.14.0:
-    resolution: {integrity: sha512-3mFKyCo/MBcgyOTlrY8T7odzZFx+w+qKSMAmdFzRvqBfLlSigU6TZnlFHK0lkMwj9Bj8OYU+9yW9lmGuS0QEnQ==}
-    dev: false
-
   /tailwind-merge@2.4.0:
     resolution: {integrity: sha512-49AwoOQNKdqKPd9CViyH5wJoSKsCDjUlzL8DxuGp3P1FsGY36NJDAa18jLZcaHAUUuTj+JB8IAo8zWgBNvBF7A==}
     dev: false
@@ -4834,16 +4794,6 @@ packages:
     dependencies:
       tailwindcss: 3.4.6
     dev: true
-
-  /tailwind-variants@0.1.20(tailwindcss@3.4.6):
-    resolution: {integrity: sha512-AMh7x313t/V+eTySKB0Dal08RHY7ggYK0MSn/ad8wKWOrDUIzyiWNayRUm2PIJ4VRkvRnfNuyRuKbLV3EN+ewQ==}
-    engines: {node: '>=16.x', pnpm: '>=7.x'}
-    peerDependencies:
-      tailwindcss: '*'
-    dependencies:
-      tailwind-merge: 1.14.0
-      tailwindcss: 3.4.6
-    dev: false
 
   /tailwind-variants@0.2.1(tailwindcss@3.4.6):
     resolution: {integrity: sha512-2xmhAf4UIc3PijOUcJPA1LP4AbxhpcHuHM2C26xM0k81r0maAO6uoUSHl3APmvHZcY5cZCY/bYuJdfFa4eGoaw==}
@@ -4958,63 +4908,64 @@ packages:
     resolution: {integrity: sha512-xNvxJEOUiWPGhUuUdQgAJPKOOJfGnIyKySOc09XkKsgdUV/3E2zvwZYdejjmRgPCgcym1juLH3226yA7sEFJKQ==}
     dev: false
 
-  /turbo-darwin-64@2.0.7:
-    resolution: {integrity: sha512-J1RBvQGqKeUwLJrZbfrm4tHshagdMeGAwd7rpLpfUrw0PNmGfcBazJf6dIGXG59/GHzJmS0/eAZ8qDchfVbIFA==}
+  /turbo-darwin-64@2.0.8:
+    resolution: {integrity: sha512-WxPAmpkJXTBfa2tmfLk1YI2eFc5vk8eOQS1gRA3bMfwDory1tKhdPGamDrVtMzMguCiWIvit5JU3x5SHJTLP9A==}
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-darwin-arm64@2.0.7:
-    resolution: {integrity: sha512-h1JK8uuEjoHx1SvvTZiottj+4kDmiv+hivnLUzNwO75qKblMsd38IsFB0J2sMRz7JacFlf+3ry8SItznBW67Xw==}
+  /turbo-darwin-arm64@2.0.8:
+    resolution: {integrity: sha512-sMPkU2GiW5OotJNPWmCWGuoltjRilmazXd6EfKK12eoq4rR1PGxUtvKY8LOLHIudDDcB4VUbxWSgHR/VBezhuw==}
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-linux-64@2.0.7:
-    resolution: {integrity: sha512-dsr7GFeHAYVMnXWDDjhpsAQetejU4OlkNBRA5hfmnIcl2sSyOYa3EvoeJ6j5z5vTNIJ9VO4I1h0jK3lTjEoonA==}
+  /turbo-linux-64@2.0.8:
+    resolution: {integrity: sha512-5Uq3M36V1BBMbxdIoZHxzVdaSeJ2Uyp6lMj9L58iLX9wBPlrUY1f150Ys/PGOyTfyzL+wz2tqPqAsDSRSRhRIQ==}
     cpu: [x64]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-linux-arm64@2.0.7:
-    resolution: {integrity: sha512-bJbwXvyX1XPzY1jHgkqggls/L4yFyHVK8GGACF3kcg6x7lYV2SXkUYRyOC3WqzW7euqa9Zw/32jrIPP4Qy31Vw==}
+  /turbo-linux-arm64@2.0.8:
+    resolution: {integrity: sha512-b5EPHMNbR34z8aEosGQDb4m22o8VuWW3Nr5z3jbl+PMBJByBvGl/A5oYZIQfcJhRD5Ih/H1tqi7ftbrwouC3tQ==}
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-windows-64@2.0.7:
-    resolution: {integrity: sha512-aBH+5A7IN957MqXMrw8xN0CWtH/fPFL+xTlloO6074Eaa8WfnctSAnaSujm6f4xF2T8lFx+ZprBvnO9oKvLQQQ==}
+  /turbo-windows-64@2.0.8:
+    resolution: {integrity: sha512-2CKNENrm+/PaQEXcLqz0rd8KzppV6bO7Dju89bniKFo684Ip8zpq1YkOxGrhRPSgIFHKXph0ZmSoErqyfXoi5Q==}
     cpu: [x64]
     os: [win32]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-windows-arm64@2.0.7:
-    resolution: {integrity: sha512-ButUCpO5nTi+jyTSIY2mQ9dVz+mCGxJ6sHyn0xGlNoJWdisKXb0BtWCLAjM26gg/yp9Kt1MBowMQyYVruPV0Qw==}
+  /turbo-windows-arm64@2.0.8:
+    resolution: {integrity: sha512-10FZPqk2hzRo6pT3ze5DdfMS5beMMc6vYw61FSwoqoXefFFhPm/2IIuVpLFnhfuqroWtmb5ilQtHeNSYEXSv5Q==}
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo@2.0.7:
-    resolution: {integrity: sha512-76iNWZpmKAKjj+yL0Wtcu2LpDIM5Nz7JS3fHOZPYS0AKuC2boJ24276VAiK4PKwbpBB//TYKDpSLuQ6cfR49pg==}
+  /turbo@2.0.8:
+    resolution: {integrity: sha512-4BHTlXy/Sjtcy5skq3OBTQdTSkxbBbRhrQzEiRBcrc6OuEWe0iAefoYqJR0+c7dqD79AYqE/EJsDwE9kSq0YSA==}
+    hasBin: true
     optionalDependencies:
-      turbo-darwin-64: 2.0.7
-      turbo-darwin-arm64: 2.0.7
-      turbo-linux-64: 2.0.7
-      turbo-linux-arm64: 2.0.7
-      turbo-windows-64: 2.0.7
-      turbo-windows-arm64: 2.0.7
+      turbo-darwin-64: 2.0.8
+      turbo-darwin-arm64: 2.0.8
+      turbo-linux-64: 2.0.8
+      turbo-linux-arm64: 2.0.8
+      turbo-windows-64: 2.0.8
+      turbo-windows-arm64: 2.0.8
     dev: true
 
   /type-check@0.4.0:

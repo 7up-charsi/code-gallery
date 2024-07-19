@@ -11,8 +11,8 @@ import {
   SunIcon,
 } from 'lucide-react';
 import { useParams, useRouter } from 'next/navigation';
-import { Skeleton } from '@typeweave/react/skeleton';
 import { Combobox } from '@typeweave/react/combobox';
+import { Skeleton } from '@typeweave/react/skeleton';
 import { Input } from '@typeweave/react/input';
 import { useTheme } from 'next-themes';
 import { siteConfig } from '@/config';

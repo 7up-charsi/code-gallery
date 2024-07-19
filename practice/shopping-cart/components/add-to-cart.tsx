@@ -5,8 +5,8 @@ import {
   PlusIcon,
   ShoppingBasketIcon,
 } from 'lucide-react';
+import { PointerEvents } from '@typeweave/react/pointer-events';
 import { useDictionaryCtx } from '@/providers/dictionary';
-import { PointerEvents } from '@typeweave/react';
 import { useCart } from '@/zustand/cart';
 import React from 'react';
 

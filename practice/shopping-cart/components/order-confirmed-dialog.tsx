@@ -5,7 +5,7 @@ import {
   DialogOverlay,
   DialogPortal,
   DialogRoot,
-} from '@typeweave/react';
+} from '@typeweave/react/dialog';
 import { useOrderConfirmedDialog } from '@/zustand/order-confirmed-dialog';
 import { OrderConfirmed } from './order-confirmed';
 import React from 'react';

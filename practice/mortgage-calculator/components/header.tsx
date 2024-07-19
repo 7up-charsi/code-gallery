@@ -1,12 +1,9 @@
 'use client';
 
 import {
-  Combobox,
-  Input,
-  Skeleton,
   ToggleButton,
   ToggleButtonGroup,
-} from '@typeweave/react';
+} from '@typeweave/react/toggle-button';
 import {
   LanguagesIcon,
   MonitorIcon,
@@ -14,6 +11,9 @@ import {
   SunIcon,
 } from 'lucide-react';
 import { useParams, useRouter } from 'next/navigation';
+import { Skeleton } from '@typeweave/react/skeleton';
+import { Combobox } from '@typeweave/react/combobox';
+import { Input } from '@typeweave/react/input';
 import { useTheme } from 'next-themes';
 import { siteConfig } from '@/config';
 import Link from 'next/link';

@@ -1,12 +1,10 @@
 'use client';
 
-import {
-  Combobox,
-  Input,
-  Skeleton,
-  useIsMounted,
-} from '@typeweave/react';
+import { useIsMounted } from '@typeweave/react/use-is-mounted';
 import { useParams, useRouter } from 'next/navigation';
+import { Skeleton } from '@typeweave/react/skeleton';
+import { Combobox } from '@typeweave/react/combobox';
+import { Input } from '@typeweave/react/input';
 import { LanguagesIcon } from 'lucide-react';
 import React from 'react';
 

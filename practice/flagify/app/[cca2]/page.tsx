@@ -1,6 +1,6 @@
 import { CountryFlag } from '@/components/country-flag';
+import { Button } from '@typeweave/react/button';
 import { ArrowLeftIcon } from 'lucide-react';
-import { Button } from '@typeweave/react';
 import { Country } from '@/types/country';
 import Link from 'next/link';
 

@@ -1,7 +1,7 @@
 'use client';
 
 import { useFormContext, useWatch } from 'react-hook-form';
-import { Button } from '@typeweave/react';
+import { Button } from '@typeweave/react/button';
 import { FormValues } from '@/app/page';
 import React from 'react';
 

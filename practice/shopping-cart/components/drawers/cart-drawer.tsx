@@ -5,8 +5,8 @@ import {
   DrawerOverlay,
   DrawerPortal,
   DrawerRoot,
-  useIsMounted,
-} from '@typeweave/react';
+} from '@typeweave/react/drawer';
+import { useIsMounted } from '@typeweave/react/use-is-mounted';
 import { useCartDrawer } from '@/zustand/cart-drawer';
 import { Cart } from '../cart';
 import React from 'react';

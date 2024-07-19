@@ -1,15 +1,15 @@
 'use client';
 
 import {
-  Badge,
-  Button,
   PopoverClose,
   PopoverContent,
   PopoverPortal,
   PopoverRoot,
   PopoverTrigger,
-} from '@typeweave/react';
+} from '@typeweave/react/popover';
+import { Button } from '@typeweave/react/button';
 import { ShoppingCartIcon } from 'lucide-react';
+import { Badge } from '@typeweave/react/badge';
 import { useCart } from '@/zustand/cart';
 import { CartItem } from './cart-item';
 import React from 'react';
@@ -28,16 +28,16 @@ export const Cart = (props: CartProps) => {
   return (
     <PopoverRoot>
       <PopoverTrigger>
-        <Button
-          isIconOnly
-          aria-label="menu"
-          variant="text"
-          className="overflow-visible"
-        >
-          <Badge content={amount} placement="bottom-center">
+        <Badge content={amount} placement="bottom-center">
+          <Button
+            isIconOnly
+            aria-label="menu"
+            variant="text"
+            className="overflow-visible"
+          >
             <ShoppingCartIcon />
-          </Badge>
-        </Button>
+          </Button>
+        </Badge>
       </PopoverTrigger>
 
       <PopoverPortal>

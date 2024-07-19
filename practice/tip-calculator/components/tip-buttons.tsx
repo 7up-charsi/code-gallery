@@ -1,7 +1,7 @@
 'use client';
 
 import { useFormContext, useWatch } from 'react-hook-form';
-import { inputStyles } from '@typeweave/react';
+import { inputStyles } from '@typeweave/react/input';
 import { TipButton } from './tip-button';
 import { FormValues } from '@/app/page';
 import { TipInput } from './tip-input';
