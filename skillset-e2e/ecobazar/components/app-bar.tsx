@@ -1,4 +1,5 @@
 import {
+  DrawerClose,
   DrawerContent,
   DrawerOverlay,
   DrawerPortal,
@@ -23,7 +24,7 @@ export const AppBar = (props: AppBarProps) => {
   const {} = props;
 
   return (
-    <header className="grid grid-cols-[1fr_auto_auto_auto] grid-rows-[theme(spacing.16)_auto] items-center gap-1 px-7">
+    <header className="grid grid-cols-[1fr_auto_auto_auto] grid-rows-[theme(spacing.16)_auto] items-center gap-1 px-5">
       <Branding />
 
       <CartButton />
@@ -48,25 +49,19 @@ export const AppBar = (props: AppBarProps) => {
             <div className="flex h-16 items-center justify-between gap-2">
               <Branding />
 
-              <Button
-                isIconOnly
-                aria-label="close menu"
-                variant="text"
-                color="danger"
-              >
-                <XIcon />
-              </Button>
+              <DrawerClose>
+                <Button
+                  isIconOnly
+                  aria-label="close menu"
+                  variant="text"
+                  color="danger"
+                >
+                  <XIcon />
+                </Button>
+              </DrawerClose>
             </div>
 
             <hr className="my-1 border-muted-6" />
-
-            <p className="mt-3 rounded bg-muted-2 px-3 py-2 text-sm leading-loose">
-              <MapPinIcon
-                size={20}
-                className="mr-1 inline-block text-danger-11/70"
-              />{' '}
-              <span>Lincoln- 344, Illinois, Chicago, USA</span>
-            </p>
 
             <div className="mt-3 flex gap-2">
               <LangSwitcher />
@@ -92,7 +87,15 @@ export const AppBar = (props: AppBarProps) => {
               ))}
             </nav>
 
-            <Button className="mb-3 mt-auto w-full" color="primary">
+            <p className="mb-3 mt-auto rounded bg-muted-2 px-3 py-2 text-sm leading-loose">
+              <MapPinIcon
+                size={20}
+                className="mr-1 inline-block text-danger-11/70"
+              />{' '}
+              <span>Lincoln- 344, Illinois, Chicago, USA</span>
+            </p>
+
+            <Button className="mb-3 w-full" color="primary">
               signin/signup
             </Button>
           </DrawerContent>
