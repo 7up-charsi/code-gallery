@@ -1,9 +1,15 @@
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import './globals.css';
+import { UtilityBar } from '@/components/utility-bar';
+import { AppBar } from '@/components/app-bar';
+import { NavBar } from '@/components/nav-bar';
+import { Poppins } from 'next/font/google';
 import { siteConfig } from '@/config/site';
+import type { Metadata } from 'next';
+import './globals.css';
 
-const inter = Inter({ subsets: ['latin'] });
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600'],
+});
 
 export const metadata: Metadata = {
   title: siteConfig.name,
@@ -11,6 +17,9 @@ export const metadata: Metadata = {
   applicationName: siteConfig.name,
   authors: [{ name: siteConfig.author, url: siteConfig.portfolio }],
   keywords: ['ecommerce', 'organic ecommerce', 'ecobazar'],
+  icons: {
+    icon: '/logo-icon.svg',
+  },
   openGraph: {
     type: 'website',
     description: siteConfig.description,
@@ -27,8 +36,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en'>
-      <body className={inter.className}>{children}</body>
+    <html lang="en">
+      <body
+        style={poppins.style}
+        className="bg-background text-foreground"
+      >
+        <UtilityBar />
+        <AppBar />
+        <NavBar />
+
+        {children}
+      </body>
     </html>
   );
 }

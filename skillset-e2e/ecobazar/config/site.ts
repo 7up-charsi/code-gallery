@@ -4,8 +4,8 @@ const siteUrl =
   process.env.SITE_URL ?? `http://localhost:${process.env.PORT}`;
 
 export const siteConfig = {
-  name: 'ecobazar',
-  description: 'organic ecommerce',
+  name: 'Ecobazar',
+  description: 'Organic eCommerce',
   author: author.name,
   email: author.email,
   portfolio: author.portfolio,
