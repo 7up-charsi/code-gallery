@@ -1,7 +1,12 @@
 'use client';
 
-import { Combobox } from '@typeweave/react/combobox';
-import { Input } from '@typeweave/react/input';
+import {
+  MenuContent,
+  MenuPortal,
+  MenuRoot,
+  MenuTrigger,
+} from '@typeweave/react/menu';
+import { ThemeLangButton } from './theme-lang-button';
 import React from 'react';
 
 interface LangSwitcherProps {}
@@ -12,18 +17,15 @@ export const LangSwitcher = (props: LangSwitcherProps) => {
   const {} = props;
 
   return (
-    <Combobox
-      options={[]}
-      disableClearable
-      renderInput={(props) => (
-        <Input
-          label="language"
-          hideLabel
-          {...props}
-          className="w-full"
-        />
-      )}
-    />
+    <MenuRoot>
+      <MenuTrigger>
+        <ThemeLangButton>eng</ThemeLangButton>
+      </MenuTrigger>
+
+      <MenuPortal>
+        <MenuContent className="z-[9999]"></MenuContent>
+      </MenuPortal>
+    </MenuRoot>
   );
 };
 

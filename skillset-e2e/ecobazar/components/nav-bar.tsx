@@ -7,7 +7,7 @@ const displayName = 'NavBar';
 export const NavBar = (props: NavBarProps) => {
   const {} = props;
 
-  return <div className='hidden'>NavBar</div>;
+  return <div className="max-lg:hidden">NavBar</div>;
 };
 
 NavBar.displayName = displayName;

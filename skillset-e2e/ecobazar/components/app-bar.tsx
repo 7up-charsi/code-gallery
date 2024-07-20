@@ -11,6 +11,7 @@ import { CurrencySwitcher } from './currency-switcher';
 import { FavoriteButton } from './favorite-button';
 import { Button } from '@typeweave/react/button';
 import { LangSwitcher } from './lang-switcher';
+import { address } from '@/constants/common';
 import { CartButton } from './cart-button';
 import { Branding } from './branding';
 import { NavLink } from './nav-link';
@@ -24,7 +25,7 @@ export const AppBar = (props: AppBarProps) => {
   const {} = props;
 
   return (
-    <header className="grid grid-cols-[1fr_auto_auto_auto] grid-rows-[theme(spacing.16)_auto] items-center gap-1 px-5">
+    <header className="grid grid-cols-[1fr_auto_auto_auto] grid-rows-[theme(spacing.16)_auto] items-center gap-1 px-5 lg:px-10">
       <Branding />
 
       <CartButton />
@@ -43,9 +44,9 @@ export const AppBar = (props: AppBarProps) => {
         </DrawerTrigger>
 
         <DrawerPortal>
-          <DrawerOverlay variant="blur" />
+          <DrawerOverlay variant="blur" className="lg:hidden" />
 
-          <DrawerContent className="flex flex-col px-5">
+          <DrawerContent className="flex flex-col px-5 lg:hidden">
             <div className="flex h-16 items-center justify-between gap-2">
               <Branding />
 
@@ -61,9 +62,7 @@ export const AppBar = (props: AppBarProps) => {
               </DrawerClose>
             </div>
 
-            <hr className="my-1 border-muted-6" />
-
-            <div className="mt-3 flex gap-2">
+            <div className="grid grid-cols-2 gap-2">
               <LangSwitcher />
               <CurrencySwitcher />
             </div>
@@ -87,16 +86,16 @@ export const AppBar = (props: AppBarProps) => {
               ))}
             </nav>
 
-            <p className="mb-3 mt-auto rounded bg-muted-2 px-3 py-2 text-sm leading-loose">
+            <address className="mb-3 mt-auto rounded bg-muted-2 px-3 py-2 text-xs leading-loose">
               <MapPinIcon
                 size={20}
                 className="mr-1 inline-block text-danger-11/70"
               />{' '}
-              <span>Lincoln- 344, Illinois, Chicago, USA</span>
-            </p>
+              <span>{address}</span>
+            </address>
 
             <Button className="mb-3 w-full" color="primary">
-              signin/signup
+              Signin/Signup
             </Button>
           </DrawerContent>
         </DrawerPortal>
