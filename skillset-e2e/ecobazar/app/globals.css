@@ -2,32 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --success-bright: 122 46 67;
+    --success: 122 100 35;
+    --success-dark: 122 45 31;
+    --warning: 32 100 50;
+    --error: 1 79 60;
+    --gray-900: 0 0 10;
+    --gray-800: 0 0 20;
+    --gray-700: 0 0 30;
+    --gray-600: 0 0 40;
+    --gray-500: 0 0 50;
+    --gray-400: 0 0 60;
+    --gray-300: 0 0 70;
+    --gray-200: 0 0 80;
+    --gray-100: 0 0 90;
+    --gray-50: 0 0 95;
+    --green-gray-900: 125 100 7;
+    --green-gray-800: 125 44 16;
+    --green-gray-700: 124 34 25;
+    --green-gray-600: 123 25 34;
+    --green-gray-500: 122 14 44;
+    --green-gray-400: 124 13 54;
+    --green-gray-300: 122 15 64;
+    --green-gray-200: 120 19 75;
+    --green-gray-100: 120 17 88;
+    --green-gray-50: 132 16 94;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
