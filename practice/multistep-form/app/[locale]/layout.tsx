@@ -7,6 +7,7 @@ import { siteConfig } from '@/config/site';
 import { Inter } from 'next/font/google';
 import type { Metadata } from 'next';
 import '@/styles/globals.css';
+import React from 'react';
 
 const font = Inter({
   subsets: ['latin'],
@@ -53,10 +54,8 @@ export default async function RootLayout({
       <body style={font.style} className="bg-muted-4 text-foreground">
         <ThemeProvider attribute="class">
           <DictionaryProvider dictionary={dictionary}>
-            <>
-              <Header />
-              {children}
-            </>
+            <Header />
+            {children}
           </DictionaryProvider>
         </ThemeProvider>
       </body>
