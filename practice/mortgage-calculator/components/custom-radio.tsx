@@ -2,7 +2,7 @@ import { CheckCircle2Icon, CircleIcon } from 'lucide-react';
 import React from 'react';
 
 interface CustomRadioProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'style'> {
   label?: string;
 }
 

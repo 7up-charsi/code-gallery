@@ -29,4 +29,3 @@ const HomePage = async (props: HomePageProps) => {
 };
 
 export default HomePage;
-

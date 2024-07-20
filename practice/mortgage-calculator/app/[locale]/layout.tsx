@@ -64,4 +64,3 @@ const RootLayout = (props: RootLayoutProps) => {
 };
 
 export default RootLayout;
-

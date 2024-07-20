@@ -18,7 +18,7 @@ export default function Home() {
 
         <Screen />
 
-        <div className="bg-toggle_keypad_bg [&_button]:shadow-keyShadow [&_button]:bg-key_bg theme1:[&_button]:text-darkBlueText mt-2 grid h-64 grid-cols-4 grid-rows-5 gap-3 rounded-md p-5 [&_button]:flex [&_button]:items-center [&_button]:justify-center [&_button]:rounded-md [&_button]:font-bold [&_button]:shadow-[0_3px] [&_button]:outline-none focus-visible:[&_button]:ring-2 active:[&_button]:shadow-none">
+        <div className="mt-2 grid h-64 grid-cols-4 grid-rows-5 gap-3 rounded-md bg-toggle_keypad_bg p-5 [&_button]:flex [&_button]:items-center [&_button]:justify-center [&_button]:rounded-md [&_button]:bg-key_bg [&_button]:font-bold [&_button]:shadow-[0_3px] [&_button]:shadow-keyShadow [&_button]:outline-none focus-visible:[&_button]:ring-2 active:[&_button]:shadow-none theme1:[&_button]:text-darkBlueText">
           {/* row 1 */}
           <button type="button" onClick={() => insert(7)}>
             7
@@ -32,7 +32,7 @@ export default function Home() {
 
           <button
             type="button"
-            className="!shadow-del_reset_bg_shadow !bg-del_reset_bg !text-white"
+            className="!bg-del_reset_bg !text-white !shadow-del_reset_bg_shadow"
             onClick={del}
           >
             DEL
@@ -83,14 +83,14 @@ export default function Home() {
           {/* row 4 */}
           <button
             type="button"
-            className="!shadow-del_reset_bg_shadow !bg-del_reset_bg col-span-2 !text-white"
+            className="col-span-2 !bg-del_reset_bg !text-white !shadow-del_reset_bg_shadow"
             onClick={reset}
           >
             reset
           </button>
           <button
             type="button"
-            className="!shadow-equal_shadow !bg-equal_toggleIndicator_bg col-span-2 !text-white"
+            className="col-span-2 !bg-equal_toggleIndicator_bg !text-white !shadow-equal_shadow"
             onClick={getResult}
           >
             =
@@ -100,4 +100,3 @@ export default function Home() {
     </div>
   );
 }
-

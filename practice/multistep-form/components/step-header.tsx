@@ -18,14 +18,14 @@ export const StepHeader = (props: StepHeaderProps) => {
     <>
       <h1
         aria-describedby={id}
-        className="text-primary-11 text-2xl font-semibold first-letter:uppercase"
+        className="text-2xl font-semibold text-primary-11 first-letter:uppercase"
       >
         {heading}
       </h1>
 
       <p
         id={id}
-        className="text-foreground/80 mb-5 mt-1 first-letter:uppercase"
+        className="mb-5 mt-1 text-foreground/80 first-letter:uppercase"
       >
         {desc}
       </p>

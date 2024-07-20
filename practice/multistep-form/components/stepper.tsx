@@ -2,8 +2,8 @@
 
 import { useDictionaryCtx } from '@/providers/dictionary';
 import { useFormSteps } from '@/zustand/form-steps';
+import { Button } from '@typeweave/react/button';
 import { useFormContext } from 'react-hook-form';
-import { Button } from '@typeweave/react';
 import React from 'react';
 
 interface StepperProps {

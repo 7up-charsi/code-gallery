@@ -53,12 +53,13 @@ export default async function RootLayout({
       <body style={font.style} className="bg-muted-4 text-foreground">
         <ThemeProvider attribute="class">
           <DictionaryProvider dictionary={dictionary}>
-            <Header />
-            {children}
+            <>
+              <Header />
+              {children}
+            </>
           </DictionaryProvider>
         </ThemeProvider>
       </body>
     </html>
   );
 }
-
