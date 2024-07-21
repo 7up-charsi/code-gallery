@@ -18,6 +18,7 @@ import { FavoriteButton } from './favorite-button';
 import { Button } from '@typeweave/react/button';
 import { navLinks } from '@/constants/nav-links';
 import { LangSwitcher } from './lang-switcher';
+import { SearchInput } from './search-input';
 import { CartButton } from './cart-button';
 import { Branding } from './branding';
 import { NavLink } from './nav-link';
@@ -32,10 +33,10 @@ export const AppBar = (props: AppBarProps) => {
   const {} = props;
 
   return (
-    <header className="grid grid-cols-[auto_1fr_auto_auto_auto] grid-rows-[theme(spacing.16)_auto] items-center gap-1 px-5 lg:px-10">
+    <header className="grid grid-cols-[auto_1fr_auto_auto_auto] items-center gap-1 px-5 max-md:grid-rows-[theme(spacing.16)_auto] md:grid-rows-[theme(spacing.16)] lg:px-10">
       <Branding />
 
-      <div className=""></div>
+      <div className="md:hidden"></div>
 
       <CartButton />
       <FavoriteButton />
@@ -46,7 +47,7 @@ export const AppBar = (props: AppBarProps) => {
             variant="text"
             isIconOnly
             aria-label="menu"
-            className="text-2xl"
+            className="text-2xl lg:hidden"
           >
             <MenuIcon />
           </Button>
@@ -113,6 +114,8 @@ export const AppBar = (props: AppBarProps) => {
           </DrawerContent>
         </DrawerPortal>
       </DrawerRoot>
+
+      <SearchInput />
     </header>
   );
 };
