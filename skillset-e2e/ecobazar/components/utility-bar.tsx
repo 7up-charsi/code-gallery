@@ -32,7 +32,7 @@ export const UtilityBar = (props: UtilityBarProps) => {
 
       <div className="mx-4 h-4/5 w-[2px] rounded-full bg-muted-6"></div>
 
-      <button className="h-6 rounded px-1 text-sm hover:bg-muted-3 active:bg-muted-5">
+      <button className="h-6 rounded px-1 text-sm outline-none ring-focus hover:bg-muted-3 focus-visible:ring-2 active:bg-muted-5">
         Signin/Signup
       </button>
     </div>

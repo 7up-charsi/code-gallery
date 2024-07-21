@@ -698,8 +698,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/meta
       '@typeweave/react':
-        specifier: ^4.0.5
-        version: 4.0.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.6)
+        specifier: ^4.0.6
+        version: 4.0.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.6)
       lucide-react:
         specifier: ^0.411.0
         version: 0.411.0(react@18.3.1)
@@ -821,8 +821,8 @@ packages:
     resolution: {integrity: sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA==}
     engines: {node: '>=12.22'}
 
-  '@humanwhocodes/object-schema@2.0.2':
-    resolution: {integrity: sha512-6EwiSjwWYP7pTckG6I5eyFANjPhmPjUX9JRLUSfNPC7FX7zK9gyZAfUEaECL6ALTpGX5AjnBq3C9XmVWPitNpw==}
+  '@humanwhocodes/object-schema@2.0.3':
+    resolution: {integrity: sha512-93zYdMES/c1D69yZiKDBj0V24vqNzB/koF26KPaagAfd3P/4gUlh3Dys5ogAK+Exi9QyzlD8x/08Zt7wIKcDcA==}
     deprecated: Use @eslint/object-schema instead
 
   '@img/sharp-darwin-arm64@0.33.4':
@@ -1191,8 +1191,8 @@ packages:
       react: '>=18'
       react-dom: '>=18'
 
-  '@typeweave/react@4.0.5':
-    resolution: {integrity: sha512-NNCb1AgU5SsY4vrDfVPZQfK/L0AVKpCGBSRrr0QAweVB+EHAfEHcCV5IA90QzqE4tCT4xIlFx2Aaljj4OJMZZw==}
+  '@typeweave/react@4.0.6':
+    resolution: {integrity: sha512-uhuHKEjeLm9Bh2AjJBWcqVvI9QnD3hHpFEg5G5V7NTGAx6BHMHVWOIJJA8pykV+34tezMe/YuXOXQtqCaTHsdA==}
     peerDependencies:
       react: '>=18'
       react-dom: '>=18'
@@ -1436,15 +1436,6 @@ packages:
 
   debug@3.2.7:
     resolution: {integrity: sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==}
-    peerDependencies:
-      supports-color: '*'
-    peerDependenciesMeta:
-      supports-color:
-        optional: true
-
-  debug@4.3.4:
-    resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}
-    engines: {node: '>=6.0'}
     peerDependencies:
       supports-color: '*'
     peerDependenciesMeta:
@@ -2217,6 +2208,9 @@ packages:
   ms@2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
 
+  ms@2.1.3:
+    resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
+
   mz@2.7.0:
     resolution: {integrity: sha512-z81GNO7nnYMEhrGh9LeymoE4+Yr0Wn5McHIZMK5cfQCl+NDX08sCZgUc9/6MHni9IWuFLm1Z3HTCXu2z9fN62Q==}
 
@@ -2532,8 +2526,8 @@ packages:
   prop-types@15.8.1:
     resolution: {integrity: sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==}
 
-  punycode@2.3.0:
-    resolution: {integrity: sha512-rRV+zQD8tVFys26lAGR9WUuS4iUAngJScM+ZRSKtvl5tKeZ2t5bvdNFdNHBW9FWR4guGHlgmsZ1G7BSm2wTbuA==}
+  punycode@2.3.1:
+    resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==}
     engines: {node: '>=6'}
 
   queue-microtask@1.2.3:
@@ -3084,15 +3078,15 @@ snapshots:
 
   '@humanwhocodes/config-array@0.11.14':
     dependencies:
-      '@humanwhocodes/object-schema': 2.0.2
-      debug: 4.3.4
+      '@humanwhocodes/object-schema': 2.0.3
+      debug: 4.3.5
       minimatch: 3.1.2
     transitivePeerDependencies:
       - supports-color
 
   '@humanwhocodes/module-importer@1.0.1': {}
 
-  '@humanwhocodes/object-schema@2.0.2': {}
+  '@humanwhocodes/object-schema@2.0.3': {}
 
   '@img/sharp-darwin-arm64@0.33.4':
     optionalDependencies:
@@ -3393,7 +3387,7 @@ snapshots:
     transitivePeerDependencies:
       - tailwindcss
 
-  '@typeweave/react@4.0.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.6)':
+  '@typeweave/react@4.0.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.6)':
     dependencies:
       '@floating-ui/react-dom': 2.1.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@typeweave/react-utils': 1.1.5(react@18.3.1)
@@ -3692,11 +3686,7 @@ snapshots:
 
   debug@3.2.7:
     dependencies:
-      ms: 2.1.2
-
-  debug@4.3.4:
-    dependencies:
-      ms: 2.1.2
+      ms: 2.1.3
 
   debug@4.3.5:
     dependencies:
@@ -4709,6 +4699,8 @@ snapshots:
 
   ms@2.1.2: {}
 
+  ms@2.1.3: {}
+
   mz@2.7.0:
     dependencies:
       any-promise: 1.3.0
@@ -4979,7 +4971,7 @@ snapshots:
       object-assign: 4.1.1
       react-is: 16.13.1
 
-  punycode@2.3.0: {}
+  punycode@2.3.1: {}
 
   queue-microtask@1.2.3: {}
 
@@ -5491,7 +5483,7 @@ snapshots:
 
   uri-js@4.4.1:
     dependencies:
-      punycode: 2.3.0
+      punycode: 2.3.1
 
   use-sync-external-store@1.2.0(react@18.3.1):
     dependencies:

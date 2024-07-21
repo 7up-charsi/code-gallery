@@ -8,7 +8,8 @@ import {
   MenuRoot,
   MenuTrigger,
 } from '@typeweave/react/menu';
-import { useParams, usePathname, useRouter } from 'next/navigation';
+import { useCustomPathname } from '@/hooks/use-custom-pathname';
+import { useParams, useRouter } from 'next/navigation';
 import { ThemeLangButton } from './theme-lang-button';
 import { Locales } from '@/types/dictionary';
 import { i18nConfig } from '@/i18n-config';
@@ -27,7 +28,7 @@ export const LangSwitcher = (props: LangSwitcherProps) => {
   const {} = props;
 
   const { locale } = useParams<{ locale: Locales }>();
-  const pathname = usePathname();
+  const pathname = useCustomPathname();
   const router = useRouter();
 
   return (
@@ -43,9 +44,7 @@ export const LangSwitcher = (props: LangSwitcherProps) => {
             hideLabel
             value={locale}
             onChange={(value) => {
-              router.push(
-                `/${value}${pathname.slice(locale.length + 1)}`,
-              );
+              router.push(`/${value}${pathname}`);
             }}
           >
             {i18nConfig.locales.map((ele, i) => (

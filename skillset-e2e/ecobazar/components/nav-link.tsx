@@ -1,6 +1,6 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
+import { useCustomPathname } from '@/hooks/use-custom-pathname';
 import Link, { LinkProps } from 'next/link';
 import React from 'react';
 
@@ -14,7 +14,7 @@ const displayName = 'NavLink';
 export const NavLink = (props: NavLinkProps) => {
   const { href, ...restProps } = props;
 
-  const pathname = usePathname();
+  const pathname = useCustomPathname();
 
   return (
     <Link

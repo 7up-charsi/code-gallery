@@ -6,15 +6,22 @@ import {
   DrawerRoot,
   DrawerTrigger,
 } from '@typeweave/react/drawer';
-import { MapPinIcon, MenuIcon, XIcon } from 'lucide-react';
+import {
+  MapPinIcon,
+  MenuIcon,
+  PhoneCallIcon,
+  XIcon,
+} from 'lucide-react';
+import { address, phoneNumber } from '@/constants/common';
 import { CurrencySwitcher } from './currency-switcher';
 import { FavoriteButton } from './favorite-button';
 import { Button } from '@typeweave/react/button';
+import { navLinks } from '@/constants/nav-links';
 import { LangSwitcher } from './lang-switcher';
-import { address } from '@/constants/common';
 import { CartButton } from './cart-button';
 import { Branding } from './branding';
 import { NavLink } from './nav-link';
+import Link from 'next/link';
 import React from 'react';
 
 interface AppBarProps {}
@@ -25,8 +32,10 @@ export const AppBar = (props: AppBarProps) => {
   const {} = props;
 
   return (
-    <header className="grid grid-cols-[1fr_auto_auto_auto] grid-rows-[theme(spacing.16)_auto] items-center gap-1 px-5 lg:px-10">
+    <header className="grid grid-cols-[auto_1fr_auto_auto_auto] grid-rows-[theme(spacing.16)_auto] items-center gap-1 px-5 lg:px-10">
       <Branding />
+
+      <div className=""></div>
 
       <CartButton />
       <FavoriteButton />
@@ -67,36 +76,40 @@ export const AppBar = (props: AppBarProps) => {
               <CurrencySwitcher />
             </div>
 
-            <nav className="mt-3 flex flex-col">
-              {[
-                'home',
-                'shop',
-                'pages',
-                'blog',
-                'about',
-                'contact',
-              ].map((ele, i) => (
+            <nav className="mt-3 flex flex-col gap-1">
+              {navLinks.map(({ href, label }, i) => (
                 <NavLink
-                  href={i === 0 ? '/' : ele}
+                  href={href}
                   key={i}
-                  className="relative flex h-10 w-full items-center overflow-hidden rounded px-5 capitalize before:absolute before:left-0 before:hidden before:h-5 before:w-1 before:rounded-full before:bg-primary-9 hover:bg-muted-3 active:bg-muted-4 data-[active=true]:border-l-primary-8 data-[active=true]:before:block"
+                  className="relative flex h-10 w-full items-center overflow-hidden rounded px-5 capitalize outline-none before:absolute before:left-0 before:hidden before:h-5 before:w-1 before:rounded-full before:bg-primary-9 hover:bg-muted-4 focus-visible:bg-muted-4 active:bg-muted-5 data-[active=true]:before:block"
                 >
-                  {ele}
+                  {label}
                 </NavLink>
               ))}
             </nav>
 
-            <address className="mb-3 mt-auto rounded bg-muted-2 px-3 py-2 text-xs leading-loose">
-              <MapPinIcon
-                size={20}
-                className="mr-1 inline-block text-danger-11/70"
-              />{' '}
-              <span>{address}</span>
-            </address>
+            <div className="mt-auto flex flex-col gap-3 pb-3">
+              <Button
+                asChild
+                variant="text"
+                startContent={<PhoneCallIcon size={20} />}
+                className="place-self-center"
+              >
+                <Link href={`tel:${phoneNumber}`}>{phoneNumber}</Link>
+              </Button>
 
-            <Button className="mb-3 w-full" color="primary">
-              Signin/Signup
-            </Button>
+              <address className="rounded bg-muted-2 px-3 py-2 text-xs leading-loose">
+                <MapPinIcon
+                  size={20}
+                  className="mr-1 inline-block text-danger-11/70"
+                />{' '}
+                <span>{address}</span>
+              </address>
+
+              <Button className="w-full" color="primary">
+                Signin/Signup
+              </Button>
+            </div>
           </DrawerContent>
         </DrawerPortal>
       </DrawerRoot>
