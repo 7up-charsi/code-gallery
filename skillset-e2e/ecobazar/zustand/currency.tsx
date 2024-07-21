@@ -6,7 +6,13 @@ type Store = {
   update: (currency: Currencies) => void;
 };
 
+const key = 'currency';
+
 export const useCurrency = create<Store>((set) => ({
-  currency: 'usd',
-  update: (currency) => set({ currency }),
+  currency:
+    (globalThis?.localStorage?.getItem(key) as Currencies) ?? 'usd',
+  update: (currency) => {
+    set({ currency });
+    globalThis?.localStorage?.setItem(key, currency);
+  },
 }));

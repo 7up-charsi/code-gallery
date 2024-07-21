@@ -26,7 +26,10 @@ export const CurrencySwitcher = (props: CurrencySwitcherProps) => {
   return (
     <MenuRoot>
       <MenuTrigger>
-        <ThemeLangButton>{currency}</ThemeLangButton>
+        <ThemeLangButton>
+          {/* {isMounted ? currency : '--'} */}
+          {currency}
+        </ThemeLangButton>
       </MenuTrigger>
 
       <MenuPortal>
