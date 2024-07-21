@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <main className="">
       <section className="p-5">
-        <div className="grid grid-cols-2 grid-rows-[350px_repeat(2,150px)] gap-5 md:grid-cols-[1fr_250px] md:grid-rows-[repeat(2,200px)] lg:grid-cols-[1fr_300px] lg:grid-rows-[repeat(2,200px)] xl:grid-cols-[1fr_400px] xl:grid-rows-[repeat(2,300px)]">
+        <div className="grid grid-cols-2 grid-rows-[350px_150px] gap-5 md:grid-cols-[1fr_250px] md:grid-rows-[repeat(2,200px)] lg:grid-cols-[1fr_300px] lg:grid-rows-[repeat(2,250px)] xl:grid-cols-[1fr_400px] xl:grid-rows-[repeat(2,300px)]">
           <article
             aria-labelledby="bannar-big-label"
             aria-describedby="bannar-big-desc"
