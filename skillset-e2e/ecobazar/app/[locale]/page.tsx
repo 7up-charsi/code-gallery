@@ -5,6 +5,7 @@ import {
   PackageIcon,
   TruckIcon,
 } from 'lucide-react';
+import { CategoryCard } from '@/components/category-card';
 import categories from '@/content/categories.json';
 import { Button } from '@typeweave/react/button';
 import Image from 'next/image';
@@ -126,7 +127,7 @@ export default function Home() {
           </article>
         </div>
 
-        <div className="my-10 grid grid-cols-[300px] place-content-center gap-5 px-5 md:grid-cols-[repeat(2,300px)]">
+        <div className="mt-5 grid grid-cols-[300px] place-content-center gap-5 border-y px-5 py-5 md:grid-cols-[repeat(2,300px)]">
           {[
             {
               label: 'Free Shipping',
@@ -176,33 +177,31 @@ export default function Home() {
       </section>
 
       <section className="px-5">
-        <h2 className="text-xl font-semibold capitalize">
-          Popular Categories
-        </h2>
+        <div className="flex items-center justify-between gap-2">
+          <h2 className="text-xl font-semibold capitalize">
+            Popular Categories
+          </h2>
 
-        <div className="mt-5 grid grid-cols-[repeat(2,170px)] grid-rows-[repeat(3,200px)] place-content-center gap-5">
+          <Link
+            href="/"
+            className="content-center text-sm font-medium capitalize text-primary-11 outline-none ring-focus hover:underline focus-visible:ring-2"
+          >
+            all categories{' '}
+            <ArrowRightIcon size={20} className="inline-block" />
+          </Link>
+        </div>
+
+        {/* 0-6 for mobile */}
+        <div className="mt-5 grid grid-cols-[repeat(auto-fill,minmax(170px,1fr))] grid-rows-[repeat(3,220px)] place-content-center gap-5 lg:hidden">
           {categories.slice(0, 6).map((ele) => (
-            <article
-              aria-labelledby={ele.id}
-              key={ele.id}
-              className="grid grid-cols-1 grid-rows-[1fr_auto] gap-2 overflow-hidden rounded border border-muted-6 p-1"
-            >
-              <div className="relative">
-                <Image
-                  src={ele.image}
-                  alt={ele.name}
-                  fill
-                  className="object-contain"
-                />
-              </div>
+            <CategoryCard key={ele.id + 'mobile'} {...ele} />
+          ))}
+        </div>
 
-              <div
-                id={ele.id}
-                className="truncate text-center capitalize"
-              >
-                {ele.name}
-              </div>
-            </article>
+        {/* 0-6 for mobile */}
+        <div className="mt-5 grid grid-cols-[repeat(auto-fill,minmax(170px,1fr))] grid-rows-[repeat(3,220px)] place-content-center gap-5 max-lg:hidden">
+          {categories.map((ele) => (
+            <CategoryCard key={ele.id} {...ele} />
           ))}
         </div>
       </section>
