@@ -18,7 +18,7 @@ export const CartButton = (props: CartButtonProps) => {
         <Badge
           placement="bottom-center"
           color="primary"
-          classNames={{ content: 'h-4 min-w-4' }}
+          classNames={{ content: 'h-4 min-w-4 bottom-1' }}
           content={7}
         >
           <Button variant="text" isIconOnly aria-label="cart">

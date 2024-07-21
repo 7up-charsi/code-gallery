@@ -41,11 +41,13 @@ export default function RootLayout({
         style={poppins.style}
         className="bg-background text-foreground"
       >
-        <UtilityBar />
-        <AppBar />
-        <NavBar />
+        <div className="mx-auto max-w-screen-xl">
+          <UtilityBar />
+          <AppBar />
+          <NavBar />
 
-        {children}
+          {children}
+        </div>
       </body>
     </html>
   );
