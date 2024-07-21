@@ -1,5 +1,11 @@
+import {
+  ArrowRightIcon,
+  HeadsetIcon,
+  LockIcon,
+  PackageIcon,
+  TruckIcon,
+} from 'lucide-react';
 import { Button } from '@typeweave/react/button';
-import { ArrowRightIcon } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Home() {
@@ -116,6 +122,54 @@ export default function Home() {
               </Button>
             </div>
           </article>
+        </div>
+
+        <div className="my-10 grid grid-cols-1 gap-5 px-5 md:grid-cols-[repeat(2,350px)] md:place-content-center">
+          {[
+            {
+              label: 'Free Shipping',
+              desc: 'Free shipping on all your order',
+              icon: <TruckIcon absoluteStrokeWidth size={50} />,
+            },
+            {
+              label: 'Customer Support 24/7',
+              desc: 'Instant access to Support',
+              icon: <HeadsetIcon absoluteStrokeWidth size={50} />,
+            },
+            {
+              label: '100% Secure Payment',
+              desc: 'We ensure your money is save',
+              icon: <LockIcon absoluteStrokeWidth size={50} />,
+            },
+            {
+              label: 'Money-Back Guarantee',
+              desc: '30 Days Money-Back Guarantee',
+              icon: <PackageIcon absoluteStrokeWidth size={50} />,
+            },
+          ].map((ele, i) => (
+            <article
+              key={i}
+              aria-labelledby={ele.label + 'label'}
+              aria-describedby={ele.label + 'desc'}
+              className="grid grid-cols-[auto_1fr] grid-rows-2 items-center gap-x-5"
+            >
+              <span className="row-span-2 text-primary-11">
+                {ele.icon}
+              </span>
+              <span
+                id={ele.label + 'label'}
+                className="font-medium text-muted-12"
+              >
+                {ele.label}
+              </span>
+              <span
+                id={ele.label + 'desc'}
+                className="text-sm font-light"
+              >
+                {ele.desc}
+              </span>
+            </article>
+          ))}
         </div>
       </section>
     </main>
