@@ -1,0 +1,62 @@
+[
+  {
+    "id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d",
+    "name": "diabetic food",
+    "image": "/assets/categories/diabetic-food.jpg"
+  },
+  {
+    "id": "e2a31a9c-3d2f-4f7b-a4f9-6b2f0a4f7b3f",
+    "name": "fresh fruit",
+    "image": "/assets/categories/fresh-fruit.jpg"
+  },
+  {
+    "id": "4d7b3dcb-6d2f-4bad-9bdd-2b0d7b3dcb6d",
+    "name": "bread & bakery",
+    "image": "/assets/categories/bread-and-bakery.jpg"
+  },
+  {
+    "id": "2b0d7b3d-cb6d-4bad-9bdd-4d7b3dcb6d2",
+    "name": "fresh vegetables",
+    "image": "/assets/categories/fresh-vegetables.jpg"
+  },
+  {
+    "id": "6b2f0a4f-7b3f-4f7b-a4f9-e2a31a9c3d2f",
+    "name": "baking needs",
+    "image": "/assets/categories/baking-needs.jpg"
+  },
+  {
+    "id": "4bad9bdd-2b0d-7b3d-cb6d-4d7b3dcb6d2",
+    "name": "meat & fish",
+    "image": "/assets/categories/meat-and-fish.jpg"
+  },
+  {
+    "id": "3d2f4f7b-a4f9-6b2f-0a4f-7b3f-e2a31a9c",
+    "name": "cooking",
+    "image": "/assets/categories/cooking.jpg"
+  },
+  {
+    "id": "2b0d7b3d-cb6d-4bad-9bdd-6b2f0a4f7b3f",
+    "name": "snacks",
+    "image": "/assets/categories/snacks.jpg"
+  },
+  {
+    "id": "e2a31a9c-3d2f-4f7b-a4f9-4bad9bdd2b0d",
+    "name": "beverages",
+    "image": "/assets/categories/beverages.jpg"
+  },
+  {
+    "id": "6b2f0a4f-7b3f-4f7b-a4f9-2b0d7b3dcb6d",
+    "name": "dish detergents",
+    "image": "/assets/categories/dish-detergents.jpg"
+  },
+  {
+    "id": "4d7b3dcb-6d2f-4bad-9bdd-e2a31a9c3d2f",
+    "name": "oil",
+    "image": "/assets/categories/oil.jpg"
+  },
+  {
+    "id": "2b0d7b3d-cb6d-4bad-9bdd-6b2f0a4f7b3f",
+    "name": "beauty & health",
+    "image": "/assets/categories/beauty-and-health.jpg"
+  }
+]

@@ -5,7 +5,9 @@ import {
   PackageIcon,
   TruckIcon,
 } from 'lucide-react';
+import categories from '@/content/categories.json';
 import { Button } from '@typeweave/react/button';
+import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Home() {
@@ -19,14 +21,14 @@ export default function Home() {
             className="relative col-span-2 overflow-hidden rounded bg-[url(/assets/bannar-big.jpg)] bg-cover bg-right text-white md:col-span-1 md:row-span-2 lg:bg-right-top"
           >
             <div className="absolute flex h-full w-full flex-col items-center justify-center bg-black/30 px-2 backdrop-blur-sm lg:top-1/2 lg:h-auto lg:-translate-y-1/2 lg:items-start lg:bg-transparent lg:pl-10 lg:backdrop-blur-none">
-              <h2
+              <div
                 id="bannar-big-label"
                 className="text-center text-4xl font-semibold capitalize md:text-4xl lg:text-left xl:text-5xl"
               >
                 Fresh & Healthy
                 <br />
                 Organic Food
-              </h2>
+              </div>
 
               <div
                 id="bannar-big-desc"
@@ -62,7 +64,7 @@ export default function Home() {
           >
             {/* <div className="absolute left-5 top-1/2 -translate-y-1/2"> */}
             <div className="absolute flex h-full w-full flex-col items-center justify-center bg-white/30 p-4 backdrop-blur-sm lg:h-auto lg:w-auto lg:items-start lg:bg-transparent lg:backdrop-blur-none">
-              <h2
+              <div
                 id="bannar-1-label"
                 className="text-center text-xs font-medium uppercase text-muted-12 lg:text-left"
               >
@@ -71,7 +73,7 @@ export default function Home() {
                 <span className="mt-1 inline-block text-2xl font-semibold">
                   75% OFF
                 </span>
-              </h2>
+              </div>
 
               <div
                 id="bannar-1-desc"
@@ -98,12 +100,12 @@ export default function Home() {
             className="relative overflow-hidden rounded bg-[url(/assets/bannar-2.jpg)] bg-cover bg-right"
           >
             <div className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center text-white">
-              <h2
+              <div
                 id="bannar-2-label"
                 className="text-sm font-medium uppercase"
               >
                 best deal
-              </h2>
+              </div>
 
               <div
                 id="bannar-2-desc"
@@ -124,7 +126,7 @@ export default function Home() {
           </article>
         </div>
 
-        <div className="my-10 grid grid-cols-1 gap-5 px-5 md:grid-cols-[repeat(2,350px)] md:place-content-center">
+        <div className="my-10 grid grid-cols-[300px] place-content-center gap-5 px-5 md:grid-cols-[repeat(2,300px)]">
           {[
             {
               label: 'Free Shipping',
@@ -168,6 +170,38 @@ export default function Home() {
               >
                 {ele.desc}
               </span>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="px-5">
+        <h2 className="text-xl font-semibold capitalize">
+          Popular Categories
+        </h2>
+
+        <div className="mt-5 grid grid-cols-[repeat(2,170px)] grid-rows-[repeat(3,200px)] place-content-center gap-5">
+          {categories.slice(0, 6).map((ele) => (
+            <article
+              aria-labelledby={ele.id}
+              key={ele.id}
+              className="grid grid-cols-1 grid-rows-[1fr_auto] gap-2 overflow-hidden rounded border border-muted-6 p-1"
+            >
+              <div className="relative">
+                <Image
+                  src={ele.image}
+                  alt={ele.name}
+                  fill
+                  className="object-contain"
+                />
+              </div>
+
+              <div
+                id={ele.id}
+                className="truncate text-center capitalize"
+              >
+                {ele.name}
+              </div>
             </article>
           ))}
         </div>
