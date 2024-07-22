@@ -1,0 +1,18 @@
+{
+  "printWidth": 70,
+  "endOfLine": "crlf",
+  "singleQuote": true,
+  "importOrder": [
+    "^react",
+    "^next/*",
+    "^@/components/*",
+    "^[./]",
+    "^@/styles/*",
+    "^@typeweave/react"
+  ],
+  "importOrderSortSpecifiers": true,
+  "plugins": [
+    "@trivago/prettier-plugin-sort-imports",
+    "prettier-plugin-tailwindcss"
+  ]
+}
