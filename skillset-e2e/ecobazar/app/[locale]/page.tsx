@@ -6,15 +6,16 @@ import {
   TruckIcon,
 } from 'lucide-react';
 import { CategoryCard } from '@/components/category-card';
+import { ProductCard } from '@/components/product-card';
 import categories from '@/content/categories.json';
 import { Button } from '@typeweave/react/button';
-import Image from 'next/image';
+import products from '@/content/products.json';
 import Link from 'next/link';
 
 export default function Home() {
   return (
     <main className="">
-      <section className="p-5">
+      <section className="p-5 pb-0">
         <div className="grid grid-cols-2 grid-rows-[350px_150px] gap-5 md:grid-cols-[1fr_250px] md:grid-rows-[repeat(2,200px)] lg:grid-cols-[1fr_300px] lg:grid-rows-[repeat(2,250px)] xl:grid-cols-[1fr_400px] xl:grid-rows-[repeat(2,300px)]">
           <article
             aria-labelledby="bannar-big-label"
@@ -176,7 +177,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-5">
+      <section className="mt-5 px-5">
         <div className="flex items-center justify-between gap-2">
           <h2 className="text-xl font-semibold capitalize">
             Popular Categories
@@ -192,16 +193,44 @@ export default function Home() {
         </div>
 
         {/* 0-6 for mobile */}
-        <div className="mt-5 grid grid-cols-[repeat(auto-fill,minmax(170px,1fr))] grid-rows-[repeat(3,220px)] place-content-center gap-5 lg:hidden">
+        <div className="mt-5 grid auto-rows-[220px] grid-cols-[repeat(auto-fill,minmax(170px,1fr))] place-content-center gap-5 lg:hidden">
           {categories.slice(0, 6).map((ele) => (
             <CategoryCard key={ele.id + 'mobile'} {...ele} />
           ))}
         </div>
 
-        {/* 0-6 for mobile */}
-        <div className="mt-5 grid grid-cols-[repeat(auto-fill,minmax(170px,1fr))] grid-rows-[repeat(3,220px)] place-content-center gap-5 max-lg:hidden">
-          {categories.map((ele) => (
+        <div className="mt-5 grid auto-rows-[220px] grid-cols-[repeat(auto-fill,minmax(170px,1fr))] place-content-center gap-5 max-lg:hidden">
+          {categories.slice(0, 10).map((ele) => (
             <CategoryCard key={ele.id} {...ele} />
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-5 px-5">
+        <div className="flex items-center justify-between gap-2">
+          <h2 className="text-xl font-semibold capitalize">
+            Popular Products
+          </h2>
+
+          <Link
+            href="/"
+            className="content-center text-sm font-medium capitalize text-primary-11 outline-none ring-focus hover:underline focus-visible:ring-2"
+          >
+            all products{' '}
+            <ArrowRightIcon size={20} className="inline-block" />
+          </Link>
+        </div>
+
+        {/* 0-6 for mobile */}
+        <div className="mt-5 grid auto-rows-[300px] grid-cols-[repeat(auto-fill,minmax(220px,1fr))] place-content-center lg:hidden">
+          {products.slice(0, 6).map((ele) => (
+            <ProductCard key={ele.id + 'mobile'} {...ele} />
+          ))}
+        </div>
+
+        <div className="mt-5 grid auto-rows-[300px] grid-cols-[repeat(auto-fill,minmax(220px,1fr))] place-content-center max-lg:hidden">
+          {products.slice(0, 8).map((ele) => (
+            <ProductCard key={ele.id} {...ele} />
           ))}
         </div>
       </section>

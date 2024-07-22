@@ -1,0 +1,82 @@
+[
+  {
+    "id": "f47ac10b-58cc-42f5-8540-08da2cb6d41f",
+    "name": "Green Apple",
+    "price": "14.99",
+    "discount_price": "20.99",
+    "rating": 4,
+    "image": "/assets/products/green-apple.jpg"
+  },
+  {
+    "id": "7b13c3d4-1a9e-44e9-9d35-08da2cb6d420",
+    "name": "Fresh Indian Malta",
+    "price": "20.00",
+    "discount_price": "0",
+    "rating": 4,
+    "image": "/assets/products/fresh-indian-malta.jpg"
+  },
+  {
+    "id": "c5b7a3e2-8c6f-4d1e-a2c2-08da2cb6d41e",
+    "name": "Chinese cabbage",
+    "price": "12.00",
+    "discount_price": "0",
+    "rating": 4,
+    "image": "/assets/products/chinese-cabbage.jpg"
+  },
+  {
+    "id": "3a655c6c-78b4-4a8b-8f67-08da2cb6d423",
+    "name": "Green Lettuce",
+    "price": "9.00",
+    "discount_price": "0",
+    "rating": 4,
+    "image": "/assets/products/green-lettuce.jpg"
+  },
+  {
+    "id": "2a46d2e2-8ab3-4e8f-8f68-08da2cb6d41a",
+    "name": "Eggplant",
+    "price": "34.00",
+    "discount_price": "0",
+    "rating": 4,
+    "image": "/assets/products/eggplant.jpg"
+  },
+  {
+    "id": "9c3575c4-6d3f-43e5-8f69-08da2cb6d427",
+    "name": "Green Chili",
+    "price": "34.00",
+    "discount_price": "0",
+    "rating": 4,
+    "image": "/assets/products/green-chili.jpg"
+  },
+  {
+    "id": "4b97c3e5-8c67-4e1e-a2c3-08da2cb6d41d",
+    "name": "Green Capsicum",
+    "price": "9.00",
+    "discount_price": "20.99",
+    "rating": 4,
+    "image": "/assets/products/green-capsicum.jpg"
+  },
+  {
+    "id": "1a3e5c6c-78b4-4a8b-8f65-08da2cb6d425",
+    "name": "Fresh Cauliflower",
+    "price": "12.00",
+    "discount_price": "0",
+    "rating": 4,
+    "image": "/assets/products/fresh-cauliflower.jpg"
+  },
+  {
+    "id": "9f655c6c-78b4-4a8b-8f66-08da2cb6d424",
+    "name": "Corn",
+    "price": "20.00",
+    "discount_price": "0",
+    "rating": 4,
+    "image": "/assets/products/corn.jpg"
+  },
+  {
+    "id": "4c3575c4-6d3f-43e5-8f68-08da2cb6d426",
+    "name": "Big Potatoes",
+    "price": "20.00",
+    "discount_price": "0",
+    "rating": 4,
+    "image": "/assets/products/big-potatoes.jpg"
+  }
+]
