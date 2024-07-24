@@ -6,7 +6,7 @@ const siteUrl =
 export const siteConfig = {
   name: 'Wearhouse',
   description:
-    'Accessible and Responsive eCommerce website with dark and light mode',
+    'We have clothes that suits your style and which you’re proud to wear. From women to men.',
   author: author.name,
   portfolio: author.portfolio,
   email: author.email,

@@ -25,14 +25,14 @@ export const Product = (props: ProductProps) => {
 
       <dl className="flex items-center">
         <dt className="sr-only">price</dt>
-        <dd className="mt-1 text-xl font-bold text-black">
+        <dd className="mt-1 text-lg font-bold text-black">
           ${price}
         </dd>
 
         {discountPercentage && (
           <>
             <dt className="sr-only">original price</dt>
-            <dd className="ml-2 mt-1 text-xl font-bold text-black/40">
+            <dd className="ml-2 mt-1 font-bold text-black/40">
               <del>
                 ${(price / (1 - discountPercentage / 100)).toFixed(2)}
               </del>

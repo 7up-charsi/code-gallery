@@ -1,4 +1,5 @@
 import { AppBar } from '@/components/app-bar';
+import { Footer } from '@/components/footer';
 import { siteConfig } from '@/config/site';
 import type { Metadata } from 'next';
 import Local from 'next/font/local';
@@ -116,6 +117,8 @@ export default function RootLayout({
         <AppBar />
 
         {children}
+
+        <Footer />
       </body>
     </html>
   );
