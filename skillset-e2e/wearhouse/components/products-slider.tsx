@@ -1,10 +1,6 @@
 'use client';
 
-import {
-  ArrowLeftIcon,
-  ArrowRightIcon,
-  Cannabis,
-} from 'lucide-react';
+import { ArrowLeftIcon, ArrowRightIcon } from 'lucide-react';
 import { Product as ProductType } from '@/types/product';
 import useEmblaCarousel from 'embla-carousel-react';
 import { EmblaCarouselType } from 'embla-carousel';
@@ -12,13 +8,13 @@ import { Button } from '@typeweave/react/button';
 import { Product } from './product';
 import React from 'react';
 
-interface NewArrivalsSliderProps {
+interface ProductsSliderProps {
   products: ProductType[];
 }
 
-const displayName = 'NewArrivalsSlider';
+const displayName = 'ProductsSlider';
 
-export const NewArrivalsSlider = (props: NewArrivalsSliderProps) => {
+export const ProductsSlider = (props: ProductsSliderProps) => {
   const { products } = props;
 
   const [emblaRef, emblaApi] = useEmblaCarousel({ dragFree: true });
@@ -80,4 +76,4 @@ export const NewArrivalsSlider = (props: NewArrivalsSliderProps) => {
   );
 };
 
-NewArrivalsSlider.displayName = displayName;
+ProductsSlider.displayName = displayName;

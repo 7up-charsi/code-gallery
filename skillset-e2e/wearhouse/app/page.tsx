@@ -1,15 +1,21 @@
-import { NewArrivalsSlider } from '@/components/new-arrivals-slider';
+import { ProductsSlider } from '@/components/products-slider';
 import heroMobileImage from '@/assets/hero-mobile.jpg';
 import { Button } from '@typeweave/react/button';
 import Image from 'next/image';
 import Link from 'next/link';
 
 export default async function Home() {
-  const res = await fetch(
+  const newArrivalsRes = await fetch(
     'https://dummyjson.com/products/category/mens-shirts',
   );
 
-  const newArrivals = await res.json();
+  const newArrivals = await newArrivalsRes.json();
+
+  const topSellingRes = await fetch(
+    'https://dummyjson.com/products/category/womens-dresses',
+  );
+
+  const topSelling = await topSellingRes.json();
 
   return (
     <main className="">
@@ -108,12 +114,29 @@ export default async function Home() {
         />
       </section>
 
-      <section className="px-5 pb-40">
-        <h2 className="mt-12 text-center font-integral text-3xl font-bold text-black">
+      <section className="mt-12 px-5">
+        <h2 className="text-center font-integral text-3xl font-bold capitalize text-black">
           NEW ARRIVALS
         </h2>
 
-        <NewArrivalsSlider products={newArrivals.products ?? []} />
+        <ProductsSlider products={newArrivals.products ?? []} />
+
+        <Button
+          variant="border"
+          className="mt-5 w-full rounded-full font-medium text-black"
+        >
+          view more
+        </Button>
+      </section>
+
+      <hr className="mx-5 my-12" />
+
+      <section className="px-5">
+        <h2 className="text-center font-integral text-3xl font-bold capitalize text-black">
+          top selling
+        </h2>
+
+        <ProductsSlider products={topSelling.products ?? []} />
 
         <Button
           variant="border"
