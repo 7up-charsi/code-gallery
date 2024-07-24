@@ -1,3 +1,4 @@
+import { AppBar } from '@/components/app-bar';
 import { siteConfig } from '@/config/site';
 import type { Metadata } from 'next';
 import Local from 'next/font/local';
@@ -112,8 +113,11 @@ export default function RootLayout({
       <body
         className={`${satoshi.variable} ${integral.variable} bg-background font-satoshi text-foreground`}
       >
+        <AppBar />
+
         {children}
       </body>
     </html>
   );
 }
+
