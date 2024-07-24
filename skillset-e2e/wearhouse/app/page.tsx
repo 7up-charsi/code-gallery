@@ -1,6 +1,9 @@
 import { ProductsSlider } from '@/components/products-slider';
 import heroMobileImage from '@/assets/hero-mobile.jpg';
+import { NewsLetter } from '@/components/news-letter';
 import { Button } from '@typeweave/react/button';
+import { categories } from '@/constants/common';
+import { Reviews } from '@/components/reviews';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -16,6 +19,10 @@ export default async function Home() {
   );
 
   const topSelling = await topSellingRes.json();
+
+  const reviewsRes = await fetch('https://dummyjson.com/comments');
+
+  const reviews = await reviewsRes.json();
 
   return (
     <main className="">
@@ -38,7 +45,7 @@ export default async function Home() {
 
           <Link
             href="/shop"
-            className="mt-5 block h-12 w-full content-center rounded-full bg-black text-center text-lg text-white"
+            className="mt-5 block h-12 w-full content-center rounded-full bg-black text-center text-lg text-white outline-none ring-focus ring-offset-2 focus-visible:ring-2"
           >
             Shop Now
           </Link>
@@ -114,12 +121,12 @@ export default async function Home() {
         />
       </section>
 
-      <section className="mt-12 px-5">
+      <section className="mt-10 px-5">
         <h2 className="text-center font-integral text-3xl font-bold capitalize text-black">
           NEW ARRIVALS
         </h2>
 
-        <ProductsSlider products={newArrivals.products ?? []} />
+        <ProductsSlider products={newArrivals?.products ?? []} />
 
         <Button
           variant="border"
@@ -136,7 +143,7 @@ export default async function Home() {
           top selling
         </h2>
 
-        <ProductsSlider products={topSelling.products ?? []} />
+        <ProductsSlider products={topSelling?.products ?? []} />
 
         <Button
           variant="border"
@@ -145,6 +152,39 @@ export default async function Home() {
           view more
         </Button>
       </section>
+
+      <section className="mt-10 px-5">
+        <div className="flex flex-col rounded-2xl bg-muted-3 p-5">
+          <h2 className="my-7 text-center font-integral text-3xl font-bold uppercase text-black">
+            BROWSE BY <br /> dress STYLE
+          </h2>
+
+          <div className="space-y-5">
+            {categories.map(({ label, image }) => (
+              <Link
+                key={label}
+                href={`/categories/${label}`}
+                className="relative block h-[190px] select-none rounded-xl bg-white"
+              >
+                <Image
+                  src={image}
+                  alt={label}
+                  fill
+                  className="object-contain object-right"
+                />
+
+                <h3 className="absolute left-10 top-5 text-2xl font-bold capitalize text-black">
+                  {label}
+                </h3>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <Reviews reviews={reviews?.comments ?? []} />
+
+      <NewsLetter />
     </main>
   );
 }
