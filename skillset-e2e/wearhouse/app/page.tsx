@@ -1,11 +1,19 @@
+import { NewArrivalsSlider } from '@/components/new-arrivals-slider';
 import heroMobileImage from '@/assets/hero-mobile.jpg';
+import { Button } from '@typeweave/react/button';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function Home() {
+export default async function Home() {
+  const res = await fetch(
+    'https://dummyjson.com/products/category/mens-shirts',
+  );
+
+  const newArrivals = await res.json();
+
   return (
-    <main className="min-h-screen bg-muted-3">
-      <section className="pt-7">
+    <main className="">
+      <section className="bg-muted-3 pt-7">
         <div className="px-5">
           <h1
             aria-describedby="hero-desc"
@@ -98,6 +106,21 @@ export default function Home() {
           height={0}
           className="w-auto"
         />
+      </section>
+
+      <section className="px-5 pb-40">
+        <h2 className="mt-12 text-center font-integral text-3xl font-bold text-black">
+          NEW ARRIVALS
+        </h2>
+
+        <NewArrivalsSlider products={newArrivals.products ?? []} />
+
+        <Button
+          variant="border"
+          className="mt-5 w-full rounded-full font-medium text-black"
+        >
+          view more
+        </Button>
       </section>
     </main>
   );
