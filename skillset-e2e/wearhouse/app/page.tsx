@@ -61,6 +61,44 @@ export default function Home() {
           className="w-full"
         />
       </section>
+
+      <section className="flex flex-wrap items-center justify-center gap-x-10 gap-y-5 bg-black px-5 py-8 text-white">
+        <Image
+          src="/assets/brands/versace.svg"
+          alt="versace"
+          width={0}
+          height={0}
+          className="w-auto"
+        />
+        <Image
+          src="/assets/brands/zara.svg"
+          alt="zara"
+          width={0}
+          height={0}
+          className="w-auto"
+        />
+        <Image
+          src="/assets/brands/gucci.svg"
+          alt="gucci"
+          width={0}
+          height={0}
+          className="w-auto"
+        />
+        <Image
+          src="/assets/brands/prada.svg"
+          alt="prada"
+          width={0}
+          height={0}
+          className="w-auto"
+        />
+        <Image
+          src="/assets/brands/calvin-klein.svg"
+          alt="calvin-klein"
+          width={0}
+          height={0}
+          className="w-auto"
+        />
+      </section>
     </main>
   );
 }
