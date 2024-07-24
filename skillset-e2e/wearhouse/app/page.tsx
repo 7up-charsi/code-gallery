@@ -4,6 +4,7 @@ import { NewsLetter } from '@/components/news-letter';
 import { Button } from '@typeweave/react/button';
 import { categories } from '@/constants/common';
 import { Reviews } from '@/components/reviews';
+import { siteConfig } from '@/config/site';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -185,6 +186,17 @@ export default async function Home() {
       <Reviews reviews={reviews?.comments ?? []} />
 
       <NewsLetter />
+
+      <section className="px-5">
+        <h2 className="mt-10 font-integral text-3xl font-bold text-black">
+          {siteConfig.name}
+        </h2>
+
+        <p className="mt-2 text-sm">
+          We have clothes that suits your style and which you’re proud
+          to wear. From women to men.
+        </p>
+      </section>
     </main>
   );
 }
