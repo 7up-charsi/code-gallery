@@ -694,6 +694,9 @@ importers:
 
   skillset-e2e/todo-management:
     dependencies:
+      '@repo/meta':
+        specifier: workspace:*
+        version: link:../../packages/meta
       '@typeweave/react':
         specifier: ^4.0.6
         version: 4.0.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.6)
@@ -734,6 +737,15 @@ importers:
       postcss:
         specifier: ^8.4.40
         version: 8.4.40
+      prettier:
+        specifier: ^3.3.3
+        version: 3.3.3
+      prettier-plugin-sort-imports:
+        specifier: ^1.8.6
+        version: 1.8.6(typescript@5.5.4)
+      prettier-plugin-tailwindcss:
+        specifier: ^0.6.5
+        version: 0.6.5(prettier-plugin-sort-imports@1.8.6(typescript@5.5.4))(prettier@3.3.3)
       tailwindcss:
         specifier: ^3.4.6
         version: 3.4.6
@@ -4813,11 +4825,22 @@ snapshots:
       prettier: 3.3.3
       typescript: 5.5.3
 
+  prettier-plugin-sort-imports@1.8.6(typescript@5.5.4):
+    dependencies:
+      prettier: 3.3.3
+      typescript: 5.5.4
+
   prettier-plugin-tailwindcss@0.6.5(prettier-plugin-sort-imports@1.8.6(typescript@5.5.3))(prettier@3.3.3):
     dependencies:
       prettier: 3.3.3
     optionalDependencies:
       prettier-plugin-sort-imports: 1.8.6(typescript@5.5.3)
+
+  prettier-plugin-tailwindcss@0.6.5(prettier-plugin-sort-imports@1.8.6(typescript@5.5.4))(prettier@3.3.3):
+    dependencies:
+      prettier: 3.3.3
+    optionalDependencies:
+      prettier-plugin-sort-imports: 1.8.6(typescript@5.5.4)
 
   prettier@3.3.3: {}
 
