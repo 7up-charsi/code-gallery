@@ -36,11 +36,11 @@ type Store = {
       | 'categoryIds'
       | 'statusId'
     >,
-  ) => void;
-  deleteTask: (id: string) => void;
-  addCategory: (payload: string) => void;
-  editCategory: (id: string, payload: string) => void;
-  deleteCategory: (id: string) => void;
+  ) => Promise<void>;
+  deleteTask: (id: string) => Promise<void>;
+  addCategory: (payload: string) => Promise<void>;
+  editCategory: (id: string, payload: string) => Promise<void>;
+  deleteCategory: (id: string) => Promise<void>;
 };
 
 export const useStore = create<Store>((set) => ({
@@ -55,7 +55,7 @@ export const useStore = create<Store>((set) => ({
       dataLoaded: !!(categories && tasks),
     }));
   },
-  addCategory: (label) => {
+  addCategory: async (label) => {
     set((state) => {
       const categories: Category[] = [
         ...state.categories,
@@ -67,7 +67,7 @@ export const useStore = create<Store>((set) => ({
       return { ...state, categories };
     });
   },
-  editCategory: (id, label) => {
+  editCategory: async (id, label) => {
     set((state) => {
       const categories = state.categories.map((category) =>
         category.id === id ? { ...category, label } : category,
@@ -78,7 +78,7 @@ export const useStore = create<Store>((set) => ({
       return { ...state, categories };
     });
   },
-  deleteCategory: (id) => {
+  deleteCategory: async (id) => {
     set((state) => {
       const categories = state.categories.filter(
         (ele) => ele.id !== id,
@@ -110,7 +110,7 @@ export const useStore = create<Store>((set) => ({
       return { ...state, tasks };
     });
   },
-  editTask: (id, task) => {
+  editTask: async (id, task) => {
     set((state) => {
       const tasks = state.tasks.map((ele) =>
         ele.id === id ? { ...ele, ...task } : ele,
@@ -121,7 +121,7 @@ export const useStore = create<Store>((set) => ({
       return { ...state, tasks };
     });
   },
-  deleteTask: (id) => {
+  deleteTask: async (id) => {
     set((state) => {
       const tasks = state.tasks.filter((ele) => ele.id !== id);
 
