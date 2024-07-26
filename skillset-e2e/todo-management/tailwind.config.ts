@@ -1,5 +1,6 @@
-import type { Config } from 'tailwindcss';
 import { typeweave } from '@typeweave/plugin';
+import scrollbar from 'tailwind-scrollbar';
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
@@ -8,7 +9,7 @@ const config: Config = {
     './node_modules/@typeweave/react/dist/**/*.styles.js',
   ],
   theme: {},
-  plugins: [typeweave()],
+  plugins: [typeweave(), scrollbar({})],
 };
 
 export default config;
