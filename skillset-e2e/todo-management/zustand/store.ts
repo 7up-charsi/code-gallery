@@ -1,14 +1,14 @@
-import { Task } from '@/types/task';
+import { Category, Task } from '@/types/task';
 import { v7 as uuidV7 } from 'uuid';
 import { create } from 'zustand';
 
 type Store = {
   tasks: Task[];
-  categories: { id: string; value: string }[];
+  categories: Category[];
   addTask: (
     payload: Pick<
       Task,
-      'title' | 'description' | 'dueDate' | 'priority' | 'category'
+      'title' | 'description' | 'dueDate' | 'priority' | 'categories'
     >,
   ) => void;
   editTask: (
@@ -19,7 +19,7 @@ type Store = {
       | 'description'
       | 'dueDate'
       | 'priority'
-      | 'category'
+      | 'categories'
       | 'status'
     >,
   ) => void;
@@ -60,7 +60,7 @@ export const useStore = create<Store>((set) => ({
       tasks: [
         ...state.tasks,
         {
-          category: task.category,
+          categories: task.categories,
           description: task.description,
           dueDate: task.dueDate,
           priority: task.priority,

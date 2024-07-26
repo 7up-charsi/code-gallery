@@ -1,12 +1,9 @@
 'use client';
 
-import {
-  CheckCircleIcon,
-  CircleCheckIcon,
-  CircleIcon,
-} from 'lucide-react';
 import { Input, inputStyles } from '@typeweave/react/input';
+import { CategoriesInput } from './categories-input';
 import { Button } from '@typeweave/react/button';
+import { CircleIcon } from 'lucide-react';
 import React from 'react';
 
 type FormValues = {};
@@ -30,6 +27,8 @@ export const TaskForm = (props: TaskFormProps) => {
       <Input label="title" className="w-full" />
 
       <Input multiline label="description" className="mt-3 w-full" />
+
+      <CategoriesInput />
 
       <fieldset className="mt-3">
         <legend className={styles.label()}>priority</legend>

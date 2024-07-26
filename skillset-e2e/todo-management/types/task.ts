@@ -1,3 +1,5 @@
+export type Category = { id: string; value: string };
+
 export type Task = {
   id: string;
   title: string;
@@ -6,5 +8,5 @@ export type Task = {
   priority: 'Low' | 'Medium' | 'High';
   status: 'not-started' | 'in-progress' | 'completed';
   overdue: boolean;
-  category: string;
+  categories: Category[];
 };
