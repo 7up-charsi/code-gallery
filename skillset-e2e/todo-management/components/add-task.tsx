@@ -42,7 +42,7 @@ export const AddTask = (props: AddTaskProps) => {
         >
           <div className="max-md:scrollbar-thin h-full overflow-auto p-5">
             <div className="sticky top-0 bg-white">
-              <div className="flex items-center justify-between rounded-full bg-primary-3 px-5 py-1">
+              <div className="flex h-10 items-center justify-between rounded-full bg-primary-3 px-5">
                 <span
                   id="add-task-dialog-label"
                   className="font-medium capitalize text-muted-12"
@@ -56,6 +56,7 @@ export const AddTask = (props: AddTaskProps) => {
                     aria-label="close add task dialog"
                     variant="text"
                     color="danger"
+                    size="sm"
                     className="text-xl"
                   >
                     <XIcon />

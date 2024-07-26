@@ -29,35 +29,52 @@ type Store = {
   deleteCategory: (id: string) => void;
 };
 
+const CATEGORY_KEY = 'categories';
+const TASKS_KEY = 'tasks';
+
+const storedTasks = localStorage.getItem(TASKS_KEY);
+const storedCategories = localStorage.getItem(CATEGORY_KEY);
+
 export const useStore = create<Store>((set) => ({
-  tasks: [],
-  categories: [],
+  tasks: storedTasks ? JSON.parse(storedTasks) : [],
+  categories: storedCategories ? JSON.parse(storedCategories) : [],
   addCategory: (value) => {
-    set((state) => ({
-      ...state,
-      categories: [...state.categories, { id: uuidV7(), value }],
-    }));
+    set((state) => {
+      const categories: Category[] = [
+        ...state.categories,
+        { id: uuidV7(), value },
+      ];
+
+      localStorage.setItem(CATEGORY_KEY, JSON.stringify(categories));
+
+      return { ...state, categories };
+    });
   },
   editCategory: (id, value) => {
     set((state) => {
-      return {
-        ...state,
-        categories: state.categories.map((category) =>
-          category.id === id ? { ...category, value } : category,
-        ),
-      };
+      const categories = state.categories.map((category) =>
+        category.id === id ? { ...category, value } : category,
+      );
+
+      localStorage.setItem(CATEGORY_KEY, JSON.stringify(categories));
+
+      return { ...state, categories };
     });
   },
   deleteCategory: (id) => {
-    set((state) => ({
-      ...state,
-      categories: state.categories.filter((ele) => ele.id !== id),
-    }));
+    set((state) => {
+      const categories = state.categories.filter(
+        (ele) => ele.id !== id,
+      );
+
+      localStorage.setItem(CATEGORY_KEY, JSON.stringify(categories));
+
+      return { ...state, categories };
+    });
   },
   addTask: (task) => {
-    set((state) => ({
-      ...state,
-      tasks: [
+    set((state) => {
+      const tasks: Task[] = [
         ...state.tasks,
         {
           categories: task.categories,
@@ -69,21 +86,31 @@ export const useStore = create<Store>((set) => ({
           overdue: false,
           status: 'not-started',
         },
-      ],
-    }));
+      ];
+
+      localStorage.setItem(TASKS_KEY, JSON.stringify(tasks));
+
+      return { ...state, tasks };
+    });
   },
   editTask: (id, task) => {
-    set((state) => ({
-      ...state,
-      tasks: state.tasks.map((ele) =>
+    set((state) => {
+      const tasks = state.tasks.map((ele) =>
         ele.id === id ? { ...ele, ...task } : ele,
-      ),
-    }));
+      );
+
+      localStorage.setItem(TASKS_KEY, JSON.stringify(tasks));
+
+      return { ...state, tasks };
+    });
   },
   deleteTask: (id) => {
-    set((state) => ({
-      ...state,
-      tasks: state.tasks.filter((ele) => ele.id !== id),
-    }));
+    set((state) => {
+      const tasks = state.tasks.filter((ele) => ele.id !== id);
+
+      localStorage.setItem(TASKS_KEY, JSON.stringify(tasks));
+
+      return { ...state, tasks };
+    });
   },
 }));
