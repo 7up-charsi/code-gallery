@@ -1,3 +1,4 @@
+import { LoadData } from '@/components/load-data';
 import { AppBar } from '@/components/app-bar';
 import { siteConfig } from '@/config/site';
 import { Inter } from 'next/font/google';
@@ -40,6 +41,7 @@ export default function RootLayout({
         style={inter.style}
         className="bg-muted-3 text-foreground"
       >
+        <LoadData />
         <AppBar />
         {children}
       </body>

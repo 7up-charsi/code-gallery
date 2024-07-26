@@ -1,3 +1,4 @@
+import { CATEGORY_KEY, TASKS_KEY } from '@/constants/common';
 import { Category, Task } from '@/types/task';
 import { v7 as uuidV7 } from 'uuid';
 import { create } from 'zustand';
@@ -5,6 +6,11 @@ import { create } from 'zustand';
 type Store = {
   tasks: Task[];
   categories: Category[];
+  dataLoaded: boolean;
+  loadData: (payload: {
+    categories: Category[];
+    tasks: Task[];
+  }) => void;
   addTask: (
     payload: Pick<
       Task,
@@ -29,15 +35,18 @@ type Store = {
   deleteCategory: (id: string) => void;
 };
 
-const CATEGORY_KEY = 'categories';
-const TASKS_KEY = 'tasks';
-
-const storedTasks = localStorage.getItem(TASKS_KEY);
-const storedCategories = localStorage.getItem(CATEGORY_KEY);
-
 export const useStore = create<Store>((set) => ({
-  tasks: storedTasks ? JSON.parse(storedTasks) : [],
-  categories: storedCategories ? JSON.parse(storedCategories) : [],
+  tasks: [],
+  categories: [],
+  dataLoaded: false,
+  loadData: ({ categories, tasks }) => {
+    set((state) => ({
+      ...state,
+      categories,
+      tasks,
+      dataLoaded: !!(categories && tasks),
+    }));
+  },
   addCategory: (value) => {
     set((state) => {
       const categories: Category[] = [

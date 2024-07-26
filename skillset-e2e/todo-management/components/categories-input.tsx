@@ -1,15 +1,24 @@
 import {
+  ControllerFieldState,
+  ControllerRenderProps,
+  UseFormStateReturn,
+} from 'react-hook-form';
+import {
   Combobox,
   createComboboxFilter,
 } from '@typeweave/react/combobox';
 import { mergeRefs } from '@typeweave/react-utils';
 import { Input } from '@typeweave/react/input';
 import { useStore } from '@/zustand/store';
+import { FormValues } from './task-form';
 import { Category } from '@/types/task';
 import React from 'react';
 
-interface CategoriesInputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {}
+interface CategoriesInputProps {
+  field: ControllerRenderProps<FormValues, 'categories'>;
+  fieldState: ControllerFieldState;
+  formState: UseFormStateReturn<FormValues>;
+}
 
 const displayName = 'CategoriesInput';
 
@@ -17,11 +26,11 @@ type CustomCategory = Category & { inputValue: string };
 
 const filterOptions = createComboboxFilter<CustomCategory>({});
 
-export const CategoriesInput = React.forwardRef<
-  HTMLInputElement,
-  CategoriesInputProps
->((props, forwardedRef) => {
-  const {} = props;
+export const CategoriesInput = (props: CategoriesInputProps) => {
+  const {
+    field: { name, onBlur, onChange, ref, value, disabled },
+    fieldState: { error },
+  } = props;
 
   const categories = useStore(
     (state) => state.categories,
@@ -29,14 +38,14 @@ export const CategoriesInput = React.forwardRef<
 
   const addCategory = useStore((state) => state.addCategory);
 
-  const [value, setValue] = React.useState<CustomCategory[]>([]);
   const [open, setOpen] = React.useState(false);
 
   return (
     <Combobox
       editable
       multiple
-      value={value}
+      disabled={disabled}
+      value={value as CustomCategory[]}
       open={open}
       onOpen={() => setOpen(true)}
       onClose={(reason) =>
@@ -51,7 +60,7 @@ export const CategoriesInput = React.forwardRef<
           addCategory(option.inputValue);
         } else {
           setOpen(false);
-          setValue(newValue);
+          onChange({ target: { value: newValue } });
         }
       }}
       filterOptions={(...params) => {
@@ -73,12 +82,19 @@ export const CategoriesInput = React.forwardRef<
         <Input
           label="categories"
           className="mt-3 w-full"
+          name={name}
           {...props}
-          ref={mergeRefs(props.ref, forwardedRef)}
+          ref={mergeRefs(props.ref, ref)}
+          onBlur={(e) => {
+            props.onBlur?.(e);
+            onBlur();
+          }}
+          error={!!error}
+          helperText={error?.message ?? ' '}
         />
       )}
     />
   );
-});
+};
 
 CategoriesInput.displayName = displayName;
