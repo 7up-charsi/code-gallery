@@ -26,7 +26,7 @@ export const AddTask = (props: AddTaskProps) => {
         <Button
           isIconOnly
           aria-label="add task"
-          variant="text"
+          color="primary"
           className="text-2xl"
         >
           <PlusIcon />
@@ -38,12 +38,12 @@ export const AddTask = (props: AddTaskProps) => {
 
         <DialogContent
           aria-label="add-task-dialog-label"
-          className="top-full h-full max-h-[80vh] w-full max-w-screen-sm -translate-y-full overflow-hidden rounded-b-none rounded-t-xl p-5"
+          className="top-full max-h-[80vh] w-full max-w-screen-sm -translate-y-full overflow-hidden rounded-b-none rounded-t-xl p-5"
         >
           <div className="flex items-center justify-between">
             <span
               id="add-task-dialog-label"
-              className="text-xl font-medium capitalize text-muted-12"
+              className="font-medium capitalize text-muted-12"
             >
               add task
             </span>
@@ -60,6 +60,8 @@ export const AddTask = (props: AddTaskProps) => {
               </Button>
             </DialogClose>
           </div>
+
+          <hr className="my-2" />
 
           <TaskForm onSubmit={() => {}} />
         </DialogContent>

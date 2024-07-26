@@ -19,7 +19,9 @@ interface TaskFormProps {
 const displayName = 'TaskForm';
 
 export const TaskForm = (props: TaskFormProps) => {
-  const {} = props;
+  const { defaultValues } = props;
+
+  const isEditForm = !!defaultValues;
 
   const styles = React.useMemo(() => inputStyles(), []);
 
@@ -32,17 +34,18 @@ export const TaskForm = (props: TaskFormProps) => {
       <fieldset className="mt-3">
         <legend className={styles.label()}>priority</legend>
 
-        <div className="mt-1 flex gap-5">
+        <div className="mt-1 flex flex-wrap gap-x-5 gap-y-3">
           {['high', 'medium', 'low'].map((priority) => (
             <div
               key={priority}
-              className="relative isolate flex items-center justify-center gap-2 px-4 py-2 text-white"
+              className="relative isolate flex shrink-0 items-center justify-center gap-2 px-4 py-2 text-white"
             >
               <input
-                data-level={priority}
+                data-priority={priority}
                 type="radio"
+                value={priority}
                 name="priority"
-                className="peer absolute inset-0 -z-10 cursor-pointer appearance-none rounded-full bg-success-9 outline-none ring-focus focus-visible:ring-2 data-[level=high]:bg-danger-9 data-[level=medium]:bg-warning-9"
+                className="peer absolute inset-0 -z-10 cursor-pointer appearance-none rounded-full bg-success-9 outline-none ring-focus focus-visible:ring-2 data-[priority=high]:bg-danger-9 data-[priority=medium]:bg-warning-9"
               />
 
               <CircleIcon
@@ -63,15 +66,61 @@ export const TaskForm = (props: TaskFormProps) => {
         </div>
       </fieldset>
 
-      <p
-        tabIndex={0}
-        className="mt-5 rounded border border-info-6 bg-info-3 p-2 text-info-11"
-      >
-        <strong className="">Note:</strong> <br /> Default status will
-        be set to
-        <b> &apos;Not Started&apos;</b>. You can edit the status later
-        as needed.
-      </p>
+      {isEditForm && (
+        <fieldset className="mt-3">
+          <legend className={styles.label()}>status</legend>
+
+          <div className="mt-1 flex flex-wrap gap-x-5 gap-y-3">
+            {['not started', 'in progress', 'completed'].map(
+              (status) => (
+                <div
+                  key={status}
+                  data-status={status.replace(' ', '-')}
+                  className="group relative isolate flex shrink-0 items-center justify-center gap-2 px-4 py-2 text-white data-[status=not-started]:text-muted-11"
+                >
+                  <input
+                    type="radio"
+                    value={status}
+                    name="status"
+                    className="peer absolute inset-0 -z-10 cursor-pointer appearance-none rounded-full bg-muted-3 outline-none ring-focus focus-visible:ring-2 group-data-[status=completed]:bg-success-9 group-data-[status=in-progress]:bg-info-9"
+                  />
+
+                  <CircleIcon
+                    size={14}
+                    className="pointer-events-none block peer-checked:hidden"
+                  />
+
+                  <CircleIcon
+                    size={14}
+                    className="pointer-events-none hidden fill-current peer-checked:block"
+                  />
+
+                  <span className="pointer-events-none text-sm capitalize">
+                    {status}
+                  </span>
+                </div>
+              ),
+            )}
+          </div>
+        </fieldset>
+      )}
+
+      {!isEditForm && (
+        <p
+          tabIndex={0}
+          className="mt-5 text-balance border-y border-muted-6 py-2 text-center text-foreground/80"
+        >
+          Default{' '}
+          <strong className="font-medium text-foreground">
+            Status
+          </strong>{' '}
+          will be set to{' '}
+          <strong className="font-medium text-foreground">
+            &apos;Not Started&apos;
+          </strong>
+          . You can edit the status later as needed.
+        </p>
+      )}
 
       <div className="mt-5 flex items-center justify-end gap-3">
         <Button type="button" variant="text" color="danger">
@@ -79,7 +128,7 @@ export const TaskForm = (props: TaskFormProps) => {
         </Button>
 
         <Button type="submit" variant="solid" color="success">
-          submit
+          {isEditForm ? 'edit' : 'submit'}
         </Button>
       </div>
     </form>
