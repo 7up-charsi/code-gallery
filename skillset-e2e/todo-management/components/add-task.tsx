@@ -10,6 +10,8 @@ import {
 } from '@typeweave/react/dialog';
 import { Button } from '@typeweave/react/button';
 import { PlusIcon, XIcon } from 'lucide-react';
+import { useStore } from '@/zustand/store';
+import { toast } from 'react-toastify';
 import { TaskForm } from './task-form';
 import React from 'react';
 
@@ -19,6 +21,8 @@ const displayName = 'AddTask';
 
 export const AddTask = (props: AddTaskProps) => {
   const {} = props;
+
+  const addTask = useStore((s) => s.addTask);
 
   return (
     <DialogRoot>
@@ -40,8 +44,8 @@ export const AddTask = (props: AddTaskProps) => {
           aria-label="add-task-dialog-label"
           className="top-full max-h-[80vh] w-full max-w-screen-sm -translate-y-full overflow-hidden rounded-b-none rounded-t-xl"
         >
-          <div className="max-md:scrollbar-thin h-full overflow-auto p-5">
-            <div className="sticky top-0 bg-white">
+          <div className="relative h-full overflow-auto max-md:scrollbar-thin">
+            <div className="sticky top-0 z-50 bg-white px-5 pt-5">
               <div className="flex h-10 items-center justify-between rounded-full bg-primary-3 px-5">
                 <span
                   id="add-task-dialog-label"
@@ -65,9 +69,24 @@ export const AddTask = (props: AddTaskProps) => {
               </div>
             </div>
 
-            {/* <hr className="my-2" /> */}
+            <div className="p-5 pt-2">
+              <TaskForm
+                onSubmit={async (values, reset) => {
+                  await addTask({
+                    title: values.title,
+                    description: values.description,
+                    categoryIds: values.categoryIds.map(
+                      (ele) => ele.id,
+                    ),
+                    priorityId: values.priorityId,
+                    dueDate: values.dueDate,
+                  });
 
-            <TaskForm onSubmit={() => {}} />
+                  toast.success('task added...!');
+                  reset();
+                }}
+              />
+            </div>
           </div>
         </DialogContent>
       </DialogPortal>

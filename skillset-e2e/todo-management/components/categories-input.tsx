@@ -11,20 +11,19 @@ import { mergeRefs } from '@typeweave/react-utils';
 import { Input } from '@typeweave/react/input';
 import { useStore } from '@/zustand/store';
 import { FormValues } from './task-form';
-import { Category } from '@/types/task';
 import React from 'react';
 
 interface CategoriesInputProps {
-  field: ControllerRenderProps<FormValues, 'categories'>;
+  field: ControllerRenderProps<FormValues, 'categoryIds'>;
   fieldState: ControllerFieldState;
   formState: UseFormStateReturn<FormValues>;
 }
 
 const displayName = 'CategoriesInput';
 
-type CustomCategory = Category & { inputValue: string };
+type Category = FormValues['categoryIds'][number];
 
-const filterOptions = createComboboxFilter<CustomCategory>({});
+const filterOptions = createComboboxFilter<Category>({});
 
 export const CategoriesInput = (props: CategoriesInputProps) => {
   const {
@@ -34,7 +33,7 @@ export const CategoriesInput = (props: CategoriesInputProps) => {
 
   const categories = useStore(
     (state) => state.categories,
-  ) as CustomCategory[];
+  ) as Category[];
 
   const addCategory = useStore((state) => state.addCategory);
 
@@ -45,22 +44,27 @@ export const CategoriesInput = (props: CategoriesInputProps) => {
       editable
       multiple
       disabled={disabled}
-      value={value as CustomCategory[]}
+      options={categories}
+      value={value}
       open={open}
       onOpen={() => setOpen(true)}
       onClose={(reason) =>
         reason !== 'selectOption' && setOpen(false)
       }
-      options={categories}
-      getOptionLabel={(opt) => opt.value}
       getOptionKey={(opt) => opt.id}
       isOptionEqualToValue={(opt, value) => opt.id === value.id}
       onChange={(newValue, reason, option) => {
-        if (reason === 'selectOption' && option.inputValue) {
+        if (
+          reason === 'selectOption' &&
+          'inputValue' in option &&
+          typeof option.inputValue === 'string'
+        ) {
           addCategory(option.inputValue);
         } else {
           setOpen(false);
-          onChange({ target: { value: newValue } });
+          onChange({
+            target: { value: newValue },
+          });
         }
       }}
       filterOptions={(...params) => {
@@ -71,7 +75,7 @@ export const CategoriesInput = (props: CategoriesInputProps) => {
         if (inputValue && !filtered.length) {
           filtered.push({
             id: '',
-            value: `Add: ${inputValue}`,
+            label: `Add: ${inputValue}`,
             inputValue,
           });
         }
@@ -81,7 +85,7 @@ export const CategoriesInput = (props: CategoriesInputProps) => {
       renderInput={(props) => (
         <Input
           label="categories"
-          className="mt-3 w-full"
+          className="w-full"
           name={name}
           {...props}
           ref={mergeRefs(props.ref, ref)}

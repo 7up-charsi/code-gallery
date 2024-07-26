@@ -1,3 +1,5 @@
+import { Bounce, ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 import { LoadData } from '@/components/load-data';
 import { AppBar } from '@/components/app-bar';
 import { siteConfig } from '@/config/site';
@@ -44,6 +46,20 @@ export default function RootLayout({
         <LoadData />
         <AppBar />
         {children}
+
+        <ToastContainer
+          position="bottom-center"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+          transition={Bounce}
+        />
       </body>
     </html>
   );

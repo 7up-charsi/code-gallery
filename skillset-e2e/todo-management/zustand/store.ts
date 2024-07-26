@@ -1,4 +1,8 @@
-import { CATEGORY_KEY, TASKS_KEY } from '@/constants/common';
+import {
+  CATEGORY_KEY,
+  DEFAULT_STATUS_ID,
+  TASKS_KEY,
+} from '@/constants/common';
 import { Category, Task } from '@/types/task';
 import { v7 as uuidV7 } from 'uuid';
 import { create } from 'zustand';
@@ -14,9 +18,13 @@ type Store = {
   addTask: (
     payload: Pick<
       Task,
-      'title' | 'description' | 'dueDate' | 'priority' | 'categories'
+      | 'title'
+      | 'description'
+      | 'dueDate'
+      | 'priorityId'
+      | 'categoryIds'
     >,
-  ) => void;
+  ) => Promise<void>;
   editTask: (
     id: string,
     payload: Pick<
@@ -24,9 +32,9 @@ type Store = {
       | 'title'
       | 'description'
       | 'dueDate'
-      | 'priority'
-      | 'categories'
-      | 'status'
+      | 'priorityId'
+      | 'categoryIds'
+      | 'statusId'
     >,
   ) => void;
   deleteTask: (id: string) => void;
@@ -47,11 +55,11 @@ export const useStore = create<Store>((set) => ({
       dataLoaded: !!(categories && tasks),
     }));
   },
-  addCategory: (value) => {
+  addCategory: (label) => {
     set((state) => {
       const categories: Category[] = [
         ...state.categories,
-        { id: uuidV7(), value },
+        { id: uuidV7(), label },
       ];
 
       localStorage.setItem(CATEGORY_KEY, JSON.stringify(categories));
@@ -59,10 +67,10 @@ export const useStore = create<Store>((set) => ({
       return { ...state, categories };
     });
   },
-  editCategory: (id, value) => {
+  editCategory: (id, label) => {
     set((state) => {
       const categories = state.categories.map((category) =>
-        category.id === id ? { ...category, value } : category,
+        category.id === id ? { ...category, label } : category,
       );
 
       localStorage.setItem(CATEGORY_KEY, JSON.stringify(categories));
@@ -81,19 +89,19 @@ export const useStore = create<Store>((set) => ({
       return { ...state, categories };
     });
   },
-  addTask: (task) => {
+  addTask: async (task) => {
     set((state) => {
       const tasks: Task[] = [
         ...state.tasks,
         {
-          categories: task.categories,
+          categoryIds: task.categoryIds,
           description: task.description,
           dueDate: task.dueDate,
-          priority: task.priority,
+          priorityId: task.priorityId,
           title: task.title,
           id: uuidV7(),
           overdue: false,
-          status: 'not-started',
+          statusId: DEFAULT_STATUS_ID,
         },
       ];
 
