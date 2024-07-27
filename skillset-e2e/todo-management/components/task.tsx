@@ -1,9 +1,10 @@
 'use client';
 
+import { CheckCheckIcon, PencilIcon, TrashIcon } from 'lucide-react';
 import { priorities, statuses } from '@/constants/common';
+import { Button } from '@typeweave/react/button';
 import { Task as TaskType } from '@/types/task';
 import { useStore } from '@/zustand/store';
-import { format } from 'date-fns';
 import React from 'react';
 
 interface TaskProps extends TaskType {}
@@ -21,6 +22,8 @@ export const Task = (props: TaskProps) => {
   } = props;
 
   const categories = useStore((s) => s.categories);
+  const markComplete = useStore((s) => s.markComplete);
+  const deleteTask = useStore((s) => s.deleteTask);
 
   const priority = priorities.find(
     (ele) => ele.id === priorityId,
@@ -62,13 +65,48 @@ export const Task = (props: TaskProps) => {
         </div>
 
         <div className="mt-2 flex items-center gap-2">
+          <dt className="sr-only">actions</dt>
+          <dd className="content-center space-x-2">
+            <Button
+              isIconOnly
+              aria-label="mark task complete"
+              size="sm"
+              color="success"
+              variant="text"
+              onPress={() => markComplete(id)}
+            >
+              <CheckCheckIcon />
+            </Button>
+
+            <Button
+              isIconOnly
+              aria-label="edit task"
+              size="sm"
+              color="info"
+              variant="text"
+            >
+              <PencilIcon />
+            </Button>
+
+            <Button
+              isIconOnly
+              aria-label="delete task"
+              size="sm"
+              color="danger"
+              variant="text"
+              onPress={() => deleteTask(id)}
+            >
+              <TrashIcon />
+            </Button>
+          </dd>
+
           <div className="grow"></div>
 
           <dt className="sr-only">status</dt>
           <dd className="">
             <span
               data-status={status}
-              className="rounded-full bg-muted-3 px-2 py-1 text-sm capitalize data-[status=completed]:bg-success-3 data-[status=in-progress]:bg-info-3 data-[status=completed]:text-success-11 data-[status=in-progress]:text-info-11"
+              className="rounded-full px-2 py-1 text-sm capitalize data-[status=completed]:text-success-11 data-[status=in-progress]:text-info-11"
             >
               {status}
             </span>

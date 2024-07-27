@@ -1,5 +1,6 @@
 import {
   CATEGORY_KEY,
+  COMPLETED_STATUS_ID,
   DEFAULT_STATUS_ID,
   TASKS_KEY,
 } from '@/constants/common';
@@ -15,6 +16,7 @@ type Store = {
     categories: Category[];
     tasks: Task[];
   }) => void;
+  markComplete: (id: string) => void;
   addTask: (
     payload: Pick<
       Task,
@@ -49,6 +51,19 @@ export const useStore = create<Store>((set) => ({
       tasks,
       dataLoaded: !!(categories && tasks),
     }));
+  },
+  markComplete: (id) => {
+    set((state) => {
+      const tasks = state.tasks.map((ele) =>
+        ele.id === id
+          ? { ...ele, statusId: COMPLETED_STATUS_ID }
+          : ele,
+      );
+
+      localStorage.setItem(TASKS_KEY, JSON.stringify(tasks));
+
+      return { ...state, tasks };
+    });
   },
   addCategory: async (label) => {
     set((state) => {
