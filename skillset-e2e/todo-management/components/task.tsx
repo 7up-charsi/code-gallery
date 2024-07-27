@@ -1,10 +1,31 @@
 'use client';
 
-import { CheckCheckIcon, PencilIcon, TrashIcon } from 'lucide-react';
-import { priorities, statuses } from '@/constants/common';
+import {
+  COMPLETED_STATUS_ID,
+  DEFAULT_STATUS_ID,
+  IN_PROGRESS_STATUS_ID,
+  priorities,
+  statuses,
+} from '@/constants/common';
+import {
+  TooltipArrow,
+  TooltipContent,
+  TooltipPortal,
+  TooltipRoot,
+  TooltipTrigger,
+} from '@typeweave/react/tooltip';
+import {
+  CheckCheckIcon,
+  CircleDashedIcon,
+  PencilIcon,
+  TrashIcon,
+} from 'lucide-react';
+import { DialogClose } from '@typeweave/react/dialog';
 import { Button } from '@typeweave/react/button';
 import { Task as TaskType } from '@/types/task';
+import { AlertDialog } from './alert-dialog';
 import { useStore } from '@/zustand/store';
+import { EditTask } from './edit-task';
 import React from 'react';
 
 interface TaskProps extends TaskType {}
@@ -23,13 +44,15 @@ export const Task = (props: TaskProps) => {
 
   const categories = useStore((s) => s.categories);
   const markComplete = useStore((s) => s.markComplete);
+  const markInProgress = useStore((s) => s.markInProgress);
   const deleteTask = useStore((s) => s.deleteTask);
 
   const priority = priorities.find(
     (ele) => ele.id === priorityId,
   )?.label;
 
-  const status = statuses.find((ele) => ele.id === statusId)?.label;
+  const selectedStatus = statuses.find((ele) => ele.id === statusId);
+  const status = selectedStatus?.label;
 
   return (
     <article
@@ -67,37 +90,103 @@ export const Task = (props: TaskProps) => {
         <div className="mt-2 flex items-center gap-2">
           <dt className="sr-only">actions</dt>
           <dd className="content-center space-x-2">
-            <Button
-              isIconOnly
-              aria-label="mark task complete"
-              size="sm"
-              color="success"
-              variant="text"
-              onPress={() => markComplete(id)}
-            >
-              <CheckCheckIcon />
-            </Button>
+            {selectedStatus?.id === IN_PROGRESS_STATUS_ID && (
+              <TooltipRoot>
+                <AlertDialog
+                  title="Mark as Complete"
+                  description="Are you sure you want to proceed?"
+                  trigger={
+                    <TooltipTrigger>
+                      <Button
+                        isIconOnly
+                        aria-label="mark task complete"
+                        size="sm"
+                        color="success"
+                        variant="text"
+                      >
+                        <CheckCheckIcon />
+                      </Button>
+                    </TooltipTrigger>
+                  }
+                >
+                  <DialogClose>
+                    <Button
+                      color="success"
+                      onPress={() => markComplete(id)}
+                    >
+                      Complete
+                    </Button>
+                  </DialogClose>
+                </AlertDialog>
 
-            <Button
-              isIconOnly
-              aria-label="edit task"
-              size="sm"
-              color="info"
-              variant="text"
-            >
-              <PencilIcon />
-            </Button>
+                <TooltipPortal>
+                  <TooltipContent>
+                    <TooltipArrow />
+                    <span>Mark complete</span>
+                  </TooltipContent>
+                </TooltipPortal>
+              </TooltipRoot>
+            )}
 
-            <Button
-              isIconOnly
-              aria-label="delete task"
-              size="sm"
-              color="danger"
-              variant="text"
-              onPress={() => deleteTask(id)}
+            {selectedStatus?.id === DEFAULT_STATUS_ID && (
+              <TooltipRoot>
+                <AlertDialog
+                  title="Mark as in-Progress"
+                  description="Are you sure you want to proceed?"
+                  trigger={
+                    <TooltipTrigger>
+                      <Button
+                        isIconOnly
+                        aria-label="mark task in-progress"
+                        size="sm"
+                        color="info"
+                        variant="text"
+                      >
+                        <CircleDashedIcon />
+                      </Button>
+                    </TooltipTrigger>
+                  }
+                >
+                  <DialogClose>
+                    <Button
+                      color="info"
+                      onPress={() => markInProgress(id)}
+                    >
+                      in Progress
+                    </Button>
+                  </DialogClose>
+                </AlertDialog>
+
+                <TooltipPortal>
+                  <TooltipContent>
+                    <TooltipArrow />
+                    <span>Mark in Progress</span>
+                  </TooltipContent>
+                </TooltipPortal>
+              </TooltipRoot>
+            )}
+
+            <EditTask id={id} />
+
+            <AlertDialog
+              title="Delete Task"
+              description="Are you sure you want to proceed? This action cannot be undone."
+              trigger={
+                <Button
+                  isIconOnly
+                  aria-label="delete task"
+                  size="sm"
+                  color="danger"
+                  variant="text"
+                >
+                  <TrashIcon />
+                </Button>
+              }
             >
-              <TrashIcon />
-            </Button>
+              <Button color="danger" onPress={() => deleteTask(id)}>
+                Delete
+              </Button>
+            </AlertDialog>
           </dd>
 
           <div className="grow"></div>
