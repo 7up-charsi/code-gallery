@@ -30,11 +30,14 @@ export const Task = (props: TaskProps) => {
     (ele) => ele.id === priorityId,
   )?.label;
 
+  const status = statuses.find((ele) => ele.id === statusId)?.label;
+
   return (
     <article
       aria-labelledby={id + '-label'}
       aria-describedby={id + '-desc'}
-      className="broder-muted-6 rounded border p-2"
+      data-over-due={overdue}
+      className="broder-muted-6 rounded border p-2 data-[over-due=true]:border-2 data-[over-due=true]:border-danger-8"
     >
       <div
         id={id + '-label'}
@@ -63,41 +66,38 @@ export const Task = (props: TaskProps) => {
           </dd>
         </div>
 
-        <div className="mt-1 flex gap-2">
-          <div className="">
-            <dt className="sr-only">due date</dt>
-            <dd>
-              <time
-                dateTime={date}
-                className="text-sm text-foreground/80"
-              >
-                {date}
-              </time>
-            </dd>
-          </div>
+        <div className="mt-2 flex items-center gap-2">
+          <dt className="sr-only">due date</dt>
+          <dd>
+            <time
+              dateTime={date}
+              className="text-sm text-foreground/80"
+            >
+              {date}
+            </time>
+          </dd>
 
           <div className="grow"></div>
 
-          <div className="">
-            <dt className="sr-only">status</dt>
-            <dd>
-              <span className="text-sm">
-                {statuses.find((ele) => ele.id === statusId)?.label}
-              </span>
-            </dd>
-          </div>
+          <dt className="sr-only">status</dt>
+          <dd className="">
+            <span
+              data-status={status}
+              className="data-[status=completed]:text-success11 rounded-full bg-muted-3 px-2 py-1 text-sm capitalize data-[status=completed]:bg-success-3 data-[status=in-progress]:bg-info-3 data-[status=in-progress]:text-info-11"
+            >
+              {status}
+            </span>
+          </dd>
 
-          <div className="">
-            <dt className="sr-only">priority</dt>
-            <dd>
-              <span
-                data-priority={priority}
-                className="rounded-full bg-success-9 px-2 py-1 text-sm capitalize text-white data-[priority=high]:bg-danger-9 data-[priority=medium]:bg-warning-9"
-              >
-                {priority}
-              </span>
-            </dd>
-          </div>
+          <dt className="sr-only">priority</dt>
+          <dd>
+            <span
+              data-priority={priority}
+              className="rounded-full bg-success-9 px-2 py-1 text-sm capitalize text-white data-[priority=high]:bg-danger-9 data-[priority=medium]:bg-warning-9"
+            >
+              {priority}
+            </span>
+          </dd>
         </div>
       </dl>
     </article>
