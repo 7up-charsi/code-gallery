@@ -1,3 +1,4 @@
+import { LogoutButton } from './logout-button';
 import { siteConfig } from '@/config/site';
 import { AddTask } from './add-task';
 import { Search } from './search';
@@ -26,6 +27,8 @@ export const AppBar = (props: AppBarProps) => {
         <Search />
 
         <AddTask />
+
+        <LogoutButton />
       </div>
     </header>
   );

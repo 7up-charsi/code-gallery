@@ -7,6 +7,4 @@ export type Task = {
   priorityId: string;
   statusId: string;
   categoryIds: string[];
-  createdAt: number;
-  updatedAt: number;
 };

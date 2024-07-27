@@ -10,7 +10,8 @@ import {
 } from '@typeweave/react/dialog';
 import { Button } from '@typeweave/react/button';
 import { PlusIcon, XIcon } from 'lucide-react';
-import { useStore } from '@/zustand/store';
+import { api } from '@/convex/_generated/api';
+import { useMutation } from 'convex/react';
 import { toast } from 'react-toastify';
 import { TaskForm } from './task-form';
 import React from 'react';
@@ -22,7 +23,7 @@ const displayName = 'AddTask';
 export const AddTask = (props: AddTaskProps) => {
   const {} = props;
 
-  const addTask = useStore((s) => s.addTask);
+  const addTask = useMutation(api.task.create);
 
   return (
     <DialogRoot>

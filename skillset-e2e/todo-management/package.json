@@ -13,6 +13,7 @@
     "@repo/meta": "workspace:*",
     "@typeweave/react": "^4.0.7",
     "@typeweave/react-utils": "^1.1.5",
+    "convex": "^1.13.2",
     "fuse.js": "^7.0.0",
     "lodash.debounce": "^4.0.8",
     "lucide-react": "^0.414.0",
@@ -42,3 +43,4 @@
     "typescript": "^5.5.4"
   }
 }
+

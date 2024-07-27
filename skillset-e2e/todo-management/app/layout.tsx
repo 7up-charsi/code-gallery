@@ -1,7 +1,7 @@
-import { Bounce, ToastContainer, toast } from 'react-toastify';
+import { ConvexClientProvider } from '@/components/convex-client-provider';
+import { Bounce, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import { LoadData } from '@/components/load-data';
-import { AppBar } from '@/components/app-bar';
 import { siteConfig } from '@/config/site';
 import { Inter } from 'next/font/google';
 import type { Metadata } from 'next';
@@ -41,11 +41,11 @@ export default function RootLayout({
     <html lang="en">
       <body
         style={inter.style}
-        className="mx-auto max-w-screen-md bg-background text-foreground"
+        className="bg-background text-foreground"
       >
         <LoadData />
-        <AppBar />
-        {children}
+
+        <ConvexClientProvider>{children}</ConvexClientProvider>
 
         <ToastContainer
           position="bottom-center"
