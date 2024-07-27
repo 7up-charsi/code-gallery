@@ -11,16 +11,13 @@ import { useForm, Controller } from 'react-hook-form';
 import { CategoriesInput } from './categories-input';
 import { Button } from '@typeweave/react/button';
 import { CircleIcon } from 'lucide-react';
+import { startOfDay } from 'date-fns';
 import React from 'react';
 import { z } from 'zod';
 
 const formSchema = z.object({
   title: z.string().min(1, 'title is required').trim(),
   description: z.string().trim(),
-  dueDate: z
-    .string()
-    .min(1, 'due date is required')
-    .pipe(z.coerce.date().transform((arg) => arg.getTime())),
   categoryIds: z.array(
     z.object({
       id: z.string(),
@@ -61,7 +58,6 @@ export const TaskForm = (props: TaskFormProps) => {
       description: '',
       statusId: DEFAULT_STATUS_ID,
       categoryIds: [],
-      dueDate: '',
       ...(defaultValues ?? {}),
     },
   });
@@ -86,15 +82,6 @@ export const TaskForm = (props: TaskFormProps) => {
         className="w-full"
         error={!!errors.description}
         helperText={errors.description?.message ?? ' '}
-      />
-
-      <Input
-        label="due date"
-        type="date"
-        {...register('dueDate')}
-        className="w-full"
-        error={!!errors.dueDate}
-        helperText={errors.dueDate?.message ?? ' '}
       />
 
       <Controller

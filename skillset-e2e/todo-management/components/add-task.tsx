@@ -79,7 +79,6 @@ export const AddTask = (props: AddTaskProps) => {
                       (ele) => ele.id,
                     ),
                     priorityId: values.priorityId,
-                    dueDate: values.dueDate,
                   });
 
                   toast.success('task added...!');

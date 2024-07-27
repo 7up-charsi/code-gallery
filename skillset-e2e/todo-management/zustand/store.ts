@@ -18,11 +18,7 @@ type Store = {
   addTask: (
     payload: Pick<
       Task,
-      | 'title'
-      | 'description'
-      | 'dueDate'
-      | 'priorityId'
-      | 'categoryIds'
+      'title' | 'description' | 'priorityId' | 'categoryIds'
     >,
   ) => Promise<void>;
   editTask: (
@@ -31,7 +27,6 @@ type Store = {
       Task,
       | 'title'
       | 'description'
-      | 'dueDate'
       | 'priorityId'
       | 'categoryIds'
       | 'statusId'
@@ -96,12 +91,12 @@ export const useStore = create<Store>((set) => ({
         {
           categoryIds: task.categoryIds,
           description: task.description,
-          dueDate: task.dueDate,
           priorityId: task.priorityId,
           title: task.title,
           id: uuidV7(),
-          overdue: false,
           statusId: DEFAULT_STATUS_ID,
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
         },
       ];
 
@@ -113,7 +108,14 @@ export const useStore = create<Store>((set) => ({
   editTask: async (id, task) => {
     set((state) => {
       const tasks = state.tasks.map((ele) =>
-        ele.id === id ? { ...ele, ...task } : ele,
+        ele.id === id
+          ? {
+              ...ele,
+              ...task,
+              createdAt: ele.createdAt,
+              updatedAt: Date.now(),
+            }
+          : ele,
       );
 
       localStorage.setItem(TASKS_KEY, JSON.stringify(tasks));

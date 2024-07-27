@@ -14,17 +14,13 @@ export const Task = (props: TaskProps) => {
   const {
     categoryIds,
     description,
-    dueDate,
     id,
-    overdue,
     priorityId,
     statusId,
     title,
   } = props;
 
   const categories = useStore((s) => s.categories);
-
-  const date = format(dueDate, 'dd-MM-yyyy');
 
   const priority = priorities.find(
     (ele) => ele.id === priorityId,
@@ -42,11 +38,6 @@ export const Task = (props: TaskProps) => {
         id={id + '-label'}
         className="text-balance font-medium text-muted-12 first-letter:uppercase"
       >
-        {overdue && (
-          <span className="sr-only">
-            <strong>overdue task</strong>
-          </span>
-        )}
         {title}
       </div>
 
@@ -57,7 +48,7 @@ export const Task = (props: TaskProps) => {
         {description}
       </div>
 
-      <dl className="mt-3">
+      <dl className="mt-4">
         <div className="">
           <dt className="sr-only">categories</dt>
           <dd className="flex flex-wrap gap-2">
@@ -71,28 +62,6 @@ export const Task = (props: TaskProps) => {
         </div>
 
         <div className="mt-2 flex items-center gap-2">
-          <dt className="sr-only">due date</dt>
-          <dd>
-            <time
-              dateTime={date}
-              data-over-due={overdue}
-              className="text-sm text-foreground/80 data-[over-due=true]:text-danger-11"
-            >
-              {date}
-            </time>
-          </dd>
-
-          {overdue && (
-            <>
-              <dt className="sr-only">overdue</dt>
-              <dd>
-                <span className="text-sm font-bold capitalize text-danger-11">
-                  overdue
-                </span>
-              </dd>
-            </>
-          )}
-
           <div className="grow"></div>
 
           <dt className="sr-only">status</dt>
