@@ -1,5 +1,6 @@
 import { siteConfig } from '@/config/site';
 import { AddTask } from './add-task';
+import { Search } from './search';
 import Link from 'next/link';
 import React from 'react';
 
@@ -11,17 +12,21 @@ export const AppBar = (props: AppBarProps) => {
   const {} = props;
 
   return (
-    <header className="flex h-16 items-center bg-white px-5">
-      <Link
-        href="/"
-        className="text-xl font-medium capitalize text-muted-12"
-      >
-        {siteConfig.name}
-      </Link>
+    <header className="grid grid-cols-1 grid-rows-[64px_auto] px-5 pb-3">
+      <div className="content-center text-center">
+        <Link
+          href="/"
+          className="text-xl font-medium capitalize text-muted-12"
+        >
+          {siteConfig.name}
+        </Link>
+      </div>
 
-      <div className="grow"></div>
+      <div className="flex items-center gap-2">
+        <Search />
 
-      <AddTask />
+        <AddTask />
+      </div>
     </header>
   );
 };

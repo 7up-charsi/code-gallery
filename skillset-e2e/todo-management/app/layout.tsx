@@ -41,7 +41,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         style={inter.style}
-        className="bg-muted-3 text-foreground"
+        className="mx-auto max-w-screen-md bg-background text-foreground"
       >
         <LoadData />
         <AppBar />

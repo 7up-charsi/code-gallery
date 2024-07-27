@@ -9,12 +9,13 @@ export const Search = (props: SearchProps) => {
   const {} = props;
 
   return (
-    <search className="col-start-1 -col-end-1">
+    <search className="grow">
       <Input
         label="search tasks"
         hideLabel
         placeholder="Search Tasks..."
-        className="w-full bg-white"
+        className="w-full"
+        classNames={{ inputWrapper: 'h-9' }}
       />
     </search>
   );

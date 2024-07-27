@@ -42,10 +42,10 @@ export const AddTask = (props: AddTaskProps) => {
 
         <DialogContent
           aria-label="add-task-dialog-label"
-          className="top-full max-h-[80vh] w-full max-w-screen-sm -translate-y-full overflow-hidden rounded-b-none rounded-t-xl"
+          className="max-h-[80vh] w-full max-w-screen-sm overflow-hidden max-lg:top-full max-lg:-translate-y-full max-lg:rounded-b-none max-lg:rounded-t-xl"
         >
-          <div className="relative h-full overflow-auto max-md:scrollbar-thin">
-            <div className="sticky top-0 z-50 bg-white px-5 pt-5">
+          <div className="relative h-full overflow-auto max-lg:scrollbar-thin">
+            <div className="sticky top-0 z-50 bg-white px-5 pb-2 pt-5">
               <div className="flex h-10 items-center justify-between rounded-full bg-primary-3 px-5">
                 <span
                   id="add-task-dialog-label"
