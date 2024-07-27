@@ -36,13 +36,17 @@ export const Task = (props: TaskProps) => {
     <article
       aria-labelledby={id + '-label'}
       aria-describedby={id + '-desc'}
-      data-over-due={overdue}
-      className="broder-muted-6 rounded border p-2 data-[over-due=true]:border-2 data-[over-due=true]:border-danger-8"
+      className="broder-muted-6 rounded border p-2"
     >
       <div
         id={id + '-label'}
         className="text-balance font-medium text-muted-12 first-letter:uppercase"
       >
+        {overdue && (
+          <span className="sr-only">
+            <strong>overdue task</strong>
+          </span>
+        )}
         {title}
       </div>
 
@@ -71,11 +75,23 @@ export const Task = (props: TaskProps) => {
           <dd>
             <time
               dateTime={date}
-              className="text-sm text-foreground/80"
+              data-over-due={overdue}
+              className="text-sm text-foreground/80 data-[over-due=true]:text-danger-11"
             >
               {date}
             </time>
           </dd>
+
+          {overdue && (
+            <>
+              <dt className="sr-only">overdue</dt>
+              <dd>
+                <span className="text-sm font-bold capitalize text-danger-11">
+                  overdue
+                </span>
+              </dd>
+            </>
+          )}
 
           <div className="grow"></div>
 
@@ -83,7 +99,7 @@ export const Task = (props: TaskProps) => {
           <dd className="">
             <span
               data-status={status}
-              className="data-[status=completed]:text-success11 rounded-full bg-muted-3 px-2 py-1 text-sm capitalize data-[status=completed]:bg-success-3 data-[status=in-progress]:bg-info-3 data-[status=in-progress]:text-info-11"
+              className="rounded-full bg-muted-3 px-2 py-1 text-sm capitalize data-[status=completed]:bg-success-3 data-[status=in-progress]:bg-info-3 data-[status=completed]:text-success-11 data-[status=in-progress]:text-info-11"
             >
               {status}
             </span>
