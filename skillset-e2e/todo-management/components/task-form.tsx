@@ -103,14 +103,15 @@ export const TaskForm = (props: TaskFormProps) => {
         render={(props) => <CategoriesInput {...props} />}
       />
 
+      {/* priority */}
       <fieldset
         aria-invalid={!!errors.priorityId}
         aria-describedby="priority-desc"
-        className=""
+        className="space-y-1"
       >
         <legend className={styles.label()}>priority</legend>
 
-        <div className="mt-1 flex flex-wrap gap-x-5 gap-y-3">
+        <div className="flex flex-wrap gap-x-5 gap-y-3">
           {priorities.map(({ id, label }) => (
             <div
               key={id}
@@ -141,26 +142,27 @@ export const TaskForm = (props: TaskFormProps) => {
           ))}
         </div>
 
-        <span
+        <div
           id="priority-desc"
           data-error={true}
           className={styles.helperText({
-            className: 'mt-1 inline-block first-letter:uppercase',
+            className: 'first-letter:uppercase',
           })}
         >
           {errors.priorityId?.message ?? ' '}
-        </span>
+        </div>
       </fieldset>
 
+      {/* status */}
       {isEditForm && (
         <fieldset
           aria-invalid={!!errors.statusId}
           aria-describedby="status-desc"
-          className="mt-3"
+          className="space-y-1"
         >
           <legend className={styles.label()}>status</legend>
 
-          <div className="mt-1 flex flex-wrap gap-x-5 gap-y-3">
+          <div className="flex flex-wrap gap-x-5 gap-y-3">
             {statuses.map(({ id, label }) => (
               <div
                 key={id}
@@ -191,15 +193,15 @@ export const TaskForm = (props: TaskFormProps) => {
             ))}
           </div>
 
-          <span
+          <div
             id="status-desc"
             data-error={true}
             className={styles.helperText({
-              className: 'mt-1 inline-block first-letter:uppercase',
+              className: 'first-letter:uppercase',
             })}
           >
             {errors.statusId?.message ?? ' '}
-          </span>
+          </div>
         </fieldset>
       )}
 
