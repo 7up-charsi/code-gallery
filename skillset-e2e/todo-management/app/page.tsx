@@ -24,6 +24,11 @@ export default function Home() {
   const [isPending, setTransition] = React.useTransition();
 
   React.useEffect(() => {
+    if (!query) {
+      setFiltered(null);
+      return;
+    }
+
     setTransition(async () => {
       await new Promise((resolve) => {
         setTimeout(() => {
@@ -56,11 +61,6 @@ export default function Home() {
           minMatchCharLength: 2,
         },
       );
-
-      if (!query) {
-        setFiltered(null);
-        return;
-      }
 
       const results = fuse.search(query);
 
