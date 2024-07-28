@@ -2,21 +2,19 @@
 
 import { Input, inputStyles } from '@typeweave/react/input';
 import { priorities, statuses } from '@/constants/common';
+import { CircleIcon, Loader2Icon } from 'lucide-react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, Controller } from 'react-hook-form';
 import { CategoriesInput } from './categories-input';
 import { Button } from '@typeweave/react/button';
-import { CircleIcon } from 'lucide-react';
 import React from 'react';
 import { z } from 'zod';
 
 const formSchema = z.object({
   title: z.string().min(1, 'title is required').trim(),
   description: z.string().trim(),
-  priority: z
-    .enum(priorities)
-    .refine((arg) => arg, 'priority is required'),
-  status: z.enum(statuses).refine((arg) => arg, 'status is required'),
+  priority: z.enum(priorities, { message: 'priority is required' }),
+  status: z.enum(statuses, { message: 'status is required' }),
   categories: z.array(
     z.object({
       _id: z.string(),
@@ -47,7 +45,7 @@ export const TaskForm = (props: TaskFormProps) => {
     handleSubmit,
     control,
     reset,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -207,10 +205,17 @@ export const TaskForm = (props: TaskFormProps) => {
       )}
 
       <div className="mt-5 flex items-center justify-end gap-3">
+        {isSubmitting ? (
+          <div className="flex items-center gap-2">
+            <Loader2Icon className="animate-spin" /> Submitting
+          </div>
+        ) : null}
+
         <Button
           type="button"
           variant="text"
           color="danger"
+          disabled={isSubmitting}
           onPress={() => {
             reset();
           }}
@@ -218,7 +223,12 @@ export const TaskForm = (props: TaskFormProps) => {
           reset
         </Button>
 
-        <Button type="submit" variant="solid" color="success">
+        <Button
+          type="submit"
+          variant="solid"
+          color="success"
+          disabled={isSubmitting}
+        >
           {isEditForm ? 'edit' : 'submit'}
         </Button>
       </div>

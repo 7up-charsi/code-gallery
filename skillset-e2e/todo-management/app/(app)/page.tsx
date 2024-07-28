@@ -1,6 +1,9 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
+import { usePaginatedQuery } from 'convex/react';
+import { Task as TaskType } from '@/types/task';
+import { api } from '@/convex/_generated/api';
 import { Loader2Icon } from 'lucide-react';
 import { Task } from '@/components/task';
 import React from 'react';
@@ -10,17 +13,22 @@ export default function Home() {
 
   const query = searchParams.get('query') ?? '';
 
-
+  const { results, isLoading } = usePaginatedQuery(
+    api.task.tasks,
+    {},
+    { initialNumItems: 10 },
+  );
 
   return (
     <main className="space-y-3 p-5">
-      {/* <div className="flex items-center justify-center pt-10">
+      {isLoading && (
+        <div className="flex items-center justify-center pt-10">
           <Loader2Icon className="size-10 animate-spin" />
-        </div> */}
+        </div>
+      )}
 
-      {/* {tasks.map((ele) => (
-        <Task key={ele.id} {...ele} />
-      ))} */}
+      {!isLoading &&
+        results.map((ele) => <Task key={ele._id} {...ele} />)}
     </main>
   );
 }

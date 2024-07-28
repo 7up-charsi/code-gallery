@@ -3,7 +3,6 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Input } from '@typeweave/react/input';
 import debounce from 'lodash.debounce';
-import Fuse from 'fuse.js';
 import React from 'react';
 
 interface SearchProps {}
@@ -18,10 +17,6 @@ export const Search = (props: SearchProps) => {
   const [value, setvalue] = React.useState(
     searchParams.get('query') ?? '',
   );
-
-  const [fuseInstance, setFuseInstance] = React.useState<Fuse<{
-    title: string;
-  }> | null>(null);
 
   const debounced = React.useMemo(
     () =>

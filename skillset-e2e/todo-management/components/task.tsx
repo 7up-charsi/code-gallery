@@ -24,24 +24,24 @@ interface TaskProps extends TaskType {}
 const displayName = 'Task';
 
 export const Task = (props: TaskProps) => {
-  const { categories, description, id, priority, status, title } =
+  const { categories, description, _id, priority, status, title } =
     props;
 
   return (
     <article
-      aria-labelledby={id + '-label'}
-      aria-describedby={id + '-desc'}
+      aria-labelledby={_id + '-label'}
+      aria-describedby={_id + '-desc'}
       className="broder-muted-6 rounded border p-2"
     >
       <div
-        id={id + '-label'}
+        id={_id + '-label'}
         className="text-balance font-medium text-muted-12 first-letter:uppercase"
       >
         {title}
       </div>
 
       <div
-        id={id + '-desc'}
+        id={_id + '-desc'}
         className="mt-1 text-balance text-sm first-letter:uppercase"
       >
         {description}
@@ -136,7 +136,7 @@ export const Task = (props: TaskProps) => {
               </TooltipRoot>
             )}
 
-            <EditTask id={id} />
+            <EditTask _id={_id} />
 
             <AlertDialog
               title="Delete Task"

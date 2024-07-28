@@ -9,21 +9,26 @@ import {
   DialogTrigger,
 } from '@typeweave/react/dialog';
 import { PencilIcon, PlusIcon, XIcon } from 'lucide-react';
+import { Id } from '@/convex/_generated/dataModel';
 import { Button } from '@typeweave/react/button';
+import { api } from '@/convex/_generated/api';
+import { useQuery } from 'convex/react';
 import { toast } from 'react-toastify';
 import { TaskForm } from './task-form';
 import React from 'react';
 
 interface EditTaskProps {
-  id: string;
+  _id: string;
 }
 
 const displayName = 'EditTask';
 
 export const EditTask = (props: EditTaskProps) => {
-  const { id } = props;
+  const { _id } = props;
 
   const [open, setOpen] = React.useState(false);
+
+  const task = useQuery(api.task.get, { _id: _id as Id<'tasks'> });
 
   return (
     <DialogRoot open={open} onOpenChange={setOpen}>
@@ -46,59 +51,56 @@ export const EditTask = (props: EditTaskProps) => {
           aria-label="add-task-dialog-label"
           className="max-h-[80vh] w-full max-w-screen-sm overflow-hidden max-lg:top-full max-lg:-translate-y-full max-lg:rounded-b-none max-lg:rounded-t-xl"
         >
-          <div className="relative h-full overflow-auto max-lg:scrollbar-thin">
-            <div className="sticky top-0 z-50 bg-white px-5 pb-2 pt-5">
-              <div className="flex h-10 items-center justify-between rounded-full bg-primary-3 px-5">
-                <span
-                  id="add-task-dialog-label"
-                  className="font-medium capitalize text-muted-12"
+          <div className="relative h-full overflow-auto p-5 max-lg:scrollbar-thin">
+            <div className="flex items-center justify-between py-1">
+              <span
+                id="add-task-dialog-label"
+                className="font-medium capitalize text-muted-12"
+              >
+                edit task
+              </span>
+
+              <DialogClose>
+                <Button
+                  isIconOnly
+                  aria-label="close add task dialog"
+                  variant="text"
+                  color="danger"
+                  size="sm"
+                  className="text-xl"
                 >
-                  add task
-                </span>
-
-                <DialogClose>
-                  <Button
-                    isIconOnly
-                    aria-label="close add task dialog"
-                    variant="text"
-                    color="danger"
-                    size="sm"
-                    className="text-xl"
-                  >
-                    <XIcon />
-                  </Button>
-                </DialogClose>
-              </div>
+                  <XIcon />
+                </Button>
+              </DialogClose>
             </div>
 
-            <div className="p-5 pt-2">
-              <TaskForm
-                // defaultValues={{
-                //   categoryIds: categories.filter((ele) =>
-                //     task?.categoryIds.includes(ele.id),
+            <TaskForm
+              defaultValues={
+                !task
+                  ? undefined
+                  : {
+                      categories: task.categories,
+                      description: task.description,
+                      title: task.title,
+                      priority: task.priority,
+                      status: task.status,
+                    }
+              }
+              onSubmit={async (values) => {
+                // await editTask(id, {
+                //   title: values.title,
+                //   description: values.description,
+                //   categoryIds: values.categoryIds.map(
+                //     (ele) => ele.id,
                 //   ),
-                //   description: task?.description ?? '',
-                //   priorityId: task?.priorityId ?? '',
-                //   statusId: task?.statusId ?? '',
-                //   title: task?.title ?? '',
-                // }}
-                // onSubmit={async (values) => {
-                //   await editTask(id, {
-                //     title: values.title,
-                //     description: values.description,
-                //     categoryIds: values.categoryIds.map(
-                //       (ele) => ele.id,
-                //     ),
-                //     priorityId: values.priorityId,
-                //     statusId: values.statusId,
-                //   });
+                //   priorityId: values.priorityId,
+                //   statusId: values.statusId,
+                // });
 
-                //   toast.success('task edited...!');
-                //   setOpen(false);
-                // }}
-                onSubmit={() => {}}
-              />
-            </div>
+                // toast.success('task edited...!');
+                // setOpen(false);
+              }}
+            />
           </div>
         </DialogContent>
       </DialogPortal>

@@ -46,48 +46,44 @@ export const AddTask = (props: AddTaskProps) => {
           aria-label="add-task-dialog-label"
           className="max-h-[80vh] w-full max-w-screen-sm overflow-hidden max-lg:top-full max-lg:-translate-y-full max-lg:rounded-b-none max-lg:rounded-t-xl"
         >
-          <div className="relative h-full overflow-auto max-lg:scrollbar-thin">
-            <div className="sticky top-0 z-50 bg-white px-5 pb-2 pt-5">
-              <div className="flex h-10 items-center justify-between rounded-full bg-primary-3 px-5">
-                <span
-                  id="add-task-dialog-label"
-                  className="font-medium capitalize text-muted-12"
+          <div className="relative h-full overflow-auto p-5 max-lg:scrollbar-thin">
+            <div className="flex items-center justify-between py-1">
+              <span
+                id="add-task-dialog-label"
+                className="font-medium capitalize text-muted-12"
+              >
+                add task
+              </span>
+
+              <DialogClose>
+                <Button
+                  isIconOnly
+                  aria-label="close add task dialog"
+                  variant="text"
+                  color="danger"
+                  size="sm"
+                  className="text-xl"
                 >
-                  add task
-                </span>
-
-                <DialogClose>
-                  <Button
-                    isIconOnly
-                    aria-label="close add task dialog"
-                    variant="text"
-                    color="danger"
-                    size="sm"
-                    className="text-xl"
-                  >
-                    <XIcon />
-                  </Button>
-                </DialogClose>
-              </div>
+                  <XIcon />
+                </Button>
+              </DialogClose>
             </div>
 
-            <div className="p-5 pt-2">
-              <TaskForm
-                onSubmit={async (values, reset) => {
-                  await addTask({
-                    title: values.title,
-                    description: values.description,
-                    priority: values.priority,
-                    categories: values.categories.map(
-                      (ele) => ele._id as Id<'categories'>,
-                    ),
-                  });
+            <TaskForm
+              onSubmit={async (values, reset) => {
+                await addTask({
+                  title: values.title,
+                  description: values.description,
+                  priority: values.priority,
+                  categories: values.categories.map(
+                    (ele) => ele._id as Id<'categories'>,
+                  ),
+                });
 
-                  toast.success('task added...!');
-                  reset();
-                }}
-              />
-            </div>
+                toast.success('task added...!');
+                reset();
+              }}
+            />
           </div>
         </DialogContent>
       </DialogPortal>

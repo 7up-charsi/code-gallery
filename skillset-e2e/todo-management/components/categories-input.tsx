@@ -113,10 +113,6 @@ export const CategoriesInput = (props: CategoriesInputProps) => {
           label="categories"
           className="w-full"
           name={name}
-          inputWrapperProps={{
-            // @ts-ignore
-            'data-loading': loading,
-          }}
           {...props}
           ref={mergeRefs(props.ref, ref)}
           onBlur={(e) => {
