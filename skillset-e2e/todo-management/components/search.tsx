@@ -1,9 +1,7 @@
 'use client';
 
 import { useRouter, useSearchParams } from 'next/navigation';
-import { priorities, statuses } from '@/constants/common';
 import { Input } from '@typeweave/react/input';
-import { useStore } from '@/zustand/store';
 import debounce from 'lodash.debounce';
 import Fuse from 'fuse.js';
 import React from 'react';

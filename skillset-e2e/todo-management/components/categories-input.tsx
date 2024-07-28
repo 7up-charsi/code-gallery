@@ -9,19 +9,18 @@ import {
 } from '@typeweave/react/combobox';
 import { mergeRefs } from '@typeweave/react-utils';
 import { Input } from '@typeweave/react/input';
-import { useStore } from '@/zustand/store';
 import { FormValues } from './task-form';
 import React from 'react';
 
 interface CategoriesInputProps {
-  field: ControllerRenderProps<FormValues, 'categoryIds'>;
+  field: ControllerRenderProps<FormValues, 'categories'>;
   fieldState: ControllerFieldState;
   formState: UseFormStateReturn<FormValues>;
 }
 
 const displayName = 'CategoriesInput';
 
-type Category = FormValues['categoryIds'][number];
+type Category = FormValues['categories'][number];
 
 const filterOptions = createComboboxFilter<Category>({});
 
@@ -31,12 +30,6 @@ export const CategoriesInput = (props: CategoriesInputProps) => {
     fieldState: { error },
   } = props;
 
-  const categories = useStore(
-    (state) => state.categories,
-  ) as Category[];
-
-  const addCategory = useStore((state) => state.addCategory);
-
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -44,7 +37,7 @@ export const CategoriesInput = (props: CategoriesInputProps) => {
       editable
       multiple
       disabled={disabled}
-      options={categories}
+      options={[]} // TODO: categories
       value={value}
       open={open}
       onOpen={() => setOpen(true)}
@@ -52,6 +45,7 @@ export const CategoriesInput = (props: CategoriesInputProps) => {
         reason !== 'selectOption' && setOpen(false)
       }
       getOptionKey={(opt) => opt.id}
+      getOptionLabel={(opt) => opt.value}
       isOptionEqualToValue={(opt, value) => opt.id === value.id}
       onChange={(newValue, reason, option) => {
         if (
@@ -59,7 +53,7 @@ export const CategoriesInput = (props: CategoriesInputProps) => {
           'inputValue' in option &&
           typeof option.inputValue === 'string'
         ) {
-          addCategory(option.inputValue);
+          // TODO: add category
         } else {
           setOpen(false);
           onChange({
@@ -75,7 +69,7 @@ export const CategoriesInput = (props: CategoriesInputProps) => {
         if (inputValue && !filtered.length) {
           filtered.push({
             id: '',
-            label: `Add: ${inputValue}`,
+            value: `Add: ${inputValue}`,
             inputValue,
           });
         }

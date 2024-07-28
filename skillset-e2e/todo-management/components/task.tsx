@@ -1,13 +1,6 @@
 'use client';
 
 import {
-  COMPLETED_STATUS_ID,
-  DEFAULT_STATUS_ID,
-  IN_PROGRESS_STATUS_ID,
-  priorities,
-  statuses,
-} from '@/constants/common';
-import {
   TooltipArrow,
   TooltipContent,
   TooltipPortal,
@@ -17,14 +10,12 @@ import {
 import {
   CheckCheckIcon,
   CircleDashedIcon,
-  PencilIcon,
   TrashIcon,
 } from 'lucide-react';
 import { DialogClose } from '@typeweave/react/dialog';
 import { Button } from '@typeweave/react/button';
 import { Task as TaskType } from '@/types/task';
 import { AlertDialog } from './alert-dialog';
-import { useStore } from '@/zustand/store';
 import { EditTask } from './edit-task';
 import React from 'react';
 
@@ -33,26 +24,8 @@ interface TaskProps extends TaskType {}
 const displayName = 'Task';
 
 export const Task = (props: TaskProps) => {
-  const {
-    categoryIds,
-    description,
-    id,
-    priorityId,
-    statusId,
-    title,
-  } = props;
-
-  const categories = useStore((s) => s.categories);
-  const markComplete = useStore((s) => s.markComplete);
-  const markInProgress = useStore((s) => s.markInProgress);
-  const deleteTask = useStore((s) => s.deleteTask);
-
-  const priority = priorities.find(
-    (ele) => ele.id === priorityId,
-  )?.label;
-
-  const selectedStatus = statuses.find((ele) => ele.id === statusId);
-  const status = selectedStatus?.label;
+  const { categories, description, id, priority, status, title } =
+    props;
 
   return (
     <article
@@ -79,10 +52,7 @@ export const Task = (props: TaskProps) => {
           <dt className="sr-only">categories</dt>
           <dd className="flex flex-wrap gap-2">
             <p className="text-sm text-foreground/80">
-              {categories
-                .filter((ele) => categoryIds.includes(ele.id))
-                .map((ele) => ele.label)
-                .join(', ')}
+              {categories.map((ele) => ele.value).join(', ')}
             </p>
           </dd>
         </div>
@@ -90,7 +60,7 @@ export const Task = (props: TaskProps) => {
         <div className="mt-2 flex items-center gap-2">
           <dt className="sr-only">actions</dt>
           <dd className="content-center space-x-2">
-            {selectedStatus?.id === IN_PROGRESS_STATUS_ID && (
+            {status === 'in progress' && (
               <TooltipRoot>
                 <AlertDialog
                   title="Mark as Complete"
@@ -112,7 +82,7 @@ export const Task = (props: TaskProps) => {
                   <DialogClose>
                     <Button
                       color="success"
-                      onPress={() => markComplete(id)}
+                      // TODO: mark as completed
                     >
                       Complete
                     </Button>
@@ -128,7 +98,7 @@ export const Task = (props: TaskProps) => {
               </TooltipRoot>
             )}
 
-            {selectedStatus?.id === DEFAULT_STATUS_ID && (
+            {status === 'pending' && (
               <TooltipRoot>
                 <AlertDialog
                   title="Mark as in-Progress"
@@ -150,7 +120,7 @@ export const Task = (props: TaskProps) => {
                   <DialogClose>
                     <Button
                       color="info"
-                      onPress={() => markInProgress(id)}
+                      // TODO: mark as in progress
                     >
                       in Progress
                     </Button>
@@ -183,7 +153,10 @@ export const Task = (props: TaskProps) => {
                 </Button>
               }
             >
-              <Button color="danger" onPress={() => deleteTask(id)}>
+              <Button
+                color="danger"
+                // TODO: delete task
+              >
                 Delete
               </Button>
             </AlertDialog>

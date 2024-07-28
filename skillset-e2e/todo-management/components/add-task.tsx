@@ -8,6 +8,7 @@ import {
   DialogRoot,
   DialogTrigger,
 } from '@typeweave/react/dialog';
+import { Id } from '@/convex/_generated/dataModel';
 import { Button } from '@typeweave/react/button';
 import { PlusIcon, XIcon } from 'lucide-react';
 import { api } from '@/convex/_generated/api';
@@ -76,10 +77,10 @@ export const AddTask = (props: AddTaskProps) => {
                   await addTask({
                     title: values.title,
                     description: values.description,
-                    categoryIds: values.categoryIds.map(
-                      (ele) => ele.id,
+                    priority: values.priority,
+                    categories: values.categories.map(
+                      (ele) => ele.id as Id<'categories'>,
                     ),
-                    priorityId: values.priorityId,
                   });
 
                   toast.success('task added...!');

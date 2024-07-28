@@ -1,7 +1,6 @@
 import { ConvexClientProvider } from '@/components/convex-client-provider';
 import { Bounce, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
-import { LoadData } from '@/components/load-data';
 import { ClerkProvider } from '@clerk/nextjs';
 import { siteConfig } from '@/config/site';
 import { Inter } from 'next/font/google';
@@ -44,8 +43,6 @@ export default function RootLayout({
         style={inter.style}
         className="bg-background text-foreground"
       >
-        <LoadData />
-
         <ClerkProvider>
           <ConvexClientProvider>{children}</ConvexClientProvider>
         </ClerkProvider>

@@ -1,23 +1,29 @@
 import { defineSchema, defineTable } from 'convex/server';
 import { v } from 'convex/values';
 
+export const prioritySchema = v.union(
+  v.literal('high'),
+  v.literal('medium'),
+  v.literal('low'),
+);
+
+export const statusSchema = v.union(
+  v.literal('pending'),
+  v.literal('in progress'),
+  v.literal('completed'),
+);
+
 const schema = defineSchema({
-  priorities: defineTable({
-    value: v.string(),
-  }),
-  statuses: defineTable({
-    value: v.string(),
-  }),
   categories: defineTable({
     value: v.string(),
   }),
   tasks: defineTable({
-    userId: v.id('users'),
+    userId: v.string(),
     title: v.string(),
     description: v.string(),
-    categoryIds: v.array(v.id('categories')),
-    priorityId: v.id('priorities'),
-    statusId: v.id('statuses'),
+    categories: v.array(v.id('categories')),
+    priority: prioritySchema,
+    status: statusSchema,
   }),
 });
 

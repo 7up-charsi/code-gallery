@@ -1,32 +1,29 @@
 'use client';
 
-import {
-  DEFAULT_STATUS_ID,
-  priorities,
-  statuses,
-} from '@/constants/common';
 import { Input, inputStyles } from '@typeweave/react/input';
+import { priorities, statuses } from '@/constants/common';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, Controller } from 'react-hook-form';
 import { CategoriesInput } from './categories-input';
 import { Button } from '@typeweave/react/button';
 import { CircleIcon } from 'lucide-react';
-import { startOfDay } from 'date-fns';
 import React from 'react';
 import { z } from 'zod';
 
 const formSchema = z.object({
   title: z.string().min(1, 'title is required').trim(),
   description: z.string().trim(),
-  categoryIds: z.array(
+  priority: z
+    .enum(priorities)
+    .refine((arg) => arg, 'priority is required'),
+  status: z.enum(statuses).refine((arg) => arg, 'status is required'),
+  categories: z.array(
     z.object({
       id: z.string(),
-      label: z.string(),
+      value: z.string(),
       inputValue: z.string().optional(),
     }),
   ),
-  priorityId: z.string({ message: 'priority is required' }),
-  statusId: z.string({ message: 'status is required' }),
 });
 
 export type FormValues = z.input<typeof formSchema>;
@@ -56,8 +53,8 @@ export const TaskForm = (props: TaskFormProps) => {
     defaultValues: {
       title: '',
       description: '',
-      statusId: DEFAULT_STATUS_ID,
-      categoryIds: [],
+      status: 'pending',
+      categories: [],
       ...(defaultValues ?? {}),
     },
   });
@@ -86,29 +83,29 @@ export const TaskForm = (props: TaskFormProps) => {
 
       <Controller
         control={control}
-        name="categoryIds"
+        name="categories"
         render={(props) => <CategoriesInput {...props} />}
       />
 
       {/* priority */}
       <fieldset
-        aria-invalid={!!errors.priorityId}
+        aria-invalid={!!errors.priority}
         aria-describedby="priority-desc"
         className="space-y-1"
       >
         <legend className={styles.label()}>priority</legend>
 
         <div className="flex flex-wrap gap-x-5 gap-y-3">
-          {priorities.map(({ id, label }) => (
+          {priorities.map((priority) => (
             <div
-              key={id}
+              key={priority}
               className="relative isolate flex shrink-0 items-center justify-center gap-2 px-4 py-2 text-white"
             >
               <input
-                data-priority={label}
+                data-priority={priority}
                 type="radio"
-                value={id}
-                {...register('priorityId')}
+                value={priority}
+                {...register('priority')}
                 className="peer absolute inset-0 -z-10 cursor-pointer appearance-none rounded-full bg-success-9 outline-none ring-focus data-[priority=high]:bg-danger-9 data-[priority=medium]:bg-warning-9 focus-visible:ring-2"
               />
 
@@ -123,7 +120,7 @@ export const TaskForm = (props: TaskFormProps) => {
               />
 
               <span className="pointer-events-none text-sm capitalize">
-                {label}
+                {priority}
               </span>
             </div>
           ))}
@@ -136,30 +133,30 @@ export const TaskForm = (props: TaskFormProps) => {
             className: 'first-letter:uppercase',
           })}
         >
-          {errors.priorityId?.message ?? ' '}
+          {errors.priority?.message ?? ' '}
         </div>
       </fieldset>
 
       {/* status */}
       {isEditForm && (
         <fieldset
-          aria-invalid={!!errors.statusId}
+          aria-invalid={!!errors.status}
           aria-describedby="status-desc"
           className="space-y-1"
         >
           <legend className={styles.label()}>status</legend>
 
           <div className="flex flex-wrap gap-x-5 gap-y-3">
-            {statuses.map(({ id, label }) => (
+            {statuses.map((status) => (
               <div
-                key={id}
-                data-status={label.replace(' ', '-')}
+                key={status}
+                data-status={status}
                 className="group relative isolate flex shrink-0 items-center justify-center gap-2 px-4 py-2 text-white data-[status=not-started]:text-muted-11"
               >
                 <input
                   type="radio"
-                  value={id}
-                  {...register('statusId')}
+                  value={status}
+                  {...register('status')}
                   className="peer absolute inset-0 -z-10 cursor-pointer appearance-none rounded-full bg-muted-3 outline-none ring-focus group-data-[status=completed]:bg-success-9 group-data-[status=in-progress]:bg-info-9 focus-visible:ring-2"
                 />
 
@@ -174,7 +171,7 @@ export const TaskForm = (props: TaskFormProps) => {
                 />
 
                 <span className="pointer-events-none text-sm capitalize">
-                  {label}
+                  {status}
                 </span>
               </div>
             ))}
@@ -187,7 +184,7 @@ export const TaskForm = (props: TaskFormProps) => {
               className: 'first-letter:uppercase',
             })}
           >
-            {errors.statusId?.message ?? ' '}
+            {errors.status?.message ?? ' '}
           </div>
         </fieldset>
       )}
@@ -203,12 +200,7 @@ export const TaskForm = (props: TaskFormProps) => {
           </strong>{' '}
           will be set to{' '}
           <strong className="font-medium text-foreground">
-            &apos;
-            {
-              statuses.find((ele) => ele.id === DEFAULT_STATUS_ID)
-                ?.label
-            }
-            &apos;
+            &apos; pending &apos;
           </strong>
           . You can edit the status later as needed.
         </p>

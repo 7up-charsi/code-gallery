@@ -10,7 +10,6 @@ import {
 } from '@typeweave/react/dialog';
 import { PencilIcon, PlusIcon, XIcon } from 'lucide-react';
 import { Button } from '@typeweave/react/button';
-import { useStore } from '@/zustand/store';
 import { toast } from 'react-toastify';
 import { TaskForm } from './task-form';
 import React from 'react';
@@ -23,11 +22,6 @@ const displayName = 'EditTask';
 
 export const EditTask = (props: EditTaskProps) => {
   const { id } = props;
-
-  const editTask = useStore((s) => s.editTask);
-  const categories = useStore((s) => s.categories);
-
-  const task = useStore((s) => s.tasks.find((ele) => ele.id === id));
 
   const [open, setOpen] = React.useState(false);
 
@@ -79,29 +73,30 @@ export const EditTask = (props: EditTaskProps) => {
 
             <div className="p-5 pt-2">
               <TaskForm
-                defaultValues={{
-                  categoryIds: categories.filter((ele) =>
-                    task?.categoryIds.includes(ele.id),
-                  ),
-                  description: task?.description ?? '',
-                  priorityId: task?.priorityId ?? '',
-                  statusId: task?.statusId ?? '',
-                  title: task?.title ?? '',
-                }}
-                onSubmit={async (values) => {
-                  await editTask(id, {
-                    title: values.title,
-                    description: values.description,
-                    categoryIds: values.categoryIds.map(
-                      (ele) => ele.id,
-                    ),
-                    priorityId: values.priorityId,
-                    statusId: values.statusId,
-                  });
+                // defaultValues={{
+                //   categoryIds: categories.filter((ele) =>
+                //     task?.categoryIds.includes(ele.id),
+                //   ),
+                //   description: task?.description ?? '',
+                //   priorityId: task?.priorityId ?? '',
+                //   statusId: task?.statusId ?? '',
+                //   title: task?.title ?? '',
+                // }}
+                // onSubmit={async (values) => {
+                //   await editTask(id, {
+                //     title: values.title,
+                //     description: values.description,
+                //     categoryIds: values.categoryIds.map(
+                //       (ele) => ele.id,
+                //     ),
+                //     priorityId: values.priorityId,
+                //     statusId: values.statusId,
+                //   });
 
-                  toast.success('task edited...!');
-                  setOpen(false);
-                }}
+                //   toast.success('task edited...!');
+                //   setOpen(false);
+                // }}
+                onSubmit={() => {}}
               />
             </div>
           </div>
