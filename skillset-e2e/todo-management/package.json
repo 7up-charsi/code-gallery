@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^5.2.8",
     "@hookform/resolvers": "^3.9.0",
     "@repo/meta": "workspace:*",
     "@typeweave/react": "^4.0.7",
@@ -43,4 +44,3 @@
     "typescript": "^5.5.4"
   }
 }
-
