@@ -7,9 +7,13 @@ import {
   Combobox,
   createComboboxFilter,
 } from '@typeweave/react/combobox';
+import { useMutation, useQuery } from 'convex/react';
 import { mergeRefs } from '@typeweave/react-utils';
 import { Input } from '@typeweave/react/input';
+import { api } from '@/convex/_generated/api';
 import { FormValues } from './task-form';
+import { toast } from 'react-toastify';
+import { Loader2 } from 'lucide-react';
 import React from 'react';
 
 interface CategoriesInputProps {
@@ -32,28 +36,56 @@ export const CategoriesInput = (props: CategoriesInputProps) => {
 
   const [open, setOpen] = React.useState(false);
 
+  const addCategory = useMutation(api.category.create);
+
+  const categories = useQuery(api.category.categories) as
+    | Category[]
+    | undefined;
+
+  const [loading, setLoading] = React.useState(false);
+
+  // TODO: add loading state while categories are in fetching state
+
   return (
     <Combobox
       editable
       multiple
       disabled={disabled}
-      options={[]} // TODO: categories
+      options={categories ?? []}
       value={value}
       open={open}
+      loading={loading}
       onOpen={() => setOpen(true)}
       onClose={(reason) =>
         reason !== 'selectOption' && setOpen(false)
       }
-      getOptionKey={(opt) => opt.id}
+      getOptionKey={(opt) => opt._id}
       getOptionLabel={(opt) => opt.value}
-      isOptionEqualToValue={(opt, value) => opt.id === value.id}
-      onChange={(newValue, reason, option) => {
+      isOptionEqualToValue={(opt, value) => opt._id === value._id}
+      classNames={{
+        inputWrapper: 'pr-[84px]',
+      }}
+      endContent={
+        loading ? (
+          <Loader2 size={20} className="animate-spin" />
+        ) : null
+      }
+      onChange={async (newValue, reason, option) => {
         if (
           reason === 'selectOption' &&
           'inputValue' in option &&
           typeof option.inputValue === 'string'
         ) {
-          // TODO: add category
+          try {
+            setLoading(true);
+
+            await addCategory({ value: option.inputValue });
+            toast.success('category created');
+            setLoading(false);
+          } catch (e) {
+            toast.error('Error occurred during category creation');
+            setLoading(false);
+          }
         } else {
           setOpen(false);
           onChange({
@@ -68,7 +100,7 @@ export const CategoriesInput = (props: CategoriesInputProps) => {
 
         if (inputValue && !filtered.length) {
           filtered.push({
-            id: '',
+            _id: '',
             value: `Add: ${inputValue}`,
             inputValue,
           });
@@ -81,6 +113,10 @@ export const CategoriesInput = (props: CategoriesInputProps) => {
           label="categories"
           className="w-full"
           name={name}
+          inputWrapperProps={{
+            // @ts-ignore
+            'data-loading': loading,
+          }}
           {...props}
           ref={mergeRefs(props.ref, ref)}
           onBlur={(e) => {

@@ -19,7 +19,7 @@ const formSchema = z.object({
   status: z.enum(statuses).refine((arg) => arg, 'status is required'),
   categories: z.array(
     z.object({
-      id: z.string(),
+      _id: z.string(),
       value: z.string(),
       inputValue: z.string().optional(),
     }),

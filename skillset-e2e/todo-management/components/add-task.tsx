@@ -79,7 +79,7 @@ export const AddTask = (props: AddTaskProps) => {
                     description: values.description,
                     priority: values.priority,
                     categories: values.categories.map(
-                      (ele) => ele.id as Id<'categories'>,
+                      (ele) => ele._id as Id<'categories'>,
                     ),
                   });
 
