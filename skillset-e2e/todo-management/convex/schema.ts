@@ -9,7 +9,7 @@ export const prioritySchema = v.union(
 
 export const statusSchema = v.union(
   v.literal('pending'),
-  v.literal('in progress'),
+  v.literal('started'),
   v.literal('completed'),
 );
 

@@ -27,6 +27,15 @@ export default function Home() {
         </div>
       )}
 
+      {!isLoading && !results.length ? (
+        <div className="pt-10 text-center">
+          <span className="text-xl">
+            The database is currently empty. <br /> Please add some
+            tasks to get started.
+          </span>
+        </div>
+      ) : null}
+
       {!isLoading &&
         results.map((ele) => <Task key={ele._id} {...ele} />)}
     </main>

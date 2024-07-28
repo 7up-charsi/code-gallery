@@ -13,9 +13,13 @@ import {
   TrashIcon,
 } from 'lucide-react';
 import { DialogClose } from '@typeweave/react/dialog';
+import { Id } from '@/convex/_generated/dataModel';
 import { Button } from '@typeweave/react/button';
 import { Task as TaskType } from '@/types/task';
+import { api } from '@/convex/_generated/api';
 import { AlertDialog } from './alert-dialog';
+import { useMutation } from 'convex/react';
+import { toast } from 'react-toastify';
 import { EditTask } from './edit-task';
 import React from 'react';
 
@@ -26,6 +30,10 @@ const displayName = 'Task';
 export const Task = (props: TaskProps) => {
   const { categories, description, _id, priority, status, title } =
     props;
+
+  const _delete = useMutation(api.task._delete);
+  const complete = useMutation(api.task.complete);
+  const started = useMutation(api.task.started);
 
   return (
     <article
@@ -60,7 +68,7 @@ export const Task = (props: TaskProps) => {
         <div className="mt-2 flex items-center gap-2">
           <dt className="sr-only">actions</dt>
           <dd className="content-center space-x-2">
-            {status === 'in progress' && (
+            {status === 'started' && (
               <TooltipRoot>
                 <AlertDialog
                   title="Mark as Complete"
@@ -82,17 +90,19 @@ export const Task = (props: TaskProps) => {
                   <DialogClose>
                     <Button
                       color="success"
-                      // TODO: mark as completed
+                      onPress={() =>
+                        complete({ _id: _id as Id<'tasks'> })
+                      }
                     >
-                      Complete
+                      SURE
                     </Button>
                   </DialogClose>
                 </AlertDialog>
 
                 <TooltipPortal>
-                  <TooltipContent>
+                  <TooltipContent className="bg-black/70 text-white">
                     <TooltipArrow />
-                    <span>Mark complete</span>
+                    <span>Mark as complete</span>
                   </TooltipContent>
                 </TooltipPortal>
               </TooltipRoot>
@@ -119,18 +129,20 @@ export const Task = (props: TaskProps) => {
                 >
                   <DialogClose>
                     <Button
-                      color="info"
-                      // TODO: mark as in progress
+                      color="success"
+                      onPress={() =>
+                        started({ _id: _id as Id<'tasks'> })
+                      }
                     >
-                      in Progress
+                      SURE
                     </Button>
                   </DialogClose>
                 </AlertDialog>
 
                 <TooltipPortal>
-                  <TooltipContent>
+                  <TooltipContent className="bg-black/70 text-white">
                     <TooltipArrow />
-                    <span>Mark in Progress</span>
+                    <span>Mark as started</span>
                   </TooltipContent>
                 </TooltipPortal>
               </TooltipRoot>
@@ -155,7 +167,10 @@ export const Task = (props: TaskProps) => {
             >
               <Button
                 color="danger"
-                // TODO: delete task
+                onPress={async () => {
+                  _delete({ _id: _id as Id<'tasks'> });
+                  toast.success('task deleted...!');
+                }}
               >
                 Delete
               </Button>

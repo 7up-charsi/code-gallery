@@ -149,13 +149,13 @@ export const TaskForm = (props: TaskFormProps) => {
               <div
                 key={status}
                 data-status={status}
-                className="group relative isolate flex shrink-0 items-center justify-center gap-2 px-4 py-2 text-white data-[status=not-started]:text-muted-11"
+                className="group relative isolate flex shrink-0 items-center justify-center gap-2 px-4 py-2 text-white data-[status=pending]:text-muted-11"
               >
                 <input
                   type="radio"
                   value={status}
                   {...register('status')}
-                  className="peer absolute inset-0 -z-10 cursor-pointer appearance-none rounded-full bg-muted-3 outline-none ring-focus group-data-[status=completed]:bg-success-9 group-data-[status=in-progress]:bg-info-9 focus-visible:ring-2"
+                  className="peer absolute inset-0 -z-10 cursor-pointer appearance-none rounded-full bg-muted-3 outline-none ring-focus group-data-[status=completed]:bg-success-9 group-data-[status=started]:bg-info-9 focus-visible:ring-2"
                 />
 
                 <CircleIcon

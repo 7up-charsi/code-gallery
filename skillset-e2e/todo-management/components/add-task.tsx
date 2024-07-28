@@ -26,8 +26,10 @@ export const AddTask = (props: AddTaskProps) => {
 
   const addTask = useMutation(api.task.create);
 
+  const [open, setOpen] = React.useState(false);
+
   return (
-    <DialogRoot>
+    <DialogRoot open={open} onOpenChange={setOpen}>
       <DialogTrigger>
         <Button
           isIconOnly
@@ -82,6 +84,7 @@ export const AddTask = (props: AddTaskProps) => {
 
                 toast.success('task added...!');
                 reset();
+                setOpen(false);
               }}
             />
           </div>

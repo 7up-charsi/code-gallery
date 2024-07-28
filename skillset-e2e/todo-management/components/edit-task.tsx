@@ -9,10 +9,10 @@ import {
   DialogTrigger,
 } from '@typeweave/react/dialog';
 import { PencilIcon, PlusIcon, XIcon } from 'lucide-react';
+import { useMutation, useQuery } from 'convex/react';
 import { Id } from '@/convex/_generated/dataModel';
 import { Button } from '@typeweave/react/button';
 import { api } from '@/convex/_generated/api';
-import { useQuery } from 'convex/react';
 import { toast } from 'react-toastify';
 import { TaskForm } from './task-form';
 import React from 'react';
@@ -29,6 +29,8 @@ export const EditTask = (props: EditTaskProps) => {
   const [open, setOpen] = React.useState(false);
 
   const task = useQuery(api.task.get, { _id: _id as Id<'tasks'> });
+
+  const editTask = useMutation(api.task.patch);
 
   return (
     <DialogRoot open={open} onOpenChange={setOpen}>
@@ -87,18 +89,19 @@ export const EditTask = (props: EditTaskProps) => {
                     }
               }
               onSubmit={async (values) => {
-                // await editTask(id, {
-                //   title: values.title,
-                //   description: values.description,
-                //   categoryIds: values.categoryIds.map(
-                //     (ele) => ele.id,
-                //   ),
-                //   priorityId: values.priorityId,
-                //   statusId: values.statusId,
-                // });
+                await editTask({
+                  _id: _id as Id<'tasks'>,
+                  title: values.title,
+                  description: values.description,
+                  categories: values.categories.map(
+                    (ele) => ele._id as Id<'categories'>,
+                  ),
+                  priority: values.priority,
+                  status: values.status,
+                });
 
-                // toast.success('task edited...!');
-                // setOpen(false);
+                toast.success('task edited...!');
+                setOpen(false);
               }}
             />
           </div>

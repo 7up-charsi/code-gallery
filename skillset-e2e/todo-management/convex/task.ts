@@ -1,6 +1,6 @@
 import { paginationOptsValidator } from 'convex/server';
+import { prioritySchema, statusSchema } from './schema';
 import { mutation, query } from './_generated/server';
-import { prioritySchema } from './schema';
 import { v } from 'convex/values';
 
 export const create = mutation({
@@ -74,5 +74,70 @@ export const get = query({
         (typeof categories)[number]
       >[],
     };
+  },
+});
+
+export const patch = mutation({
+  args: {
+    _id: v.id('tasks'),
+    title: v.string(),
+    description: v.string(),
+    priority: prioritySchema,
+    status: statusSchema,
+    categories: v.array(v.id('categories')),
+  },
+  handler: async (ctx, args) => {
+    const task = await ctx.db.get(args._id);
+
+    if (!task) throw new Error('task not found');
+
+    await ctx.db.patch(args._id, {
+      categories: args.categories,
+      description: args.description,
+      priority: args.priority,
+      status: args.status,
+      title: args.title,
+    });
+  },
+});
+
+export const _delete = mutation({
+  args: { _id: v.id('tasks') },
+  handler: async (ctx, args) => {
+    const task = await ctx.db.get(args._id);
+
+    if (!task) throw new Error('task not found');
+
+    await ctx.db.delete(args._id);
+  },
+});
+
+export const complete = mutation({
+  args: {
+    _id: v.id('tasks'),
+  },
+  handler: async (ctx, args) => {
+    const task = await ctx.db.get(args._id);
+
+    if (!task) throw new Error('task not found');
+
+    await ctx.db.patch(args._id, {
+      status: 'completed',
+    });
+  },
+});
+
+export const started = mutation({
+  args: {
+    _id: v.id('tasks'),
+  },
+  handler: async (ctx, args) => {
+    const task = await ctx.db.get(args._id);
+
+    if (!task) throw new Error('task not found');
+
+    await ctx.db.patch(args._id, {
+      status: 'started',
+    });
   },
 });
