@@ -7,10 +7,12 @@ import {
   Combobox,
   createComboboxFilter,
 } from '@typeweave/react/combobox';
-import { useMutation, useQuery } from 'convex/react';
+import { convexQuery } from '@convex-dev/react-query';
 import { mergeRefs } from '@typeweave/react-utils';
+import { useQuery } from '@tanstack/react-query';
 import { Input } from '@typeweave/react/input';
 import { api } from '@/convex/_generated/api';
+import { useMutation } from 'convex/react';
 import { FormValues } from './task-form';
 import { toast } from 'react-toastify';
 import { Loader2 } from 'lucide-react';
@@ -38,13 +40,13 @@ export const CategoriesInput = (props: CategoriesInputProps) => {
 
   const addCategory = useMutation(api.category.create);
 
-  const categories = useQuery(api.category.categories) as
-    | Category[]
-    | undefined;
+  const { data, isLoading } = useQuery(
+    convexQuery(api.category.categories, {}),
+  );
+
+  const categories = data as Category[];
 
   const [loading, setLoading] = React.useState(false);
-
-  // TODO: add loading state while categories are in fetching state
 
   return (
     <Combobox
@@ -54,7 +56,7 @@ export const CategoriesInput = (props: CategoriesInputProps) => {
       options={categories ?? []}
       value={value}
       open={open}
-      loading={loading}
+      loading={isLoading || loading}
       onOpen={() => setOpen(true)}
       onClose={(reason) =>
         reason !== 'selectOption' && setOpen(false)
