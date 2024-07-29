@@ -2,6 +2,7 @@ import { paginationOptsValidator } from 'convex/server';
 import { prioritySchema, statusSchema } from './schema';
 import { mutation, query } from './_generated/server';
 import { v } from 'convex/values';
+import Fuse from 'fuse.js';
 
 export const create = mutation({
   args: {
@@ -29,14 +30,14 @@ export const create = mutation({
 });
 
 export const tasks = query({
-  args: { paginationOpts: paginationOptsValidator },
+  args: {
+    query: v.string(),
+  },
   handler: async (ctx, args) => {
-    const results = await ctx.db
-      .query('tasks')
-      .paginate(args.paginationOpts);
+    const tasks = await ctx.db.query('tasks').collect();
 
-    const page = await Promise.all(
-      results.page.map(async (ele) => {
+    const populated = await Promise.all(
+      tasks.map(async (ele) => {
         const categories = await Promise.all(
           ele.categories.map(async (id) => await ctx.db.get(id)),
         );
@@ -50,10 +51,17 @@ export const tasks = query({
       }),
     );
 
-    return {
-      ...results,
-      page,
-    };
+    if (args.query) {
+      const fuse = new Fuse(populated, {
+        keys: ['title', 'description', 'categories.value'],
+      });
+
+      const searched = fuse.search(args.query);
+
+      return searched.map((ele) => ele.item);
+    }
+
+    return populated;
   },
 });
 
