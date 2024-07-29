@@ -63,7 +63,7 @@ export const AppBar = (props: AppBarProps) => {
 
       const { top } = document.body.getBoundingClientRect();
 
-      if (top < 100) return;
+      if (top < -100) return;
 
       if (top < 0) {
         setScrolled(true);
@@ -85,7 +85,7 @@ export const AppBar = (props: AppBarProps) => {
   return (
     <header
       data-scrolled={scrolled}
-      className="sticky left-0 right-0 top-0 z-50 data-[scrolled=true]:shadow-md"
+      className="sticky -top-16 left-0 right-0 z-50 data-[scrolled=true]:shadow-md"
     >
       <div className="flex h-16 items-center bg-purple-500 px-5">
         <Link
