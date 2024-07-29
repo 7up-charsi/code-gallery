@@ -1,0 +1,111 @@
+'use client';
+
+import useEmblaCarousel from 'embla-carousel-react';
+import { siteConfig } from '@/config/site';
+import React, { useState } from 'react';
+import Link from 'next/link';
+
+interface AppBarProps {}
+
+const displayName = 'AppBar';
+
+export const AppBar = (props: AppBarProps) => {
+  const {} = props;
+
+  const [emblaRef, emblaApi] = useEmblaCarousel({ dragFree: true });
+
+  const [scrolled, setScrolled] = React.useState(false);
+  const [activeSectionId, setActiveSectionId] = React.useState(0);
+
+  React.useEffect(() => {
+    if (!emblaApi) return;
+
+    const toObserve = Array.from({ length: 10 })
+      .map((_, i) => document.getElementById(`${i + 1}`))
+      .filter(Boolean) as HTMLElement[];
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          console.log(entry);
+
+          if (entry.isIntersecting) {
+            setActiveSectionId(+entry.target.id);
+            emblaApi.scrollTo(+entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.5 },
+    );
+
+    toObserve.forEach((element) => {
+      observer.observe(element);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [emblaApi]);
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const { top } = document.body.getBoundingClientRect();
+
+      if (top < 100) return;
+
+      if (top < 0) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    handleScroll();
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  return (
+    <header
+      data-scrolled={scrolled}
+      className="sticky left-0 right-0 top-0 z-50 data-[scrolled=true]:shadow-md"
+    >
+      <div className="flex h-16 items-center bg-purple-500 px-5">
+        <Link
+          href={siteConfig.portfolio}
+          className="rounded p-1 text-xl uppercase text-white outline-none ring-white focus-visible:ring-2"
+        >
+          {siteConfig.author}
+        </Link>
+      </div>
+
+      <div ref={emblaRef} className="overflow-hidden bg-gray-50 px-5">
+        <nav className="flex items-center gap-2">
+          {Array.from({ length: 10 }).map((_, i) => (
+            <div
+              key={i}
+              className="relative h-full shrink-0 content-center py-2"
+            >
+              <Link
+                href={`#${i + 1}`}
+                className="flex h-9 select-none items-center gap-2 rounded px-2 capitalize outline-none hover:bg-gray-200 focus-visible:ring-2 active:bg-gray-300"
+              >
+                section {i + 1}
+              </Link>
+
+              {activeSectionId === i + 1 && (
+                <span className="absolute bottom-0 left-0 block h-1 w-full rounded-full bg-purple-500"></span>
+              )}
+            </div>
+          ))}
+        </nav>
+      </div>
+    </header>
+  );
+};
+
+AppBar.displayName = displayName;
