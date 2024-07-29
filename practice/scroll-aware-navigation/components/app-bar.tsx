@@ -20,6 +20,9 @@ export const AppBar = (props: AppBarProps) => {
   React.useEffect(() => {
     if (!emblaApi) return;
 
+    let lastScroll = 0;
+    let scrollDirection = 0; // 1 is down and -1 is up
+
     const toObserve = Array.from({ length: 10 })
       .map((_, i) => document.getElementById(`${i + 1}`))
       .filter(Boolean) as HTMLElement[];
@@ -27,28 +30,37 @@ export const AppBar = (props: AppBarProps) => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          console.log(entry);
-
-          if (entry.isIntersecting) {
+          if (
+            entry.isIntersecting &&
+            scrollDirection === 1 &&
+            entry.intersectionRatio >= 0.7
+          ) {
+            setActiveSectionId(+entry.target.id);
+            emblaApi.scrollTo(+entry.target.id);
+          } else if (
+            entry.isIntersecting &&
+            scrollDirection === -1 &&
+            entry.intersectionRatio === 1
+          ) {
             setActiveSectionId(+entry.target.id);
             emblaApi.scrollTo(+entry.target.id);
           }
         });
       },
-      { threshold: 0.5 },
+      { threshold: [0.7, 1], rootMargin: '-120px 0px 0px 0px' },
     );
 
     toObserve.forEach((element) => {
       observer.observe(element);
     });
 
-    return () => {
-      observer.disconnect();
-    };
-  }, [emblaApi]);
-
-  React.useEffect(() => {
     const handleScroll = () => {
+      const currentScroll = scrollY;
+
+      scrollDirection = currentScroll > lastScroll ? 1 : -1;
+
+      lastScroll = currentScroll;
+
       const { top } = document.body.getBoundingClientRect();
 
       if (top < 100) return;
@@ -66,8 +78,9 @@ export const AppBar = (props: AppBarProps) => {
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      observer.disconnect();
     };
-  }, []);
+  }, [emblaApi]);
 
   return (
     <header
