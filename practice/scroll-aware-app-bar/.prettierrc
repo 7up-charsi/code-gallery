@@ -1,6 +1,0 @@
-{
-  "printWidth": 70,
-  "endOfLine": "crlf",
-  "singleQuote": true,
-  "plugins": ["prettier-plugin-sort-imports", "prettier-plugin-tailwindcss"]
-}

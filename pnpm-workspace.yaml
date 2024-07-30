@@ -1,5 +1,6 @@
 packages:
+  - 'skill-building'
   - 'skillset-e2e/*'
-  - 'practice/*'
+  # - 'practice/*'
   - 'packages/*'
 
