@@ -1,11 +1,12 @@
-import { Header } from './__components/header';
+import { Space_Mono } from 'next/font/google';
 import author from '@repo/meta/author.json';
-import { ThemeProvider } from 'next-themes';
 import { siteConfig } from './site.config';
-import { Inter } from 'next/font/google';
 import type { Metadata } from 'next';
 
-const inter = Inter({ subsets: ['latin'] });
+const font = Space_Mono({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+});
 
 export const metadata: Metadata = {
   title: siteConfig.name,
@@ -24,14 +25,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div
-      style={inter.style}
-      className="bg-background text-foreground"
-    >
-      <ThemeProvider attribute="class">
-        <Header />
-        {children}
-      </ThemeProvider>
+    <div className={`${font.className} tip-calculator`}>
+      {children}
     </div>
   );
 }
