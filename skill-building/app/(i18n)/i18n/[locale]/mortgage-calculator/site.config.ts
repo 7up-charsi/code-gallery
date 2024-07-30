@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: 'shopping cart',
+  name: 'mortgage calculator',
   description:
-    'Shopping Cart - Developed to demonstrate my expertise in web front-end development, showcasing my skills in crafting responsive, interactive shopping carts with comprehensive functionalities and seamless light/dark mode integration.',
+    'Mortgage Calculator - Developed to demonstrate my expertise in web front-end development, showcasing my skills in creating interactive and user-friendly financial tools with robust calculation capabilities and responsive design',
 };

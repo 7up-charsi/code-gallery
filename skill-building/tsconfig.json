@@ -29,6 +29,9 @@
       ],
       "@/mortgage-calculator/*": [
         "./app/(i18n)/i18n/[locale]/mortgage-calculator/*"
+      ],
+      "@/multistep-form/*": [
+        "./app/(i18n)/i18n/[locale]/multistep-form/*"
       ]
     }
   },

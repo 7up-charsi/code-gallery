@@ -1,0 +1,71 @@
+{
+  "step1": {
+    "indicator": "step 1",
+    "indicatorHeading": "your info",
+    "heading": "personal info",
+    "description": "Please provide your name, email, address and phone number.",
+    "fields": {
+      "name": { "label": "name" },
+      "email": { "label": "email" },
+      "phoneNumber": { "label": "phone number" }
+    }
+  },
+  "step2": {
+    "indicator": "step 2",
+    "indicatorHeading": "select plan",
+    "heading": "select your plan",
+    "description": "You have the option of monthly or yearly billing.",
+    "fields": {
+      "arcade": { "label": "arcade" },
+      "advanced": { "label": "advanced" },
+      "pro": { "label": "pro" },
+      "billing": {
+        "monthly": "monthly",
+        "yearly": "yearly"
+      }
+    }
+  },
+  "step3": {
+    "indicator": "step 3",
+    "indicatorHeading": "add-ons",
+    "heading": "pick add-ons",
+    "description": "Add-ons help enhance your gaming experience.",
+    "fields": {
+      "onlineService": {
+        "label": "online service",
+        "description": "access to multiplayer games"
+      },
+      "largerStorage": {
+        "label": "larger storage",
+        "description": "extra 1TB of cloud save"
+      },
+      "customizableProfile": {
+        "label": "customizable profile",
+        "description": "customize your profile"
+      }
+    }
+  },
+  "step4": {
+    "indicator": "step 4",
+    "indicatorHeading": "summary",
+    "heading": "Finishing up",
+    "description": "Double-check everything looks OK before confirming.",
+    "total": "total"
+  },
+  "buttons": {
+    "previous": "previous",
+    "next": "next",
+    "confirm": "confirm",
+    "change": "change",
+    "validate": "validate"
+  },
+  "errors": {
+    "required": "this filed is required",
+    "invalidEmail": "invalid email",
+    "selectOne": "select one plan"
+  },
+  "thankYou": {
+    "heading": "thank you!",
+    "description": "Thanks for confirming your subscription! We hope you have fun using our plarform. If you ever need support please feel free to email us at support@loremgaming.com"
+  }
+}

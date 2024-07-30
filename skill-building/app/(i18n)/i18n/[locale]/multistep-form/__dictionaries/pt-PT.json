@@ -1,0 +1,71 @@
+{
+  "step1": {
+    "indicator": "passo 1",
+    "indicatorHeading": "suas informações",
+    "heading": "informações pessoais",
+    "description": "Por favor, forneça seu nome, email, endereço e número de telefone.",
+    "fields": {
+      "name": { "label": "nome" },
+      "email": { "label": "email" },
+      "phoneNumber": { "label": "número de telefone" }
+    }
+  },
+  "step2": {
+    "indicator": "passo 2",
+    "indicatorHeading": "selecionar plano",
+    "heading": "selecione o seu plano",
+    "description": "Você tem a opção de cobrança mensal ou anual.",
+    "fields": {
+      "arcade": { "label": "arcade" },
+      "advanced": { "label": "avançado" },
+      "pro": { "label": "pro" },
+      "billing": {
+        "monthly": "mensal",
+        "yearly": "anual"
+      }
+    }
+  },
+  "step3": {
+    "indicator": "passo 3",
+    "indicatorHeading": "extras",
+    "heading": "escolha extras",
+    "description": "Os extras ajudam a melhorar sua experiência de jogo.",
+    "fields": {
+      "onlineService": {
+        "label": "serviço online",
+        "description": "acesso a jogos multijogador"
+      },
+      "largerStorage": {
+        "label": "armazenamento maior",
+        "description": "1TB extra de armazenamento na nuvem"
+      },
+      "customizableProfile": {
+        "label": "perfil personalizável",
+        "description": "personalize seu perfil"
+      }
+    }
+  },
+  "step4": {
+    "indicator": "passo 4",
+    "indicatorHeading": "resumo",
+    "heading": "Finalizando",
+    "description": "Verifique se tudo está correto antes de confirmar.",
+    "total": "total"
+  },
+  "buttons": {
+    "previous": "anterior",
+    "next": "próximo",
+    "confirm": "confirmar",
+    "change": "alterar",
+    "validate": "validar"
+  },
+  "errors": {
+    "required": "este campo é obrigatório",
+    "invalidEmail": "email inválido",
+    "selectOne": "selecione um plano"
+  },
+  "thankYou": {
+    "heading": "obrigado!",
+    "description": "Obrigado por confirmar sua inscrição! Esperamos que se divirta usando nossa plataforma. Se precisar de suporte, por favor, sinta-se à vontade para nos enviar um email para support@loremgaming.com"
+  }
+}
