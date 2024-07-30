@@ -13,6 +13,7 @@
     "@hookform/resolvers": "^3.9.0",
     "@repo/meta": "workspace:*",
     "@typeweave/react": "^4.0.8",
+    "embla-carousel": "^8.1.7",
     "embla-carousel-react": "^8.1.7",
     "lodash.debounce": "^4.0.8",
     "lucide-react": "^0.414.0",
