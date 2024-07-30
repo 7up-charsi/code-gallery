@@ -1,12 +1,12 @@
-import { Dictionary, Locales } from '../types/dictionary';
+import { Dictionary, Locales } from '../__types/dictionary';
 
 const dictionaries: Record<Locales, () => Promise<Dictionary>> = {
   'en-US': () =>
-    import('../dictionaries/en-US.json').then(
+    import('../__dictionaries/en-US.json').then(
       (module) => module.default,
     ),
   'pt-PT': () =>
-    import('../dictionaries/pt-PT.json').then(
+    import('../__dictionaries/pt-PT.json').then(
       (module) => module.default,
     ),
 };

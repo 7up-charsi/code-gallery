@@ -1,4 +1,4 @@
-import { Header } from './__internals/components/header';
+import { Header } from './__components/header';
 import { Bounce, ToastContainer } from 'react-toastify';
 import author from '@repo/meta/author.json';
 import { ThemeProvider } from 'next-themes';

@@ -1,7 +1,17 @@
-import { AppBar } from './__components/app-bar';
+import { Raleway, Roboto } from 'next/font/google';
 import author from '@repo/meta/author.json';
 import { siteConfig } from './site.config';
 import type { Metadata } from 'next';
+
+const font = Roboto({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+});
+
+const logoFont = Raleway({
+  subsets: ['latin'],
+  variable: '--logo-font',
+});
 
 export const metadata: Metadata = {
   title: siteConfig.name,
@@ -14,15 +24,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Layout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <>
-      <AppBar />
+    <div className={`${font.className} ${logoFont.variable}`}>
       {children}
-    </>
+    </div>
   );
 }

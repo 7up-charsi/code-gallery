@@ -1,6 +1,6 @@
-import { getDictionary } from './__internals/utils/get-dictionary';
-import { Locales } from './__internals/types/dictionary';
-import { Form } from './__internals/components/form';
+import { getDictionary } from './__utils/get-dictionary';
+import { Locales } from './__types/dictionary';
+import { Form } from './__components/form';
 
 interface HomePageProps {
   params: { locale: Locales };

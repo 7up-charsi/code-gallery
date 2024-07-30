@@ -1,6 +1,6 @@
 'use client';
 
-import { useCalculator } from './use-calculator';
+import { useCalculator } from '../__zustand/calculator';
 import React from 'react';
 
 interface ScreenProps {}
@@ -14,7 +14,7 @@ export const Screen = (props: ScreenProps) => {
     useCalculator();
 
   return (
-    <div className="bg-sc-screen_bg grid h-16 w-full grid-cols-1 grid-rows-2 items-center justify-items-end rounded px-5 py-3 font-bold">
+    <div className="grid h-16 w-full grid-cols-1 grid-rows-2 items-center justify-items-end rounded bg-sc-screen_bg px-5 py-3 font-bold">
       {!operator && (
         <span className="row-span-2 text-2xl font-bold">
           {operandLeft}
