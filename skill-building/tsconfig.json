@@ -19,8 +19,13 @@
     ],
     "paths": {
       "@/*": ["./*"],
+
+      // only for easy i18nConfig access in middleware
       "@/contact-form/*": [
         "./app/(i18n)/i18n/[locale]/contact-form/*"
+      ],
+      "@/shopping-cart/*": [
+        "./app/(i18n)/i18n/[locale]/shopping-cart/*"
       ]
     }
   },

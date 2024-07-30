@@ -1,5 +1,5 @@
 export const siteConfig = {
   name: 'Contact Form',
   description:
-    'Contact Form - Developed to demonstrate my expertise in web front-end development, showcasing my skills in creating responsive, user-friendly, i18n, a11y and interactive web applications',
+    'Contact Form - Developed to showcase my expertise in web front-end development, particularly in creating forms with advanced error handling and validation using Zod.js',
 };

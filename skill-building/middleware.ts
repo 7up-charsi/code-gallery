@@ -1,31 +1,27 @@
+import { i18nConfig as shoppingCartI18nConfig } from '@/shopping-cart/i18n.config';
 import { i18nConfig as contactFormI18nConfig } from '@/contact-form/i18n.config';
-import { NextRequest, NextResponse } from 'next/server';
-import { matchLocale } from './utils/i18n';
-
-const localeRegex = /\/i18n\/([^/]+)/;
+import { i18nRouter } from './utils/i18n';
+import { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
-  if (/\/i18n\/.+\/contact-form.*/.test(pathname)) {
-    const { 1: locale = '' } = pathname.match(localeRegex) || [];
+  if (
+    /\/i18n\/.+\/contact-form.*/.test(pathname) ||
+    /\/i18n\/contact-form.*/.test(pathname)
+  ) {
+    return i18nRouter(request, contactFormI18nConfig, 'contact-form');
+  }
 
-    if (contactFormI18nConfig.locales.includes(locale as never))
-      return;
-
-    const matchedLocale = matchLocale(
-      [locale],
-      contactFormI18nConfig,
+  if (
+    /\/i18n\/.+\/shopping-cart.*/.test(pathname) ||
+    /\/i18n\/shopping-cart.*/.test(pathname)
+  ) {
+    return i18nRouter(
+      request,
+      shoppingCartI18nConfig,
+      'shopping-cart',
     );
-
-    const newPathname = pathname.replace(
-      /\/i18n\/[^/]+/,
-      `/i18n/${matchedLocale}`,
-    );
-
-    const newUrl = new URL(newPathname, request.url);
-
-    return NextResponse.redirect(newUrl);
   }
 }
 

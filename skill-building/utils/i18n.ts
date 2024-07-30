@@ -1,12 +1,24 @@
+import { NextRequest, NextResponse } from 'next/server';
 import { match } from '@formatjs/intl-localematcher';
 import { I18nConfig } from '@/types/i18n';
-import { NextRequest } from 'next/server';
 import Negotiator from 'negotiator';
 
-export const getLocale = (
+export const i18nRouter = (
   request: NextRequest,
   config: I18nConfig,
+  name: string,
 ) => {
+  const pathname = request.nextUrl.pathname;
+
+  const { 1: currentLocale = '' } =
+    pathname.match(new RegExp(`/i18n/([^/]+)/${name}`)) || [];
+
+  if (
+    currentLocale &&
+    config.locales.includes(currentLocale as never)
+  )
+    return;
+
   const negotiatorHeaders: Record<string, string> = {};
 
   request.headers.forEach(
@@ -19,14 +31,11 @@ export const getLocale = (
 
   const { locales, defaultLocale } = config;
 
-  return match(languages, locales, defaultLocale);
-};
+  const newLocale = match(languages, locales, defaultLocale);
 
-export const matchLocale = (
-  languages: string[],
-  config: I18nConfig,
-) => {
-  const { locales, defaultLocale } = config;
+  const newPathname = `/i18n/${newLocale}/${name}`;
 
-  return match(languages, locales, defaultLocale);
+  const newUrl = new URL(newPathname, request.url);
+
+  return NextResponse.redirect(newUrl);
 };
