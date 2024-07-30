@@ -1,13 +1,12 @@
-import { Dictionary, Locales } from '@/types';
-import 'server-only';
+import { Dictionary, Locales } from '../types/dictionary';
 
 const dictionaries: Record<Locales, () => Promise<Dictionary>> = {
   'en-US': () =>
-    import('@/dictionaries/en-US.json').then(
+    import('../dictionaries/en-US.json').then(
       (module) => module.default,
     ),
   'pt-PT': () =>
-    import('@/dictionaries/pt-PT.json').then(
+    import('../dictionaries/pt-PT.json').then(
       (module) => module.default,
     ),
 };

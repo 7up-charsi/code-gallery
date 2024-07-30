@@ -3,6 +3,7 @@ import author from '@repo/meta/author.json';
 import { Metadata } from 'next';
 
 export const rootMetadata: Metadata = {
+  metadataBase: new URL(process.env.SITE_URL!),
   title: rootSiteConfig.name,
   description: rootSiteConfig.description,
   applicationName: rootSiteConfig.name,

@@ -14,8 +14,8 @@ import { useParams, useRouter } from 'next/navigation';
 import { Combobox } from '@typeweave/react/combobox';
 import { Skeleton } from '@typeweave/react/skeleton';
 import { Input } from '@typeweave/react/input';
+import author from '@repo/meta/author.json';
 import { useTheme } from 'next-themes';
-import { siteConfig } from '@/config';
 import Link from 'next/link';
 import React from 'react';
 
@@ -44,13 +44,13 @@ export const Header = (props: HeaderProps) => {
   }, []);
 
   return (
-    <header className="border-muted-6 bg-background flex items-center gap-3 border-b px-5 py-4 md:rounded md:border-none">
+    <header className="flex items-center gap-3 border-b border-muted-6 bg-background px-5 py-4 md:px-10">
       <Link
-        href={siteConfig.portfolio}
+        href={author.portfolio}
         aria-label="go to portfolio"
-        className="ring-focus text-2xl uppercase outline-none focus:ring-2"
+        className="text-2xl uppercase outline-none ring-focus focus:ring-2"
       >
-        uxweaver
+        {author.name}
       </Link>
 
       <div className="grow"></div>

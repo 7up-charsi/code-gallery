@@ -4,10 +4,10 @@ import { Input, inputStyles } from '@typeweave/react/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Checkbox } from '@typeweave/react/checkbox';
 import { Button } from '@typeweave/react/button';
+import { Dictionary } from '../types/dictionary';
 import { CustomRadio } from './custom-radio';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import { Dictionary } from '@/types';
 import React from 'react';
 import { z } from 'zod';
 
