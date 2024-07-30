@@ -1,5 +1,5 @@
+import { createMetadata } from '@/utils/metadata';
 import { Header } from './__components/header';
-import author from '@repo/meta/author.json';
 import { ThemeProvider } from 'next-themes';
 import { siteConfig } from './site.config';
 import { Inter } from 'next/font/google';
@@ -9,16 +9,9 @@ import React from 'react';
 
 const inter = Inter({ subsets: ['latin'] });
 
-export const metadata: Metadata = {
-  title: siteConfig.name,
-  description: siteConfig.description,
-  applicationName: siteConfig.name,
-  authors: [{ name: author.name, url: author.portfolio }],
-  keywords: ['observer interaction', author.name, siteConfig.name],
-  icons: {
-    icon: '/favicon.svg',
-  },
-};
+export const metadata: Metadata = createMetadata(siteConfig, [
+  'integrate frontend and backend',
+]);
 
 export default function RootLayout({
   children,

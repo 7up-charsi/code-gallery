@@ -1,8 +1,8 @@
 import { DictionaryProvider } from './__components/dictionary-provider';
 import { getDictionary } from './__utils/dictionary';
+import { createMetadata } from '@/utils/metadata';
 import { Header } from './__components/header';
 import { Locales } from './__types/dictionary';
-import author from '@repo/meta/author.json';
 import { ThemeProvider } from 'next-themes';
 import { siteConfig } from './site.config';
 import { Inter } from 'next/font/google';
@@ -14,16 +14,7 @@ const font = Inter({
   subsets: ['latin'],
 });
 
-export const metadata: Metadata = {
-  title: siteConfig.name,
-  description: siteConfig.description,
-  applicationName: siteConfig.name,
-  authors: [{ name: author.name, url: author.portfolio }],
-  keywords: ['observer interaction', author.name, siteConfig.name],
-  icons: {
-    icon: '/favicon.svg',
-  },
-};
+export const metadata: Metadata = createMetadata(siteConfig);
 
 export default async function RootLayout({
   children,

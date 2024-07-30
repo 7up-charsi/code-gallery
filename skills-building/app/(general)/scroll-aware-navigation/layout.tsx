@@ -1,18 +1,9 @@
+import { createMetadata } from '@/utils/metadata';
 import { AppBar } from './__components/app-bar';
-import author from '@repo/meta/author.json';
 import { siteConfig } from './site.config';
 import type { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: siteConfig.name,
-  description: siteConfig.description,
-  applicationName: siteConfig.name,
-  authors: [{ name: author.name, url: author.portfolio }],
-  keywords: ['observer interaction', author.name, siteConfig.name],
-  icons: {
-    icon: '/favicon.svg',
-  },
-};
+export const metadata: Metadata = createMetadata(siteConfig);
 
 export default function Layout({
   children,

@@ -3,10 +3,10 @@ import { OrderConfirmedDialog } from './__components/order-confirmed-dialog';
 import { DictionaryProvider } from './__components/dictionary-provider';
 import { CartDrawer } from './__components/cart-drawer';
 import { getDictionary } from './__utils/dictionary';
+import { createMetadata } from '@/utils/metadata';
 import { Red_Hat_Text } from 'next/font/google';
 import { Header } from './__components/header';
 import { Locales } from './__types/dictionary';
-import author from '@repo/meta/author.json';
 import { ThemeProvider } from 'next-themes';
 import { Cart } from './__components/cart';
 import { siteConfig } from './site.config';
@@ -14,16 +14,7 @@ import type { Metadata } from 'next';
 
 const font = Red_Hat_Text({ subsets: ['latin'] });
 
-export const metadata: Metadata = {
-  title: siteConfig.name,
-  description: siteConfig.description,
-  applicationName: siteConfig.name,
-  authors: [{ name: author.name, url: author.portfolio }],
-  keywords: ['observer interaction', author.name, siteConfig.name],
-  icons: {
-    icon: '/favicon.svg',
-  },
-};
+export const metadata: Metadata = createMetadata(siteConfig);
 
 interface RootLayoutProps {
   children: React.ReactNode;

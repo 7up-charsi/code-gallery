@@ -1,21 +1,12 @@
 import { League_Spartan } from 'next/font/google';
-import author from '@repo/meta/author.json';
+import { createMetadata } from '@/utils/metadata';
 import { ThemeProvider } from 'next-themes';
 import { siteConfig } from './site.config';
 import { Metadata } from 'next';
 
 const font = League_Spartan({ subsets: ['latin'] });
 
-export const metadata: Metadata = {
-  title: siteConfig.name,
-  description: siteConfig.description,
-  applicationName: siteConfig.name,
-  authors: [{ name: author.name, url: author.portfolio }],
-  keywords: ['simple calculator', author.name, siteConfig.name],
-  icons: {
-    icon: '/favicon.svg',
-  },
-};
+export const metadata: Metadata = createMetadata(siteConfig);
 
 export default function Layout({
   children,

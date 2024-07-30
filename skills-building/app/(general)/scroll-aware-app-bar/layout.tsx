@@ -1,5 +1,5 @@
 import { Raleway, Roboto } from 'next/font/google';
-import author from '@repo/meta/author.json';
+import { createMetadata } from '@/utils/metadata';
 import { siteConfig } from './site.config';
 import type { Metadata } from 'next';
 
@@ -13,16 +13,7 @@ const logoFont = Raleway({
   variable: '--logo-font',
 });
 
-export const metadata: Metadata = {
-  title: siteConfig.name,
-  description: siteConfig.description,
-  applicationName: siteConfig.name,
-  authors: [{ name: author.name, url: author.portfolio }],
-  keywords: ['observer interaction', author.name, siteConfig.name],
-  icons: {
-    icon: '/favicon.svg',
-  },
-};
+export const metadata: Metadata = createMetadata(siteConfig);
 
 export default function RootLayout({
   children,

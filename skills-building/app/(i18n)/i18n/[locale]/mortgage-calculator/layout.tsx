@@ -1,19 +1,10 @@
+import { createMetadata } from '@/utils/metadata';
 import { Header } from './__components/header';
-import author from '@repo/meta/author.json';
 import { ThemeProvider } from 'next-themes';
 import { siteConfig } from './site.config';
 import { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: siteConfig.name,
-  description: siteConfig.description,
-  applicationName: siteConfig.name,
-  authors: [{ name: author.name, url: author.portfolio }],
-  keywords: ['observer interaction', author.name, siteConfig.name],
-  icons: {
-    icon: '/favicon.svg',
-  },
-};
+export const metadata: Metadata = createMetadata(siteConfig);
 
 interface RootLayoutProps {
   params: { locale: string };

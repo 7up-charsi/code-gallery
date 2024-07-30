@@ -1,6 +1,6 @@
-import { Header } from './__components/header';
 import { Bounce, ToastContainer } from 'react-toastify';
-import author from '@repo/meta/author.json';
+import { createMetadata } from '@/utils/metadata';
+import { Header } from './__components/header';
 import { ThemeProvider } from 'next-themes';
 import { siteConfig } from './site.config';
 import { Karla } from 'next/font/google';
@@ -8,16 +8,7 @@ import type { Metadata } from 'next';
 
 const font = Karla({ subsets: ['latin'] });
 
-export const metadata: Metadata = {
-  title: siteConfig.name,
-  description: siteConfig.description,
-  applicationName: siteConfig.name,
-  authors: [{ name: author.name, url: author.portfolio }],
-  keywords: ['observer interaction', author.name, siteConfig.name],
-  icons: {
-    icon: '/favicon.svg',
-  },
-};
+export const metadata: Metadata = createMetadata(siteConfig);
 
 export default function Layout({
   children,
