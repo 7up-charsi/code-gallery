@@ -3,39 +3,47 @@ import { match } from '@formatjs/intl-localematcher';
 import { I18nConfig } from '@/types/i18n';
 import Negotiator from 'negotiator';
 
-export const i18nRouter = (
-  request: NextRequest,
-  config: I18nConfig,
-  name: string,
-) => {
-  const pathname = request.nextUrl.pathname;
+export const createRouteChecker =
+  (pathname: string) => (name: string) => {
+    if (
+      new RegExp(`/i18n/.+/${name}.*`).test(pathname) ||
+      new RegExp(`/i18n/${name}.*`).test(pathname)
+    )
+      return true;
 
-  const { 1: currentLocale = '' } =
-    pathname.match(new RegExp(`/i18n/([^/]+)/${name}`)) || [];
+    return false;
+  };
 
-  if (
-    currentLocale &&
-    config.locales.includes(currentLocale as never)
-  )
-    return;
+export const createI18nRouter =
+  (request: NextRequest) => (name: string, config: I18nConfig) => {
+    const pathname = request.nextUrl.pathname;
 
-  const negotiatorHeaders: Record<string, string> = {};
+    const { 1: currentLocale = '' } =
+      pathname.match(new RegExp(`/i18n/([^/]+)/${name}`)) || [];
 
-  request.headers.forEach(
-    (value, key) => (negotiatorHeaders[key] = value),
-  );
+    if (
+      currentLocale &&
+      config.locales.includes(currentLocale as never)
+    )
+      return;
 
-  let languages = new Negotiator({
-    headers: negotiatorHeaders,
-  }).languages();
+    const negotiatorHeaders: Record<string, string> = {};
 
-  const { locales, defaultLocale } = config;
+    request.headers.forEach(
+      (value, key) => (negotiatorHeaders[key] = value),
+    );
 
-  const newLocale = match(languages, locales, defaultLocale);
+    let languages = new Negotiator({
+      headers: negotiatorHeaders,
+    }).languages();
 
-  const newPathname = `/i18n/${newLocale}/${name}`;
+    const { locales, defaultLocale } = config;
 
-  const newUrl = new URL(newPathname, request.url);
+    const newLocale = match(languages, locales, defaultLocale);
 
-  return NextResponse.redirect(newUrl);
-};
+    const newPathname = `/i18n/${newLocale}/${name}`;
+
+    const newUrl = new URL(newPathname, request.url);
+
+    return NextResponse.redirect(newUrl);
+  };
