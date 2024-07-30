@@ -1,13 +1,13 @@
 import { rootSiteConfig } from '@/config/root-site';
 import React from 'react';
 
-interface OpenGraphProps {
+interface OpenGraphImageProps {
   name: string;
 }
 
-const displayName = 'OpenGraph';
+const displayName = 'OpenGraphImage';
 
-export const OpenGraph = (props: OpenGraphProps) => {
+export const OpenGraphImage = (props: OpenGraphImageProps) => {
   const { name } = props;
 
   return (
@@ -27,4 +27,4 @@ export const OpenGraph = (props: OpenGraphProps) => {
   );
 };
 
-OpenGraph.displayName = displayName;
+OpenGraphImage.displayName = displayName;
