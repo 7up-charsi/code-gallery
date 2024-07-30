@@ -2,7 +2,6 @@
 
 import useEmblaCarousel from 'embla-carousel-react';
 import author from '@repo/meta/author.json';
-import { siteConfig } from './site-config';
 import Link from 'next/link';
 import React from 'react';
 

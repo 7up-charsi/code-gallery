@@ -1,6 +1,6 @@
-import { siteConfig } from './__internals/site-config';
 import { AppBar } from './__internals/app-bar';
 import author from '@repo/meta/author.json';
+import { siteConfig } from './site.config';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {

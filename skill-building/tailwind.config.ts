@@ -1,20 +1,35 @@
-import type { Config } from "tailwindcss";
+import type { Config } from 'tailwindcss';
+import plugin from 'tailwindcss/plugin';
 
 const config: Config = {
-  content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: ['./components/**/*.{ts,tsx}', './app/**/*.{ts,tsx}'],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      colors: {
+        sc: {
+          yellowText: 'var(--yellowText)',
+          whiteText: 'var(--whiteText)',
+          darkBlueText: 'var(--darkBlueText)',
+          main_bg: 'var(--main_bg)',
+          toggle_keypad_bg: 'var(--toggle_keypad_bg)',
+          screen_bg: 'var(--screen_bg)',
+          del_reset_bg: 'var(--del_reset_bg)',
+          del_reset_bg_shadow: 'var(--del_reset_bg_shadow)',
+          equal_toggleIndicator_bg: 'var(--equal_toggleIndicator_bg)',
+          equal_shadow: 'var(--equal_shadow)',
+          key_bg: 'var(--key_bg)',
+          keyShadow: 'var(--keyShadow)',
+        },
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(({ addVariant }) => {
+      addVariant('sc-theme1', '&:is(.sc-theme1 *)');
+      addVariant('sc-theme2', '&:is(.sc-theme2 *)');
+      addVariant('sc-theme3', '&:is(.sc-theme3 *)');
+    }),
+  ],
 };
 export default config;
+

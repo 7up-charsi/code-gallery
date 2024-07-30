@@ -1,6 +1,6 @@
 import { OpenGraphImage } from '@/components/open-graph-image';
-import { siteConfig } from './__internals/site-config';
 import { openGraphConfig } from '@/config/open-graph';
+import { siteConfig } from './site.config';
 import { ImageResponse } from 'next/og';
 
 export const alt = siteConfig.name;
