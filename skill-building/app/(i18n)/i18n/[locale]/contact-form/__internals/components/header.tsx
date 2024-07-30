@@ -70,7 +70,7 @@ export const Header = (props: HeaderProps) => {
             disableClearable
             onChange={(value, reason) => {
               if (reason === 'selectOption') {
-                router.push(`/${value.value}`);
+                router.push(`/i18n/${value.value}/contact-form`);
               }
             }}
             renderInput={(props) => (
