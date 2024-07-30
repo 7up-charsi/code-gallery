@@ -16,6 +16,8 @@
     --focus: 172 67 45;
   }
 
+  /* simple calculator start */
+
   :root.sc-theme1 {
     --main_bg: hsl(222, 26%, 31%);
     --toggle_keypad_bg: hsl(0, 5%, 81%);
@@ -55,5 +57,46 @@
     --keyShadow: hsl(290, 70%, 36%);
     --yellowText: hsl(52, 100%, 62%);
   }
+
+  /* simple calculator end */
+
+  /* mortgage calculator start */
+  .mc-results-scrollbar {
+    &::-webkit-scrollbar {
+      width: 7px;
+      height: 7px;
+    }
+
+    &::-webkit-scrollbar-button {
+      width: 0px;
+      height: 0px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: theme(colors.primary-7);
+      border: 0px none #ffffff;
+      border-radius: 50px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: theme(colors.primary-6);
+    }
+
+    &::-webkit-scrollbar-thumb:active {
+      background: theme(colors.primary-5);
+    }
+
+    &::-webkit-scrollbar-track {
+      background: theme(colors.primary-8);
+      border: 0px none #ffffff;
+      border-radius: 50px;
+    }
+
+    &::-webkit-scrollbar-corner {
+      background: transparent;
+    }
+  }
+
+  /* mortgage calculator end */
 }
 

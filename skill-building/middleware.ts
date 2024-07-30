@@ -1,3 +1,4 @@
+import { i18nConfig as mortgageCalculatorI18nConfig } from '@/mortgage-calculator/i18n.config';
 import { i18nConfig as shoppingCartI18nConfig } from '@/shopping-cart/i18n.config';
 import { i18nConfig as contactFormI18nConfig } from '@/contact-form/i18n.config';
 import { createI18nRouter, createRouteChecker } from './utils/i18n';
@@ -7,6 +8,7 @@ import { NextRequest } from 'next/server';
 const configs: Record<string, I18nConfig> = {
   'contact-form': contactFormI18nConfig,
   'shopping-cart': shoppingCartI18nConfig,
+  'mortgage-calculator': mortgageCalculatorI18nConfig,
 };
 
 export function middleware(request: NextRequest) {

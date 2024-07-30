@@ -1,0 +1,26 @@
+{
+  "title": "mortgage calculator",
+  "mortgageAmount": "mortgage amount",
+  "mortgageTerm": "mortgage term",
+  "interestRate": "interest rate",
+  "calculateButton": "calculate",
+  "resetButton": "reset",
+  "mortgageType": "mortgage type",
+  "repayment": "repayment",
+  "interestOnly": "interest only",
+  "emptyResultHeading": "Results Shown Here",
+  "emptyResultDescription": "Complete the form and click \"CALCULATE\" button to see what our monthly repayments would be.",
+  "resultHeading": "Your Results",
+  "resultDescription": "Your results are shown below based on the information you provided. To adjust the results, edit the form and click \"CALCULATE\" button again.",
+  "monthlyHeading": "Your Monthly Repayments",
+  "totalHeading": "Total You'll Repay Over The Term",
+  "interestOnlyHeading": "Your interest only payment",
+  "zod": {
+    "required": "this field is required",
+    "number.positive": "must be positive",
+    "number.minZero": "must be greater than 0",
+    "number.max100": "must be less than or equal to 100",
+    "number.int": "must be integer",
+    "number.number": "must be number"
+  }
+}

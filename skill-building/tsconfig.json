@@ -26,6 +26,9 @@
       ],
       "@/shopping-cart/*": [
         "./app/(i18n)/i18n/[locale]/shopping-cart/*"
+      ],
+      "@/mortgage-calculator/*": [
+        "./app/(i18n)/i18n/[locale]/mortgage-calculator/*"
       ]
     }
   },
