@@ -8,12 +8,14 @@ import {
   DrawerTrigger,
 } from '@typeweave/react/drawer';
 import { useIsMounted } from '@typeweave/react/use-is-mounted';
+import { brandingStyles, PortfolioHeader } from '@repo/ui';
 import { Skeleton } from '@typeweave/react/skeleton';
 import { Button } from '@typeweave/react/button';
 import { LocaleChanger } from './locale-changer';
 import { ThemeSwitcher } from './theme-switcher';
+import { siteConfig } from '../site.config';
 import { MenuIcon } from 'lucide-react';
-import { Branding } from './branding';
+import Link from 'next/link';
 import React from 'react';
 
 interface HeaderProps {}
@@ -26,58 +28,70 @@ export const Header = (props: HeaderProps) => {
   const isMounted = useIsMounted();
 
   return (
-    <header className="mx-auto flex h-16 max-w-screen-md items-center gap-3 border-muted-6 bg-background px-5 dark:bg-muted-1 max-md:border-b">
-      <Branding />
+    <header className="mx-auto max-w-screen-md">
+      <PortfolioHeader linkComp={Link} />
 
-      <div className="grow"></div>
+      <div className="flex h-16 items-center gap-3 border-muted-6 bg-background px-5 dark:bg-muted-1 max-md:border-b">
+        <Link href={siteConfig.pathname} className={brandingStyles}>
+          {siteConfig.name}
+        </Link>
 
-      {!isMounted && (
-        <>
-          <Skeleton
-            variant="rounded"
-            className="h-9 w-40 max-md:hidden"
-          />
-          <Skeleton
-            variant="rounded"
-            className="h-9 w-[108px] max-md:hidden"
-          />
+        <div className="grow"></div>
 
-          <Skeleton variant="rounded" className="h-9 w-9 md:hidden" />
-        </>
-      )}
+        {!isMounted && (
+          <>
+            <Skeleton
+              variant="rounded"
+              className="h-9 w-40 max-md:hidden"
+            />
+            <Skeleton
+              variant="rounded"
+              className="h-9 w-[108px] max-md:hidden"
+            />
 
-      {isMounted && (
-        <>
-          <LocaleChanger className="w-40 max-md:hidden" />
-          <ThemeSwitcher className="max-md:hidden" />
-        </>
-      )}
+            <Skeleton
+              variant="rounded"
+              className="h-9 w-9 md:hidden"
+            />
+          </>
+        )}
 
-      {isMounted && (
-        <DrawerRoot>
-          <DrawerTrigger>
-            <Button
-              isIconOnly
-              aria-label="menu"
-              className="md:hidden"
-            >
-              <MenuIcon />
-            </Button>
-          </DrawerTrigger>
+        {isMounted && (
+          <>
+            <LocaleChanger className="w-40 max-md:hidden" />
+            <ThemeSwitcher className="max-md:hidden" />
+          </>
+        )}
 
-          <DrawerPortal>
-            <DrawerOverlay />
-            <DrawerContent className="px-5">
-              <div className="flex h-16 items-center justify-center">
-                <Branding />
-              </div>
+        {isMounted && (
+          <DrawerRoot>
+            <DrawerTrigger>
+              <Button
+                isIconOnly
+                aria-label="menu"
+                className="md:hidden"
+              >
+                <MenuIcon />
+              </Button>
+            </DrawerTrigger>
 
-              <LocaleChanger className="w-full" />
-              <ThemeSwitcher className="mt-3 w-full" />
-            </DrawerContent>
-          </DrawerPortal>
-        </DrawerRoot>
-      )}
+            <DrawerPortal>
+              <DrawerOverlay />
+              <DrawerContent className="px-5">
+                <Link
+                  href={siteConfig.pathname}
+                  className={brandingStyles}
+                >
+                  {siteConfig.name}
+                </Link>
+
+                <LocaleChanger className="w-full" />
+                <ThemeSwitcher className="mt-3 w-full" />
+              </DrawerContent>
+            </DrawerPortal>
+          </DrawerRoot>
+        )}
+      </div>
     </header>
   );
 };

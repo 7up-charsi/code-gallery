@@ -1,4 +1,4 @@
-import author from '@repo/meta/author.json';
+import { portfolio } from '@repo/meta';
 import { Metadata } from 'next';
 
 export const createMetadata = (
@@ -8,8 +8,8 @@ export const createMetadata = (
   title: config.name,
   description: config.description,
   applicationName: config.name,
-  authors: [{ name: author.name, url: author.portfolio }],
-  keywords: [...(keywords ?? []), author.name, config.name],
+  authors: [{ name: portfolio.name, url: portfolio.url }],
+  keywords: [...(keywords ?? []), portfolio.name, config.name],
   icons: {
     icon: '/favicon.svg',
   },

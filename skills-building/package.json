@@ -12,6 +12,7 @@
     "@formatjs/intl-localematcher": "^0.5.4",
     "@hookform/resolvers": "^3.9.0",
     "@repo/meta": "workspace:*",
+    "@repo/ui": "workspace:*",
     "@typeweave/react": "^4.0.8",
     "embla-carousel": "^8.1.7",
     "embla-carousel-react": "^8.1.7",
@@ -26,6 +27,7 @@
     "react-hook-form": "^7.52.1",
     "react-toastify": "^10.0.5",
     "swr": "^2.2.5",
+    "tailwind-merge": "^2.4.0",
     "zod": "^3.23.8",
     "zustand": "^4.5.4"
   },

@@ -25,6 +25,9 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
+      '@repo/meta':
+        specifier: workspace:*
+        version: link:../meta
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
@@ -37,6 +40,15 @@ importers:
       '@types/react-dom':
         specifier: ^18.2.19
         version: 18.2.19
+      prettier:
+        specifier: ^3.3.3
+        version: 3.3.3
+      prettier-plugin-sort-imports:
+        specifier: ^1.8.6
+        version: 1.8.6(typescript@5.3.3)
+      prettier-plugin-tailwindcss:
+        specifier: ^0.6.5
+        version: 0.6.5(prettier-plugin-sort-imports@1.8.6(typescript@5.3.3))(prettier@3.3.3)
       typescript:
         specifier: ^5.3.3
         version: 5.3.3
@@ -840,6 +852,121 @@ importers:
       swr:
         specifier: ^2.2.5
         version: 2.2.5(react@18.3.1)
+      zod:
+        specifier: ^3.23.8
+        version: 3.23.8
+      zustand:
+        specifier: ^4.5.4
+        version: 4.5.4(@types/react@18.3.3)(react@18.3.1)
+    devDependencies:
+      '@types/lodash.debounce':
+        specifier: ^4.0.9
+        version: 4.0.9
+      '@types/negotiator':
+        specifier: ^0.6.3
+        version: 0.6.3
+      '@types/node':
+        specifier: ^20
+        version: 20.14.13
+      '@types/react':
+        specifier: ^18
+        version: 18.3.3
+      '@types/react-dom':
+        specifier: ^18
+        version: 18.3.0
+      '@typeweave/plugin':
+        specifier: ^1.1.4
+        version: 1.1.4(tailwindcss@3.4.7)
+      autoprefixer:
+        specifier: ^10.4.19
+        version: 10.4.19(postcss@8.4.40)
+      eslint:
+        specifier: ^8
+        version: 8.57.0
+      eslint-config-next:
+        specifier: 14.2.5
+        version: 14.2.5(eslint@8.57.0)(typescript@5.5.4)
+      postcss:
+        specifier: ^8
+        version: 8.4.40
+      postcss-import:
+        specifier: ^16.1.0
+        version: 16.1.0(postcss@8.4.40)
+      prettier:
+        specifier: ^3.3.3
+        version: 3.3.3
+      prettier-plugin-sort-imports:
+        specifier: ^1.8.6
+        version: 1.8.6(typescript@5.5.4)
+      prettier-plugin-tailwindcss:
+        specifier: ^0.6.5
+        version: 0.6.5(prettier-plugin-sort-imports@1.8.6(typescript@5.5.4))(prettier@3.3.3)
+      tailwindcss:
+        specifier: ^3.4.1
+        version: 3.4.7
+      typescript:
+        specifier: ^5
+        version: 5.5.4
+
+  skills-building:
+    dependencies:
+      '@formatjs/intl-localematcher':
+        specifier: ^0.5.4
+        version: 0.5.4
+      '@hookform/resolvers':
+        specifier: ^3.9.0
+        version: 3.9.0(react-hook-form@7.52.1(react@18.3.1))
+      '@repo/meta':
+        specifier: workspace:*
+        version: link:../packages/meta
+      '@repo/ui':
+        specifier: workspace:*
+        version: link:../packages/ui
+      '@typeweave/react':
+        specifier: ^4.0.8
+        version: 4.0.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.7)
+      embla-carousel:
+        specifier: ^8.1.7
+        version: 8.1.7
+      embla-carousel-react:
+        specifier: ^8.1.7
+        version: 8.1.7(react@18.3.1)
+      lodash.debounce:
+        specifier: ^4.0.8
+        version: 4.0.8
+      lucide-react:
+        specifier: ^0.414.0
+        version: 0.414.0(react@18.3.1)
+      negotiator:
+        specifier: ^0.6.3
+        version: 0.6.3
+      next:
+        specifier: 14.2.5
+        version: 14.2.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      next-themes:
+        specifier: ^0.3.0
+        version: 0.3.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      plaiceholder:
+        specifier: ^3.0.0
+        version: 3.0.0(sharp@0.33.4)
+      react:
+        specifier: ^18
+        version: 18.3.1
+      react-dom:
+        specifier: ^18
+        version: 18.3.1(react@18.3.1)
+      react-hook-form:
+        specifier: ^7.52.1
+        version: 7.52.1(react@18.3.1)
+      react-toastify:
+        specifier: ^10.0.5
+        version: 10.0.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      swr:
+        specifier: ^2.2.5
+        version: 2.2.5(react@18.3.1)
+      tailwind-merge:
+        specifier: ^2.4.0
+        version: 2.4.0
       zod:
         specifier: ^3.23.8
         version: 3.23.8
@@ -6002,6 +6129,11 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
+  prettier-plugin-sort-imports@1.8.6(typescript@5.3.3):
+    dependencies:
+      prettier: 3.3.3
+      typescript: 5.3.3
+
   prettier-plugin-sort-imports@1.8.6(typescript@5.5.3):
     dependencies:
       prettier: 3.3.3
@@ -6011,6 +6143,12 @@ snapshots:
     dependencies:
       prettier: 3.3.3
       typescript: 5.5.4
+
+  prettier-plugin-tailwindcss@0.6.5(prettier-plugin-sort-imports@1.8.6(typescript@5.3.3))(prettier@3.3.3):
+    dependencies:
+      prettier: 3.3.3
+    optionalDependencies:
+      prettier-plugin-sort-imports: 1.8.6(typescript@5.3.3)
 
   prettier-plugin-tailwindcss@0.6.5(prettier-plugin-sort-imports@1.8.6(typescript@5.5.3))(prettier@3.3.3):
     dependencies:

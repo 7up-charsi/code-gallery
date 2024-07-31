@@ -1,5 +1,5 @@
 import { rootSiteConfig } from './root-site';
-import author from '@repo/meta/author.json';
+import { portfolio } from '@repo/meta';
 import { Metadata } from 'next';
 
 export const rootMetadata: Metadata = {
@@ -8,8 +8,8 @@ export const rootMetadata: Metadata = {
   description: rootSiteConfig.description,
   applicationName: rootSiteConfig.name,
   category: rootSiteConfig.category,
-  authors: [{ name: author.name, url: author.portfolio }],
-  creator: author.name,
+  authors: [{ name: portfolio.name, url: portfolio.url }],
+  creator: portfolio.name,
   icons: { icon: '/favicon.svg' },
   keywords: [
     'skill-building',

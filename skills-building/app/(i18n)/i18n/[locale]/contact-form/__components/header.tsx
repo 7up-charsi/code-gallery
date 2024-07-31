@@ -10,11 +10,12 @@ import {
   MoonIcon,
   SunIcon,
 } from 'lucide-react';
+import { brandingStyles, PortfolioHeader } from '@repo/ui';
 import { useParams, useRouter } from 'next/navigation';
 import { Combobox } from '@typeweave/react/combobox';
 import { Skeleton } from '@typeweave/react/skeleton';
 import { Input } from '@typeweave/react/input';
-import author from '@repo/meta/author.json';
+import { siteConfig } from '../site.config';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import React from 'react';
@@ -44,83 +45,83 @@ export const Header = (props: HeaderProps) => {
   }, []);
 
   return (
-    <header className="flex items-center gap-3 border-b border-muted-6 bg-background px-5 py-4 md:px-10">
-      <Link
-        href={author.portfolio}
-        aria-label="go to portfolio"
-        className="text-2xl uppercase outline-none ring-focus focus:ring-2"
-      >
-        {author.name}
-      </Link>
+    <header className="">
+      <PortfolioHeader linkComp={Link} />
 
-      <div className="grow"></div>
+      <div className="flex h-16 items-center gap-3 border-b border-muted-6 bg-background px-5 md:px-10">
+        <Link href={siteConfig.pathname} className={brandingStyles}>
+          {siteConfig.name}
+        </Link>
 
-      {!isMounted && (
-        <>
-          <Skeleton variant="rounded" className="h-9 w-40" />
-          <Skeleton variant="rounded" className="h-9 w-20" />
-        </>
-      )}
+        <div className="grow"></div>
 
-      {isMounted && (
-        <>
-          <Combobox
-            value={options.find((opt) => opt.value === locale)}
-            options={options}
-            disableClearable
-            onChange={(value, reason) => {
-              if (reason === 'selectOption') {
-                router.push(`/i18n/${value.value}/contact-form`);
-              }
-            }}
-            renderInput={(props) => (
-              <Input
-                label="select locale"
-                hideLabel
-                {...props}
-                classNames={{
-                  ...props.classNames,
-                  inputWrapper: 'h-9',
-                }}
-                startContent={<LanguagesIcon />}
-                className="w-40"
-              />
-            )}
-          />
+        {!isMounted && (
+          <>
+            <Skeleton variant="rounded" className="h-9 w-40" />
+            <Skeleton variant="rounded" className="h-9 w-20" />
+          </>
+        )}
 
-          <ToggleButtonGroup
-            exclusive
-            value={theme}
-            onChange={(value) => {
-              if (value) setTheme(value);
-            }}
-          >
-            <ToggleButton
-              isIconOnly
-              aria-label="light theme"
-              value="light"
+        {isMounted && (
+          <>
+            <Combobox
+              value={options.find((opt) => opt.value === locale)}
+              options={options}
+              disableClearable
+              onChange={(value, reason) => {
+                if (reason === 'selectOption') {
+                  router.push(`/i18n/${value.value}/contact-form`);
+                }
+              }}
+              renderInput={(props) => (
+                <Input
+                  label="select locale"
+                  hideLabel
+                  {...props}
+                  classNames={{
+                    ...props.classNames,
+                    inputWrapper: 'h-9',
+                  }}
+                  startContent={<LanguagesIcon />}
+                  className="w-40"
+                />
+              )}
+            />
+
+            <ToggleButtonGroup
+              exclusive
+              value={theme}
+              onChange={(value) => {
+                if (value) setTheme(value);
+              }}
             >
-              <SunIcon />
-            </ToggleButton>
+              <ToggleButton
+                isIconOnly
+                aria-label="light theme"
+                value="light"
+              >
+                <SunIcon />
+              </ToggleButton>
 
-            <ToggleButton
-              isIconOnly
-              aria-label="dark theme"
-              value="dark"
-            >
-              <MoonIcon />
-            </ToggleButton>
+              <ToggleButton
+                isIconOnly
+                aria-label="dark theme"
+                value="dark"
+              >
+                <MoonIcon />
+              </ToggleButton>
 
-            <ToggleButton
-              isIconOnly
-              aria-label="system theme"
-              value="system"
-            >
-              <MonitorIcon />
-            </ToggleButton>
-          </ToggleButtonGroup>
-        </>
-      )}
+              <ToggleButton
+                isIconOnly
+                aria-label="system theme"
+                value="system"
+              >
+                <MonitorIcon />
+              </ToggleButton>
+            </ToggleButtonGroup>
+          </>
+        )}
+      </div>
     </header>
   );
 };

@@ -10,12 +10,13 @@ import {
 } from '@typeweave/react/drawer';
 import { AvatarImage, AvatarRoot } from '@typeweave/react/avatar';
 import { useIsMounted } from '@typeweave/react/use-is-mounted';
+import { brandingStyles, PortfolioHeader } from '@repo/ui';
 import { Skeleton } from '@typeweave/react/skeleton';
 import { Button } from '@typeweave/react/button';
 import { ThemeSwitcher } from './theme-switcher';
 import { MenuIcon, XIcon } from 'lucide-react';
 import { usePathname } from 'next/navigation';
-import { Branding } from './branding';
+import { siteConfig } from '../site.config';
 import { Cart } from './cart';
 import Link from 'next/link';
 import React from 'react';
@@ -31,7 +32,9 @@ export const Header = (props: HeaderProps) => {
   const pathname = usePathname();
 
   return (
-    <header className="mx-auto flex h-16 max-w-screen-lg items-center gap-5 border-b border-muted-6 px-5 lg:h-20">
+    <header className="mx-auto">
+      <PortfolioHeader linkComp={Link} />
+
       {!isMounted && (
         <>
           <Skeleton variant="rounded" className="h-9 w-9 lg:hidden" />
@@ -39,64 +42,73 @@ export const Header = (props: HeaderProps) => {
       )}
 
       {isMounted && (
-        <DrawerRoot>
-          <DrawerTrigger>
-            <Button
-              isIconOnly
-              aria-label="menu"
-              className="lg:hidden"
-            >
-              <MenuIcon />
-            </Button>
-          </DrawerTrigger>
+        <div className="flex h-16 max-w-screen-lg items-center gap-5 border-b border-muted-6 px-5 lg:h-20">
+          <DrawerRoot>
+            <DrawerTrigger>
+              <Button
+                isIconOnly
+                aria-label="menu"
+                className="lg:hidden"
+              >
+                <MenuIcon />
+              </Button>
+            </DrawerTrigger>
 
-          <DrawerPortal>
-            <DrawerOverlay className="lg:hidden" />
-            <DrawerContent>
-              <div className="relative flex h-14 items-center justify-center border-b border-muted-6 lg:hidden">
-                <Branding />
-
-                <DrawerClose>
-                  <Button
-                    isIconOnly
-                    aria-label="menu close"
-                    variant="text"
-                    color="danger"
-                    className="absolute right-3"
-                  >
-                    <XIcon />
-                  </Button>
-                </DrawerClose>
-              </div>
-
-              <nav className="mt-5 flex flex-col gap-1">
-                {[
-                  'collections',
-                  'men',
-                  'women',
-                  'about',
-                  'contact',
-                ].map((ele) => (
+            <DrawerPortal>
+              <DrawerOverlay className="lg:hidden" />
+              <DrawerContent>
+                <div className="relative flex h-14 items-center justify-center border-b border-muted-6 lg:hidden">
                   <Link
-                    key={ele}
-                    href={`/${ele}`}
-                    data-active={pathname === `/${ele}`}
-                    className="flex h-10 select-none items-center border-r-8 border-transparent px-5 font-medium outline-none hover:bg-muted-3 focus-visible:bg-muted-4 active:bg-muted-5 data-[active=true]:border-primary-8"
+                    href={siteConfig.pathname}
+                    className={brandingStyles}
                   >
-                    <span className="capitalize">{ele}</span>
+                    {siteConfig.name}
                   </Link>
-                ))}
-              </nav>
 
-              <div className="mt-5 px-5">
-                <ThemeSwitcher className="w-full" />
-              </div>
-            </DrawerContent>
-          </DrawerPortal>
-        </DrawerRoot>
+                  <DrawerClose>
+                    <Button
+                      isIconOnly
+                      aria-label="menu close"
+                      variant="text"
+                      color="danger"
+                      className="absolute right-3"
+                    >
+                      <XIcon />
+                    </Button>
+                  </DrawerClose>
+                </div>
+
+                <nav className="mt-5 flex flex-col gap-1">
+                  {[
+                    'collections',
+                    'men',
+                    'women',
+                    'about',
+                    'contact',
+                  ].map((ele) => (
+                    <Link
+                      key={ele}
+                      href={`/${ele}`}
+                      data-active={pathname === `/${ele}`}
+                      className="flex h-10 select-none items-center border-r-8 border-transparent px-5 font-medium outline-none hover:bg-muted-3 focus-visible:bg-muted-4 active:bg-muted-5 data-[active=true]:border-primary-8"
+                    >
+                      <span className="capitalize">{ele}</span>
+                    </Link>
+                  ))}
+                </nav>
+
+                <div className="mt-5 px-5">
+                  <ThemeSwitcher className="w-full" />
+                </div>
+              </DrawerContent>
+            </DrawerPortal>
+          </DrawerRoot>
+        </div>
       )}
 
-      <Branding />
+      <Link href={siteConfig.pathname} className={brandingStyles}>
+        {siteConfig.name}
+      </Link>
 
       <nav className="flex h-full gap-1 max-lg:hidden">
         {['collections', 'men', 'women', 'about', 'contact'].map(

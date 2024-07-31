@@ -1,7 +1,9 @@
 'use client';
 
+import { brandingStyles, PortfolioHeader } from '@repo/ui';
 import useEmblaCarousel from 'embla-carousel-react';
-import author from '@repo/meta/author.json';
+import { siteConfig } from '../site.config';
+import { twMerge } from 'tailwind-merge';
 import Link from 'next/link';
 import React from 'react';
 
@@ -87,12 +89,14 @@ export const AppBar = (props: AppBarProps) => {
       data-scrolled={scrolled}
       className="sticky -top-16 left-0 right-0 z-50 data-[scrolled=true]:shadow-md"
     >
+      <PortfolioHeader linkComp={Link} />
+
       <div className="flex h-16 items-center bg-purple-500 px-5">
         <Link
-          href={author.portfolio}
-          className="rounded p-1 text-xl uppercase text-white outline-none ring-white focus-visible:ring-2"
+          href={siteConfig.pathname}
+          className={twMerge(brandingStyles, 'text-white ring-white')}
         >
-          {author.name}
+          {siteConfig.name}
         </Link>
       </div>
 

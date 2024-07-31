@@ -12,8 +12,10 @@ import { Skeleton } from '@typeweave/react/skeleton';
 import { Button } from '@typeweave/react/button';
 import { LocaleChanger } from './locale-changer';
 import { ThemeSwitcher } from './theme-switcher';
+import { siteConfig } from '../site.config';
+import { brandingStyles } from '@repo/ui';
 import { MenuIcon } from 'lucide-react';
-import { Branding } from './branding';
+import Link from 'next/link';
 import React from 'react';
 
 interface MobileDrawerProps {}
@@ -51,7 +53,12 @@ export const HeaderDrawer = (props: MobileDrawerProps) => {
             <DrawerContent className="px-5">
               <aside>
                 <div className="flex h-16 items-center justify-center">
-                  <Branding />
+                  <Link
+                    href={siteConfig.pathname}
+                    className={brandingStyles}
+                  >
+                    {siteConfig.name}
+                  </Link>
                 </div>
 
                 <LocaleChanger className="mt-5 w-full" />
