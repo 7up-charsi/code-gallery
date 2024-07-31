@@ -15,12 +15,15 @@ export const PortfolioHeader = (props: PortfolioHeaderProps) => {
         href={portfolio.url}
         aria-label="go to protfolio"
         aria-describedby="portfolio-link-desc"
-        className="text-lg font-normal uppercase text-black outline-none ring-focus focus-visible:ring-2"
+        className="text-lg font-normal uppercase text-black outline-none ring-focus focus-visible:ring-2 dark:text-white"
       >
         {portfolio.name}
       </Link>
 
-      <p id="portfolio-link-desc" className="text-sm text-black/70">
+      <p
+        id="portfolio-link-desc"
+        className="text-sm text-black/70 dark:text-white/70"
+      >
         {portfolio.tagline}
       </p>
     </div>

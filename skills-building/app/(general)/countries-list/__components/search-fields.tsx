@@ -55,7 +55,7 @@ export const SearchFields = (props: SearchFieldsProps) => {
       <Input
         label="search countries"
         className="w-full"
-        classNames={{ inputWrapper: 'bg-white' }}
+        classNames={{ inputWrapper: 'bg-background' }}
         placeholder="Country Name..."
         value={nameValue}
         hideLabel={hideLabel}
@@ -118,7 +118,7 @@ export const SearchFields = (props: SearchFieldsProps) => {
             classNames={{
               ...props.classNames,
               input: 'capitalize',
-              inputWrapper: 'bg-white',
+              inputWrapper: 'bg-background',
             }}
           />
         )}

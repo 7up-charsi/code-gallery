@@ -83,7 +83,7 @@ export const Header = (props: HeaderProps) => {
     >
       <PortfolioHeader />
 
-      <div className="relative h-16 overflow-hidden bg-white">
+      <div className="relative h-16 overflow-hidden bg-background">
         <AnimatePresence initial={false}>
           {!showSearch && (
             <motion.div
