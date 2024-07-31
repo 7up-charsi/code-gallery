@@ -10,10 +10,11 @@ import {
   MoonIcon,
   SunIcon,
 } from 'lucide-react';
-import { brandingStyles, PortfolioHeader } from '@repo/ui';
+import { PortfolioHeader } from '@/components/portfolio-header';
 import { useParams, useRouter } from 'next/navigation';
 import { Skeleton } from '@typeweave/react/skeleton';
 import { Combobox } from '@typeweave/react/combobox';
+import { Branding } from '@/components/branding';
 import { Input } from '@typeweave/react/input';
 import { siteConfig } from '../site.config';
 import { useTheme } from 'next-themes';
@@ -46,12 +47,12 @@ export const Header = (props: HeaderProps) => {
 
   return (
     <header className="">
-      <PortfolioHeader linkComp={Link} />
+      <PortfolioHeader />
 
       <div className="flex items-center gap-3 border-b border-muted-6 bg-background px-5 py-4">
-        <Link href={siteConfig.pathname} className={brandingStyles}>
+        <Branding href={siteConfig.pathname}>
           {siteConfig.name}
-        </Link>
+        </Branding>
 
         <div className="grow"></div>
 

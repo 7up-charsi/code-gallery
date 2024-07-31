@@ -7,10 +7,11 @@ import {
   DrawerRoot,
   DrawerTrigger,
 } from '@typeweave/react/drawer';
+import { PortfolioHeader } from '@/components/portfolio-header';
 import { useIsMounted } from '@typeweave/react/use-is-mounted';
-import { brandingStyles, PortfolioHeader } from '@repo/ui';
 import { Skeleton } from '@typeweave/react/skeleton';
 import { Button } from '@typeweave/react/button';
+import { Branding } from '@/components/branding';
 import { LocaleChanger } from './locale-changer';
 import { ThemeSwitcher } from './theme-switcher';
 import { siteConfig } from '../site.config';
@@ -29,12 +30,12 @@ export const Header = (props: HeaderProps) => {
 
   return (
     <header className="mx-auto max-w-screen-md">
-      <PortfolioHeader linkComp={Link} />
+      <PortfolioHeader />
 
       <div className="flex h-16 items-center gap-3 border-muted-6 bg-background px-5 dark:bg-muted-1 max-md:border-b">
-        <Link href={siteConfig.pathname} className={brandingStyles}>
+        <Branding href={siteConfig.pathname}>
           {siteConfig.name}
-        </Link>
+        </Branding>
 
         <div className="grow"></div>
 
@@ -78,12 +79,9 @@ export const Header = (props: HeaderProps) => {
             <DrawerPortal>
               <DrawerOverlay />
               <DrawerContent className="px-5">
-                <Link
-                  href={siteConfig.pathname}
-                  className={brandingStyles}
-                >
+                <Branding href={siteConfig.pathname}>
                   {siteConfig.name}
-                </Link>
+                </Branding>
 
                 <LocaleChanger className="w-full" />
                 <ThemeSwitcher className="mt-3 w-full" />

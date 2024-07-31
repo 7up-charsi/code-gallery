@@ -1,6 +1,7 @@
 'use client';
 
-import { brandingStyles, PortfolioHeader } from '@repo/ui';
+import { PortfolioHeader } from '@/components/portfolio-header';
+import { Branding } from '@/components/branding';
 import { siteConfig } from '../site.config';
 import { twMerge } from 'tailwind-merge';
 import Link from 'next/link';
@@ -67,18 +68,15 @@ export const AppBar = (props: AppBarProps) => {
       data-hide={isHidden}
       className="fixed left-0 right-0 top-0 transition-transform data-[hide=true]:-translate-y-full"
     >
-      <PortfolioHeader linkComp={Link} />
+      <PortfolioHeader />
 
       <div className="flex h-16 items-center bg-indigo-200 px-5">
-        <Link
+        <Branding
           href={siteConfig.pathname}
-          className={twMerge(
-            brandingStyles,
-            'font-logo text-indigo-900',
-          )}
+          className="font-logo text-indigo-900"
         >
           {siteConfig.name}
-        </Link>
+        </Branding>
 
         <div className="grow"></div>
 

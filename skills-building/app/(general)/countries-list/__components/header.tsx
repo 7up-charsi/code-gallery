@@ -1,7 +1,7 @@
-import { brandingStyles, PortfolioHeader } from '@repo/ui';
+import { PortfolioHeader } from '@/components/portfolio-header';
+import { Branding } from '@/components/branding';
 import { ThemeSwitcher } from './theme-switcher';
 import { siteConfig } from '../site.config';
-import Link from 'next/link';
 import React from 'react';
 
 interface HeaderProps {}
@@ -13,12 +13,12 @@ export const Header = (props: HeaderProps) => {
 
   return (
     <header className="">
-      <PortfolioHeader linkComp={Link} />
+      <PortfolioHeader />
 
-      <div className="flex h-16 items-center border-b border-muted-6 px-5">
-        <Link href={siteConfig.pathname} className={brandingStyles}>
+      <div className="flex h-16 items-center bg-white px-5">
+        <Branding href={siteConfig.pathname}>
           {siteConfig.name}
-        </Link>
+        </Branding>
 
         <div className="grow"></div>
 

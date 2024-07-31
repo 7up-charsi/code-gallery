@@ -9,10 +9,11 @@ import {
   DrawerTrigger,
 } from '@typeweave/react/drawer';
 import { AvatarImage, AvatarRoot } from '@typeweave/react/avatar';
+import { PortfolioHeader } from '@/components/portfolio-header';
 import { useIsMounted } from '@typeweave/react/use-is-mounted';
-import { brandingStyles, PortfolioHeader } from '@repo/ui';
 import { Skeleton } from '@typeweave/react/skeleton';
 import { Button } from '@typeweave/react/button';
+import { Branding } from '@/components/branding';
 import { ThemeSwitcher } from './theme-switcher';
 import { MenuIcon, XIcon } from 'lucide-react';
 import { usePathname } from 'next/navigation';
@@ -33,7 +34,7 @@ export const Header = (props: HeaderProps) => {
 
   return (
     <header className="mx-auto">
-      <PortfolioHeader linkComp={Link} />
+      <PortfolioHeader />
 
       {!isMounted && (
         <>
@@ -58,12 +59,9 @@ export const Header = (props: HeaderProps) => {
               <DrawerOverlay className="lg:hidden" />
               <DrawerContent>
                 <div className="relative flex h-14 items-center justify-center border-b border-muted-6 lg:hidden">
-                  <Link
-                    href={siteConfig.pathname}
-                    className={brandingStyles}
-                  >
+                  <Branding href={siteConfig.pathname}>
                     {siteConfig.name}
-                  </Link>
+                  </Branding>
 
                   <DrawerClose>
                     <Button
@@ -106,9 +104,9 @@ export const Header = (props: HeaderProps) => {
         </div>
       )}
 
-      <Link href={siteConfig.pathname} className={brandingStyles}>
+      <Branding href={siteConfig.pathname}>
         {siteConfig.name}
-      </Link>
+      </Branding>
 
       <nav className="flex h-full gap-1 max-lg:hidden">
         {['collections', 'men', 'women', 'about', 'contact'].map(
