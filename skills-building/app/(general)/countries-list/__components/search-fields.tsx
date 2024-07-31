@@ -5,33 +5,32 @@ import {
   useRouter,
   useSearchParams,
 } from 'next/navigation';
+import { useSearchFieldsCtx } from './search-fields-provider';
 import { Combobox } from '@typeweave/react/combobox';
 import { Button } from '@typeweave/react/button';
 import { Input } from '@typeweave/react/input';
+import { siteConfig } from '../site.config';
 import debounce from 'lodash.debounce';
 import { XIcon } from 'lucide-react';
 import React from 'react';
 
-interface SearchBarProps {}
+interface SearchFieldsProps {
+  hideLabel?: boolean;
+}
 
-const displayName = 'SearchBar';
+const displayName = 'SearchFields';
 
 const regions = ['africa', 'america', 'asia', 'europe', 'oceania'];
 
-export const SearchBar = (props: SearchBarProps) => {
-  const {} = props;
+export const SearchFields = (props: SearchFieldsProps) => {
+  const { hideLabel } = props;
 
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const name = searchParams.get('name');
-  const region = searchParams.get('region');
-
-  const [nameValue, setNameValue] = React.useState(name ?? '');
-  const [regionValue, setRegionValue] = React.useState<string | null>(
-    region && name ? name : (region ?? null),
-  );
+  const { nameValue, regionValue, setNameValue, setRegionValue } =
+    useSearchFieldsCtx(displayName);
 
   const debounced = React.useMemo(
     () =>
@@ -52,17 +51,14 @@ export const SearchBar = (props: SearchBarProps) => {
   );
 
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-      }}
-      className="grid grid-cols-1 gap-5 md:grid-cols-[2fr_1fr]"
-    >
+    <>
       <Input
         label="search countries"
         className="w-full"
+        classNames={{ inputWrapper: 'bg-white' }}
         placeholder="Country Name..."
         value={nameValue}
+        hideLabel={hideLabel}
         onChange={(e) => {
           setRegionValue(null);
 
@@ -71,16 +67,19 @@ export const SearchBar = (props: SearchBarProps) => {
           debounced(value);
         }}
         endContent={
-          name && (
+          nameValue && (
             <Button
               isIconOnly
               aria-label="remove name filter"
               size="sm"
+              type="button"
               onPress={() => {
                 setNameValue('');
                 const params = new URLSearchParams();
                 params.delete('name');
-                router.push(`/?` + params.toString());
+                router.push(
+                  siteConfig.pathname + '/?' + params.toString(),
+                );
               }}
             >
               <XIcon />
@@ -114,13 +113,18 @@ export const SearchBar = (props: SearchBarProps) => {
             label="filter by region"
             placeholder="select Any Region"
             {...props}
+            hideLabel={hideLabel}
             className="w-full"
-            classNames={{ ...props.classNames, input: 'capitalize' }}
+            classNames={{
+              ...props.classNames,
+              input: 'capitalize',
+              inputWrapper: 'bg-white',
+            }}
           />
         )}
       />
-    </form>
+    </>
   );
 };
 
-SearchBar.displayName = displayName;
+SearchFields.displayName = displayName;

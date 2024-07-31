@@ -1,3 +1,4 @@
+import { SearchFieldsProvider } from './__components/search-fields-provider';
 import { createMetadata } from '@/utils/metadata';
 import { Header } from './__components/header';
 import { ThemeProvider } from 'next-themes';
@@ -20,11 +21,13 @@ export default function RootLayout({
 }>) {
   return (
     <div style={inter.style} className="bg-muted-3 text-foreground">
-      <ThemeProvider attribute="class">
-        <Header />
+      <SearchFieldsProvider>
+        <ThemeProvider attribute="class">
+          <Header />
 
-        {children}
-      </ThemeProvider>
+          {children}
+        </ThemeProvider>
+      </SearchFieldsProvider>
     </div>
   );
 }
