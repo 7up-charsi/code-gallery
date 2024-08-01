@@ -8,6 +8,6 @@ export const runtime = openGraphConfig.runtime;
 export const size = openGraphConfig.size;
 export const contentType = openGraphConfig.contentType;
 
-export default function TwitterImagePage() {
+export default function OpenGraphImagePage() {
   return new ImageResponse(<OpenGraphImage name={siteConfig.name} />);
 }
