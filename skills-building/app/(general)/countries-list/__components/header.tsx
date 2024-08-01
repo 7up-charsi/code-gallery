@@ -1,11 +1,11 @@
 'use client';
 
 import { PortfolioHeader } from '@/components/portfolio-header';
-import { AnimatePresence, motion } from 'framer-motion';
 import { Branding } from '@/components/branding';
 import { ThemeSwitcher } from './theme-switcher';
-import { SearchFields } from './search-fields';
+import { SearchRegion } from './search-region';
 import { siteConfig } from '../site.config';
+import { SearchName } from './search-name';
 import React from 'react';
 
 interface HeaderProps {}
@@ -15,47 +15,16 @@ const displayName = 'Header';
 export const Header = (props: HeaderProps) => {
   const {} = props;
 
-  const [showSearch, setShowSearch] = React.useState(false);
   const [isScrolled, setIsScrolled] = React.useState(false);
+  const [shrink, setShrink] = React.useState(false);
 
   React.useEffect(() => {
-    const searchEle = document.getElementById('search')!;
-
-    let lastScroll = 0;
-    let scrollDirection = 0; // 1 is down and -1 is up
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0];
-
-        if (entry) {
-          if (
-            scrollDirection === 1 &&
-            entry.intersectionRatio === 0
-          ) {
-            setShowSearch(true);
-          }
-
-          if (
-            scrollDirection === -1 &&
-            entry.intersectionRatio >= 0.1
-          ) {
-            setShowSearch(false);
-          }
-        }
-      },
-      {
-        rootMargin: '-104px 0px 0px 0px',
-        threshold: [0, 0.1],
-      },
-    );
-
-    observer.observe(searchEle);
+    let lastScrolled = 0;
+    let lastScrollDirection = 0; // 1 is down and -1 is up
+    let scrollTraveled = 0;
 
     const scrollHandler = () => {
       const currentScroll = scrollY;
-
-      scrollDirection = currentScroll > lastScroll ? 1 : -1;
 
       if (document.body.getBoundingClientRect().top < 0) {
         setIsScrolled(true);
@@ -63,7 +32,28 @@ export const Header = (props: HeaderProps) => {
         setIsScrolled(false);
       }
 
-      lastScroll = currentScroll;
+      const newScrollDirection =
+        currentScroll > lastScrolled ? 1 : -1;
+
+      if (lastScrollDirection === -1 && newScrollDirection === 1) {
+        scrollTraveled = 0;
+      } else if (
+        lastScrollDirection === 1 &&
+        newScrollDirection === -1
+      ) {
+        scrollTraveled = 0;
+      }
+
+      scrollTraveled += Math.abs(currentScroll - lastScrolled);
+
+      if (scrollTraveled >= 100 && newScrollDirection === 1) {
+        setShrink(true);
+      } else if (scrollTraveled >= 50 && newScrollDirection === -1) {
+        setShrink(false);
+      }
+
+      lastScrolled = currentScroll;
+      lastScrollDirection = newScrollDirection;
     };
 
     scrollHandler();
@@ -72,53 +62,30 @@ export const Header = (props: HeaderProps) => {
 
     return () => {
       window.removeEventListener('scroll', scrollHandler);
-      observer.disconnect();
     };
   }, []);
 
   return (
     <header
       data-scrolled={isScrolled}
-      className="fixed left-0 right-0 top-0 z-50 data-[scrolled=true]:shadow-md"
+      data-shrink={shrink}
+      className="fixed left-0 right-0 top-0 z-50 mx-auto max-w-screen-2xl transition-all data-[shrink=true]:-top-[calc(40px+12px+36px)] data-[scrolled=true]:shadow-md 2xl:border-x 2xl:border-muted-6"
     >
       <PortfolioHeader />
 
-      <div className="relative h-16 overflow-hidden bg-background">
-        <AnimatePresence initial={false}>
-          {!showSearch && (
-            <motion.div
-              initial={{ opacity: 0, y: -6 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -6 }}
-              transition={{ type: 'tween' }}
-              className="absolute inset-0 flex items-center px-5"
-            >
-              <Branding href={siteConfig.pathname}>
-                {siteConfig.name}
-              </Branding>
+      <div className="grid grid-cols-2 items-center gap-3 bg-background px-5 py-3 max-lg:grid-rows-[auto_auto] lg:grid-cols-[auto_1fr_auto] lg:px-10">
+        <Branding href={siteConfig.pathname}>
+          {siteConfig.name}
+        </Branding>
 
-              <div className="grow"></div>
+        <div className="flex justify-end">
+          <ThemeSwitcher />
+        </div>
 
-              <ThemeSwitcher />
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        <AnimatePresence>
-          {showSearch && (
-            <motion.div
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 6 }}
-              transition={{ type: 'tween' }}
-              className="absolute inset-0"
-            >
-              <search className="grid h-full grid-cols-2 items-center gap-2 px-5">
-                <SearchFields hideLabel />
-              </search>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <search className="col-span-2 grid grid-cols-2 items-center justify-center gap-3 md:grid-cols-[2fr_1fr] lg:col-span-1 lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2 lg:grid-cols-[auto_auto] lg:justify-end">
+          <SearchName />
+          <SearchRegion />
+        </search>
       </div>
     </header>
   );

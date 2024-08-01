@@ -2,6 +2,7 @@ import { CountryFlag } from '../__components/country-flag';
 import { Button } from '@typeweave/react/button';
 import { Country } from '../__types/country';
 import { ArrowLeftIcon } from 'lucide-react';
+import { siteConfig } from '../site.config';
 import Link from 'next/link';
 
 const CountryPage = async (props: { params: { cca2: string } }) => {
@@ -32,20 +33,20 @@ const CountryPage = async (props: { params: { cca2: string } }) => {
             asChild
             variant="solid"
           >
-            <Link href="/">Back</Link>
+            <Link href={siteConfig.pathname}>Back</Link>
           </Button>
         </div>
       </main>
     );
 
   return (
-    <main className="mx-auto max-w-screen-sm p-5">
+    <main className="mx-auto max-w-screen-sm px-5 py-5 lg:px-10">
       <Button
         aria-label="go back"
         startContent={<ArrowLeftIcon />}
         asChild
       >
-        <Link href="/">Back</Link>
+        <Link href={siteConfig.pathname}>Back</Link>
       </Button>
 
       <article
@@ -122,7 +123,7 @@ const CountryPage = async (props: { params: { cca2: string } }) => {
                 {Object.values(country.borders).map((ele, i) => (
                   <li key={i}>
                     <Link
-                      href={`/${ele}`}
+                      href={`${siteConfig.pathname}/${ele}`}
                       className="flex h-9 min-w-20 items-center justify-center rounded bg-muted-4 px-3"
                     >
                       {ele}

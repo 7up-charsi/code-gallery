@@ -1,4 +1,3 @@
-import { SearchFields } from './__components/search-fields';
 import { Countries } from './__components/countries';
 import React from 'react';
 
@@ -10,19 +9,8 @@ export default async function Home() {
   const data = await res.json();
 
   return (
-    <div className="px-5 pb-5 pt-32">
-      <React.Suspense>
-        <search
-          id="search"
-          className="grid grid-cols-1 gap-2 md:grid-cols-[2fr_1fr]"
-        >
-          <SearchFields />
-        </search>
-      </React.Suspense>
-
-      <React.Suspense>
-        <Countries data={data} />
-      </React.Suspense>
-    </div>
+    <React.Suspense>
+      <Countries data={data} />
+    </React.Suspense>
   );
 }

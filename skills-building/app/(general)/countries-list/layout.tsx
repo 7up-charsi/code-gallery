@@ -20,12 +20,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div style={inter.style} className="bg-muted-3 text-foreground">
+    <div
+      style={inter.style}
+      className="mx-auto max-w-screen-2xl bg-muted-3 text-foreground"
+    >
       <SearchFieldsProvider>
         <ThemeProvider attribute="class">
           <Header />
 
-          {children}
+          <div className="min-h-[calc(100vh-112px-40px)] pt-[calc(112px+40px)] lg:min-h-[calc(100vh-60px-40px)] lg:pt-[calc(60px+40px)]">
+            {children}
+          </div>
         </ThemeProvider>
       </SearchFieldsProvider>
     </div>
