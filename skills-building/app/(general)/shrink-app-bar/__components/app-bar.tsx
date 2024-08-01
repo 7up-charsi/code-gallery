@@ -56,7 +56,7 @@ export const AppBar = (props: AppBarProps) => {
     <header
       ref={headerRef}
       data-scroll={isScrolled}
-      className="fixed left-0 right-0 top-0 data-[scroll=true]:shadow-md"
+      className="fixed left-0 right-0 top-0 mx-auto max-w-screen-2xl data-[scroll=true]:shadow-md"
     >
       <PortfolioHeader />
 
