@@ -12,6 +12,7 @@ import { AvatarImage, AvatarRoot } from '@typeweave/react/avatar';
 import { PortfolioHeader } from '@/components/portfolio-header';
 import { useIsMounted } from '@typeweave/react/use-is-mounted';
 import { Skeleton } from '@typeweave/react/skeleton';
+import { navLinks } from '../__constants/nav-links';
 import { Button } from '@typeweave/react/button';
 import { Branding } from '@/components/branding';
 import { ThemeSwitcher } from './theme-switcher';
@@ -32,18 +33,56 @@ export const Header = (props: HeaderProps) => {
   const isMounted = useIsMounted();
   const pathname = usePathname();
 
+  const headerRef = React.useRef<HTMLElement>(null);
+
+  const [isScrolled, setIsScrolled] = React.useState(false);
+
+  React.useEffect(() => {
+    const scrollHandler = () => {
+      const currentScroll = scrollY;
+
+      const bodyScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+
+      if (headerRef.current) {
+        headerRef.current.style.top = `-${Math.min(40, currentScroll)}px`;
+      }
+
+      if (bodyScroll) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    scrollHandler();
+
+    window.addEventListener('scroll', scrollHandler);
+
+    return () => {
+      window.removeEventListener('scroll', scrollHandler);
+    };
+  }, []);
+
   return (
-    <header className="mx-auto">
+    <header
+      ref={headerRef}
+      data-scroll={isScrolled}
+      className="fixed left-0 right-0 top-0 z-50 mx-auto max-w-screen-2xl bg-background data-[scroll=true]:shadow-md"
+    >
       <PortfolioHeader />
 
-      {!isMounted && (
-        <>
-          <Skeleton variant="rounded" className="h-9 w-9 lg:hidden" />
-        </>
-      )}
+      <div className="flex h-16 items-center gap-5 border-b border-muted-6 px-5 md:px-10">
+        {!isMounted && (
+          <>
+            <Skeleton
+              variant="rounded"
+              className="h-9 w-9 lg:hidden"
+            />
+          </>
+        )}
 
-      {isMounted && (
-        <div className="flex h-16 max-w-screen-lg items-center gap-5 border-b border-muted-6 px-5 lg:h-20">
+        {isMounted && (
           <DrawerRoot>
             <DrawerTrigger>
               <Button
@@ -77,16 +116,10 @@ export const Header = (props: HeaderProps) => {
                 </div>
 
                 <nav className="mt-5 flex flex-col gap-1">
-                  {[
-                    'collections',
-                    'men',
-                    'women',
-                    'about',
-                    'contact',
-                  ].map((ele) => (
+                  {navLinks.map((ele) => (
                     <Link
                       key={ele}
-                      href={`/${ele}`}
+                      href={`${siteConfig.pathname}/${ele}`}
                       data-active={pathname === `/${ele}`}
                       className="flex h-10 select-none items-center border-r-8 border-transparent px-5 font-medium outline-none hover:bg-muted-3 focus-visible:bg-muted-4 active:bg-muted-5 data-[active=true]:border-primary-8"
                     >
@@ -101,37 +134,38 @@ export const Header = (props: HeaderProps) => {
               </DrawerContent>
             </DrawerPortal>
           </DrawerRoot>
-        </div>
-      )}
+        )}
 
-      <Branding href={siteConfig.pathname}>
-        {siteConfig.name}
-      </Branding>
+        <Branding href={siteConfig.pathname}>
+          {siteConfig.name}
+        </Branding>
 
-      <nav className="flex h-full gap-1 max-lg:hidden">
-        {['collections', 'men', 'women', 'about', 'contact'].map(
-          (ele) => (
+        <nav className="flex h-full gap-1 max-lg:hidden">
+          {navLinks.map((ele) => (
             <Link
               key={ele}
-              href={`/${ele}`}
+              href={`${siteConfig.pathname}/${ele}`}
               data-active={pathname === `/${ele}`}
               className="flex h-full select-none items-center border-b-2 border-transparent px-5 text-muted-11/70 outline-none hover:border-primary-6 hover:text-muted-11 focus-visible:border-primary-8 focus-visible:text-muted-11 active:border-primary-7 data-[active=true]:border-primary-8 data-[active=true]:text-muted-11 data-[active=true]:focus-visible:bg-muted-3"
             >
               <span className="capitalize">{ele}</span>
             </Link>
-          ),
+          ))}
+        </nav>
+
+        <div className="grow"></div>
+
+        <Cart />
+
+        {!isMounted && (
+          <Skeleton variant="rounded" className="h-9 w-[108px]" />
         )}
-      </nav>
+        {isMounted && <ThemeSwitcher className="max-lg:hidden" />}
 
-      <div className="grow"></div>
-
-      <Cart />
-
-      <ThemeSwitcher className="max-lg:hidden" />
-
-      <AvatarRoot>
-        <AvatarImage src="https://avatar.iran.liara.run/public/48" />
-      </AvatarRoot>
+        <AvatarRoot>
+          <AvatarImage src="https://avatar.iran.liara.run/public/48" />
+        </AvatarRoot>
+      </div>
     </header>
   );
 };

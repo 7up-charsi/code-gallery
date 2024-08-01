@@ -1,8 +1,10 @@
 'use client';
 
 import { PointerEvents } from '@typeweave/react/pointer-events';
+import { useIsMounted } from '@typeweave/react/use-is-mounted';
 import useEmblaCarousel from 'embla-carousel-react';
 import { EmblaCarouselType } from 'embla-carousel';
+import { Loader2Icon } from 'lucide-react';
 import Image from 'next/image';
 import React from 'react';
 
@@ -20,72 +22,68 @@ const urls = [
 export const ImageSlider = (props: ImageSliderProps) => {
   const {} = props;
 
-  const [emblaMainRef, emblaMainApi] = useEmblaCarousel();
-  const [emblaThumbRef, emblaThumbApi] = useEmblaCarousel({
-    containScroll: 'keepSnaps',
+  const isMounted = useIsMounted();
+
+  const [emblaRef] = useEmblaCarousel({
+    containScroll: 'trimSnaps',
     dragFree: true,
   });
 
   const [selectedIndex, setSelectedIndex] = React.useState(0);
 
-  React.useEffect(() => {
-    if (!emblaMainApi || !emblaThumbApi) return;
-
-    const handler = (emblaApi: EmblaCarouselType) => {
-      setSelectedIndex(emblaApi.selectedScrollSnap());
-      emblaThumbApi.scrollTo(emblaApi.selectedScrollSnap());
-    };
-
-    handler(emblaMainApi);
-
-    emblaMainApi.on('reInit', handler).on('select', handler);
-  }, [emblaMainApi, emblaThumbApi]);
-
   return (
-    <div className="md:w-[350px]">
-      <div ref={emblaMainRef} className="overflow-hidden">
-        <div className="flex touch-pan-y touch-pinch-zoom">
-          {urls.map((src, i) => (
-            <div
-              key={i}
-              className="relative aspect-square max-h-[500px] w-full shrink-0 grow-0 overflow-hidden md:aspect-auto md:h-[350px] md:rounded"
-            >
-              <Image
-                src={src}
-                alt="product image"
-                fill
-                className="object-cover object-center"
-              />
-            </div>
-          ))}
-        </div>
+    <div className="">
+      <div className="relative isolate h-[300px] w-full overflow-hidden rounded md:aspect-square md:h-auto">
+        {!isMounted && (
+          <div className="flex h-full w-full items-center justify-center">
+            <Loader2Icon size={40} className="animate-spin" />
+          </div>
+        )}
+
+        {isMounted && (
+          <>
+            <Image
+              src={urls[selectedIndex]}
+              alt="product image"
+              fill
+              className="object-contain object-center"
+            />
+
+            <div className="absolute inset-0 -z-10 bg-white/20 backdrop-blur-lg"></div>
+
+            <Image
+              src={urls[selectedIndex]}
+              alt="product image"
+              fill
+              className="-z-20 object-cover object-center"
+            />
+          </>
+        )}
       </div>
 
-      <div className="mt-5 overflow-hidden max-md:hidden">
-        <div ref={emblaThumbRef}>
-          <div className="flex gap-5">
-            {urls.map((src, i) => (
-              <PointerEvents
-                key={i}
-                onPress={() => {
-                  if (!emblaMainApi) return;
-                  emblaMainApi.scrollTo(i);
-                }}
+      <div ref={emblaRef} className="mt-5 overflow-hidden">
+        <div className="flex gap-3">
+          {urls.map((src, i) => (
+            <PointerEvents
+              key={i}
+              onPress={() => {
+                setSelectedIndex(i);
+              }}
+            >
+              <div
+                data-selected={i === selectedIndex}
+                className="w-22 group flex aspect-square shrink-0 grow-0 cursor-pointer items-center justify-center rounded border-2 border-transparent data-[selected=true]:border-primary-8"
               >
-                <div
-                  data-selected={i === selectedIndex}
-                  className="relative aspect-square w-20 shrink-0 grow-0 cursor-pointer overflow-hidden rounded border-2 border-transparent data-[selected=true]:border-primary-8"
-                >
-                  <Image
-                    src={src}
-                    alt="product image"
-                    fill
-                    className="object-cover object-center"
-                  />
-                </div>
-              </PointerEvents>
-            ))}
-          </div>
+                <Image
+                  src={src}
+                  alt="product image"
+                  className="h-full w-full rounded group-data-[selected=true]:h-[calc(100%-10px)] group-data-[selected=true]:w-[calc(100%-10px)]"
+                  height={80}
+                  width={80}
+                />
+              </div>
+            </PointerEvents>
+          ))}
         </div>
       </div>
     </div>

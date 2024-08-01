@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <div
       style={inter.style}
-      className="bg-background text-foreground"
+      className="mx-auto mt-[104px] max-w-screen-2xl bg-background text-foreground"
     >
       <ThemeProvider attribute="class">
         <Header />

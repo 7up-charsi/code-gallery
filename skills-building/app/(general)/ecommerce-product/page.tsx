@@ -10,11 +10,11 @@ export default function Home() {
   const { amount, decrease, increase } = useCart();
 
   return (
-    <main className="flex justify-center">
-      <article className="grid max-w-screen-lg grid-cols-1 md:grid-cols-[auto_1fr] md:items-center md:gap-5 md:p-5 lg:mt-16 lg:gap-10 lg:px-16">
+    <main className="p-5 md:px-10">
+      <article className="mx-auto grid max-w-screen-md grid-cols-1 gap-5 md:grid-cols-[1fr_1.3fr]">
         <ImageSlider />
 
-        <div className="p-5">
+        <div className="">
           <span className="text-sm font-semibold uppercase">
             sneaker company
           </span>
@@ -50,8 +50,8 @@ export default function Home() {
             </dd>
           </dl>
 
-          <div className="mt-5 flex flex-col gap-3 md:flex-row">
-            <div className="flex h-12 items-center rounded bg-muted-3">
+          <div className="mt-5 flex h-10 items-center gap-5">
+            <div className="flex h-full grow items-center rounded bg-muted-3">
               <PointerEvents onPress={decrease}>
                 <button
                   aria-label="remove 1 from cart"
@@ -78,7 +78,7 @@ export default function Home() {
             <Button
               variant="solid"
               color="primary"
-              className="h-12 rounded max-md:w-full md:grow"
+              className="h-full grow rounded"
               startContent={<ShoppingCart />}
             >
               add to cart
