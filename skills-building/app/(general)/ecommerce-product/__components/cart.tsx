@@ -13,6 +13,7 @@ import { Button } from '@typeweave/react/button';
 import { ShoppingCartIcon } from 'lucide-react';
 import { Badge } from '@typeweave/react/badge';
 import { useCart } from '../__zustand/cart';
+import { toast } from 'react-toastify';
 import { CartItem } from './cart-item';
 import React from 'react';
 
@@ -31,7 +32,11 @@ export const Cart = (props: CartProps) => {
     <DrawerRoot>
       <DrawerTrigger>
         <PointerEvents>
-          <Badge content={amount} placement="bottom-center" classNames={{content:'pointer-events-none'}}>
+          <Badge
+            content={amount}
+            placement="bottom-center"
+            classNames={{ content: 'pointer-events-none' }}
+          >
             <Button
               isIconOnly
               aria-label="menu"
@@ -75,7 +80,10 @@ export const Cart = (props: CartProps) => {
                     color="primary"
                     variant="solid"
                     className="mt-10 w-full"
-                    onPress={clearCart}
+                    onPress={() => {
+                      clearCart();
+                      toast.success('Thanks for shopping');
+                    }}
                   >
                     check out
                   </Button>
