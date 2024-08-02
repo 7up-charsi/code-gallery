@@ -1,3 +1,4 @@
+import { Bounce, ToastContainer } from 'react-toastify';
 import { rootMetadata } from '@/config/root-meta';
 import { Inter } from 'next/font/google';
 import type { Metadata } from 'next';
@@ -14,7 +15,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {children}
+
+        <ToastContainer
+          position="bottom-right"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+          transition={Bounce}
+        />
+      </body>
     </html>
   );
 }

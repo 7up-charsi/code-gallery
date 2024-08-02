@@ -5,9 +5,11 @@ import { PointerEvents } from '@typeweave/react/pointer-events';
 import { ImageSlider } from './__components/image-slider';
 import { Button } from '@typeweave/react/button';
 import { useCart } from './__zustand/cart';
+import { toast } from 'react-toastify';
 
 export default function Home() {
-  const { updateInputValue, inputValue, updateCart } = useCart();
+  const { updateInputValue, inputValue, amount, updateCart } =
+    useCart();
 
   return (
     <main className="p-5 md:px-10">
@@ -81,9 +83,19 @@ export default function Home() {
               color="primary"
               className="h-full grow rounded"
               startContent={<ShoppingCart />}
-              onPress={updateCart}
+              onPress={() => {
+                updateCart();
+
+                if (amount === inputValue) return;
+
+                if (amount) {
+                  toast.success('cart updated');
+                } else {
+                  toast.success('added into cart');
+                }
+              }}
             >
-              add to cart
+              {amount ? 'update cart' : 'add to cart'}
             </Button>
           </div>
         </div>
