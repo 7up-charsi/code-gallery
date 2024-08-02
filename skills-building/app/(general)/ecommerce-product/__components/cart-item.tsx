@@ -16,23 +16,21 @@ export const CartItem = (props: CartItemProps) => {
   const { amount, clearCart } = useCart();
 
   return (
-    <article
-      aria-labelledby={titleId}
-      className="flex items-center gap-4"
-    >
-      <Image
-        src="/assets/ecommerce-product/image-product-1.jpg"
-        alt="product image"
-        width={50}
-        height={50}
-        className="rounded"
-      />
+    <article aria-labelledby={titleId} className=" ">
+      <h2 id={titleId} className="truncate">
+        Fall Limited Edition Sneakers
+      </h2>
 
-      <div className="flex h-full grow flex-col justify-between overflow-auto">
-        <h2 id={titleId} className="truncate">
-          Fall Limited Edition Sneakers
-        </h2>
-        <dl className="flex gap-3">
+      <div className="mt-1 flex h-full gap-2">
+        <Image
+          src="/assets/ecommerce-product/image-product-1.jpg"
+          alt="product image"
+          width={50}
+          height={50}
+          className="rounded"
+        />
+
+        <dl className="flex grow flex-wrap gap-3">
           <dt className="sr-only">price</dt>
           <dd>$125.00</dd>
 
@@ -42,18 +40,19 @@ export const CartItem = (props: CartItemProps) => {
           <dt className="sr-only">total</dt>
           <dd className="font-semibold">${amount * 125}.00</dd>
         </dl>
-      </div>
 
-      <Button
-        isIconOnly
-        aria-label="remove from cart"
-        size="sm"
-        color="danger"
-        variant="text"
-        onPress={clearCart}
-      >
-        <XIcon />
-      </Button>
+        <Button
+          isIconOnly
+          aria-label="remove from cart"
+          size="sm"
+          color="danger"
+          variant="text"
+          onPress={clearCart}
+          className="place-self-center"
+        >
+          <XIcon />
+        </Button>
+      </div>
     </article>
   );
 };

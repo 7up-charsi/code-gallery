@@ -31,7 +31,7 @@ export const Cart = (props: CartProps) => {
     <DrawerRoot>
       <DrawerTrigger>
         <PointerEvents>
-          <Badge content={amount} placement="bottom-center">
+          <Badge content={amount} placement="bottom-center" classNames={{content:'pointer-events-none'}}>
             <Button
               isIconOnly
               aria-label="menu"
@@ -50,7 +50,7 @@ export const Cart = (props: CartProps) => {
         <DrawerContent
           placement="right"
           aria-labelledby={titleId}
-          className="w-[80%]"
+          className="w-[320px]"
         >
           <div
             id={titleId}
@@ -74,7 +74,7 @@ export const Cart = (props: CartProps) => {
                   <Button
                     color="primary"
                     variant="solid"
-                    className="mt-5 w-full"
+                    className="mt-10 w-full"
                     onPress={clearCart}
                   >
                     check out
