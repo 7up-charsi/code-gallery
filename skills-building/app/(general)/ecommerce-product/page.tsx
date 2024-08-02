@@ -7,7 +7,7 @@ import { Button } from '@typeweave/react/button';
 import { useCart } from './__zustand/cart';
 
 export default function Home() {
-  const { amount, decrease, increase } = useCart();
+  const { updateInputValue, inputValue, updateCart } = useCart();
 
   return (
     <main className="p-5 md:px-10">
@@ -52,23 +52,24 @@ export default function Home() {
 
           <div className="mt-5 flex h-10 items-center gap-5">
             <div className="flex h-full grow items-center rounded bg-muted-3">
-              <PointerEvents onPress={decrease}>
+              <PointerEvents onPress={() => updateInputValue('dec')}>
                 <button
                   aria-label="remove 1 from cart"
-                  className="flex h-full w-10 cursor-pointer items-center justify-center rounded-l text-primary-11 outline-none ring-focus hover:bg-primary-4 focus-visible:ring-2 active:bg-primary-5"
+                  disabled={inputValue === 1}
+                  className="flex h-full w-10 cursor-pointer items-center justify-center rounded-l text-primary-11 outline-none ring-focus hover:bg-primary-4 focus-visible:ring-2 active:bg-primary-5 disabled:disabled"
                 >
                   <MinusIcon size={20} />
                 </button>
               </PointerEvents>
 
-              <span className="min-w-16 grow px-1 text-center font-bold text-muted-12">
-                {amount}
+              <span className="min-w-16 grow select-none px-1 text-center font-bold text-muted-12">
+                {inputValue}
               </span>
 
-              <PointerEvents onPress={increase}>
+              <PointerEvents onPress={() => updateInputValue('inc')}>
                 <button
                   aria-label="add 1 in cart"
-                  className="flex h-full w-10 cursor-pointer items-center justify-center rounded-r text-primary-11 outline-none ring-focus hover:bg-primary-4 focus-visible:ring-2 active:bg-primary-5"
+                  className="flex h-full w-10 cursor-pointer items-center justify-center rounded-r text-primary-11 outline-none ring-focus hover:bg-primary-4 focus-visible:ring-2 active:bg-primary-5 disabled:disabled"
                 >
                   <PlusIcon size={20} />
                 </button>
@@ -80,6 +81,7 @@ export default function Home() {
               color="primary"
               className="h-full grow rounded"
               startContent={<ShoppingCart />}
+              onPress={updateCart}
             >
               add to cart
             </Button>

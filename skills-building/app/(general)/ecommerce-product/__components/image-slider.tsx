@@ -32,7 +32,7 @@ export const ImageSlider = (props: ImageSliderProps) => {
   const [selectedIndex, setSelectedIndex] = React.useState(0);
 
   return (
-    <div className="">
+    <div className="select-none">
       <div className="relative isolate h-[300px] w-full overflow-hidden rounded md:aspect-square md:h-auto">
         {!isMounted && (
           <div className="flex h-full w-full items-center justify-center">

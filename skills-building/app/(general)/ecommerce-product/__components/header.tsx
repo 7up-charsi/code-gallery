@@ -73,68 +73,57 @@ export const Header = (props: HeaderProps) => {
       <PortfolioHeader />
 
       <div className="flex h-16 items-center gap-5 border-b border-muted-6 px-5 md:px-10">
-        {!isMounted && (
-          <>
-            <Skeleton
-              variant="rounded"
-              className="h-9 w-9 lg:hidden"
-            />
-          </>
-        )}
+        <DrawerRoot>
+          <DrawerTrigger>
+            <Button
+              isIconOnly
+              aria-label="menu"
+              className="lg:hidden"
+            >
+              <MenuIcon />
+            </Button>
+          </DrawerTrigger>
 
-        {isMounted && (
-          <DrawerRoot>
-            <DrawerTrigger>
-              <Button
-                isIconOnly
-                aria-label="menu"
-                className="lg:hidden"
-              >
-                <MenuIcon />
-              </Button>
-            </DrawerTrigger>
+          <DrawerPortal>
+            <DrawerOverlay className="lg:hidden" />
+            <DrawerContent>
+              <div className="relative flex h-14 items-center justify-center border-b border-muted-6 lg:hidden">
+                <Branding href={siteConfig.pathname}>
+                  {siteConfig.name}
+                </Branding>
 
-            <DrawerPortal>
-              <DrawerOverlay className="lg:hidden" />
-              <DrawerContent>
-                <div className="relative flex h-14 items-center justify-center border-b border-muted-6 lg:hidden">
-                  <Branding href={siteConfig.pathname}>
-                    {siteConfig.name}
-                  </Branding>
+                <DrawerClose>
+                  <Button
+                    isIconOnly
+                    aria-label="menu close"
+                    variant="text"
+                    color="danger"
+                    className="absolute right-3"
+                  >
+                    <XIcon />
+                  </Button>
+                </DrawerClose>
+              </div>
 
-                  <DrawerClose>
-                    <Button
-                      isIconOnly
-                      aria-label="menu close"
-                      variant="text"
-                      color="danger"
-                      className="absolute right-3"
-                    >
-                      <XIcon />
-                    </Button>
-                  </DrawerClose>
-                </div>
+              <nav className="mt-5 flex flex-col gap-1">
+                {navLinks.map((ele) => (
+                  <Link
+                    key={ele}
+                    href={`${siteConfig.pathname}/${ele}`}
+                    data-active={pathname === `/${ele}`}
+                    className="flex h-10 select-none items-center border-r-8 border-transparent px-5 font-medium outline-none hover:bg-muted-3 focus-visible:bg-muted-4 active:bg-muted-5 data-[active=true]:border-primary-8"
+                  >
+                    <span className="capitalize">{ele}</span>
+                  </Link>
+                ))}
+              </nav>
 
-                <nav className="mt-5 flex flex-col gap-1">
-                  {navLinks.map((ele) => (
-                    <Link
-                      key={ele}
-                      href={`${siteConfig.pathname}/${ele}`}
-                      data-active={pathname === `/${ele}`}
-                      className="flex h-10 select-none items-center border-r-8 border-transparent px-5 font-medium outline-none hover:bg-muted-3 focus-visible:bg-muted-4 active:bg-muted-5 data-[active=true]:border-primary-8"
-                    >
-                      <span className="capitalize">{ele}</span>
-                    </Link>
-                  ))}
-                </nav>
-
-                <div className="mt-5 px-5">
-                  <ThemeSwitcher className="w-full" />
-                </div>
-              </DrawerContent>
-            </DrawerPortal>
-          </DrawerRoot>
-        )}
+              <div className="mt-5 px-5">
+                <ThemeSwitcher className="w-full" />
+              </div>
+            </DrawerContent>
+          </DrawerPortal>
+        </DrawerRoot>
 
         <Branding href={siteConfig.pathname}>
           {siteConfig.name}
@@ -158,8 +147,12 @@ export const Header = (props: HeaderProps) => {
         <Cart />
 
         {!isMounted && (
-          <Skeleton variant="rounded" className="h-9 w-[108px]" />
+          <Skeleton
+            variant="rounded"
+            className="h-9 w-[108px] max-lg:hidden"
+          />
         )}
+
         {isMounted && <ThemeSwitcher className="max-lg:hidden" />}
 
         <AvatarRoot>

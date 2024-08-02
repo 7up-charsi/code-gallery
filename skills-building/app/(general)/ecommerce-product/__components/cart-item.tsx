@@ -13,7 +13,7 @@ export const CartItem = (props: CartItemProps) => {
 
   const titleId = React.useId();
 
-  const { amount, remove } = useCart();
+  const { amount, clearCart } = useCart();
 
   return (
     <article
@@ -21,7 +21,7 @@ export const CartItem = (props: CartItemProps) => {
       className="flex items-center gap-4"
     >
       <Image
-        src="/assets/image-product-1.jpg"
+        src="/assets/ecommerce-product/image-product-1.jpg"
         alt="product image"
         width={50}
         height={50}
@@ -50,7 +50,7 @@ export const CartItem = (props: CartItemProps) => {
         size="sm"
         color="danger"
         variant="text"
-        onPress={remove}
+        onPress={clearCart}
       >
         <XIcon />
       </Button>

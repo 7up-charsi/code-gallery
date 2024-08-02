@@ -1,12 +1,14 @@
 'use client';
 
 import {
-  PopoverClose,
-  PopoverContent,
-  PopoverPortal,
-  PopoverRoot,
-  PopoverTrigger,
-} from '@typeweave/react/popover';
+  DrawerClose,
+  DrawerContent,
+  DrawerOverlay,
+  DrawerPortal,
+  DrawerRoot,
+  DrawerTrigger,
+} from '@typeweave/react/drawer';
+import { PointerEvents } from '@typeweave/react/pointer-events';
 import { Button } from '@typeweave/react/button';
 import { ShoppingCartIcon } from 'lucide-react';
 import { Badge } from '@typeweave/react/badge';
@@ -23,32 +25,36 @@ export const Cart = (props: CartProps) => {
 
   const titleId = React.useId();
 
-  const { amount, remove } = useCart();
+  const { amount, clearCart } = useCart();
 
   return (
-    <PopoverRoot>
-      <PopoverTrigger>
-        <Badge content={amount} placement="bottom-center">
-          <Button
-            isIconOnly
-            aria-label="menu"
-            variant="text"
-            className="overflow-visible"
-          >
-            <ShoppingCartIcon />
-          </Button>
-        </Badge>
-      </PopoverTrigger>
+    <DrawerRoot>
+      <DrawerTrigger>
+        <PointerEvents>
+          <Badge content={amount} placement="bottom-center">
+            <Button
+              isIconOnly
+              aria-label="menu"
+              variant="text"
+              className="overflow-visible"
+            >
+              <ShoppingCartIcon />
+            </Button>
+          </Badge>
+        </PointerEvents>
+      </DrawerTrigger>
 
-      <PopoverPortal>
-        <PopoverContent
-          placement="bottom"
-          className="z-50 w-auto max-w-md md:min-w-80"
+      <DrawerPortal>
+        <DrawerOverlay />
+
+        <DrawerContent
+          placement="right"
           aria-labelledby={titleId}
+          className="w-[80%]"
         >
           <div
             id={titleId}
-            className="w-80 border-b border-muted-6 px-5 py-3"
+            className="border-b border-muted-6 px-5 py-3"
           >
             Cart
           </div>
@@ -64,22 +70,22 @@ export const Cart = (props: CartProps) => {
               <>
                 <CartItem />
 
-                <PopoverClose>
+                <DrawerClose>
                   <Button
                     color="primary"
                     variant="solid"
-                    className="mt-5 h-12 w-full"
-                    onPress={remove}
+                    className="mt-5 w-full"
+                    onPress={clearCart}
                   >
                     check out
                   </Button>
-                </PopoverClose>
+                </DrawerClose>
               </>
             ) : null}
           </div>
-        </PopoverContent>
-      </PopoverPortal>
-    </PopoverRoot>
+        </DrawerContent>
+      </DrawerPortal>
+    </DrawerRoot>
   );
 };
 
