@@ -1,10 +1,7 @@
-import { AppBar } from './__components/app-bar';
-
 export default function Home() {
   return (
     <>
-      <AppBar />
-      <main className="mt-[104px] p-5">
+      <main className="p-5">
         {Array.from({ length: 10 }).map((_, i) => (
           <div
             key={i}

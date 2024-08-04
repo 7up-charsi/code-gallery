@@ -1,6 +1,7 @@
 import { RouteProgress } from './__components/route-progress';
 import { Raleway, Roboto } from 'next/font/google';
 import { createMetadata } from '@/utils/metadata';
+import { AppBar } from './__components/app-bar';
 import { siteConfig } from './site.config';
 import type { Metadata } from 'next';
 
@@ -24,7 +25,9 @@ export default function RootLayout({
   return (
     <div className={`${font.className} ${logoFont.variable}`}>
       <RouteProgress />
-      {children}
+      <AppBar />
+
+      <div className="mt-[104px]">{children}</div>
     </div>
   );
 }

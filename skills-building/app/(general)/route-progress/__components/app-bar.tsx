@@ -79,7 +79,11 @@ export const AppBar = (props: AppBarProps) => {
 
         <div className="grow"></div>
 
-        <Link href={`${siteConfig.pathname}/link1`}>link 1</Link>
+        <div className="flex items-center gap-2">
+          <Link href={`${siteConfig.pathname}/link1`}>link 1</Link>
+          <Link href={`${siteConfig.pathname}/link2`}>link 2</Link>
+          <Link href={`${siteConfig.pathname}/link3`}>link 3</Link>
+        </div>
       </div>
     </header>
   );
