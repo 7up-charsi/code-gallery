@@ -1,6 +1,7 @@
 'use client';
 
 import { PortfolioHeader } from '@/components/portfolio-header';
+import { Button } from '@typeweave/react/button';
 import { Branding } from '@/components/branding';
 import { siteConfig } from '../site.config';
 import Link from 'next/link';
@@ -80,9 +81,15 @@ export const AppBar = (props: AppBarProps) => {
         <div className="grow"></div>
 
         <div className="flex items-center gap-2">
-          <Link href={`${siteConfig.pathname}/link1`}>link 1</Link>
-          <Link href={`${siteConfig.pathname}/link2`}>link 2</Link>
-          <Link href={`${siteConfig.pathname}/link3`}>link 3</Link>
+          {Array.from({ length: 3 }).map((_, i) => (
+            <Link
+              key={i}
+              href={`${siteConfig.pathname}/${i + 1}`}
+              className="h-9 content-center rounded px-4 capitalize outline-none ring-white hover:bg-white/30 focus-visible:ring-2 active:bg-white/40"
+            >
+              page {i + 1}
+            </Link>
+          ))}
         </div>
       </div>
     </header>
