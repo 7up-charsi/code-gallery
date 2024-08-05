@@ -28,6 +28,10 @@ export const RouteProgress = (props: RouteProgressProps) => {
     };
 
     const done = () => {
+      /*
+       "I want to cancel the previously executing 'done' function because there are situations where 'done' is executed multiple times. For example, when a user clicks a link and a page download occurs from the server, Next.js pushes the URL into the browser's history stack, resulting in 'history.pushState' being called, which executes 'done'. However, if 'done' is still executing and the user interacts with the back/forth browser buttons, it calls 'history.replaceState', leading to 'done' being executed again. To prevent this, I need to stop the previous 'done' execution
+       */
+      cancelAnimationFrame(doneAnimationFrame);
       cancelAnimationFrame(startAnimationFrame);
 
       const speed = 3;
@@ -53,6 +57,8 @@ export const RouteProgress = (props: RouteProgressProps) => {
     };
 
     const start = () => {
+      // A similar explanation as previously mentioned in "done"
+      cancelAnimationFrame(doneAnimationFrame);
       cancelAnimationFrame(startAnimationFrame);
 
       progressRef.current = 0;
@@ -137,6 +143,8 @@ export const RouteProgress = (props: RouteProgressProps) => {
             return;
 
           if (currUrl.hostname !== newUrl.hostname) return;
+
+          // This check is to verify if the user has navigated within the same page.
           if (
             currUrl.pathname === newUrl.pathname &&
             currUrl.search === newUrl.search &&
@@ -144,6 +152,7 @@ export const RouteProgress = (props: RouteProgressProps) => {
           )
             return;
 
+          // This check confirms whether the user clicked a link with the same URL as the current active page.
           if (
             currUrl.pathname === newUrl.pathname &&
             currUrl.search === newUrl.search &&
