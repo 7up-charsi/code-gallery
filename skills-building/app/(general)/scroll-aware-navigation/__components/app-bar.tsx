@@ -15,6 +15,7 @@ const displayName = 'AppBar';
 export const AppBar = (props: AppBarProps) => {
   const {} = props;
 
+  const headerRef = React.useRef<HTMLElement>(null);
   const [emblaRef, emblaApi] = useEmblaCarousel({ dragFree: true });
 
   const [scrolled, setScrolled] = React.useState(false);
@@ -50,7 +51,7 @@ export const AppBar = (props: AppBarProps) => {
           }
         });
       },
-      { threshold: [0.7, 1], rootMargin: '-60px 0px 0px 0px' },
+      { threshold: [0.7, 1], rootMargin: '-56px 0px 0px 0px' },
     );
 
     toObserve.forEach((element) => {
@@ -64,11 +65,16 @@ export const AppBar = (props: AppBarProps) => {
 
       lastScroll = currentScroll;
 
-      const { top } = document.body.getBoundingClientRect();
+      if (headerRef.current) {
+        headerRef.current.style.top = `-${Math.min(80, currentScroll)}px`;
+      }
 
-      if (top < -100) return;
+      const scrollTop =
+        document.body.scrollTop || document.documentElement.scrollTop;
 
-      if (top < 0) {
+      if (scrollTop > 100) return;
+
+      if (scrollTop) {
         setScrolled(true);
       } else {
         setScrolled(false);
@@ -87,40 +93,43 @@ export const AppBar = (props: AppBarProps) => {
 
   return (
     <header
+      ref={headerRef}
       data-scrolled={scrolled}
-      className="sticky -top-16 left-0 right-0 z-50 data-[scrolled=true]:shadow-md"
+      className="fixed left-0 right-0 top-0 z-50 bg-white data-[scrolled=true]:shadow-md"
     >
       <PortfolioHeader />
 
-      <div className="flex h-16 items-center bg-purple-500 px-5">
-        <Branding
-          href={siteConfig.pathname}
-          className="text-white ring-white"
+      <div className="grid h-24 grid-cols-1 grid-rows-[40px_56px] items-center justify-center">
+        <div className="mx-auto">
+          <Branding href={siteConfig.pathname}>
+            {siteConfig.name}
+          </Branding>
+        </div>
+
+        <div
+          ref={emblaRef}
+          className="h-full overflow-hidden bg-muted-2 px-5"
         >
-          {siteConfig.name}
-        </Branding>
-      </div>
-
-      <div ref={emblaRef} className="overflow-hidden bg-gray-50 px-5">
-        <nav className="flex items-center gap-2">
-          {Array.from({ length: 10 }).map((_, i) => (
-            <div
-              key={i}
-              className="relative h-full shrink-0 content-center py-2"
-            >
-              <Link
-                href={`#${i + 1}`}
-                className="flex h-9 select-none items-center gap-2 rounded px-2 capitalize outline-none hover:bg-gray-200 focus-visible:ring-2 active:bg-gray-300"
+          <nav className="mx-auto flex h-full max-w-screen-lg items-center gap-2">
+            {Array.from({ length: 10 }).map((_, i) => (
+              <div
+                key={i}
+                className="relative h-full shrink-0 content-center"
               >
-                section {i + 1}
-              </Link>
+                <Link
+                  href={`#${i + 1}`}
+                  className="flex h-9 select-none items-center gap-2 rounded px-2 capitalize outline-none hover:bg-gray-200 focus-visible:ring-2 active:bg-gray-300"
+                >
+                  section {i + 1}
+                </Link>
 
-              {activeSectionId === i + 1 && (
-                <span className="absolute bottom-0 left-0 block h-1 w-full rounded-full bg-purple-500"></span>
-              )}
-            </div>
-          ))}
-        </nav>
+                {activeSectionId === i + 1 && (
+                  <span className="absolute bottom-0 left-0 block h-[2px] w-full rounded-full bg-purple-500"></span>
+                )}
+              </div>
+            ))}
+          </nav>
+        </div>
       </div>
     </header>
   );

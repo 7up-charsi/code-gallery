@@ -15,7 +15,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} mx-auto max-w-screen-2xl`}>
+      <body
+        className={`${inter.className} mx-auto max-w-screen-2xl bg-background text-foreground`}
+      >
         {children}
 
         <ToastContainer

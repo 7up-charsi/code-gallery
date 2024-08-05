@@ -3,8 +3,6 @@
 import { PortfolioHeader } from '@/components/portfolio-header';
 import { Branding } from '@/components/branding';
 import { siteConfig } from '../site.config';
-import { twMerge } from 'tailwind-merge';
-import Link from 'next/link';
 import React from 'react';
 
 interface AppBarProps {}
