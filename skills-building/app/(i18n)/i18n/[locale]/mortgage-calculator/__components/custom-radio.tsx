@@ -26,7 +26,7 @@ export const CustomRadio = React.forwardRef<
         ref={forwardedRef}
         type="radio"
         id={inputId}
-        className="peer absolute inset-0 -z-10 cursor-pointer appearance-none rounded border border-muted-6 outline-none ring-focus checked:border-secondary-7 checked:bg-secondary-4 focus-within:ring-2"
+        className="peer absolute inset-0 -z-10 cursor-pointer appearance-none rounded border border-muted-6 outline-none ring-focus ring-offset-2 ring-offset-background checked:border-primary-7 checked:bg-primary-3 focus-within:ring-2"
       />
 
       <CircleIcon
@@ -36,12 +36,12 @@ export const CustomRadio = React.forwardRef<
 
       <CheckCircle2Icon
         size={18}
-        className="pointer-events-none hidden text-secondary-11 peer-checked:block"
+        className="pointer-events-none hidden text-primary-11 peer-checked:block"
       />
 
       <label
         htmlFor={inputId}
-        className="pointer-events-none select-none capitalize peer-checked:text-secondary-11"
+        className="pointer-events-none select-none capitalize peer-checked:text-primary-11"
       >
         {label}
       </label>

@@ -232,7 +232,7 @@ export const Form = (props: FormProps) => {
           <Button
             type="submit"
             variant="solid"
-            color="secondary"
+            color="primary"
             className="grow rounded-full font-medium capitalize text-white md:col-span-2"
             startContent={<CalculatorIcon />}
           >

@@ -16,11 +16,7 @@ const HomePage = async (props: HomePageProps) => {
 
   return (
     <DictionaryProvider dictionary={dictionary}>
-      <main className="grid grid-cols-1 overflow-hidden bg-background md:mt-5 md:grid-cols-2 md:grid-rows-[70px_auto] md:rounded md:shadow-md">
-        <h1 className="mx-5 mt-5 text-2xl font-semibold capitalize">
-          {dictionary.title}
-        </h1>
-
+      <main className="grid grid-cols-1 overflow-hidden bg-background md:grid-cols-2">
         <Form />
       </main>
     </DictionaryProvider>

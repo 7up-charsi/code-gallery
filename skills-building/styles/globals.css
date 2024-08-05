@@ -73,21 +73,21 @@
     }
 
     &::-webkit-scrollbar-thumb {
-      background: theme(colors.primary-7);
+      background: theme(colors.muted-6);
       border: 0px none #ffffff;
       border-radius: 50px;
     }
 
     &::-webkit-scrollbar-thumb:hover {
-      background: theme(colors.primary-6);
+      background: theme(colors.muted-7);
     }
 
     &::-webkit-scrollbar-thumb:active {
-      background: theme(colors.primary-5);
+      background: theme(colors.muted-8);
     }
 
     &::-webkit-scrollbar-track {
-      background: theme(colors.primary-8);
+      background: theme(colors.muted-4);
       border: 0px none #ffffff;
       border-radius: 50px;
     }

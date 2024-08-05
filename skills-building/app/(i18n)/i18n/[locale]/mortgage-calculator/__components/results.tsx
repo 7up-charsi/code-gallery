@@ -2,6 +2,7 @@
 
 import { Control, useFormState, useWatch } from 'react-hook-form';
 import { CalculatorIcon, EuroIcon, Loader2 } from 'lucide-react';
+import { useIsMounted } from '@typeweave/react/use-is-mounted';
 import { useDictionaryCtx } from './dictionary-provider';
 import { createPortal } from 'react-dom';
 import { FormValues } from './form';
@@ -16,11 +17,13 @@ const displayName = 'Results';
 export const Results = (props: ResultsProps) => {
   const { control } = props;
 
+  const articleRef = React.useRef<HTMLElement>(null);
+
   const { isSubmitting } = useFormState({ control });
 
   const { dictionary } = useDictionaryCtx(displayName);
 
-  const [isMounted, setIsMounted] = React.useState(false);
+  const isMounted = useIsMounted();
 
   const [_interestOnlyPayment, _totalRepayment, _monthlyRepayment] =
     useWatch({
@@ -36,16 +39,15 @@ export const Results = (props: ResultsProps) => {
   const totalRepayment = _totalRepayment?.toFixed(2);
   const monthlyRepayment = _monthlyRepayment?.toFixed(2);
 
-  React.useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
   return (
     <>
-      <article className="bg-primary-9 px-5 py-5 text-white max-md:mt-5 md:col-start-2 md:row-span-2 md:row-start-1 md:rounded-bl-[20%]">
+      <article
+        ref={articleRef}
+        className="bg-muted-3 px-5 py-5 max-md:mt-5 md:col-start-2 md:row-span-2 md:row-start-1"
+      >
         {!isSubmitting ? null : (
           <div className="flex h-full items-center justify-center">
-            <Loader2 size={60} className="animate-spin text-white" />
+            <Loader2 size={60} className="animate-spin" />
           </div>
         )}
 
@@ -65,7 +67,7 @@ export const Results = (props: ResultsProps) => {
                   {dictionary.emptyResultHeading}
                 </h2>
 
-                <p className="mb-5 mt-3 max-w-80 text-balance text-center text-white/90">
+                <p className="mb-5 mt-3 max-w-80 text-balance text-center text-foreground/90">
                   {dictionary.emptyResultDescription}
                 </p>
               </div>
@@ -81,7 +83,7 @@ export const Results = (props: ResultsProps) => {
                   {dictionary.resultHeading}
                 </h2>
 
-                <p className="mb-5 mt-3 text-white/90">
+                <p className="mb-5 mt-3 text-foreground/90">
                   {dictionary.resultDescription}
                 </p>
               </>
@@ -94,7 +96,7 @@ export const Results = (props: ResultsProps) => {
                 </h3>
 
                 <p className="mc-results-scrollbar overflow-x-auto py-2 font-mono">
-                  <span className="flex min-w-fit items-center justify-center text-6xl font-semibold text-secondary-9">
+                  <span className="flex min-w-fit items-center justify-center text-6xl font-semibold text-primary-9">
                     <EuroIcon size={43} />
                     {interestOnlyPayment}
                   </span>
@@ -109,7 +111,7 @@ export const Results = (props: ResultsProps) => {
                 </h3>
 
                 <p className="mc-results-scrollbar overflow-x-auto py-2 font-mono">
-                  <span className="flex min-w-fit items-center justify-center text-6xl font-semibold text-secondary-9">
+                  <span className="flex min-w-fit items-center justify-center text-6xl font-semibold text-primary-9">
                     <EuroIcon size={43} className="shrink-0" />
                     {monthlyRepayment}
                   </span>
