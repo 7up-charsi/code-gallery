@@ -1,4 +1,5 @@
 import { createMetadata } from '@/utils/metadata';
+import { AppBar } from './__components/app-bar';
 import { siteConfig } from './site.config';
 import { Metadata } from 'next';
 
@@ -11,5 +12,11 @@ export const metadata: Metadata = createMetadata(siteConfig);
 export default function Layout(props: LayoutProps) {
   const { children } = props;
 
-  return <>{children}</>;
+  return (
+    <>
+      <AppBar />
+
+      <div className="mt-[120px]">{children}</div>
+    </>
+  );
 }

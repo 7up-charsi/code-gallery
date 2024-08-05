@@ -62,7 +62,7 @@ export const AppBar = (props: AppBarProps) => {
 
       <div
         ref={headerContentRef}
-        className="flex h-20 items-center bg-primary-4 px-5 transition-[height]"
+        className="flex h-20 items-center bg-muted-2 px-5 transition-[height]"
       >
         <Branding href={siteConfig.pathname}>
           {siteConfig.name}
