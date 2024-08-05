@@ -13,7 +13,8 @@ export default function RootLayout({
   return (
     <>
       <AppBar />
-      {children}
+
+      <div className="mt-[104px]">{children}</div>
     </>
   );
 }

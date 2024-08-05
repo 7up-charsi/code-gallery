@@ -16,6 +16,7 @@ export const AppBar = (props: AppBarProps) => {
   const {} = props;
 
   const [isHidden, setIsHidden] = React.useState(false);
+  const [isScrolled, setIsScrolled] = React.useState(false);
 
   React.useEffect(() => {
     let lastScrolled = window.scrollY;
@@ -37,6 +38,15 @@ export const AppBar = (props: AppBarProps) => {
       }
 
       scrollTraveled += Math.abs(currentScroll - lastScrolled);
+
+      const bodyScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+
+      if (bodyScroll) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
 
       if (
         newScrollDirection === 1 &&
@@ -64,15 +74,13 @@ export const AppBar = (props: AppBarProps) => {
   return (
     <header
       data-hide={isHidden}
-      className="fixed left-0 right-0 top-0 transition-transform data-[hide=true]:-translate-y-full"
+      data-scrolled={isScrolled}
+      className="fixed left-0 right-0 top-0 mx-auto max-w-screen-2xl transition-transform data-[hide=true]:-translate-y-full data-[hide=false]:data-[scrolled=true]:shadow-md"
     >
       <PortfolioHeader />
 
-      <div className="flex h-16 items-center bg-indigo-200 px-5">
-        <Branding
-          href={siteConfig.pathname}
-          className="font-logo text-indigo-900"
-        >
+      <div className="flex h-16 items-center bg-muted-2 px-5">
+        <Branding href={siteConfig.pathname}>
           {siteConfig.name}
         </Branding>
 
