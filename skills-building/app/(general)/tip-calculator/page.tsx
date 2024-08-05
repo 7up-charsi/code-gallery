@@ -41,7 +41,7 @@ export default function Home() {
 
   return (
     <FormProvider {...formMethods}>
-      <main className="bg-tc-main_bg min-h-screen md:content-center">
+      <main className="grow md:content-center">
         <h1 className="text-tc-dark_tc-grayish_cyan py-10 text-center text-xl font-semibold uppercase tracking-[.5em]">
           <span>spli</span> <br /> <span>tter</span>
         </h1>

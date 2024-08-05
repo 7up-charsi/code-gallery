@@ -32,7 +32,7 @@ export const Result = (props: ResultProps) => {
   const tipAmount = (bill * (tip / 100)) / people;
 
   return (
-    <article className="bg-tc-very_dark_cyan flex flex-col rounded-2xl p-5 pt-10">
+    <article className="flex flex-col rounded-2xl bg-tc-very_dark_cyan p-5 pt-10">
       <dl>
         <div className="flex items-center justify-between">
           <dt>
@@ -40,11 +40,11 @@ export const Result = (props: ResultProps) => {
               Tip Amount
             </span>
             <br />
-            <span className="text-tc-dark_tc-grayish_cyan text-sm font-bold">
+            <span className="text-tc-dark_tc-grayish_cyan text-sm font-bold text-white/70">
               / person
             </span>
           </dt>
-          <dd className="text-tc-strong_cyan text-3xl font-bold">
+          <dd className="text-3xl font-bold text-tc-strong_cyan">
             ${calculate ? tipAmount.toFixed(2) : '0.00'}
           </dd>
         </div>
@@ -55,11 +55,11 @@ export const Result = (props: ResultProps) => {
               Total
             </span>
             <br />
-            <span className="text-tc-dark_tc-grayish_cyan text-sm font-bold">
+            <span className="text-tc-dark_tc-grayish_cyan text-sm font-bold text-white/70">
               / person
             </span>
           </dt>
-          <dd className="text-tc-strong_cyan text-3xl font-bold">
+          <dd className="text-3xl font-bold text-tc-strong_cyan">
             $
             {calculate
               ? (bill / people + tipAmount).toFixed(2)
@@ -73,7 +73,7 @@ export const Result = (props: ResultProps) => {
       <Button
         type="button"
         variant="solid"
-        className="bg-tc-strong_cyan text-tc-very_dark_cyan hover:bg-tc-strong_cyan mt-7 h-12 w-full text-xl font-bold"
+        className="mt-7 h-12 w-full bg-tc-strong_cyan text-xl font-bold text-tc-very_dark_cyan hover:bg-tc-strong_cyan"
         onPress={() => reset()}
         disabled={!calculate}
       >

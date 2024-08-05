@@ -1,3 +1,4 @@
+import { PortfolioHeader } from '@/components/portfolio-header';
 import { createMetadata } from '@/utils/metadata';
 import { Space_Mono } from 'next/font/google';
 import { siteConfig } from './site.config';
@@ -16,8 +17,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className={`${font.className} tip-calculator`}>
-      {children}
+    <div className="tip-calculator flex min-h-screen flex-col gap-5 bg-tc-main_bg">
+      <PortfolioHeader />
+
+      <div className={`${font.className}`}>{children}</div>
     </div>
   );
 }

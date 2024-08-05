@@ -12,7 +12,7 @@ export default function Home() {
   const setOperator = useCalculator((state) => state.setOperator);
 
   return (
-    <div className="flex h-screen w-full items-center justify-center">
+    <div className="flex w-full grow items-center justify-center">
       <div className="flex w-full max-w-xs flex-col gap-2">
         <Header />
         <Screen />
