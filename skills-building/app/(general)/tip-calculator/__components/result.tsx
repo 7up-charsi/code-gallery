@@ -40,7 +40,7 @@ export const Result = (props: ResultProps) => {
               Tip Amount
             </span>
             <br />
-            <span className="text-tc-dark_tc-grayish_cyan text-sm font-bold text-white/70">
+            <span className="text-sm font-bold text-white/70">
               / person
             </span>
           </dt>
@@ -55,7 +55,7 @@ export const Result = (props: ResultProps) => {
               Total
             </span>
             <br />
-            <span className="text-tc-dark_tc-grayish_cyan text-sm font-bold text-white/70">
+            <span className="text-sm font-bold text-white/70">
               / person
             </span>
           </dt>
