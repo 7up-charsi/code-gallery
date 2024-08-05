@@ -23,11 +23,11 @@ import { Cart } from './cart';
 import Link from 'next/link';
 import React from 'react';
 
-interface HeaderProps {}
+interface AppBarProps {}
 
-const displayName = 'Header';
+const displayName = 'AppBar';
 
-export const Header = (props: HeaderProps) => {
+export const AppBar = (props: AppBarProps) => {
   const {} = props;
 
   const isMounted = useIsMounted();
@@ -163,4 +163,4 @@ export const Header = (props: HeaderProps) => {
   );
 };
 
-Header.displayName = displayName;
+AppBar.displayName = displayName;

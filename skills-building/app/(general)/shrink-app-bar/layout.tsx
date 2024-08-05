@@ -11,5 +11,5 @@ export const metadata: Metadata = createMetadata(siteConfig);
 export default function Layout(props: LayoutProps) {
   const { children } = props;
 
-  return <div className="mx-auto max-w-screen-2xl">{children}</div>;
+  return <>{children}</>;
 }

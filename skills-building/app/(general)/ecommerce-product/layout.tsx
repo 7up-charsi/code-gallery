@@ -1,11 +1,8 @@
 import { createMetadata } from '@/utils/metadata';
-import { Header } from './__components/header';
+import { AppBar } from './__components/app-bar';
 import { ThemeProvider } from 'next-themes';
 import { siteConfig } from './site.config';
-import { Inter } from 'next/font/google';
 import type { Metadata } from 'next';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = createMetadata(siteConfig);
 
@@ -15,12 +12,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div
-      style={inter.style}
-      className="mx-auto mt-[104px] max-w-screen-2xl bg-background text-foreground"
-    >
+    <div className="mt-[104px] bg-background text-foreground">
       <ThemeProvider attribute="class">
-        <Header />
+        <AppBar />
         {children}
       </ThemeProvider>
     </div>

@@ -1,5 +1,6 @@
 import { Raleway, Roboto } from 'next/font/google';
 import { createMetadata } from '@/utils/metadata';
+import { AppBar } from './__components/app-bar';
 import { siteConfig } from './site.config';
 import type { Metadata } from 'next';
 
@@ -22,6 +23,8 @@ export default function RootLayout({
 }>) {
   return (
     <div className={`${font.className} ${logoFont.variable}`}>
+      <AppBar />
+
       {children}
     </div>
   );

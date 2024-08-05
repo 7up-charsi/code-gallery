@@ -24,12 +24,12 @@ export const Header = (props: HeaderProps) => {
       <div className="grow"></div>
 
       {isMounted && (
-        <div className="bg-sc-toggle_keypad_bg relative flex h-4 w-12 rounded-full">
+        <div className="relative flex h-4 w-12 rounded-full bg-sc-toggle_keypad_bg">
           <div
             data-theme1={theme === 'sc-theme1'}
             data-theme2={theme === 'sc-theme2'}
             data-theme3={theme === 'sc-theme3'}
-            className="bg-sc-equal_toggleIndicator_bg pointer-events-none absolute top-1/2 aspect-square h-3 -translate-y-1/2 rounded-full data-[theme1=true]:left-[3px] data-[theme2=true]:left-1/2 data-[theme3=true]:right-[3px] data-[theme2=true]:-translate-x-1/2"
+            className="pointer-events-none absolute top-1/2 aspect-square h-3 -translate-y-1/2 rounded-full bg-sc-equal_toggleIndicator_bg data-[theme1=true]:left-[3px] data-[theme2=true]:left-1/2 data-[theme3=true]:right-[3px] data-[theme2=true]:-translate-x-1/2"
           ></div>
 
           <div className="absolute inset-0 flex">

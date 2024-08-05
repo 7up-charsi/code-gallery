@@ -8,11 +8,11 @@ import { siteConfig } from '../site.config';
 import { SearchName } from './search-name';
 import React from 'react';
 
-interface HeaderProps {}
+interface AppBarProps {}
 
-const displayName = 'Header';
+const displayName = 'AppBar';
 
-export const Header = (props: HeaderProps) => {
+export const AppBar = (props: AppBarProps) => {
   const {} = props;
 
   const [isScrolled, setIsScrolled] = React.useState(false);
@@ -91,4 +91,4 @@ export const Header = (props: HeaderProps) => {
   );
 };
 
-Header.displayName = displayName;
+AppBar.displayName = displayName;
