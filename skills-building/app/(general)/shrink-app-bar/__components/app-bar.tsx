@@ -22,7 +22,7 @@ export const AppBar = (props: AppBarProps) => {
         getComputedStyle(headerContentRef.current).height) ??
       '';
 
-    const scrollHandler = () => {
+    const handleScroll = () => {
       const bodyScroll =
         document.body.scrollTop || document.documentElement.scrollTop;
 
@@ -43,12 +43,12 @@ export const AppBar = (props: AppBarProps) => {
       }
     };
 
-    scrollHandler();
+    handleScroll();
 
-    window.addEventListener('scroll', scrollHandler);
+    window.addEventListener('scroll', handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', scrollHandler);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 

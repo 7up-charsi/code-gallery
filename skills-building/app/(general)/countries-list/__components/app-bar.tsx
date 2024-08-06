@@ -23,7 +23,7 @@ export const AppBar = (props: AppBarProps) => {
     let lastScrollDirection = 0; // 1 is down and -1 is up
     let scrollTraveled = 0;
 
-    const scrollHandler = () => {
+    const handleScroll = () => {
       const currentScroll = scrollY;
 
       if (document.body.getBoundingClientRect().top < 0) {
@@ -56,12 +56,12 @@ export const AppBar = (props: AppBarProps) => {
       lastScrollDirection = newScrollDirection;
     };
 
-    scrollHandler();
+    handleScroll();
 
-    window.addEventListener('scroll', scrollHandler);
+    window.addEventListener('scroll', handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', scrollHandler);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 

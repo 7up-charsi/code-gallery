@@ -24,7 +24,7 @@ export const AppBar = (props: AppBarProps) => {
     let lastScrollDirection = 0; // 1 is down and -1 is up scroll
     let scrollTraveled = 0;
 
-    const handler = () => {
+    const handleScroll = () => {
       const currentScroll = window.scrollY;
       const newScrollDirection =
         currentScroll > lastScrolled ? 1 : -1;
@@ -56,10 +56,12 @@ export const AppBar = (props: AppBarProps) => {
       lastScrolled = currentScroll;
     };
 
-    window.addEventListener('scroll', handler);
+    handleScroll();
+
+    window.addEventListener('scroll', handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handler);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 

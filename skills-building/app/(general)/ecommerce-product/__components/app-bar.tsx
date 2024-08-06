@@ -38,7 +38,7 @@ export const AppBar = (props: AppBarProps) => {
   const [isScrolled, setIsScrolled] = React.useState(false);
 
   React.useEffect(() => {
-    const scrollHandler = () => {
+    const handleScroll = () => {
       const currentScroll = scrollY;
 
       const bodyScroll =
@@ -55,12 +55,12 @@ export const AppBar = (props: AppBarProps) => {
       }
     };
 
-    scrollHandler();
+    handleScroll();
 
-    window.addEventListener('scroll', scrollHandler);
+    window.addEventListener('scroll', handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', scrollHandler);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
