@@ -1,0 +1,66 @@
+'use client';
+
+import { PortfolioHeader } from '@/components/portfolio-header';
+import { Branding } from '@/components/branding';
+import { siteConfig } from '../site.config';
+import React from 'react';
+
+interface AppBarProps {}
+
+const displayName = 'AppBar';
+
+const hideThreshold = 100;
+const showThreshold = 30;
+
+export const AppBar = (props: AppBarProps) => {
+  const {} = props;
+
+  const [isScrolled, setIsScrolled] = React.useState(false);
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const bodyScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+
+      if (bodyScroll) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    handleScroll();
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  return (
+    <header
+      data-scrolled={isScrolled}
+      className="sticky left-0 right-0 top-0 mx-auto max-w-screen-2xl transition-transform data-[scrolled=true]:shadow-md"
+    >
+      <PortfolioHeader />
+
+      <div className="flex h-16 items-center bg-muted-2 px-5">
+        <Branding href={siteConfig.pathname}>
+          {siteConfig.name}
+        </Branding>
+
+        <div className="grow"></div>
+
+        {Array.from({ length: 3 }).map((_, i) => (
+          <div
+            key={i}
+            className="ml-2 h-7 w-10 rounded bg-white/40"
+          ></div>
+        ))}
+      </div>
+    </header>
+  );
+};
+
+AppBar.displayName = displayName;
