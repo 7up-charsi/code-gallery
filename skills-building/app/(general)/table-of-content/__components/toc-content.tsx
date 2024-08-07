@@ -75,7 +75,7 @@ export const TocContent = (props: TocContentProps) => {
   }, []);
 
   return (
-    <ol className="mt-2 space-y-2">
+    <ol>
       {headings.map(({ id, dataset, innerText }) => {
         const isActive = activeHeadings.includes(id);
 
@@ -83,16 +83,16 @@ export const TocContent = (props: TocContentProps) => {
           <li
             key={id}
             data-depth={dataset.depth}
-            className="relative ml-2 flex items-center data-[depth=3]:ml-5"
+            className="relative data-[depth=3]:ml-5 md:pl-3"
           >
             {!isActive ? null : (
-              <div className="absolute -left-3 size-[6px] rounded-full bg-primary-9 max-md:hidden"></div>
+              <div className="absolute left-0 top-1/2 size-[6px] -translate-y-1/2 rounded-full bg-primary-9 max-md:hidden"></div>
             )}
 
             <Link
               href={`${siteConfig.pathname}#${id}`}
               data-active={isActive}
-              className="text-sm max-md:text-base max-md:text-muted-12 md:data-[active=true]:text-muted-12"
+              className="flex h-9 items-center rounded px-2 text-sm hover:bg-muted-4 active:bg-muted-5 max-md:px-4 max-md:text-base max-md:text-muted-12 md:h-7 md:data-[active=true]:text-muted-12"
             >
               {innerText}
             </Link>

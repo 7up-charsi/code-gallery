@@ -33,9 +33,9 @@ export default function Home() {
 
           <DrawerContent
             placement="bottom"
-            className="flex flex-col overflow-hidden rounded-t-2xl p-5 md:hidden"
+            className="flex max-h-[calc(100vh-100px)] flex-col overflow-hidden rounded-t-2xl md:hidden"
           >
-            <div className="flex items-center justify-between gap-2">
+            <div className="flex items-center justify-between gap-2 border-b border-muted-6 px-5 py-3">
               <h2 className="text-muted-12">Table of Content</h2>
 
               <DrawerClose>
@@ -52,7 +52,7 @@ export default function Home() {
               </DrawerClose>
             </div>
 
-            <div className="grow overflow-auto pl-2">
+            <div className="grow overflow-auto px-5 py-3">
               <TocContent />
             </div>
           </DrawerContent>
@@ -175,10 +175,10 @@ export default function Home() {
         </div>
       </main>
 
-      <aside className="sticky top-[104px] flex h-[calc(100vh-40px-64px)] flex-col border-l border-muted-6 p-5">
+      <aside className="sticky top-[104px] flex h-[calc(100vh-40px-64px)] flex-col border-l border-muted-6 p-5 max-md:hidden">
         <h2 className="text-muted-12">Table of Content</h2>
 
-        <div className="grow overflow-auto pl-2">
+        <div className="grow overflow-auto">
           <TocContent />
         </div>
       </aside>
