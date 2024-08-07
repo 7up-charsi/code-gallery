@@ -41,7 +41,7 @@ export const AppBar = (props: AppBarProps) => {
   return (
     <header
       data-scrolled={isScrolled}
-      className="sticky left-0 right-0 top-0 mx-auto max-w-screen-2xl transition-transform data-[scrolled=true]:shadow-md"
+      className="sticky left-0 right-0 top-0 z-50 mx-auto max-w-screen-2xl transition-transform data-[scrolled=true]:shadow-md"
     >
       <PortfolioHeader />
 
