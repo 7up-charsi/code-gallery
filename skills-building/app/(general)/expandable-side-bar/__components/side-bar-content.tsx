@@ -1,22 +1,21 @@
 import { siteConfig } from '../site.config';
 import { HomeIcon } from 'lucide-react';
 import { NavLink } from './nav-link';
-import Link from 'next/link';
 import React from 'react';
 
 interface SideBarContentProps {
-  expanded: boolean;
+  isExpanded: boolean;
 }
 
 const displayName = 'SideBarContent';
 
 export const SideBarContent = (props: SideBarContentProps) => {
-  const { expanded } = props;
+  const { isExpanded } = props;
 
   return (
     <nav
-      data-expanded={expanded}
-      className="grid grid-cols-1 gap-2 px-5 data-[expanded=true]:grid-cols-[50px_1fr]"
+      data-expanded={isExpanded}
+      className="grid grid-cols-[48px] gap-3 px-5 data-[expanded=true]:grid-cols-[48px_1fr] md:px-3 md:py-3"
     >
       {[
         { label: 'home', href: '/', icon: <HomeIcon /> },
@@ -29,10 +28,16 @@ export const SideBarContent = (props: SideBarContentProps) => {
         <NavLink
           key={i}
           href={`${siteConfig.pathname}${href}`}
-          className="col-span-2 grid h-12 w-full grid-cols-subgrid items-center whitespace-nowrap rounded border border-transparent px-3 capitalize hover:bg-muted-3 active:bg-muted-4 data-[active=true]:border data-[active=true]:border-primary-8 data-[active=true]:bg-primary-3 data-[active=true]:text-primary-11"
+          data-expanded={isExpanded}
+          className="grid h-12 w-full grid-cols-subgrid items-center whitespace-nowrap rounded border border-transparent capitalize outline-none ring-focus hover:bg-muted-3 focus-visible:ring-2 active:bg-muted-4 data-[expanded=true]:col-span-2 data-[active=true]:border-primary-8 data-[active=true]:bg-primary-3 data-[active=true]:text-primary-11"
         >
-          {icon}
-          {expanded && <span>{label}</span>}
+          <span
+            data-expanded={isExpanded}
+            className="mx-auto border-transparent data-[expanded=true]:border-r"
+          >
+            {icon}
+          </span>
+          {isExpanded && <span>{label}</span>}
         </NavLink>
       ))}
     </nav>

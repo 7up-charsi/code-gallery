@@ -1,3 +1,5 @@
+import { SideBar } from './__components/side-bar';
+
 export default function Home() {
   return (
     <main className="p-5">

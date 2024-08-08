@@ -1,3 +1,8 @@
+'use client';
+
+import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
+import { SideBarContent } from './side-bar-content';
+import { Button } from '@typeweave/react/button';
 import React from 'react';
 
 interface SideBarProps {}
@@ -7,7 +12,35 @@ const displayName = 'SideBar';
 export const SideBar = (props: SideBarProps) => {
   const {} = props;
 
-  return <div>SideBar</div>;
+  const [isExpanded, setIsExpanded] = React.useState(false);
+
+  return (
+    <aside
+      data-expanded={isExpanded}
+      className="w-[72px] data-[expanded=true]:w-[230px]"
+    >
+      <div
+        data-expanded={isExpanded}
+        className="fixed left-0 top-[104px] h-[calc(100vh-108px)] border-r border-muted-6 data-[expanded=true]:w-[230px]"
+      >
+        <Button
+          isIconOnly
+          aria-label="shrink side bar"
+          size="sm"
+          color="primary"
+          variant="solid"
+          onPress={() => {
+            setIsExpanded((prev) => !prev);
+          }}
+          className="absolute right-0 top-1/2 size-5 -translate-y-1/2 translate-x-1/2 rounded-full"
+        >
+          {isExpanded ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+        </Button>
+
+        <SideBarContent isExpanded={isExpanded} />
+      </div>
+    </aside>
+  );
 };
 
 SideBar.displayName = displayName;

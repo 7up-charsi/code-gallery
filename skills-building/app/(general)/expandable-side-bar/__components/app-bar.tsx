@@ -92,7 +92,7 @@ export const AppBar = (props: AppBarProps) => {
                 </DrawerClose>
               </div>
 
-              <SideBarContent expanded />
+              <SideBarContent isExpanded />
             </DrawerContent>
           </DrawerPortal>
         </DrawerRoot>
