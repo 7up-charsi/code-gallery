@@ -2,19 +2,16 @@
   "name": "code-gallery",
   "private": true,
   "scripts": {
-    "build": "turbo build",
-    "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "clean:node-modules": "pnpm rimraf ./**/node_modules -g && rm -rf ./node_modules"
   },
   "devDependencies": {
     "rimraf": "^6.0.1",
-    "turbo": "^2.0.9"
+    "turbo": "^2.0.12"
   },
   "packageManager": "pnpm@9.6.0",
   "engines": {
     "node": ">=20"
   }
 }
-
