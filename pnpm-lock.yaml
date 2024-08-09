@@ -31,8 +31,8 @@ importers:
         specifier: workspace:*
         version: link:../packages/meta
       '@typeweave/react':
-        specifier: ^4.0.13
-        version: 4.0.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.9)
+        specifier: ^4.1.0
+        version: 4.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.9)
       embla-carousel:
         specifier: ^8.1.8
         version: 8.1.8
@@ -92,8 +92,8 @@ importers:
         specifier: ^0.6.3
         version: 0.6.3
       '@types/node':
-        specifier: ^20.14.14
-        version: 20.14.14
+        specifier: ^20.14.15
+        version: 20.14.15
       '@types/react':
         specifier: ^18.3.3
         version: 18.3.3
@@ -125,8 +125,8 @@ importers:
         specifier: ^1.8.6
         version: 1.8.6(typescript@5.5.4)
       prettier-plugin-tailwindcss:
-        specifier: ^0.6.5
-        version: 0.6.5(prettier-plugin-sort-imports@1.8.6(typescript@5.5.4))(prettier@3.3.3)
+        specifier: ^0.6.6
+        version: 0.6.6(prettier-plugin-sort-imports@1.8.6(typescript@5.5.4))(prettier@3.3.3)
       tailwindcss:
         specifier: ^3.4.9
         version: 3.4.9
@@ -716,6 +716,9 @@ packages:
   '@types/node@20.14.14':
     resolution: {integrity: sha512-d64f00982fS9YoOgJkAMolK7MN8Iq3TDdVjchbYHdEmjth/DHowx82GnoA+tVUAN+7vxfYUgAzi+JXbKNd2SDQ==}
 
+  '@types/node@20.14.15':
+    resolution: {integrity: sha512-Fz1xDMCF/B00/tYSVMlmK7hVeLh7jE5f3B7X1/hmV0MJBwE27KlS7EvD/Yp+z1lm8mVhwV5w+n8jOZG8AfTlKw==}
+
   '@types/prop-types@15.7.12':
     resolution: {integrity: sha512-5zvhXYtRNRluoE/jAp4GVsSduVUzNWKkOZrCDBWYtE7biZywwdC2AcEzg+cSMLFRfVgeAFqpfNabiPjxFddV1Q==}
 
@@ -775,8 +778,8 @@ packages:
       react: '>=18'
       react-dom: '>=18'
 
-  '@typeweave/react@4.0.13':
-    resolution: {integrity: sha512-OCgA1+Js5v16gln6H28BSzFZ+DgYFdSM52ifEEru6PT/yVqWk8CJilWBhabgLEDeJuVNkupV7ORjeXzMbBYTNg==}
+  '@typeweave/react@4.1.0':
+    resolution: {integrity: sha512-e9syhbKsZ7V7eMhgUN+XTprsYSVEBoALXji+Iryeoyn7ZG0xgc5W+MIzGH2lxd7yaoJJp4SVmQ0v9Jq2qUoiMg==}
     peerDependencies:
       react: '>=18'
       react-dom: '>=18'
@@ -2007,6 +2010,61 @@ packages:
       prettier-plugin-svelte:
         optional: true
 
+  prettier-plugin-tailwindcss@0.6.6:
+    resolution: {integrity: sha512-OPva5S7WAsPLEsOuOWXATi13QrCKACCiIonFgIR6V4lYv4QLp++UXVhZSzRbZxXGimkQtQT86CC6fQqTOybGng==}
+    engines: {node: '>=14.21.3'}
+    peerDependencies:
+      '@ianvs/prettier-plugin-sort-imports': '*'
+      '@prettier/plugin-pug': '*'
+      '@shopify/prettier-plugin-liquid': '*'
+      '@trivago/prettier-plugin-sort-imports': '*'
+      '@zackad/prettier-plugin-twig-melody': '*'
+      prettier: ^3.0
+      prettier-plugin-astro: '*'
+      prettier-plugin-css-order: '*'
+      prettier-plugin-import-sort: '*'
+      prettier-plugin-jsdoc: '*'
+      prettier-plugin-marko: '*'
+      prettier-plugin-multiline-arrays: '*'
+      prettier-plugin-organize-attributes: '*'
+      prettier-plugin-organize-imports: '*'
+      prettier-plugin-sort-imports: '*'
+      prettier-plugin-style-order: '*'
+      prettier-plugin-svelte: '*'
+    peerDependenciesMeta:
+      '@ianvs/prettier-plugin-sort-imports':
+        optional: true
+      '@prettier/plugin-pug':
+        optional: true
+      '@shopify/prettier-plugin-liquid':
+        optional: true
+      '@trivago/prettier-plugin-sort-imports':
+        optional: true
+      '@zackad/prettier-plugin-twig-melody':
+        optional: true
+      prettier-plugin-astro:
+        optional: true
+      prettier-plugin-css-order:
+        optional: true
+      prettier-plugin-import-sort:
+        optional: true
+      prettier-plugin-jsdoc:
+        optional: true
+      prettier-plugin-marko:
+        optional: true
+      prettier-plugin-multiline-arrays:
+        optional: true
+      prettier-plugin-organize-attributes:
+        optional: true
+      prettier-plugin-organize-imports:
+        optional: true
+      prettier-plugin-sort-imports:
+        optional: true
+      prettier-plugin-style-order:
+        optional: true
+      prettier-plugin-svelte:
+        optional: true
+
   prettier@3.2.5:
     resolution: {integrity: sha512-3/GWa9aOC0YeD7LUfvOG2NiDyhOWRvt1k+rcKhOuYnMY24iiCphgneUfJDyFXd6rZCAnuLBv6UeAULtrhT/F4A==}
     engines: {node: '>=14'}
@@ -2840,6 +2898,10 @@ snapshots:
     dependencies:
       undici-types: 5.26.5
 
+  '@types/node@20.14.15':
+    dependencies:
+      undici-types: 5.26.5
+
   '@types/prop-types@15.7.12': {}
 
   '@types/react-dom@18.3.0':
@@ -2918,7 +2980,7 @@ snapshots:
     transitivePeerDependencies:
       - tailwindcss
 
-  '@typeweave/react@4.0.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.9)':
+  '@typeweave/react@4.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.9)':
     dependencies:
       '@floating-ui/react-dom': 2.1.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@typeweave/react-utils': 1.1.5(react@18.3.1)
@@ -4283,6 +4345,12 @@ snapshots:
       typescript: 5.5.4
 
   prettier-plugin-tailwindcss@0.6.5(prettier-plugin-sort-imports@1.8.6(typescript@5.5.4))(prettier@3.3.3):
+    dependencies:
+      prettier: 3.3.3
+    optionalDependencies:
+      prettier-plugin-sort-imports: 1.8.6(typescript@5.5.4)
+
+  prettier-plugin-tailwindcss@0.6.6(prettier-plugin-sort-imports@1.8.6(typescript@5.5.4))(prettier@3.3.3):
     dependencies:
       prettier: 3.3.3
     optionalDependencies:
