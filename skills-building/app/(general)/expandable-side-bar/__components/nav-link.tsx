@@ -12,13 +12,17 @@ interface NavLinkProps extends LinkProps {
 
 const displayName = 'NavLink';
 
-export const NavLink = (props: NavLinkProps) => {
+export const NavLink = React.forwardRef<
+  HTMLAnchorElement,
+  NavLinkProps
+>((props, forwardedRef) => {
   const { href, ...restProps } = props;
 
   const pathname = usePathname();
 
   return (
     <Link
+      ref={forwardedRef}
       {...restProps}
       href={href}
       data-active={
@@ -26,6 +30,6 @@ export const NavLink = (props: NavLinkProps) => {
       }
     />
   );
-};
+});
 
 NavLink.displayName = displayName;

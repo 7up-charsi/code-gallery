@@ -6,6 +6,12 @@ import {
   UserCogIcon,
   UsersIcon,
 } from 'lucide-react';
+import {
+  TooltipContent,
+  TooltipPortal,
+  TooltipRoot,
+  TooltipTrigger,
+} from '@typeweave/react/tooltip';
 import { siteConfig } from '../site.config';
 import { NavLink } from './nav-link';
 import React from 'react';
@@ -21,6 +27,7 @@ export const SideBarContent = (props: SideBarContentProps) => {
 
   return (
     <nav
+      id="side-bar-nav"
       data-expanded={isExpanded}
       className="flex flex-col gap-3 px-5 md:px-3 md:py-3"
     >
@@ -37,15 +44,28 @@ export const SideBarContent = (props: SideBarContentProps) => {
 
         { label: 'settings', href: '/page5', icon: <UserCogIcon /> },
       ].map(({ icon, label, href }, i) => (
-        <NavLink
-          key={i}
-          href={`${siteConfig.pathname}${href}`}
-          data-expanded={isExpanded}
-          className="grid h-12 w-full grid-flow-col grid-cols-[46px] items-center overflow-hidden whitespace-nowrap rounded border border-transparent capitalize outline-none ring-focus hover:bg-muted-3 focus-visible:ring-2 active:bg-muted-4 data-[expanded=true]:grid-cols-[46px_1fr] data-[active=true]:border-primary-8 data-[active=true]:bg-primary-3 data-[active=true]:text-primary-11"
-        >
-          <span className="mx-auto">{icon}</span>
-          <span>{label}</span>
-        </NavLink>
+        <TooltipRoot key={i} disabled={isExpanded}>
+          <TooltipTrigger>
+            <NavLink
+              href={`${siteConfig.pathname}${href}`}
+              data-expanded={isExpanded}
+              className="grid h-12 w-full grid-flow-col grid-cols-[46px] items-center overflow-hidden whitespace-nowrap rounded border border-transparent capitalize outline-none ring-focus hover:bg-muted-3 focus-visible:ring-2 active:bg-muted-4 data-[expanded=true]:grid-cols-[46px_1fr] data-[active=true]:border-primary-8 data-[active=true]:bg-primary-3 data-[active=true]:text-primary-11"
+            >
+              <span className="mx-auto">{icon}</span>
+              <span>{label}</span>
+            </NavLink>
+          </TooltipTrigger>
+
+          <TooltipPortal>
+            <TooltipContent
+              placement="right"
+              mainOffset={20}
+              className="bg-black capitalize text-white"
+            >
+              {label}
+            </TooltipContent>
+          </TooltipPortal>
+        </TooltipRoot>
       ))}
     </nav>
   );

@@ -14,10 +14,40 @@ export const SideBar = (props: SideBarProps) => {
 
   const [isExpanded, setIsExpanded] = React.useState(false);
 
+  React.useEffect(() => {
+    const sideBarLink = document.querySelector(
+      '#side-bar-nav a',
+    ) as HTMLAnchorElement | null;
+
+    const handleKeydown = (e: KeyboardEvent) => {
+      if (e.repeat) return;
+
+      if (e.ctrlKey && e.key === 'm') {
+        e.preventDefault();
+
+        setIsExpanded((prev) => {
+          const isOpen = !prev;
+
+          if (isOpen) {
+            sideBarLink?.focus();
+          }
+
+          return isOpen;
+        });
+      }
+    };
+
+    document.addEventListener('keydown', handleKeydown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeydown);
+    };
+  }, []);
+
   return (
     <aside
       data-expanded={isExpanded}
-      className="sticky left-0 top-[104px] h-[calc(100vh-104px)] w-[73px] border-r border-muted-6 transition-[width] data-[expanded=true]:w-[230px]"
+      className="sticky left-0 top-[104px] h-[calc(100vh-104px)] w-[73px] border-r border-muted-6 transition-[width] data-[expanded=true]:w-[230px] max-md:hidden"
     >
       <Button
         isIconOnly

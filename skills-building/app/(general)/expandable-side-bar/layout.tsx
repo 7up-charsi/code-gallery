@@ -15,7 +15,7 @@ export default function RootLayout({
     <>
       <AppBar />
 
-      <div className="grid grid-cols-[auto_1fr] max-md:hidden">
+      <div className="grid grid-cols-[auto_1fr] max-md:grid-cols-1">
         <SideBar />
 
         {children}
