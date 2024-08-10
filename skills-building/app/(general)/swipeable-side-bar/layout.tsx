@@ -15,8 +15,6 @@ export default function RootLayout({
     <>
       <AppBar />
 
-      <SideBar />
-
       {children}
     </>
   );

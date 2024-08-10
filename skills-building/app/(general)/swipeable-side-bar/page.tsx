@@ -1,6 +1,6 @@
 export default function Home() {
   return (
-    <main className="p-5">
+    <main className="touch-pan-y p-5 md:px-10">
       {Array.from({ length: 10 }).map((_, i) => (
         <div key={i} className="my-5 space-y-3 first:mt-0 last:mb-0">
           {Array.from({
