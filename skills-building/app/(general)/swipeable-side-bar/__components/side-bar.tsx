@@ -45,7 +45,12 @@ export const SideBar = (props: SideBarProps) => {
 
   React.useEffect(() => {
     const handlePointerDown = (e: PointerEvent) => {
-      if (openRef.current || pointerIdRef.current) return;
+      if (
+        window.innerWidth > 1024 ||
+        openRef.current ||
+        pointerIdRef.current
+      )
+        return;
 
       if (e.clientX < 100) {
         e.preventDefault();
@@ -58,6 +63,7 @@ export const SideBar = (props: SideBarProps) => {
 
     const handlePointerUp = (e: PointerEvent) => {
       if (
+        window.innerWidth > 1024 ||
         !isPanningStartRef.current ||
         openRef.current ||
         e.pointerId !== pointerIdRef.current
@@ -91,7 +97,11 @@ export const SideBar = (props: SideBarProps) => {
     };
 
     const handlePointerMove = (e: PointerEvent) => {
-      if (openRef.current || e.pointerId !== pointerIdRef.current)
+      if (
+        window.innerWidth > 1024 ||
+        openRef.current ||
+        e.pointerId !== pointerIdRef.current
+      )
         return;
 
       if (isPanningStartRef.current && panningStartPointRef.current) {
