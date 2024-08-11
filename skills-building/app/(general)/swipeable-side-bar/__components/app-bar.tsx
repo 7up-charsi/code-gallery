@@ -24,6 +24,7 @@ export const AppBar = (props: AppBarProps) => {
   const isPanningStartRef = React.useRef(false);
   const panningStartPointRef = React.useRef(0);
   const panningStartTimeRef = React.useRef(0);
+  const openRef = React.useRef(false);
 
   const isMounted = useIsMounted();
 
@@ -33,6 +34,16 @@ export const AppBar = (props: AppBarProps) => {
   const x = useMotionValue(-280);
   const overlayOpacity = useTransform(x, [-280, 0], [0, 1]);
   const display = useTransform(x, [-280, 0], ['none', 'block']);
+
+  const handleOpen = React.useCallback(() => {
+    openRef.current = true;
+    setOpen(true);
+  }, []);
+
+  const handleClose = () => {
+    openRef.current = false;
+    setOpen(false);
+  };
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -57,6 +68,8 @@ export const AppBar = (props: AppBarProps) => {
 
   React.useEffect(() => {
     const handlePointerDown = (e: PointerEvent) => {
+      if (openRef.current) return;
+
       if (e.clientX < 100) {
         e.preventDefault();
         panningStartPointRef.current = e.clientX;
@@ -81,7 +94,7 @@ export const AppBar = (props: AppBarProps) => {
       const currX = x.get();
 
       if (isSwipe) {
-        setOpen(true);
+        handleOpen();
         return;
       }
 
@@ -89,7 +102,7 @@ export const AppBar = (props: AppBarProps) => {
         x.set(-280);
         return;
       } else {
-        setOpen(true);
+        handleOpen();
       }
     };
 
@@ -135,9 +148,7 @@ export const AppBar = (props: AppBarProps) => {
           aria-label="open menu"
           variant="text"
           className="text-2xl lg:hidden"
-          onPress={() => {
-            setOpen(true);
-          }}
+          onPress={handleOpen}
         >
           <MenuIcon />
         </Button>
@@ -161,7 +172,7 @@ export const AppBar = (props: AppBarProps) => {
             <PointerEvents
               onPress={(e) => {
                 if (e.currentTarget === e.target) {
-                  setOpen(false);
+                  handleClose();
                 }
               }}
             >
@@ -192,9 +203,7 @@ export const AppBar = (props: AppBarProps) => {
                   aria-label="close menu"
                   variant="text"
                   color="danger"
-                  onPress={() => {
-                    setOpen(false);
-                  }}
+                  onPress={handleClose}
                 >
                   <XIcon />
                 </Button>
