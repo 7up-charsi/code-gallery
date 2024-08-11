@@ -89,7 +89,7 @@ export const AppBar = (props: AppBarProps) => {
 
       const delta = e.clientX - start;
 
-      const isSwipe = delta >= 120 && time < 1000;
+      const isSwipe = delta >= 80 && time < 1000;
 
       const currX = x.get();
 
@@ -98,7 +98,7 @@ export const AppBar = (props: AppBarProps) => {
         return;
       }
 
-      if (currX < -140) {
+      if (currX < -200) {
         x.set(-280);
         return;
       } else {
@@ -118,14 +118,26 @@ export const AppBar = (props: AppBarProps) => {
       }
     };
 
+    const handlePointerCancel = (e: PointerEvent) => {
+      isPanningStartRef.current = false;
+      panningStartPointRef.current = 0;
+      panningStartTimeRef.current = 0;
+      openRef.current = false;
+    };
+
     document.addEventListener('pointerdown', handlePointerDown);
     document.addEventListener('pointerup', handlePointerUp);
     document.addEventListener('pointermove', handlePointerMove);
+    document.addEventListener('pointercancel', handlePointerCancel);
 
     return () => {
       document.removeEventListener('pointerdown', handlePointerDown);
       document.removeEventListener('pointerup', handlePointerUp);
       document.removeEventListener('pointermove', handlePointerMove);
+      document.removeEventListener(
+        'pointercancel',
+        handlePointerCancel,
+      );
     };
   }, [handleOpen, x]);
 
