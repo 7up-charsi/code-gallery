@@ -127,7 +127,7 @@ export const AppBar = (props: AppBarProps) => {
       document.removeEventListener('pointerup', handlePointerUp);
       document.removeEventListener('pointermove', handlePointerMove);
     };
-  }, [x]);
+  }, [handleOpen, x]);
 
   return (
     <header
