@@ -30,8 +30,9 @@ export const AppBar = (props: AppBarProps) => {
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [open, setOpen] = React.useState(false);
 
-  const x = useMotionValue(0);
+  const x = useMotionValue(-280);
   const overlayOpacity = useTransform(x, [-280, 0], [0, 1]);
+  const display = useTransform(x, [-280, 0], ['none', 'block']);
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -65,6 +66,8 @@ export const AppBar = (props: AppBarProps) => {
     };
 
     const handlePointerUp = (e: PointerEvent) => {
+      if (!isPanningStartRef.current) return;
+
       isPanningStartRef.current = false;
       panningStartPointRef.current = 0;
 
@@ -78,7 +81,7 @@ export const AppBar = (props: AppBarProps) => {
       const currX = x.get();
 
       if (isSwipe) {
-        x.set(0);
+        setOpen(true);
         return;
       }
 
@@ -86,7 +89,7 @@ export const AppBar = (props: AppBarProps) => {
         x.set(-280);
         return;
       } else {
-        x.set(0);
+        setOpen(true);
       }
     };
 
@@ -129,7 +132,7 @@ export const AppBar = (props: AppBarProps) => {
 
         <Button
           isIconOnly
-          aria-label="menu"
+          aria-label="open menu"
           variant="text"
           className="text-2xl lg:hidden"
           onPress={() => {
@@ -163,17 +166,21 @@ export const AppBar = (props: AppBarProps) => {
               }}
             >
               <motion.div
-                data-open={open}
-                style={{ opacity: overlayOpacity }}
-                initial={{ opacity: 0 }}
+                style={{ opacity: overlayOpacity, display }}
+                transition={{ duration: 0.2, type: 'tween' }}
                 className="fixed inset-0 z-40 bg-overlay lg:hidden"
               />
             </PointerEvents>
 
             <motion.div
-              initial={{ x: -280 }}
-              style={{ x }}
-              className="fixed left-0 top-0 z-50 h-screen w-[280px] bg-white data-[open=false]:hidden lg:hidden"
+              animate={open ? 'show' : 'hide'}
+              variants={{
+                show: { x: 0, display: 'block' },
+                hide: { x: -280, display: 'none' },
+              }}
+              transition={{ duration: 0.2, type: 'tween' }}
+              style={{ x, display }}
+              className="fixed left-0 top-0 z-50 h-screen w-[280px] bg-white lg:hidden"
             >
               <div className="flex h-16 items-center justify-between px-5">
                 <Branding href={siteConfig.pathname}>
@@ -182,7 +189,7 @@ export const AppBar = (props: AppBarProps) => {
 
                 <Button
                   isIconOnly
-                  aria-label="menu"
+                  aria-label="close menu"
                   variant="text"
                   color="danger"
                   onPress={() => {
