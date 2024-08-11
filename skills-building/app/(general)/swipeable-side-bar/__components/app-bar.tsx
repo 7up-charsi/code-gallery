@@ -25,6 +25,7 @@ export const AppBar = (props: AppBarProps) => {
   const panningStartPointRef = React.useRef(0);
   const panningStartTimeRef = React.useRef(0);
   const openRef = React.useRef(false);
+  const pointerIdRef = React.useRef<number | null>(null);
 
   const isMounted = useIsMounted();
 
@@ -41,6 +42,7 @@ export const AppBar = (props: AppBarProps) => {
   }, []);
 
   const handleClose = () => {
+    // pointerIdRef.current = null;
     openRef.current = false;
     setOpen(false);
   };
@@ -68,10 +70,11 @@ export const AppBar = (props: AppBarProps) => {
 
   React.useEffect(() => {
     const handlePointerDown = (e: PointerEvent) => {
-      if (openRef.current) return;
+      if (openRef.current || pointerIdRef.current) return;
 
       if (e.clientX < 100) {
         e.preventDefault();
+        pointerIdRef.current = e.pointerId;
         panningStartPointRef.current = e.clientX;
         isPanningStartRef.current = true;
         panningStartTimeRef.current = e.timeStamp;
@@ -79,8 +82,14 @@ export const AppBar = (props: AppBarProps) => {
     };
 
     const handlePointerUp = (e: PointerEvent) => {
-      if (!isPanningStartRef.current) return;
+      if (
+        !isPanningStartRef.current ||
+        openRef.current ||
+        e.pointerId !== pointerIdRef.current
+      )
+        return;
 
+      pointerIdRef.current = null;
       isPanningStartRef.current = false;
       panningStartPointRef.current = 0;
 
@@ -107,6 +116,9 @@ export const AppBar = (props: AppBarProps) => {
     };
 
     const handlePointerMove = (e: PointerEvent) => {
+      if (openRef.current || e.pointerId !== pointerIdRef.current)
+        return;
+
       if (isPanningStartRef.current && panningStartPointRef.current) {
         const start = panningStartPointRef.current;
 
@@ -118,11 +130,12 @@ export const AppBar = (props: AppBarProps) => {
       }
     };
 
-    const handlePointerCancel = (e: PointerEvent) => {
+    const handlePointerCancel = () => {
       isPanningStartRef.current = false;
       panningStartPointRef.current = 0;
       panningStartTimeRef.current = 0;
       openRef.current = false;
+      pointerIdRef.current = null;
     };
 
     document.addEventListener('pointerdown', handlePointerDown);
