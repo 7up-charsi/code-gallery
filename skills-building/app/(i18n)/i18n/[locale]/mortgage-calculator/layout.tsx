@@ -14,12 +14,10 @@ const RootLayout = (props: RootLayoutProps) => {
   const { children } = props;
 
   return (
-    <ThemeProvider attribute="class">
-      <div className="mx-auto md:max-w-screen-md">
-        <AppBar />
-        {children}
-      </div>
-    </ThemeProvider>
+    <>
+      <AppBar />
+      {children}
+    </>
   );
 };
 

@@ -17,12 +17,8 @@ export default function Layout({
 }>) {
   return (
     <div style={font.style} className="bg-background text-foreground">
-      <ThemeProvider attribute="class">
-        <div className="mx-auto max-w-screen-md">
-          <Header />
-          {children}
-        </div>
-      </ThemeProvider>
+      <Header />
+      {children}
 
       <ToastContainer
         position="bottom-center"

@@ -70,7 +70,7 @@ export const Header = (props: HeaderProps) => {
               <Button
                 isIconOnly
                 aria-label="menu"
-                className="md:hidden"
+                className="text-2xl md:hidden"
               >
                 <MenuIcon />
               </Button>

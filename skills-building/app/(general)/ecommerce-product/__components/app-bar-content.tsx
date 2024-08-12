@@ -17,7 +17,7 @@ export const AppBarContent = (props: AppBarContentProps) => {
     <>
       <PortfolioHeader />
 
-      <div className="flex h-16 items-center gap-5 border-b border-muted-6 px-5 md:px-10">
+      <div className="flex h-16 items-center gap-3 border-b border-muted-6 px-5 md:px-10">
         <Branding href={siteConfig.pathname}>
           {siteConfig.name}
         </Branding>

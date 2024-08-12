@@ -1,4 +1,5 @@
 import { rootMetadata } from '@/config/root-meta';
+import { ThemeProvider } from 'next-themes';
 import { Inter } from 'next/font/google';
 import type { Metadata } from 'next';
 import '@/styles/globals.css';
@@ -15,11 +16,11 @@ export default function RootLayout({
   params: { locale: string };
 }>) {
   return (
-    <html lang={locale}>
+    <html lang={locale} dir="ltr">
       <body
-        className={`${inter.className} bg-background text-foreground`}
+        className={`${inter.className} mx-auto bg-background text-foreground md:max-w-screen-md`}
       >
-        {children}
+        <ThemeProvider attribute="class">{children}</ThemeProvider>
       </body>
     </html>
   );

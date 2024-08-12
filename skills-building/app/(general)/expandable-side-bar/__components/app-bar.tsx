@@ -17,7 +17,7 @@ export const AppBar = (props: AppBarProps) => {
   return (
     <header
       data-scrolled={isAtTop === null ? false : !isAtTop}
-      className="sticky left-0 right-0 top-0 transition-transform data-[scrolled=true]:shadow-md"
+      className="sticky -top-10 left-0 right-0 transition-transform data-[scrolled=true]:shadow-md md:top-0"
     >
       {children}
     </header>

@@ -32,26 +32,44 @@ export const SideBarContent = (props: SideBarContentProps) => {
       className="flex flex-col gap-3 px-5 md:px-3 md:py-3"
     >
       {[
-        { label: 'home', href: '/', icon: <HomeIcon /> },
-        { label: 'users', href: '/page1', icon: <UsersIcon /> },
+        { label: 'home', href: '/', icon: <HomeIcon size={20} /> },
+        {
+          label: 'users',
+          href: '/page1',
+          icon: <UsersIcon size={20} />,
+        },
         {
           label: 'organizations',
           href: '/page4',
-          icon: <Building2Icon />,
+          icon: <Building2Icon size={20} />,
         },
-        { label: 'calendar', href: '/page2', icon: <CalendarIcon /> },
-        { label: 'todo', href: '/page3', icon: <ListTodoIcon /> },
+        {
+          label: 'calendar',
+          href: '/page2',
+          icon: <CalendarIcon size={20} />,
+        },
+        {
+          label: 'todo',
+          href: '/page3',
+          icon: <ListTodoIcon size={20} />,
+        },
 
-        { label: 'settings', href: '/page5', icon: <UserCogIcon /> },
+        {
+          label: 'settings',
+          href: '/page5',
+          icon: <UserCogIcon size={20} />,
+        },
       ].map(({ icon, label, href }, i) => (
         <TooltipRoot key={i} disabled={isExpanded}>
           <TooltipTrigger>
             <NavLink
               href={`${siteConfig.pathname}${href}`}
               data-expanded={isExpanded}
-              className="grid h-12 w-full grid-flow-col grid-cols-[46px] items-center overflow-hidden whitespace-nowrap rounded border border-transparent capitalize outline-none ring-focus hover:bg-muted-3 focus-visible:ring-2 active:bg-muted-4 data-[expanded=true]:grid-cols-[46px_1fr] data-[active=true]:border-primary-8 data-[active=true]:bg-primary-3 data-[active=true]:text-primary-11"
+              className="group relative grid h-12 w-full grid-flow-col grid-cols-[48px] items-center overflow-hidden whitespace-nowrap rounded capitalize outline-none ring-focus before:absolute before:bottom-0 before:left-0 before:top-1/2 before:hidden before:h-1/3 before:w-1 before:-translate-y-1/2 before:rounded-full before:bg-primary-9 hover:bg-muted-3 focus-visible:ring-2 active:bg-muted-4 data-[expanded=true]:grid-cols-[48px_1fr] data-[active=true]:before:block"
             >
-              <span className="mx-auto">{icon}</span>
+              <span className="mx-auto group-data-[active=true]:text-primary-11">
+                {icon}
+              </span>
               <span>{label}</span>
             </NavLink>
           </TooltipTrigger>

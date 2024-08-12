@@ -41,7 +41,7 @@ export const HeaderDrawer = (props: MobileDrawerProps) => {
               aria-label="menu"
               color="primary"
               variant="solid"
-              className="lg:hidden"
+              className="text-2xl lg:hidden"
             >
               <MenuIcon />
             </Button>

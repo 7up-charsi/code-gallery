@@ -7,6 +7,7 @@ import {
   DrawerTrigger,
 } from '@typeweave/react/drawer';
 import { PortfolioHeader } from '@/components/portfolio-header';
+import { ThemeSwitcher } from '@/components/theme-switcher';
 import { SideBarContent } from './side-bar-content';
 import { Button } from '@typeweave/react/button';
 import { Branding } from '@/components/branding';
@@ -25,12 +26,14 @@ export const AppBarContent = (props: AppBarContentProps) => {
     <>
       <PortfolioHeader />
 
-      <div className="flex h-16 items-center bg-muted-2 px-5">
+      <div className="flex h-16 items-center gap-3 bg-muted-2 px-5">
         <Branding href={siteConfig.pathname}>
           {siteConfig.name}
         </Branding>
 
         <div className="grow"></div>
+
+        <ThemeSwitcher />
 
         <DrawerRoot>
           <DrawerTrigger>
