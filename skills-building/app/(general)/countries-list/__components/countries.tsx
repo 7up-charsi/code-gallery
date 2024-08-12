@@ -42,7 +42,7 @@ export const Countries = (props: CountriesProps) => {
   const data = name || region ? searchedData : serverData;
 
   return (
-    <main className="px-5 py-5 lg:px-10">
+    <main className="px-5 py-5 md:px-8">
       {error && (
         <section className="flex flex-col items-center justify-center gap-3">
           <h1

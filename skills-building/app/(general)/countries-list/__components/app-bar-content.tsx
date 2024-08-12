@@ -17,7 +17,7 @@ export const AppBarContent = (props: AppBarContentProps) => {
     <>
       <PortfolioHeader />
 
-      <div className="grid grid-cols-2 items-center gap-3 bg-background px-5 py-3 max-lg:grid-rows-[auto_auto] lg:grid-cols-[auto_1fr_auto] lg:px-10">
+      <div className="grid grid-cols-2 items-center gap-3 bg-background px-5 py-3 max-lg:grid-rows-[auto_auto] md:px-8 lg:grid-cols-[auto_1fr_auto]">
         <Branding href={siteConfig.pathname}>
           {siteConfig.name}
         </Branding>

@@ -25,42 +25,22 @@ export const Input = (props: InputProps) => {
   );
 
   return (
-    <>
-      <PasswordInput
-        label="password"
-        value={value}
-        onChange={(e) => {
-          const val = e.target.value;
-          setValue(val);
-          debounced(val);
-        }}
-        placeholder="Type here..."
-        className="w-full"
-      />
-
-      {strength ? null : (
-        <>
-          <div className="mt-3 h-1 w-full rounded bg-muted-3" />
-
-          <div className='relative mx-auto mt-3 h-auto w-20 rounded bg-muted-3 text-xl before:whitespace-pre before:content-["_"]' />
-        </>
-      )}
-
-      {!strength ? null : (
-        <>
-          <div className="mt-3 h-1 w-full overflow-hidden rounded-full bg-muted-3">
-            <div
-              data-strength={strength}
-              className="h-full w-1/4 bg-[#E74C3C] data-[strength=medium]:w-1/2 data-[strength=strong]:w-3/4 data-[strength=strongest]:w-full data-[strength=medium]:bg-[#FFC107] data-[strength=strong]:bg-[#8BC34A] data-[strength=strongest]:bg-[#2ECC71]"
-            ></div>
-          </div>
-
-          <div className="mt-3 text-center text-xl font-bold capitalize">
-            {strength}
-          </div>
-        </>
-      )}
-    </>
+    <PasswordInput
+      label="password"
+      value={value}
+      onChange={(e) => {
+        const val = e.target.value;
+        setValue(val);
+        debounced(val);
+      }}
+      placeholder="Type here..."
+      className="relative w-full transition-transform after:absolute after:-bottom-2 after:left-0 after:hidden after:h-1 after:w-1/4 after:rounded-full after:bg-[#E74C3C] data-[show=true]:after:block data-[strength=medium]:after:w-1/2 data-[strength=strong]:after:w-3/4 data-[strength=strongest]:after:w-full data-[strength=medium]:after:bg-[#FFC107] data-[strength=strong]:after:bg-[#8BC34A] data-[strength=strongest]:after:bg-[#2ECC71]"
+      baseProps={{
+        // @ts-ignore
+        'data-show': !!value,
+        'data-strength': strength,
+      }}
+    />
   );
 };
 

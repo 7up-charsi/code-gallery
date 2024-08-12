@@ -12,7 +12,7 @@ export default function Home() {
     useCart();
 
   return (
-    <main className="p-5 md:px-10">
+    <main className="p-5 md:px-8">
       <article className="mx-auto grid max-w-screen-md grid-cols-1 gap-5 md:grid-cols-[1fr_1.3fr]">
         <ImageSlider />
 
