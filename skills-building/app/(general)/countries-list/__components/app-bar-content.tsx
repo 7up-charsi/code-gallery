@@ -1,6 +1,6 @@
 import { PortfolioHeader } from '@/components/portfolio-header';
+import { ThemeSwitcher } from '@/components/theme-switcher';
 import { Branding } from '@/components/branding';
-import { ThemeSwitcher } from './theme-switcher';
 import { SearchRegion } from './search-region';
 import { siteConfig } from '../site.config';
 import { SearchName } from './search-name';

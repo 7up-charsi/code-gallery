@@ -1,3 +1,4 @@
+import { AppBarContent } from './__components/app-bar-content';
 import { RouteProgress } from './__components/route-progress';
 import { createMetadata } from '@/utils/metadata';
 import { AppBar } from './__components/app-bar';
@@ -14,9 +15,11 @@ export default function RootLayout({
   return (
     <>
       <RouteProgress />
-      <AppBar />
+      <AppBar>
+        <AppBarContent />
+      </AppBar>
 
-      <div className="mt-[104px]">{children}</div>
+      {children}
     </>
   );
 }

@@ -1,3 +1,4 @@
+import { AppBarContent } from './__components/app-bar-content';
 import { createMetadata } from '@/utils/metadata';
 import { AppBar } from './__components/app-bar';
 import { ThemeProvider } from 'next-themes';
@@ -12,11 +13,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="mt-[104px] bg-background text-foreground">
-      <ThemeProvider attribute="class">
-        <AppBar />
+    <ThemeProvider attribute="class">
+      <div className="bg-background text-foreground">
+        <AppBar>
+          <AppBarContent />
+        </AppBar>
         {children}
-      </ThemeProvider>
-    </div>
+      </div>
+    </ThemeProvider>
   );
 }

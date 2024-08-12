@@ -3,7 +3,7 @@ import { Input } from './__components/input';
 export default function Home() {
   return (
     <main className="p-5">
-      <article className="mx-auto w-full max-w-sm rounded border border-muted-6 p-5 shadow-md">
+      <article className="mx-auto w-full max-w-lg rounded border border-muted-6 p-5 shadow-md">
         <Input />
 
         <div className="mt-5">

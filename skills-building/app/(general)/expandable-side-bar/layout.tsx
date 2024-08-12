@@ -1,3 +1,4 @@
+import { AppBarContent } from './__components/app-bar-content';
 import { SideBar } from './__components/side-bar';
 import { createMetadata } from '@/utils/metadata';
 import { AppBar } from './__components/app-bar';
@@ -13,7 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <>
-      <AppBar />
+      <AppBar>
+        <AppBarContent />
+      </AppBar>
 
       <div className="grid grid-cols-[auto_1fr] max-md:grid-cols-1">
         <SideBar />

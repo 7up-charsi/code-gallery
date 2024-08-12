@@ -1,3 +1,4 @@
+import { AppBarContent } from './__components/app-bar-content';
 import { createMetadata } from '@/utils/metadata';
 import { AppBar } from './__components/app-bar';
 import { siteConfig } from './site.config';
@@ -12,9 +13,11 @@ export default function RootLayout({
 }>) {
   return (
     <>
-      <AppBar />
+      <AppBar>
+        <AppBarContent />
+      </AppBar>
 
-      <div className="mt-[104px]">{children}</div>
+      {children}
     </>
   );
 }
