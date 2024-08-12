@@ -1,6 +1,6 @@
 'use client';
 
-import { useScroll } from '@typeweave/react/use-scroll';
+import { motion, useSpring, useScroll } from 'framer-motion';
 import React from 'react';
 
 interface ScrollProgressBarProps {}
@@ -11,15 +11,16 @@ export const ScrollProgressBar = (props: ScrollProgressBarProps) => {
   const {} = props;
 
   const scroll = useScroll();
+  const springScrollY = useSpring(scroll.scrollYProgress, {
+    stiffness: 100,
+    damping: 15,
+  });
 
-  return !scroll.y ? null : (
-    <div className="fixed left-0 right-0 top-0 h-1">
-      <div
-        style={{ width: `${scroll.yInPercent}%` }}
-        data-full={true}
-        className="h-full rounded-r-full bg-primary-9 transition-[width] data-[full=true]:rounded-none"
-      />
-    </div>
+  return !springScrollY ? null : (
+    <motion.div
+      style={{ scaleX: springScrollY }}
+      className="fixed left-0 top-0 h-1 w-full origin-left scale-0 bg-primary-9 transition-[width] data-[full=true]:rounded-none"
+    ></motion.div>
   );
 };
 

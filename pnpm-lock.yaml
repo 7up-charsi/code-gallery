@@ -31,8 +31,8 @@ importers:
         specifier: workspace:*
         version: link:../packages/meta
       '@typeweave/react':
-        specifier: ^4.1.4
-        version: 4.1.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.9)
+        specifier: ^4.1.5
+        version: 4.1.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.9)
       embla-carousel:
         specifier: ^8.1.8
         version: 8.1.8
@@ -778,8 +778,8 @@ packages:
       react: '>=18'
       react-dom: '>=18'
 
-  '@typeweave/react@4.1.4':
-    resolution: {integrity: sha512-dQoXtSHDplS8qk4Q37gO4Tj8TTChIk0R0qQDh1qXxXyGMXmgEfrM4h6o0uRXFVG6KLU0qPId/WS4v/RA7txeMQ==}
+  '@typeweave/react@4.1.5':
+    resolution: {integrity: sha512-oeKIKiclRD8WLWreKgRdRfPla2+T9eGmF5ox1ZxZ94jBcme8XN8HidOlvNg8QV5kvzSv2T8saYBKgJNTn7gbqw==}
     peerDependencies:
       react: '>=18'
       react-dom: '>=18'
@@ -2980,7 +2980,7 @@ snapshots:
     transitivePeerDependencies:
       - tailwindcss
 
-  '@typeweave/react@4.1.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.9)':
+  '@typeweave/react@4.1.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.9)':
     dependencies:
       '@floating-ui/react-dom': 2.1.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@typeweave/react-utils': 1.1.5(react@18.3.1)
