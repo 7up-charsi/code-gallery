@@ -1,10 +1,10 @@
 'use client';
 
 import { PortfolioHeader } from '@/components/portfolio-header';
+import { useScroll } from '@typeweave/react/use-scroll';
 import useEmblaCarousel from 'embla-carousel-react';
 import { Branding } from '@/components/branding';
 import { siteConfig } from '../site.config';
-import { twMerge } from 'tailwind-merge';
 import Link from 'next/link';
 import React from 'react';
 
@@ -15,17 +15,20 @@ const displayName = 'AppBar';
 export const AppBar = (props: AppBarProps) => {
   const {} = props;
 
-  const headerRef = React.useRef<HTMLElement>(null);
   const [emblaRef, emblaApi] = useEmblaCarousel({ dragFree: true });
 
-  const [scrolled, setScrolled] = React.useState(false);
   const [activeSectionId, setActiveSectionId] = React.useState(0);
+
+  const scrollDirRef = React.useRef(0);
+
+  const [{ isAtTop }] = useScroll({
+    onScrollY: ({ dirY }) => {
+      scrollDirRef.current = dirY;
+    },
+  });
 
   React.useEffect(() => {
     if (!emblaApi) return;
-
-    let lastScroll = 0;
-    let scrollDirection = 0; // 1 is down and -1 is up
 
     const toObserve = Array.from({ length: 10 })
       .map((_, i) => document.getElementById(`${i + 1}`))
@@ -33,17 +36,19 @@ export const AppBar = (props: AppBarProps) => {
 
     const observer = new IntersectionObserver(
       (entries) => {
+        const scrollDir = scrollDirRef.current;
+
         entries.forEach((entry) => {
           if (
             entry.isIntersecting &&
-            scrollDirection === 1 &&
+            scrollDir === 1 &&
             entry.intersectionRatio >= 0.7
           ) {
             setActiveSectionId(+entry.target.id);
             emblaApi.scrollTo(+entry.target.id);
           } else if (
             entry.isIntersecting &&
-            scrollDirection === -1 &&
+            scrollDir === -1 &&
             entry.intersectionRatio === 1
           ) {
             setActiveSectionId(+entry.target.id);
@@ -51,51 +56,22 @@ export const AppBar = (props: AppBarProps) => {
           }
         });
       },
-      { threshold: [0.7, 1], rootMargin: '-56px 0px 0px 0px' },
+      { threshold: [0.7, 1], rootMargin: '-96px 0px 0px 0px' },
     );
 
     toObserve.forEach((element) => {
       observer.observe(element);
     });
 
-    const handleScroll = () => {
-      const currentScroll = scrollY;
-
-      scrollDirection = currentScroll > lastScroll ? 1 : -1;
-
-      lastScroll = currentScroll;
-
-      if (headerRef.current) {
-        headerRef.current.style.top = `-${Math.min(80, currentScroll)}px`;
-      }
-
-      const scrollTop =
-        document.body.scrollTop || document.documentElement.scrollTop;
-
-      if (scrollTop > 100) return;
-
-      if (scrollTop) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-
-    handleScroll();
-
-    window.addEventListener('scroll', handleScroll);
-
     return () => {
-      window.removeEventListener('scroll', handleScroll);
       observer.disconnect();
     };
   }, [emblaApi]);
 
   return (
     <header
-      ref={headerRef}
-      data-scrolled={scrolled}
-      className="fixed left-0 right-0 top-0 z-50 bg-white data-[scrolled=true]:shadow-md"
+      data-scrolled={isAtTop === null ? false : !isAtTop}
+      className="sticky -top-10 left-0 right-0 z-50 bg-white data-[scrolled=true]:shadow-md"
     >
       <PortfolioHeader />
 
@@ -118,13 +94,13 @@ export const AppBar = (props: AppBarProps) => {
               >
                 <Link
                   href={`#${i + 1}`}
-                  className="flex h-9 select-none items-center gap-2 rounded px-2 capitalize outline-none hover:bg-gray-200 focus-visible:ring-2 active:bg-gray-300"
+                  className="flex h-9 select-none items-center gap-2 rounded px-2 capitalize outline-none hover:bg-muted-3 focus-visible:ring-2 active:bg-muted-4"
                 >
                   section {i + 1}
                 </Link>
 
                 {activeSectionId === i + 1 && (
-                  <span className="absolute bottom-0 left-0 block h-[2px] w-full rounded-full bg-purple-500"></span>
+                  <span className="absolute bottom-0 left-0 block h-[2px] w-full rounded-full bg-primary-9"></span>
                 )}
               </div>
             ))}

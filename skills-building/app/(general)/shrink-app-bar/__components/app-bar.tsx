@@ -1,6 +1,7 @@
 'use client';
 
 import { PortfolioHeader } from '@/components/portfolio-header';
+import { useScroll } from '@typeweave/react/use-scroll';
 import { Branding } from '@/components/branding';
 import { siteConfig } from '../site.config';
 import React from 'react';
@@ -12,57 +13,34 @@ const displayName = 'AppBar';
 export const AppBar = (props: AppBarProps) => {
   const {} = props;
 
-  const [isScrolled, setIsScrolled] = React.useState(false);
+  const isShrinkedRef = React.useRef(false);
   const headerRef = React.useRef<HTMLElement>(null);
-  const headerContentRef = React.useRef<HTMLDivElement>(null);
 
-  React.useEffect(() => {
-    const headerOriginalHeight =
-      (headerContentRef.current &&
-        getComputedStyle(headerContentRef.current).height) ??
-      '';
-
-    const handleScroll = () => {
-      const bodyScroll =
-        document.body.scrollTop || document.documentElement.scrollTop;
-
+  const [{ isAtTop, scrollY }] = useScroll({
+    onScrollY: ({ scrollY }) => {
       if (headerRef.current) {
-        headerRef.current.style.top = `-${Math.min(40, bodyScroll)}px`;
+        headerRef.current.style.top = `-${Math.min(40, scrollY)}px`;
       }
+    },
+  });
 
-      if (headerContentRef.current && bodyScroll >= 100) {
-        headerContentRef.current.style.height = '50px';
-      } else if (headerContentRef.current && bodyScroll < 100) {
-        headerContentRef.current.style.height = headerOriginalHeight;
-      }
-
-      if (bodyScroll) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    handleScroll();
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+  if (scrollY >= 400) {
+    isShrinkedRef.current = true;
+  } else {
+    isShrinkedRef.current = false;
+  }
 
   return (
     <header
       ref={headerRef}
-      data-scroll={isScrolled}
-      className="fixed left-0 right-0 top-0 mx-auto max-w-screen-2xl data-[scroll=true]:shadow-md"
+      data-scrolled={isAtTop === null ? false : !isAtTop}
+      className="fixed left-0 right-0 top-0 data-[scrolled=true]:shadow-md"
     >
       <PortfolioHeader />
 
       <div
-        ref={headerContentRef}
-        className="flex h-20 items-center bg-muted-2 px-5 transition-[height]"
+        data-shrink={isShrinkedRef.current}
+        className="flex h-20 items-center bg-muted-2 px-5 transition-[height] data-[shrink=true]:h-[50px]"
       >
         <Branding href={siteConfig.pathname}>
           {siteConfig.name}

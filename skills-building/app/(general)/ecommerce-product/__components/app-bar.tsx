@@ -16,7 +16,7 @@ export const AppBar = (props: AppBarProps) => {
 
   return (
     <header
-      data-scrolled={!isAtTop}
+      data-scrolled={isAtTop === null ? false : !isAtTop}
       className="sticky -top-10 left-0 right-0 z-50 bg-background data-[scrolled=true]:shadow-md"
     >
       {children}

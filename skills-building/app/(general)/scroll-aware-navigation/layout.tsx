@@ -14,7 +14,7 @@ export default function Layout({
     <>
       <AppBar />
 
-      <div className="mt-[136px]">{children}</div>
+      {children}
     </>
   );
 }
