@@ -40,7 +40,7 @@ const CountryPage = async (props: { params: { cca2: string } }) => {
     );
 
   return (
-    <main className="mx-auto max-w-screen-sm px-5 py-5 lg:px-10">
+    <main className="mx-auto max-w-screen-sm p-5 lg:px-10">
       <Button
         aria-label="go back"
         startContent={<ArrowLeftIcon />}
