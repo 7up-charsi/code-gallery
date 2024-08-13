@@ -11,21 +11,6 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // simple calculator
-        sc: {
-          yellowText: 'var(--yellowText)',
-          whiteText: 'var(--whiteText)',
-          darkBlueText: 'var(--darkBlueText)',
-          main_bg: 'var(--main_bg)',
-          toggle_keypad_bg: 'var(--toggle_keypad_bg)',
-          screen_bg: 'var(--screen_bg)',
-          del_reset_bg: 'var(--del_reset_bg)',
-          del_reset_bg_shadow: 'var(--del_reset_bg_shadow)',
-          equal_toggleIndicator_bg: 'var(--equal_toggleIndicator_bg)',
-          equal_shadow: 'var(--equal_shadow)',
-          key_bg: 'var(--key_bg)',
-          keyShadow: 'var(--keyShadow)',
-        },
         // tip calculator
         tc: {
           strong_cyan: 'var(--strong_cyan)',
