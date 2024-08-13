@@ -14,10 +14,13 @@ const RootLayout = (props: RootLayoutProps) => {
   const { children } = props;
 
   return (
-    <>
+    <ThemeProvider
+      storageKey={siteConfig.name.replaceAll(' ', '-')}
+      attribute="class"
+    >
       <AppBar />
       {children}
-    </>
+    </ThemeProvider>
   );
 };
 

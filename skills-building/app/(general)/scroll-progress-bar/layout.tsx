@@ -2,6 +2,7 @@ import { ScrollProgressBar } from './__components/scroll-progress-bar';
 import { AppBarContent } from './__components/app-bar-content';
 import { createMetadata } from '@/utils/metadata';
 import { AppBar } from './__components/app-bar';
+import { ThemeProvider } from 'next-themes';
 import { siteConfig } from './site.config';
 import type { Metadata } from 'next';
 
@@ -13,7 +14,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
+    <ThemeProvider
+      storageKey={siteConfig.name.replaceAll(' ', '-')}
+      attribute="class"
+    >
       <AppBar>
         <AppBarContent />
       </AppBar>
@@ -21,6 +25,6 @@ export default function RootLayout({
       <ScrollProgressBar />
 
       {children}
-    </>
+    </ThemeProvider>
   );
 }

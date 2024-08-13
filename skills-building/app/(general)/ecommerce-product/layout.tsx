@@ -1,6 +1,7 @@
 import { AppBarContent } from './__components/app-bar-content';
 import { createMetadata } from '@/utils/metadata';
 import { AppBar } from './__components/app-bar';
+import { ThemeProvider } from 'next-themes';
 import { siteConfig } from './site.config';
 import type { Metadata } from 'next';
 
@@ -12,11 +13,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="bg-background text-foreground">
-      <AppBar>
-        <AppBarContent />
-      </AppBar>
-      {children}
-    </div>
+    <ThemeProvider
+      storageKey={siteConfig.name.replaceAll(' ', '-')}
+      attribute="class"
+    >
+      <div className="bg-background text-foreground">
+        <AppBar>
+          <AppBarContent />
+        </AppBar>
+
+        {children}
+      </div>
+    </ThemeProvider>
   );
 }

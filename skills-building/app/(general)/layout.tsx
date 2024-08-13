@@ -1,6 +1,5 @@
 import { Bounce, ToastContainer } from 'react-toastify';
 import { rootMetadata } from '@/config/root-meta';
-import { ThemeProvider } from 'next-themes';
 import { Inter } from 'next/font/google';
 import type { Metadata } from 'next';
 import '@/styles/globals.css';
@@ -19,7 +18,7 @@ export default function RootLayout({
       <body
         className={`${inter.className} mx-auto max-w-screen-2xl bg-background text-foreground`}
       >
-        <ThemeProvider attribute="class">{children}</ThemeProvider>
+        {children}
 
         <ToastContainer
           position="bottom-right"

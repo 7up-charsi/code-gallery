@@ -1,4 +1,3 @@
-import { Bounce, ToastContainer } from 'react-toastify';
 import { createMetadata } from '@/utils/metadata';
 import { Header } from './__components/header';
 import { ThemeProvider } from 'next-themes';
@@ -16,23 +15,17 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <div style={font.style} className="bg-background text-foreground">
-      <Header />
-      {children}
-
-      <ToastContainer
-        position="bottom-center"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-        transition={Bounce}
-      />
-    </div>
+    <ThemeProvider
+      storageKey={siteConfig.name.replaceAll(' ', '-')}
+      attribute="class"
+    >
+      <div
+        style={font.style}
+        className="bg-background text-foreground"
+      >
+        <Header />
+        {children}
+      </div>
+    </ThemeProvider>
   );
 }

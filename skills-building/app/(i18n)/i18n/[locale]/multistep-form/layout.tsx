@@ -3,6 +3,7 @@ import { getDictionary } from './__utils/dictionary';
 import { createMetadata } from '@/utils/metadata';
 import { Header } from './__components/header';
 import { Locales } from './__types/dictionary';
+import { ThemeProvider } from 'next-themes';
 import { siteConfig } from './site.config';
 import { Inter } from 'next/font/google';
 import type { Metadata } from 'next';
@@ -24,11 +25,19 @@ export default async function RootLayout({
   const dictionary = await getDictionary(locale);
 
   return (
-    <DictionaryProvider dictionary={dictionary}>
-      <div style={font.style} className="bg-muted-4 text-foreground">
-        <Header />
-        {children}
-      </div>
-    </DictionaryProvider>
+    <ThemeProvider
+      storageKey={siteConfig.name.replaceAll(' ', '-')}
+      attribute="class"
+    >
+      <DictionaryProvider dictionary={dictionary}>
+        <div
+          style={font.style}
+          className="bg-muted-4 text-foreground"
+        >
+          <Header />
+          {children}
+        </div>
+      </DictionaryProvider>
+    </ThemeProvider>
   );
 }

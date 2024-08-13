@@ -2,6 +2,7 @@ import { SearchFieldsProvider } from './__components/search-fields-provider';
 import { AppBarContent } from './__components/app-bar-content';
 import { createMetadata } from '@/utils/metadata';
 import { AppBar } from './__components/app-bar';
+import { ThemeProvider } from 'next-themes';
 import { siteConfig } from './site.config';
 import type { Metadata } from 'next';
 import React from 'react';
@@ -16,14 +17,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="min-h-screen bg-muted-3 text-foreground">
-      <SearchFieldsProvider>
-        <AppBar>
-          <AppBarContent />
-        </AppBar>
+    <ThemeProvider
+      storageKey={siteConfig.name.replaceAll(' ', '-')}
+      attribute="class"
+    >
+      <div className="min-h-screen bg-muted-3 text-foreground">
+        <SearchFieldsProvider>
+          <AppBar>
+            <AppBarContent />
+          </AppBar>
 
-        {children}
-      </SearchFieldsProvider>
-    </div>
+          {children}
+        </SearchFieldsProvider>
+      </div>
+    </ThemeProvider>
   );
 }

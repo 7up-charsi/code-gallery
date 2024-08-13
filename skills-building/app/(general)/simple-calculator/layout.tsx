@@ -19,7 +19,7 @@ export default function Layout({
       attribute="class"
       themes={['sc-theme1', 'sc-theme2', 'sc-theme3']}
       defaultTheme="sc-theme1"
-      storageKey="simple-calculator-theme"
+      storageKey={siteConfig.name.replaceAll(' ', '-')}
     >
       <div
         style={font.style}

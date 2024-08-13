@@ -1,6 +1,7 @@
 import { PortfolioHeader } from '@/components/portfolio-header';
 import { createMetadata } from '@/utils/metadata';
 import { Space_Mono } from 'next/font/google';
+import { ThemeProvider } from 'next-themes';
 import { siteConfig } from './site.config';
 import type { Metadata } from 'next';
 
@@ -17,10 +18,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="tip-calculator flex min-h-screen flex-col gap-5 bg-tc-main_bg">
-      <PortfolioHeader />
+    <ThemeProvider
+      storageKey={siteConfig.name.replaceAll(' ', '-')}
+      attribute="class"
+    >
+      <div className="tip-calculator flex min-h-screen flex-col gap-5 bg-tc-main_bg">
+        <PortfolioHeader />
 
-      <div className={`${font.className}`}>{children}</div>
-    </div>
+        <div className={`${font.className}`}>{children}</div>
+      </div>
+    </ThemeProvider>
   );
 }
