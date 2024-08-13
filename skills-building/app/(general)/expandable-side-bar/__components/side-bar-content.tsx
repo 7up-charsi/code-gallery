@@ -32,31 +32,35 @@ export const SideBarContent = (props: SideBarContentProps) => {
       className="flex flex-col gap-3 px-5 md:px-3 md:py-3"
     >
       {[
-        { label: 'home', href: '/', icon: <HomeIcon size={20} /> },
+        {
+          label: 'home',
+          href: '/',
+          icon: <HomeIcon size={20} />,
+        },
         {
           label: 'users',
-          href: '/page1',
+          href: '/users',
           icon: <UsersIcon size={20} />,
         },
         {
           label: 'organizations',
-          href: '/page4',
+          href: '/organizations',
           icon: <Building2Icon size={20} />,
         },
         {
           label: 'calendar',
-          href: '/page2',
+          href: '/calendar',
           icon: <CalendarIcon size={20} />,
         },
         {
           label: 'todo',
-          href: '/page3',
+          href: '/todo',
           icon: <ListTodoIcon size={20} />,
         },
 
         {
           label: 'settings',
-          href: '/page5',
+          href: '/settings',
           icon: <UserCogIcon size={20} />,
         },
       ].map(({ icon, label, href }, i) => (
