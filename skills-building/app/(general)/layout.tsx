@@ -1,4 +1,4 @@
-import { Bounce, ToastContainer } from 'react-toastify';
+import { SharedStuff } from '@/components/shared-stuff';
 import { rootMetadata } from '@/config/root-meta';
 import { Inter } from 'next/font/google';
 import type { Metadata } from 'next';
@@ -14,25 +14,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" dir="ltr">
       <body
         className={`${inter.className} mx-auto max-w-screen-2xl bg-background text-foreground`}
       >
         {children}
 
-        <ToastContainer
-          position="bottom-right"
-          autoClose={2000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="colored"
-          transition={Bounce}
-        />
+        <SharedStuff />
       </body>
     </html>
   );

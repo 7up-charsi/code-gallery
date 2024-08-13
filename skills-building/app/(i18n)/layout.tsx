@@ -1,3 +1,4 @@
+import { SharedStuff } from '@/components/shared-stuff';
 import { rootMetadata } from '@/config/root-meta';
 import { Inter } from 'next/font/google';
 import type { Metadata } from 'next';
@@ -17,9 +18,11 @@ export default function RootLayout({
   return (
     <html lang={locale} dir="ltr">
       <body
-        className={`${inter.className} mx-auto bg-background text-foreground md:max-w-screen-md`}
+        className={`${inter.className} mx-auto max-w-screen-2xl bg-background text-foreground`}
       >
         {children}
+
+        <SharedStuff />
       </body>
     </html>
   );
