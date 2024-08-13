@@ -18,7 +18,7 @@ export const AppBar = (props: AppBarProps) => {
 
   if (dirY === 1 && scrollY > 400 && deltaY >= 100) {
     isHideRef.current = true;
-  } else if (dirY === -1 && deltaY >= 50) {
+  } else if (dirY === -1 && deltaY >= 100) {
     isHideRef.current = false;
   }
 

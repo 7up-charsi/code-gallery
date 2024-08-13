@@ -1,4 +1,5 @@
 import { PortfolioHeader } from '@/components/portfolio-header';
+import { ThemeSwitcher } from '@/components/theme-switcher';
 import { Branding } from '@/components/branding';
 import { siteConfig } from '../site.config';
 import React from 'react';
@@ -21,12 +22,7 @@ export const AppBarContent = (props: AppBarContentProps) => {
 
         <div className="grow"></div>
 
-        {Array.from({ length: 3 }).map((_, i) => (
-          <div
-            key={i}
-            className="ml-2 h-7 w-10 rounded bg-white/40"
-          ></div>
-        ))}
+        <ThemeSwitcher />
       </div>
     </>
   );
