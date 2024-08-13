@@ -1,6 +1,6 @@
 export default function Home() {
   return (
-    <main className="touch-pan-y p-5 md:px-10">
+    <main className="touch-pan-y p-5 md:px-8">
       {Array.from({ length: 10 }).map((_, i) => (
         <div key={i} className="my-5 space-y-3 first:mt-0 last:mb-0">
           {Array.from({
@@ -14,7 +14,7 @@ export default function Home() {
                     ? `${Math.floor(Math.random() * (70 - 10 + 1)) + 10}%`
                     : '100%',
               }}
-              className="h-3 rounded bg-gray-200"
+              className="h-3 rounded bg-muted-5"
             ></div>
           ))}
         </div>

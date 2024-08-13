@@ -88,7 +88,7 @@ export const AppBar = (props: AppBarProps) => {
 
       <div
         ref={emblaRef}
-        className="h-12 overflow-hidden bg-muted-2 px-5"
+        className="h-12 overflow-hidden bg-muted-2 px-5 md:px-8"
       >
         <nav className="mx-auto flex h-full max-w-screen-lg items-center gap-2">
           {Array.from({ length: 10 }).map((_, i) => (

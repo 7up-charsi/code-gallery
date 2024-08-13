@@ -1,7 +1,7 @@
 export default function Page() {
   return (
     <>
-      <main className="p-5">
+      <main className="p-5 md:px-8">
         {Array.from({ length: 10 }).map((_, i) => (
           <div
             key={i}

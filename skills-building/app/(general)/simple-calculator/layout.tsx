@@ -15,20 +15,20 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <div
-      style={font.style}
-      className="flex h-screen flex-col gap-5 bg-sc-main_bg sc-theme1:text-sc-whiteText sc-theme2:text-sc-darkBlueText sc-theme3:text-sc-yellowText"
+    <ThemeProvider
+      attribute="class"
+      themes={['sc-theme1', 'sc-theme2', 'sc-theme3']}
+      defaultTheme="sc-theme1"
+      storageKey="simple-calculator-theme"
     >
-      <ThemeProvider
-        attribute="class"
-        themes={['sc-theme1', 'sc-theme2', 'sc-theme3']}
-        defaultTheme="sc-theme1"
-        storageKey="simple-calculator-theme"
+      <div
+        style={font.style}
+        className="flex h-screen flex-col gap-5 bg-sc-main_bg sc-theme1:text-sc-whiteText sc-theme2:text-sc-darkBlueText sc-theme3:text-sc-yellowText"
       >
         <PortfolioHeader />
 
         {children}
-      </ThemeProvider>
-    </div>
+      </div>
+    </ThemeProvider>
   );
 }

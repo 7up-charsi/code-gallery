@@ -1,4 +1,5 @@
 import { PortfolioHeader } from '@/components/portfolio-header';
+import { ThemeSwitcher } from '@/components/theme-switcher';
 import { navLinks } from '../__constants/nav-links';
 import { Branding } from '@/components/branding';
 import { siteConfig } from '../site.config';
@@ -17,26 +18,28 @@ export const AppBarContent = (props: AppBarContentProps) => {
     <>
       <PortfolioHeader />
 
-      <div className="flex h-16 items-center bg-muted-2 px-5 md:px-10">
+      <div className="flex h-16 items-center gap-3 bg-muted-2 px-5 md:px-8">
         <Branding href={siteConfig.pathname}>
           {siteConfig.name}
         </Branding>
 
         <div className="grow"></div>
 
-        <SideBar />
-
         <nav className="flex items-center gap-1 max-lg:hidden">
           {navLinks.map((ele, i) => (
             <NavLink
               key={i}
               href={`${siteConfig.pathname}${ele.href}`}
-              className="h-9 w-full content-center rounded border border-transparent px-2 capitalize outline-none ring-focus hover:bg-muted-3 focus-visible:ring-2 active:bg-muted-4 data-[active=true]:border-primary-8 data-[active=true]:bg-primary-3 data-[active=true]:text-primary-11"
+              className="relative h-9 content-center rounded px-4 capitalize outline-none ring-focus before:absolute before:bottom-0 before:left-1/2 before:hidden before:h-1 before:w-1/3 before:-translate-x-1/2 before:rounded-full before:bg-primary-9 hover:bg-muted-3 focus-visible:ring-2 active:bg-muted-4 data-[active=true]:before:block"
             >
               {ele.label}
             </NavLink>
           ))}
         </nav>
+
+        <ThemeSwitcher />
+
+        <SideBar />
       </div>
     </>
   );
