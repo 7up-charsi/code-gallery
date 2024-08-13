@@ -14,7 +14,7 @@ export default function Home() {
                     ? `${Math.floor(Math.random() * (70 - 10 + 1)) + 10}%`
                     : '100%',
               }}
-              className="h-3 rounded bg-gray-200"
+              className="h-3 rounded bg-muted-5"
             ></div>
           ))}
         </div>

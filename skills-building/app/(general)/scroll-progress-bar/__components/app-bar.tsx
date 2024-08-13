@@ -12,13 +12,12 @@ const displayName = 'AppBar';
 export const AppBar = (props: AppBarProps) => {
   const { children } = props;
 
-  const [{ scrollY }] = useScroll();
+  const [{ isAtTop }] = useScroll();
 
   return (
     <header
-      data-scrolled={scrollY >= 40}
-      data-sticked={scrollY >= 40}
-      className="group sticky -top-10 left-0 right-0 mx-auto max-w-screen-2xl transition-transform data-[sticked=true]:bg-background data-[scrolled=true]:shadow-md"
+      data-scrolled={isAtTop === null ? false : !isAtTop}
+      className="sticky -top-10 left-0 right-0 mx-auto max-w-screen-2xl transition-transform data-[scrolled=true]:shadow-md"
     >
       {children}
     </header>
