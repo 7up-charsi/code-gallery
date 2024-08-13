@@ -20,11 +20,10 @@ export const CustomInput = React.forwardRef<
       {...restProps}
       className="relative max-h-full w-full"
       classNames={{
-        label: 'text-tc-dark_grayish_cyan',
+        label: 'text-primary-12',
         inputWrapper:
-          'bg-tc-very_light_grayish_cyan data-[error=false]:border-none h-12',
-        input:
-          'text-2xl text-right font-semibold text-tc-very_dark_cyan',
+          'bg-primary-3 data-[error=false]:border-none h-12 focus-within:ring-primary-9',
+        input: 'text-2xl text-right font-semibold text-primary-12',
         helperText:
           'absolute right-0 font-semibold text-sm top-0 h-auto ',
       }}

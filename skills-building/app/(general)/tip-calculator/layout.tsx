@@ -1,14 +1,9 @@
-import { PortfolioHeader } from '@/components/portfolio-header';
+import { AppBarContent } from './__components/app-bar-content';
 import { createMetadata } from '@/utils/metadata';
-import { Space_Mono } from 'next/font/google';
+import { AppBar } from './__components/app-bar';
 import { ThemeProvider } from 'next-themes';
 import { siteConfig } from './site.config';
 import type { Metadata } from 'next';
-
-const font = Space_Mono({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-});
 
 export const metadata: Metadata = createMetadata(siteConfig);
 
@@ -22,11 +17,11 @@ export default function RootLayout({
       storageKey={siteConfig.name.replaceAll(' ', '-')}
       attribute="class"
     >
-      <div className="tip-calculator flex min-h-screen flex-col gap-5 bg-tc-main_bg">
-        <PortfolioHeader />
+      <AppBar>
+        <AppBarContent />
+      </AppBar>
 
-        <div className={`${font.className}`}>{children}</div>
-      </div>
+      {children}
     </ThemeProvider>
   );
 }

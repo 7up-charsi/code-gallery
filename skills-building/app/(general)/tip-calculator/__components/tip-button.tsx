@@ -16,7 +16,7 @@ export const TipButton = (props: TipButtonProps) => {
     <Button
       type="button"
       variant="solid"
-      className="bg-tc-very_dark_cyan hover:bg-tc-very_dark_cyan data-[selected=true]:bg-tc-strong_cyan data-[selected=true]:text-tc-very_dark_cyan h-full font-bold"
+      className="h-full bg-primary-6 font-bold text-primary-12 hover:bg-primary-7 data-[selected=true]:bg-primary-8"
       {...restProps}
     >
       {isNaN(+tip) ? tip : `${tip}%`}

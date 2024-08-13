@@ -41,19 +41,15 @@ export default function Home() {
 
   return (
     <FormProvider {...formMethods}>
-      <main className="grow md:content-center">
-        <h1 className="py-10 text-center text-xl font-semibold uppercase tracking-[.5em] text-tc-dark_grayish_cyan">
-          <span>spli</span> <br /> <span>tter</span>
-        </h1>
-
-        <form className="mx-auto grid grid-cols-1 gap-5 rounded-t-2xl bg-tc-white p-5 md:max-w-[calc(theme(screens.md)-40px)] md:grid-cols-2 md:rounded-2xl lg:max-w-screen-md">
+      <main className="flex h-full min-h-[calc(100vh-104px)] items-center bg-primary-3 p-5">
+        <form className="mx-auto grid w-full max-w-screen-md grid-cols-1 gap-5 rounded-2xl border border-primary-6 bg-background p-5 md:grid-cols-2 md:shadow-md">
           <div className="space-y-5">
             <CustomInput
               label="bill"
               inputMode="decimal"
               {...register('bill')}
               startContent={
-                <DollarSign className="text-tc-grayish_cyan" />
+                <DollarSign className="text-primary-11" />
               }
               error={!!errors.bill}
               helperText={errors.bill?.message ?? ''}
@@ -65,7 +61,7 @@ export default function Home() {
               label="number of people"
               {...register('people')}
               startContent={
-                <UserIcon className="fill-tc-grayish_cyan stroke-tc-grayish_cyan !text-xl" />
+                <UserIcon className="fill-transparent stroke-primary-11 !text-xl" />
               }
               error={!!errors.people}
               helperText={errors.people?.message ?? ''}

@@ -5,17 +5,6 @@
 @import 'tailwindcss/utilities';
 
 @layer utilities {
-  .tip-calculator {
-    --strong_cyan: hsl(172, 67%, 45%);
-    --very_dark_cyan: hsl(183, 100%, 15%);
-    --dark_grayish_cyan: hsl(186, 14%, 43%);
-    --grayish_cyan: hsl(184, 14%, 56%);
-    --main_bg: hsl(185, 41%, 84%);
-    --very_light_grayish_cyan: hsl(189, 41%, 97%);
-    --white: hsl(0, 0%, 100%);
-    --focus: 172 67 45;
-  }
-
   /* mortgage calculator start */
   .mc-results-scrollbar {
     &::-webkit-scrollbar {

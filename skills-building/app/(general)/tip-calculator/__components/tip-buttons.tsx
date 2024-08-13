@@ -24,7 +24,7 @@ export const TipButtons = (props: TipButtonsProps) => {
     <fieldset className="">
       <legend
         className={styles.label({
-          className: 'text-tc-dark_grayish_cyan',
+          className: 'text-primary-12',
         })}
       >
         select tip %
