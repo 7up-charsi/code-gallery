@@ -1,8 +1,8 @@
-import { CountryFlag } from '../__components/country-flag';
 import { Button } from '@typeweave/react/button';
 import { Country } from '../__types/country';
 import { ArrowLeftIcon } from 'lucide-react';
 import { siteConfig } from '../site.config';
+import Image from 'next/image';
 import Link from 'next/link';
 
 const CountryPage = async (props: { params: { cca2: string } }) => {
@@ -54,8 +54,13 @@ const CountryPage = async (props: { params: { cca2: string } }) => {
         aria-labelledby={country.cca2}
         className="mx-auto mt-5 w-full gap-5 overflow-hidden rounded bg-background p-5"
       >
-        <div className="mx-auto max-w-md">
-          <CountryFlag cca2={country.cca2} />
+        <div className="relative mx-auto aspect-video w-full max-w-md">
+          <Image
+            src={`https://flagcdn.com/w1280/${cca2.toLowerCase()}.png`}
+            alt={cca2}
+            fill
+            className="object-cover"
+          />
         </div>
 
         <h2

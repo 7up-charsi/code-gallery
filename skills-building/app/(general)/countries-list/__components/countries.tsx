@@ -2,9 +2,9 @@
 
 import { useSearchParams } from 'next/navigation';
 import { Country } from '../__types/country';
-import { CountryFlag } from './country-flag';
 import { siteConfig } from '../site.config';
 import { Loader2 } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import useSWR from 'swr';
@@ -85,41 +85,50 @@ export const Countries = (props: CountriesProps) => {
       {Array.isArray(data) && (
         <section className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {data.map((country) => (
-            <article
+            <Link
               key={country.cca2}
-              aria-labelledby={country.cca2}
-              className="w-full overflow-hidden rounded bg-background"
+              href={`${siteConfig.pathname}/${country.cca2}`}
             >
-              <Link href={`${siteConfig.pathname}/${country.cca2}`}>
-                <CountryFlag cca2={country.cca2} />
-              </Link>
+              <article
+                aria-labelledby={country.cca2}
+                className="relative isolate flex aspect-video w-full flex-col items-center justify-center overflow-hidden rounded text-white"
+              >
+                <div className="absolute inset-0 -z-20 aspect-video w-full">
+                  <Image
+                    src={`https://flagcdn.com/w1280/${country.cca2.toLowerCase()}.png`}
+                    alt={country.cca2}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
 
-              <div className="p-5">
+                <div className="absolute inset-0 -z-10 bg-black/70 backdrop-blur-sm" />
+
                 <h2
                   id={country.cca2}
-                  className="mb-3 text-xl font-semibold capitalize"
+                  className="mb-3 text-2xl font-semibold capitalize"
                 >
                   {country.name.common}
                 </h2>
 
-                <dl className="">
-                  <div className="flex gap-3">
-                    <dt className="font-semibold">Population</dt>
-                    <dd className="">{country.population}</dd>
-                  </div>
+                <dl className="grid grid-cols-2 gap-x-5 gap-y-2">
+                  <dt className="text-end font-semibold capitalize">
+                    Population
+                  </dt>
+                  <dd className="">{country.population}</dd>
 
-                  <div className="flex gap-3">
-                    <dt className="font-semibold">region</dt>
-                    <dd className="">{country.region}</dd>
-                  </div>
+                  <dt className="text-end font-semibold capitalize">
+                    region
+                  </dt>
+                  <dd className="">{country.region}</dd>
 
-                  <div className="flex gap-3">
-                    <dt className="font-semibold">capital</dt>
-                    <dd className="">{country.capital}</dd>
-                  </div>
+                  <dt className="text-end font-semibold capitalize">
+                    capital
+                  </dt>
+                  <dd className="">{country.capital}</dd>
                 </dl>
-              </div>
-            </article>
+              </article>
+            </Link>
           ))}
         </section>
       )}
