@@ -19,7 +19,7 @@ export const AppBar = (props: AppBarProps) => {
       style={{ top: Math.min(40, scrollY) * -1 }}
       data-shrink={scrollY >= 400}
       data-scrolled={isAtTop === null ? false : !isAtTop}
-      className="group fixed left-0 right-0 top-0 data-[scrolled=true]:shadow-md"
+      className="group fixed left-0 right-0 top-0 border-b border-muted-6 bg-background data-[scrolled=true]:shadow-md"
     >
       {children}
     </header>

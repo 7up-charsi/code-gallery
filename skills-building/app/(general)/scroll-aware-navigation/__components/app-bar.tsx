@@ -72,7 +72,7 @@ export const AppBar = (props: AppBarProps) => {
   return (
     <header
       data-scrolled={isAtTop === null ? false : !isAtTop}
-      className="sticky -top-10 left-0 right-0 z-50 bg-background data-[scrolled=true]:shadow-md"
+      className="sticky -top-10 left-0 right-0 z-50 border-b border-muted-6 bg-background data-[scrolled=true]:shadow-md"
     >
       <PortfolioHeader />
 
@@ -88,7 +88,7 @@ export const AppBar = (props: AppBarProps) => {
 
       <div
         ref={emblaRef}
-        className="h-12 overflow-hidden bg-muted-2 px-5 md:px-8"
+        className="h-12 overflow-hidden px-5 md:px-8"
       >
         <nav className="mx-auto flex h-full max-w-screen-lg items-center gap-2">
           {Array.from({ length: 10 }).map((_, i) => (
