@@ -47,7 +47,7 @@ export const SideBar = (props: SideBarProps) => {
   return (
     <aside
       data-expanded={isExpanded}
-      className="sticky left-0 top-[104px] h-[calc(100vh-104px)] w-[73px] border-r border-muted-6 transition-[width] data-[expanded=true]:w-[230px] max-md:hidden"
+      className="sticky left-0 top-[104px] h-[calc(100vh-105px)] w-[73px] border-r border-muted-6 transition-[width] data-[expanded=true]:w-[230px] max-md:hidden"
     >
       <Button
         isIconOnly

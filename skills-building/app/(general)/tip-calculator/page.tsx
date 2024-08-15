@@ -41,7 +41,7 @@ export default function Home() {
 
   return (
     <FormProvider {...formMethods}>
-      <main className="flex h-full min-h-[calc(100vh-104px)] items-center p-5">
+      <main className="flex h-full min-h-[calc(100vh-105px)] items-center p-5">
         <form className="mx-auto grid w-full max-w-screen-md grid-cols-1 gap-5 rounded-2xl border border-primary-6 bg-background p-5 md:grid-cols-2 md:shadow-md">
           <div className="space-y-5">
             <CustomInput
