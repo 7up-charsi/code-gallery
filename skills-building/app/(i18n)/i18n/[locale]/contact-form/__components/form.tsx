@@ -64,7 +64,7 @@ export const Form = (props: FormProps) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="grid grid-cols-1 gap-x-4 md:grid-cols-2"
+      className="mx-auto grid w-full max-w-screen-md grid-cols-1 gap-x-4 rounded border-muted-6 p-5 md:grid-cols-2 md:border md:shadow-md"
     >
       <Input
         required

@@ -14,7 +14,7 @@ const HomePage = async (props: HomePageProps) => {
   const dictionary = await getDictionary(locale);
 
   return (
-    <main className="mx-auto max-w-screen-md p-5 md:px-8">
+    <main className="flex min-h-[calc(100vh-105px)] items-center justify-center md:p-8">
       <h1 className="sr-only">contact form</h1>
       <Form dictionary={dictionary} />
     </main>

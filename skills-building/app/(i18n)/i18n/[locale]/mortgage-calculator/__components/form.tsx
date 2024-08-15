@@ -116,10 +116,10 @@ export const Form = (props: FormProps) => {
   };
 
   return (
-    <>
+    <div className="grid w-full max-w-screen-md grid-cols-1 overflow-hidden rounded border-muted-6 md:grid-cols-2 md:border md:shadow-md">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="px-5 py-5 md:col-start-1"
+        className="p-5 md:col-start-1"
       >
         <Controller
           control={control}
@@ -252,7 +252,7 @@ export const Form = (props: FormProps) => {
       </form>
 
       <Results control={control} />
-    </>
+    </div>
   );
 };
 

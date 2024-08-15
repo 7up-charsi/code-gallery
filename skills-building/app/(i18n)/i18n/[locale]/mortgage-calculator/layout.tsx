@@ -1,3 +1,4 @@
+import { AppBarContent } from './__components/app-bar-content';
 import { createMetadata } from '@/utils/metadata';
 import { AppBar } from './__components/app-bar';
 import { ThemeProvider } from 'next-themes';
@@ -18,7 +19,10 @@ const RootLayout = (props: RootLayoutProps) => {
       storageKey={siteConfig.name.replaceAll(' ', '-')}
       attribute="class"
     >
-      <AppBar />
+      <AppBar>
+        <AppBarContent />
+      </AppBar>
+
       {children}
     </ThemeProvider>
   );
