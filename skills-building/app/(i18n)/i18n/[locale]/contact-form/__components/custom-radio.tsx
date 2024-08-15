@@ -26,7 +26,7 @@ export const CustomRadio = React.forwardRef<
         ref={forwardedRef}
         type="radio"
         id={inputId}
-        className="peer absolute inset-0 -z-10 cursor-pointer appearance-none rounded border border-muted-6 outline-none ring-focus checked:border-primary-7 checked:bg-primary-4 focus-within:ring-2"
+        className="peer absolute inset-0 -z-10 cursor-pointer appearance-none rounded border border-muted-6 outline-none ring-focus ring-offset-2 checked:border-primary-7 checked:bg-primary-4 focus-within:ring-2"
       />
 
       <CircleIcon
