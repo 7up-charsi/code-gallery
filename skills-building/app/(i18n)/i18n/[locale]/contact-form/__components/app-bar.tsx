@@ -1,38 +1,25 @@
 'use client';
 
-import { PortfolioHeader } from '@/components/portfolio-header';
-import { LocaleSwitcher } from '@/components/locale-switcher';
-import { ThemeSwitcher } from '@/components/theme-switcher';
-import { Branding } from '@/components/branding';
-import { siteConfig } from '../site.config';
+import { useScroll } from '@typeweave/react/use-scroll';
 import React from 'react';
 
-interface AppBarProps {}
+interface AppBarProps {
+  children: React.ReactNode;
+}
 
 const displayName = 'AppBar';
 
 export const AppBar = (props: AppBarProps) => {
-  const {} = props;
+  const { children } = props;
+
+  const [{ isAtTop }] = useScroll();
 
   return (
-    <header className="">
-      <PortfolioHeader />
-
-      <div className="flex h-16 items-center gap-3 border-b border-muted-6 bg-background px-5 md:px-10">
-        <Branding href={siteConfig.pathname}>
-          {siteConfig.name}
-        </Branding>
-
-        <div className="grow"></div>
-
-        <LocaleSwitcher
-          locales={[
-            { label: 'English', value: 'en-US' },
-            { label: 'Portuguese', value: 'pt-PT' },
-          ]}
-        />
-        <ThemeSwitcher />
-      </div>
+    <header
+      data-scrolled={isAtTop === null ? false : !isAtTop}
+      className="sticky -top-10 left-0 right-0 z-50 border-b border-muted-6 bg-background data-[scrolled=true]:shadow-md"
+    >
+      {children}
     </header>
   );
 };
