@@ -15,11 +15,8 @@ const HomePage = async (props: HomePageProps) => {
 
   return (
     <main className="">
-      <section className="w-full rounded bg-background px-5 py-5 text-muted-11 md:px-10">
-        <h1 className="text-2xl font-semibold capitalize">
-          {dictionary.title}
-        </h1>
-
+      <section className="mx-auto w-full max-w-screen-md rounded bg-background p-5 text-muted-11">
+        <h1 className="sr-only">contact form</h1>
         <Form dictionary={dictionary} />
       </section>
     </main>

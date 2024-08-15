@@ -1,5 +1,5 @@
 import { createMetadata } from '@/utils/metadata';
-import { Header } from './__components/header';
+import { AppBar } from './__components/app-bar';
 import { ThemeProvider } from 'next-themes';
 import { siteConfig } from './site.config';
 import { Karla } from 'next/font/google';
@@ -19,13 +19,9 @@ export default function Layout({
       storageKey={siteConfig.name.replaceAll(' ', '-')}
       attribute="class"
     >
-      <div
-        style={font.style}
-        className="bg-background text-foreground"
-      >
-        <Header />
-        {children}
-      </div>
+      <AppBar />
+
+      {children}
     </ThemeProvider>
   );
 }

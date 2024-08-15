@@ -1,43 +1,31 @@
 'use client';
 
-import {
-  ToggleButton,
-  ToggleButtonGroup,
-} from '@typeweave/react/toggle-button';
-import {
-  LanguagesIcon,
-  MonitorIcon,
-  MoonIcon,
-  SunIcon,
-} from 'lucide-react';
 import { PortfolioHeader } from '@/components/portfolio-header';
+import { ThemeSwitcher } from '@/components/theme-switcher';
 import { useParams, useRouter } from 'next/navigation';
 import { Combobox } from '@typeweave/react/combobox';
 import { Skeleton } from '@typeweave/react/skeleton';
 import { Branding } from '@/components/branding';
 import { Input } from '@typeweave/react/input';
+import { LanguagesIcon } from 'lucide-react';
 import { siteConfig } from '../site.config';
-import { useTheme } from 'next-themes';
-import Link from 'next/link';
 import React from 'react';
 
-interface HeaderProps {}
+interface AppBarProps {}
 
-const displayName = 'Header';
+const displayName = 'AppBar';
 
 const options = [
   { label: 'English', value: 'en-US' },
   { label: 'Portuguese', value: 'pt-PT' },
 ];
 
-export const Header = (props: HeaderProps) => {
+export const AppBar = (props: AppBarProps) => {
   const {} = props;
 
   const router = useRouter();
 
   const { locale } = useParams<{ locale: string }>();
-
-  const { setTheme, theme } = useTheme();
 
   const [isMounted, setIsMounted] = React.useState(false);
 
@@ -88,43 +76,13 @@ export const Header = (props: HeaderProps) => {
                 />
               )}
             />
-
-            <ToggleButtonGroup
-              exclusive
-              value={theme}
-              onChange={(value) => {
-                if (value) setTheme(value);
-              }}
-            >
-              <ToggleButton
-                isIconOnly
-                aria-label="light theme"
-                value="light"
-              >
-                <SunIcon />
-              </ToggleButton>
-
-              <ToggleButton
-                isIconOnly
-                aria-label="dark theme"
-                value="dark"
-              >
-                <MoonIcon />
-              </ToggleButton>
-
-              <ToggleButton
-                isIconOnly
-                aria-label="system theme"
-                value="system"
-              >
-                <MonitorIcon />
-              </ToggleButton>
-            </ToggleButtonGroup>
           </>
         )}
+
+        <ThemeSwitcher />
       </div>
     </header>
   );
 };
 
-Header.displayName = displayName;
+AppBar.displayName = displayName;

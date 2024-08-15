@@ -3,8 +3,8 @@
 import { Input, inputStyles } from '@typeweave/react/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Checkbox } from '@typeweave/react/checkbox';
-import { Button } from '@typeweave/react/button';
 import { Dictionary } from '../__types/dictionary';
+import { Button } from '@typeweave/react/button';
 import { CustomRadio } from './custom-radio';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
@@ -64,7 +64,7 @@ export const Form = (props: FormProps) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="mt-5 grid grid-cols-1 gap-x-4 md:grid-cols-2"
+      className="grid grid-cols-1 gap-x-4 md:grid-cols-2"
     >
       <Input
         required
