@@ -40,12 +40,23 @@ export const Step2 = (props: Step2Props) => {
       />
 
       {errors.plan ? (
-        <span className="mb-3 inline-block text-sm text-danger-11">
+        <div
+          id="plan-error"
+          className="mb-3 text-sm text-danger-11 first-letter:uppercase"
+        >
           {dictionary.errors.selectOne}
-        </span>
+        </div>
       ) : null}
 
-      <div className="space-y-3">
+      <fieldset
+        aria-required={!!errors.plan}
+        aria-describedby={errors.plan ? 'plan-error' : undefined}
+        className="space-y-3"
+      >
+        <legend className="sr-only">
+          {dictionary.step2.description}
+        </legend>
+
         {[
           {
             id: '4f8f1e1b-5d48-4e1b-9a9f-2e5d2b6c8b3a',
@@ -109,7 +120,7 @@ export const Step2 = (props: Step2Props) => {
 
         <div
           role="group"
-          className="flex h-16 items-center justify-center gap-3"
+          className="flex items-center justify-center gap-3 py-2"
         >
           <PointerEvents
             onPress={() => {
@@ -162,7 +173,7 @@ export const Step2 = (props: Step2Props) => {
             </button>
           </PointerEvents>
         </div>
-      </div>
+      </fieldset>
     </>
   );
 };

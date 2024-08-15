@@ -35,7 +35,7 @@ export const Stepper = (props: StepperProps) => {
   if (isThankYouStep) return;
 
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex items-center gap-3 pt-10">
       {currentStep !== 1 && (
         <Button
           type="button"
