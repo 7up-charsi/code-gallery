@@ -5,9 +5,14 @@ import {
   DrawerOverlay,
   DrawerPortal,
   DrawerRoot,
+  DrawerTrigger,
 } from '@typeweave/react/drawer';
-import { useIsMounted } from '@typeweave/react/use-is-mounted';
 import { useCartDrawer } from '../__zustand/cart-drawer';
+import { CartDrawerButton } from './cart-drawer-button';
+import { ShoppingBasketIcon } from 'lucide-react';
+import { Button } from '@typeweave/react/button';
+import { Badge } from '@typeweave/react/badge';
+import { useCart } from '../__zustand/cart';
 import { Cart } from './cart';
 import React from 'react';
 
@@ -18,29 +23,23 @@ const displayName = 'CartDrawer';
 export const CartDrawer = (props: CartDrawerProps) => {
   const {} = props;
 
-  const isMounted = useIsMounted();
-
-  const cartDrawerState = useCartDrawer();
+  const { open, onOpenChange } = useCartDrawer();
 
   return (
-    <>
-      {!isMounted ? null : (
-        <DrawerRoot
-          open={cartDrawerState.open}
-          onOpenChange={cartDrawerState.onOpenChange}
+    <DrawerRoot open={open} onOpenChange={onOpenChange}>
+      <CartDrawerButton />
+
+      <DrawerPortal>
+        <DrawerOverlay variant="blur" className="lg:hidden" />
+
+        <DrawerContent
+          placement="bottom"
+          className="flex max-h-[90vh] w-full rounded-t-xl lg:hidden"
         >
-          <DrawerPortal>
-            <DrawerOverlay variant="blur" className="lg:hidden" />
-            <DrawerContent
-              placement="bottom"
-              className="flex max-h-[90vh] w-full rounded-t-xl lg:hidden"
-            >
-              <Cart />
-            </DrawerContent>
-          </DrawerPortal>
-        </DrawerRoot>
-      )}
-    </>
+          <Cart />
+        </DrawerContent>
+      </DrawerPortal>
+    </DrawerRoot>
   );
 };
 

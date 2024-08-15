@@ -30,7 +30,7 @@ export const AddToCart = (props: AddToCartProps) => {
   const dictionary = useDictionaryCtx(displayName);
 
   return (
-    <div className="absolute top-full flex w-full -translate-y-1/2 justify-center">
+    <div className="absolute top-full flex w-full -translate-y-1/2 select-none justify-center">
       {itemAmount ? null : (
         <PointerEvents onPress={() => addItem(id)}>
           <button

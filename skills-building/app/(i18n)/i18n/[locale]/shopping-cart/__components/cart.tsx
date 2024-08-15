@@ -4,8 +4,8 @@ import { useOrderConfirmedDialog } from '../__zustand/order-confirmed-dialog';
 import { useOrderConfirmedDrawer } from '../__zustand/order-confirmed-drawer';
 import { useCartDrawer } from '../__zustand/cart-drawer';
 import { useDictionaryCtx } from './dictionary-provider';
+import { TreeDeciduousIcon, XIcon } from 'lucide-react';
 import { Button } from '@typeweave/react/button';
-import { TreeDeciduousIcon } from 'lucide-react';
 import { useCart } from '../__zustand/cart';
 import React, { Fragment } from 'react';
 import { CartItem } from './cart-item';
@@ -60,13 +60,14 @@ export const Cart = (props: CartProps) => {
         </h2>
 
         <Button
-          size="sm"
+          isIconOnly
+          aria-label="close cart drawer"
           variant="text"
           color="danger"
-          onPress={cartDrawerState.onClose}
           className="lg:hidden"
+          onPress={cartDrawerState.onClose}
         >
-          close
+          <XIcon />
         </Button>
       </div>
 
