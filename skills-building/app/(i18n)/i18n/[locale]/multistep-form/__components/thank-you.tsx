@@ -19,7 +19,7 @@ export const ThankYou = (props: ThankYouProps) => {
   return (
     <div className="flex flex-col items-center justify-center">
       <Image
-        src="/assets/icon-thank-you.svg"
+        src="/assets/multistep-form/icon-thank-you.svg"
         alt="thank you"
         width={40}
         height={40}

@@ -86,21 +86,24 @@ export default function Home() {
   };
 
   return (
-    <main className="md:flex md:h-[calc(100vh-theme(spacing.16))] md:items-center md:justify-center md:px-10">
-      <div className="grid w-full max-w-screen-md grid-cols-1 md:h-[90%] md:grid-cols-[theme(spacing.64),1fr] md:rounded-xl md:bg-background md:p-5">
+    <main className="flex min-h-[calc(100vh-105px)] justify-center md:items-center md:px-8 md:py-5">
+      <div className="grid w-full max-w-screen-md grid-cols-1 overflow-hidden border-muted-6 bg-background max-md:pb-5 md:min-h-[70vh] md:grid-cols-[theme(spacing.64),1fr] md:rounded-xl md:border md:p-3 md:shadow-md">
         <FormProvider {...formMethods}>
           <FormIndicators />
 
           <form
             ref={formRef}
             onSubmit={formMethods.handleSubmit(onSubmit)}
-            className="rounded bg-background p-5 max-md:mx-auto max-md:-mt-20 max-md:w-[calc(100%-40px)] md:relative"
+            className="flex flex-col gap-1 overflow-hidden rounded border-muted-6 bg-background p-5 max-md:mx-auto max-md:-mt-20 max-md:w-[calc(100%-40px)] max-md:border max-md:shadow-md md:py-0 md:pl-5 md:pr-2"
           >
-            <Step1 />
-            <Step2 />
-            <Step3 />
-            <Step4 />
-            <ThankYou />
+            <div className="grow">
+              <Step1 />
+              <Step2 />
+              <Step3 />
+              <Step4 />
+              <ThankYou />
+            </div>
+
             <Stepper
               onSubmit={() => {
                 formRef.current?.requestSubmit();

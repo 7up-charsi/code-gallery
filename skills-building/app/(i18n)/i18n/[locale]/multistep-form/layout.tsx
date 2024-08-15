@@ -1,17 +1,13 @@
 import { DictionaryProvider } from './__components/dictionary-provider';
+import { AppBarContent } from './__components/app-bar-content';
 import { getDictionary } from './__utils/dictionary';
 import { createMetadata } from '@/utils/metadata';
-import { Header } from './__components/header';
+import { AppBar } from './__components/app-bar';
 import { Locales } from './__types/dictionary';
 import { ThemeProvider } from 'next-themes';
 import { siteConfig } from './site.config';
-import { Inter } from 'next/font/google';
 import type { Metadata } from 'next';
 import React from 'react';
-
-const font = Inter({
-  subsets: ['latin'],
-});
 
 export const metadata: Metadata = createMetadata(siteConfig);
 
@@ -30,13 +26,11 @@ export default async function RootLayout({
       attribute="class"
     >
       <DictionaryProvider dictionary={dictionary}>
-        <div
-          style={font.style}
-          className="bg-muted-4 text-foreground"
-        >
-          <Header />
-          {children}
-        </div>
+        <AppBar>
+          <AppBarContent />
+        </AppBar>
+
+        {children}
       </DictionaryProvider>
     </ThemeProvider>
   );
