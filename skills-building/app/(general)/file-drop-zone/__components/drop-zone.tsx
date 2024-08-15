@@ -1,6 +1,8 @@
 'use client';
 
-import { PointerEvents } from '@typeweave/react/pointer-events';
+import { Button } from '@typeweave/react/button';
+import { UploadIcon } from 'lucide-react';
+import { v4 as uuid } from 'uuid';
 import React from 'react';
 
 interface DropZoneProps {}
@@ -13,13 +15,13 @@ export const DropZone = (props: DropZoneProps) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
 
   const [dragEnter, setDragEnter] = React.useState(false);
-  const [files, setFiles] = React.useState<File[]>([]);
+  const [files, setFiles] = React.useState<
+    { id: string; file: File }[]
+  >([]);
 
   React.useEffect(() => {
     const handleDragEnter = (event: DragEvent) => {
-      if (event.dataTransfer && analyzeFiles(event.dataTransfer)) {
-        setDragEnter(true);
-      }
+      setDragEnter(true);
     };
 
     const handleDragOver = (event: DragEvent) => {
@@ -32,8 +34,23 @@ export const DropZone = (props: DropZoneProps) => {
 
       const data = event.dataTransfer;
 
+      if (
+        !data ||
+        (data &&
+          !Array.from(data.items).every(
+            (item) => item.kind === 'file',
+          ))
+      )
+        return;
+
       if (data) {
-        setFiles((prev) => [...prev, ...Array.from(data.files)]);
+        setFiles((prev) => [
+          ...prev,
+          ...Array.from(data.files).map((file) => ({
+            id: uuid(),
+            file,
+          })),
+        ]);
       }
     };
 
@@ -59,28 +76,30 @@ export const DropZone = (props: DropZoneProps) => {
   return (
     <>
       {files.length ? null : (
-        <PointerEvents
-          onPress={() => {
-            inputRef.current?.click();
-          }}
-        >
-          <div className="aspect-video w-full max-w-md cursor-pointer content-center rounded border-2 border-muted-6 bg-muted-3 text-center text-3xl leading-relaxed text-muted-8 shadow-md transition-colors hover:bg-muted-4 hover:text-muted-9">
-            <input
-              ref={inputRef}
-              type="file"
-              multiple
-              className="hidden"
-            />
+        <div className="flex flex-col items-center gap-5">
+          <UploadIcon size={200} className="text-muted-5" />
 
-            <p className="">
-              <span>Click to Upload</span>
-              <br />
-              or
-              <br />
-              <span>Drag & Drop</span>
-            </p>
-          </div>
-        </PointerEvents>
+          <Button
+            color="primary"
+            variant="solid"
+            onPress={() => {
+              inputRef.current?.click();
+            }}
+          >
+            Browse
+          </Button>
+
+          <span className="text-2xl text-muted-9">
+            or drag a file here
+          </span>
+
+          <input
+            ref={inputRef}
+            type="file"
+            multiple
+            className="hidden"
+          />
+        </div>
       )}
 
       {!dragEnter ? null : (
@@ -90,17 +109,12 @@ export const DropZone = (props: DropZoneProps) => {
           </div>
         </div>
       )}
+
+      {files.map(({ id, file }) => (
+        <span key={id}>{file.name}</span>
+      ))}
     </>
   );
 };
 
 DropZone.displayName = displayName;
-
-const analyzeFiles = (dataTransfer: DragEvent['dataTransfer']) => {
-  return (
-    dataTransfer &&
-    Array.from(dataTransfer.items).every(
-      (item) => item.kind === 'file',
-    )
-  );
-};
