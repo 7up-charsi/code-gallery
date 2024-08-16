@@ -42,14 +42,26 @@ export const DropZone = (props: DropZoneProps) => {
       const files: { id: string; file: File }[] = [];
 
       for (const item of Array.from(data.items)) {
+        const entry = item.webkitGetAsEntry();
+
+        if (!entry) {
+          toast.error('Broswer is not supported');
+          return;
+        }
+
+        if (entry.isDirectory) {
+          toast.error(`Directory is not acceptable`, {
+            autoClose: 2000,
+          });
+
+          return;
+        }
+
         if (item.kind === 'file') {
           const file = item.getAsFile();
 
           if (!file) {
-            toast.error(`Directory is not acceptable`, {
-              autoClose: 2000,
-            });
-
+            toast.error('No file data.');
             return;
           }
 
