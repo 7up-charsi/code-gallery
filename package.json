@@ -4,7 +4,8 @@
   "scripts": {
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "clean:node-modules": "pnpm rimraf ./**/node_modules -g && rm -rf ./node_modules"
+    "clean:node_modules": "pnpm rimraf ./skillset-e2e/**/node_modules ./skills-building/node_modules -g && rm -rf ./node_modules",
+    "clean:lock": "rm -fr ./pnpm-lock.yaml"
   },
   "devDependencies": {
     "@repo/meta": "workspace:*",
@@ -14,6 +15,7 @@
     "@types/react-dom": "^18.3.0",
     "@typeweave/plugin": "^1.1.4",
     "postcss-import": "^16.1.0",
+    "prettier": "^3.3.3",
     "prettier-plugin-sort-imports": "^1.8.6",
     "prettier-plugin-tailwindcss": "^0.6.6",
     "rimraf": "^6.0.1",
