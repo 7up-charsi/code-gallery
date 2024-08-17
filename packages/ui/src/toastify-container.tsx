@@ -1,17 +1,17 @@
 import { Bounce, ToastContainer } from 'react-toastify';
 import React from 'react';
 
-interface SharedStuffProps {}
+interface ToastifyContainerProps {}
 
-const displayName = 'SharedStuff';
+const displayName = 'ToastifyContainer';
 
-export const SharedStuff = (props: SharedStuffProps) => {
+export const ToastifyContainer = (props: ToastifyContainerProps) => {
   const {} = props;
 
   return (
     <>
       <ToastContainer
-        position="bottom-right"
+        position='bottom-right'
         autoClose={2000}
         hideProgressBar={false}
         newestOnTop={false}
@@ -20,11 +20,11 @@ export const SharedStuff = (props: SharedStuffProps) => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="colored"
+        theme='colored'
         transition={Bounce}
       />
     </>
   );
 };
 
-SharedStuff.displayName = displayName;
+ToastifyContainer.displayName = displayName;

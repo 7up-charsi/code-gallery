@@ -1,10 +1,8 @@
 'use client';
 
-import { PortfolioHeader } from '@/components/portfolio-header';
-import { ThemeSwitcher } from '@/components/theme-switcher';
+import { Branding, PortfolioHeader, ThemeSwitcher } from '@repo/ui';
 import { useScroll } from '@typeweave/react/use-scroll';
 import useEmblaCarousel from 'embla-carousel-react';
-import { Branding } from '@/components/branding';
 import { siteConfig } from '../site.config';
 import Link from 'next/link';
 import React from 'react';

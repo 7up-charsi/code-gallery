@@ -1,4 +1,4 @@
-import { Branding } from '@/components/branding';
+import { Branding } from '@repo/ui';
 import { NavLink } from '@/components/nav-link';
 import { Player } from '@/components/player';
 import { RightSidebar } from '@/components/right-sidebar';

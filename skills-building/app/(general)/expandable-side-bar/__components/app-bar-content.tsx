@@ -6,11 +6,9 @@ import {
   DrawerRoot,
   DrawerTrigger,
 } from '@typeweave/react/drawer';
-import { PortfolioHeader } from '@/components/portfolio-header';
-import { ThemeSwitcher } from '@/components/theme-switcher';
+import { Branding, PortfolioHeader, ThemeSwitcher } from '@repo/ui';
 import { SideBarContent } from './side-bar-content';
 import { Button } from '@typeweave/react/button';
-import { Branding } from '@/components/branding';
 import { MenuIcon, XIcon } from 'lucide-react';
 import { siteConfig } from '../site.config';
 import React from 'react';

@@ -1,7 +1,9 @@
-import { PortfolioHeader } from '@/components/portfolio-header';
-import { LocaleSwitcher } from '@/components/locale-switcher';
-import { ThemeSwitcher } from '@/components/theme-switcher';
-import { Branding } from '@/components/branding';
+import {
+  Branding,
+  LocaleSwitcher,
+  PortfolioHeader,
+  ThemeSwitcher,
+} from '@repo/ui';
 import { siteConfig } from '../site.config';
 import { CartDrawer } from './cart-drawer';
 import React from 'react';

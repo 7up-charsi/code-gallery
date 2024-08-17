@@ -1,7 +1,5 @@
-import { PortfolioHeader } from '@/components/portfolio-header';
-import { ThemeSwitcher } from '@/components/theme-switcher';
+import { Branding, PortfolioHeader, ThemeSwitcher } from '@repo/ui';
 import { navLinks } from '../__constants/nav-links';
-import { Branding } from '@/components/branding';
 import { siteConfig } from '../site.config';
 import { SideBar } from './side-bar';
 import { NavLink } from './nav-link';

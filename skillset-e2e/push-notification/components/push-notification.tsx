@@ -155,21 +155,19 @@ export const PushNotification = (props: PushNotificationProps) => {
           const checked = e.target.checked;
 
           if (checked) {
-            subscribe();
+            const isPermitted =
+              await Notification.requestPermission();
+
+            if (isPermitted === 'granted') {
+              subscribe();
+            }
+
+            if (isPermitted === 'denied') {
+              unsubscribe();
+            }
           } else {
             unsubscribe();
           }
-
-          // if (checked) {
-          //   const isPermitted =
-          //     await Notification.requestPermission();
-
-          //   if (isPermitted === 'granted') {
-          //   }
-
-          //   if (isPermitted === 'denied') {
-          //   }
-          // }
         }}
       />
 

@@ -1,7 +1,7 @@
 'use client';
 
 import { PortfolioHeader } from '@/components/portfolio-header';
-import { Branding } from '@/components/branding';
+import { Branding } from '@repo/ui';
 import { siteConfig } from '../site.config';
 import React from 'react';
 

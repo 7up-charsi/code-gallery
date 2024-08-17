@@ -1,7 +1,5 @@
+import { Branding, PortfolioHeader, ThemeSwitcher } from '@repo/ui';
 import { AvatarImage, AvatarRoot } from '@typeweave/react/avatar';
-import { PortfolioHeader } from '@/components/portfolio-header';
-import { ThemeSwitcher } from '@/components/theme-switcher';
-import { Branding } from '@/components/branding';
 import { siteConfig } from '../site.config';
 import { Cart } from './cart';
 import React from 'react';

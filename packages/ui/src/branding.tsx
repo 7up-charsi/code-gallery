@@ -17,7 +17,7 @@ export const Branding = (props: BrandingProps) => {
       {...restProps}
       className={twMerge(
         'whitespace-nowrap text-lg font-normal capitalize text-black outline-none ring-focus focus-visible:ring-2 dark:text-white',
-        className,
+        className
       )}
     />
   );

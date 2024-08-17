@@ -5,7 +5,7 @@ import { PointerEvents } from '@typeweave/react/pointer-events';
 import { useIsMounted } from '@typeweave/react/use-is-mounted';
 import { navLinks } from '../__constants/nav-links';
 import { Button } from '@typeweave/react/button';
-import { Branding } from '@/components/branding';
+import { Branding } from '@repo/ui';
 import { MenuIcon, XIcon } from 'lucide-react';
 import { siteConfig } from '../site.config';
 import { createPortal } from 'react-dom';

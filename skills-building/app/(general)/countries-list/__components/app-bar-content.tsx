@@ -1,9 +1,8 @@
-import { PortfolioHeader } from '@/components/portfolio-header';
-import { ThemeSwitcher } from '@/components/theme-switcher';
-import { Branding } from '@/components/branding';
+import { PortfolioHeader, ThemeSwitcher } from '@repo/ui';
 import { SearchRegion } from './search-region';
 import { siteConfig } from '../site.config';
 import { SearchName } from './search-name';
+import { Branding } from '@repo/ui';
 import React from 'react';
 
 interface AppBarContentProps {}

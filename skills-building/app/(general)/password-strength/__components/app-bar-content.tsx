@@ -1,6 +1,4 @@
-import { PortfolioHeader } from '@/components/portfolio-header';
-import { ThemeSwitcher } from '@/components/theme-switcher';
-import { Branding } from '@/components/branding';
+import { Branding, PortfolioHeader, ThemeSwitcher } from '@repo/ui';
 import { siteConfig } from '../site.config';
 import React from 'react';
 

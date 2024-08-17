@@ -28,8 +28,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='eng' dir='ltr'>
-      <body className={inter.className}>
-        <ThemeProvider attribute='class'>
+      <body
+        className={`${inter.className} text-foreground bg-background`}
+      >
+        <ThemeProvider
+          storageKey={siteConfig.name.replaceAll(' ', '-')}
+          attribute='class'
+        >
           <AppBar>
             <AppBarContent />
           </AppBar>
