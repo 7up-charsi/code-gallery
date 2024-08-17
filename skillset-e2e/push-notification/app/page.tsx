@@ -1,4 +1,4 @@
-import { PushNotification } from './__components/push-notification';
+import { PushNotification } from '../components/push-notification';
 
 export default function Home() {
   return (

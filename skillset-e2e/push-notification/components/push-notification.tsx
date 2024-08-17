@@ -1,8 +1,9 @@
 'use client';
 
-import { Button } from '@typeweave/react/button';
 import { Switch } from '@typeweave/react/switch';
+import { Loader2Icon } from 'lucide-react';
 import React from 'react';
+import { toast } from 'react-toastify';
 
 interface PushNotificationProps {}
 
@@ -24,12 +25,18 @@ export const PushNotification = (props: PushNotificationProps) => {
 
       const registeration = await navigator.serviceWorker.ready;
 
-      const res = await fetch('/vapidPublicKey');
+      const res = await fetch(
+        'https://befitting-squid-96.convex.site/vapid-public-key'
+      );
+
       const data = (await res.json()) as {
         vapidPublicKey: string;
       } | null;
 
-      if (!data) throw new Error('vapid key is not defined');
+      if (!data) {
+        toast.error('vapid key is not defined');
+        return;
+      }
 
       const { vapidPublicKey } = data;
 
@@ -38,26 +45,34 @@ export const PushNotification = (props: PushNotificationProps) => {
         applicationServerKey: vapidPublicKey,
       });
 
-      const registerRes = await fetch('/register', {
-        method: 'post',
-        body: JSON.stringify({ subscription }),
-        headers: {
-          'Content-type': 'application/json',
-        },
-      });
+      const registerRes = await fetch(
+        'https://befitting-squid-96.convex.site/subscribe',
+        {
+          method: 'POST',
+          body: JSON.stringify({ subscription }),
+          headers: {
+            'Content-type': 'application/json',
+          },
+        }
+      );
 
       const registerData = await registerRes.json();
 
-      if (!registerData)
-        throw new Error('push notification subscription failed');
+      if (!registerData) {
+        toast.error('push notification subscription failed');
+        return;
+      }
 
       setSubscribed(true);
       setDisabled(false);
+      setLoading(false);
 
-      console.log('successfuly subscribed push notifications');
+      toast.success('successfuly subscribed push notifications');
     } catch (error) {
       setLoading(false);
       setDisabled(false);
+
+      toast.error('Something went wrong...!');
 
       console.log(error);
     }
@@ -76,37 +91,42 @@ export const PushNotification = (props: PushNotificationProps) => {
       if (subscription) {
         subscription.unsubscribe();
 
-        const res = await fetch('/unregister', {
-          method: 'POST',
-          body: JSON.stringify({ subscription }),
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
+        const res = await fetch(
+          'https://befitting-squid-96.convex.site/unsubscribe',
+          {
+            method: 'POST',
+            body: JSON.stringify({ endpoint: subscription.endpoint }),
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
+        );
 
         const data = await res.json();
 
-        if (!data)
-          throw new Error('push notifications unsubscription failed');
+        if (!data) {
+          toast.error('push notifications unsubscription failed');
+          return;
+        }
 
         setSubscribed(false);
         setDisabled(false);
+        setLoading(false);
 
-        console.log('successfuly unsubscribed push notifications');
+        toast.success('successfuly unsubscribed push notifications');
       }
     } catch (error) {
       setLoading(false);
       setDisabled(false);
+
+      toast.error('Something went wrong...!');
 
       console.log(error);
     }
   };
 
   React.useEffect(() => {
-    navigator.serviceWorker.register(
-      '/service-workers/push-notification.js',
-      { scope: '/' },
-    );
+    navigator.serviceWorker.register('/sw.js', { scope: '/' });
 
     navigator.serviceWorker.ready
       .then((registeration) => {
@@ -124,11 +144,11 @@ export const PushNotification = (props: PushNotificationProps) => {
   }, []);
 
   return (
-    <>
+    <div className='flex items-center gap-2'>
       <Switch
         ref={switchRef}
-        label="push notifications"
-        size="sm"
+        label='push notifications'
+        size='sm'
         checked={subscribed}
         disabled={disabled}
         onChange={async (e) => {
@@ -152,7 +172,9 @@ export const PushNotification = (props: PushNotificationProps) => {
           // }
         }}
       />
-    </>
+
+      {!loading ? null : <Loader2Icon className='animate-spin' />}
+    </div>
   );
 };
 
