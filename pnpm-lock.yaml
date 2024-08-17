@@ -161,7 +161,7 @@ importers:
         specifier: workspace:*
         version: link:../../packages/meta
       convex:
-        specifier: ^1.14.0
+        specifier: ^1.14.1
         version: 1.14.1(@clerk/clerk-react@5.4.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       web-push:
         specifier: ^3.6.7

@@ -11,9 +11,27 @@ export const subscribe = mutation({
   args: { subscription: v.any() },
   handler: async (ctx, args) => {
     try {
-      await ctx.db.insert('push_notifications', {
-        subscription: args.subscription,
-      });
+      const doc = await ctx.db
+        .query('push_notifications')
+        .filter((q) =>
+          q.eq(
+            q.field('subscription.endpoint'),
+            args.subscription.endpoint
+          )
+        )
+        .first();
+
+      if (doc) {
+        await ctx.db.patch(doc._id, {
+          subscription: {
+            endpoint: args.subscription.endpoint,
+          },
+        });
+      } else {
+        await ctx.db.insert('push_notifications', {
+          subscription: args.subscription,
+        });
+      }
 
       return { success: true };
     } catch (error) {

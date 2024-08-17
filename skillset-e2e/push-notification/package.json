@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@repo/meta": "workspace:*",
-    "convex": "^1.14.0",
+    "convex": "^1.14.1",
     "web-push": "^3.6.7"
   },
   "devDependencies": {
@@ -22,4 +22,3 @@
     "postcss-import": "^16.1.0"
   }
 }
-
