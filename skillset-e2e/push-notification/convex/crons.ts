@@ -1,12 +1,18 @@
 import { cronJobs } from 'convex/server';
-import { internal } from './_generated/api';
+import { api, internal } from './_generated/api';
 
 const crons = cronJobs();
 
 crons.interval(
-  'clear messages table',
+  'push notification',
   { minutes: 1 }, // every minute
   internal.actions.sendNotification
+);
+
+crons.cron(
+  'remove unsubscribed',
+  '0 0 * * *', // every day
+  api.push_notification.removeUnsubscribed
 );
 
 export default crons;

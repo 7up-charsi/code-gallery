@@ -1,6 +1,9 @@
 'use client';
 
+import { api } from '@/convex/_generated/api';
+import { Id } from '@/convex/_generated/dataModel';
 import { Switch } from '@typeweave/react/switch';
+import { useQuery } from 'convex/react';
 import { Loader2Icon } from 'lucide-react';
 import React from 'react';
 import { toast } from 'react-toastify';
@@ -17,6 +20,11 @@ export const PushNotification = (props: PushNotificationProps) => {
   const [disabled, setDisabled] = React.useState(true);
   const [subscribed, setSubscribed] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
+  const [id, setId] = React.useState<Id<'push_notifications'> | null>(
+    null
+  );
+
+  const query = useQuery(api.push_notification.getSubsWIthId, { id });
 
   const subscribe = async () => {
     try {
@@ -33,7 +41,7 @@ export const PushNotification = (props: PushNotificationProps) => {
         vapidPublicKey: string;
       } | null;
 
-      if (!data) {
+      if (!data || !data.vapidPublicKey) {
         toast.error('vapid key is not defined');
         return;
       }
@@ -45,7 +53,7 @@ export const PushNotification = (props: PushNotificationProps) => {
         applicationServerKey: vapidPublicKey,
       });
 
-      const registerRes = await fetch(
+      const subRes = await fetch(
         'https://befitting-squid-96.convex.site/subscribe',
         {
           method: 'POST',
@@ -56,9 +64,9 @@ export const PushNotification = (props: PushNotificationProps) => {
         }
       );
 
-      const registerData = await registerRes.json();
+      const subData = await subRes.json();
 
-      if (!registerData) {
+      if (!subData || !subData.success) {
         toast.error('push notification subscription failed');
         return;
       }
@@ -66,6 +74,7 @@ export const PushNotification = (props: PushNotificationProps) => {
       setSubscribed(true);
       setDisabled(false);
       setLoading(false);
+      setId(subData.id);
 
       toast.success('successfuly subscribed push notifications');
     } catch (error) {
@@ -95,7 +104,7 @@ export const PushNotification = (props: PushNotificationProps) => {
           'https://befitting-squid-96.convex.site/unsubscribe',
           {
             method: 'POST',
-            body: JSON.stringify({ endpoint: subscription.endpoint }),
+            body: JSON.stringify({ id }),
             headers: {
               'Content-Type': 'application/json',
             },
@@ -104,7 +113,7 @@ export const PushNotification = (props: PushNotificationProps) => {
 
         const data = await res.json();
 
-        if (!data) {
+        if (!data || !data.success) {
           toast.error('push notifications unsubscription failed');
           return;
         }
@@ -112,6 +121,7 @@ export const PushNotification = (props: PushNotificationProps) => {
         setSubscribed(false);
         setDisabled(false);
         setLoading(false);
+        setId(null);
 
         toast.success('successfuly unsubscribed push notifications');
       }
@@ -124,6 +134,21 @@ export const PushNotification = (props: PushNotificationProps) => {
       console.log(error);
     }
   };
+
+  React.useEffect(() => {
+    if (query && !query.subscription) {
+      (async () => {
+        const registeration = await navigator.serviceWorker.ready;
+
+        const subscription =
+          await registeration.pushManager.getSubscription();
+
+        subscription?.unsubscribe();
+        setSubscribed(false);
+        setId(null);
+      })();
+    }
+  }, [query]);
 
   React.useEffect(() => {
     navigator.serviceWorker.register('/sw.js', { scope: '/' });
@@ -148,10 +173,12 @@ export const PushNotification = (props: PushNotificationProps) => {
 
         const data = await res.json();
 
-        if (data.subscribed) {
+        if (data.id) {
           setSubscribed(true);
+          setId(data.id);
         } else {
           setSubscribed(false);
+          setId(null);
           subscription.unsubscribe();
         }
       } else {

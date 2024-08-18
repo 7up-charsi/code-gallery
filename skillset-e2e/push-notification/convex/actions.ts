@@ -24,6 +24,8 @@ export const sendNotification = internalAction({
 
     docs.forEach(async ({ _id, subscription }) => {
       try {
+        if (!subscription) return; // do dont any action because it will be removed by cron job which runs every 24 hours
+
         await webPush.sendNotification(
           subscription as never,
           JSON.stringify({
@@ -36,17 +38,15 @@ export const sendNotification = internalAction({
         );
 
         console.log(
-          'Push Application Server - Notification sent to ' +
-            subscription.endpoint
+          'Push Notification sent to ' + subscription.endpoint
         );
       } catch (error) {
-        await ctx.runMutation(
-          api.push_notification.deleteSubscription,
-          { _id }
-        );
+        await ctx.runMutation(api.push_notification.unsubscribe, {
+          id: _id,
+        });
 
         console.log(
-          'ERROR in sending Notification, endpoint removed ' +
+          'ERROR in sending Push Notification, subscription removed ' +
             subscription.endpoint
         );
       }

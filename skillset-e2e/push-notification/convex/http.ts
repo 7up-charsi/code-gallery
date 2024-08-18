@@ -34,10 +34,7 @@ http.route({
       'Access-Control-Max-Age': '86400',
     });
 
-    return new Response(null, {
-      status: 200,
-      headers,
-    });
+    return new Response(null, { status: 200, headers });
   }),
 });
 
@@ -69,13 +66,10 @@ http.route({
       { endpoint }
     );
 
-    return new Response(
-      JSON.stringify({ subscribed: !!subscription }),
-      {
-        status: 200,
-        headers,
-      }
-    );
+    return new Response(JSON.stringify({ id: subscription?._id }), {
+      status: 200,
+      headers,
+    });
   }),
 });
 
@@ -90,10 +84,7 @@ http.route({
       'Access-Control-Max-Age': '86400',
     });
 
-    return new Response(null, {
-      status: 200,
-      headers,
-    });
+    return new Response(null, { status: 200, headers });
   }),
 });
 
@@ -116,17 +107,12 @@ http.route({
           success: false,
           message: 'subscription is required',
         }),
-        {
-          status: 400,
-          headers,
-        }
+        { status: 400, headers }
       );
 
     const res = await ctx.runMutation(
       api.push_notification.subscribe,
-      {
-        subscription,
-      }
+      { subscription }
     );
 
     return new Response(JSON.stringify(res), {
@@ -158,7 +144,7 @@ http.route({
   path: '/unsubscribe',
   method: 'POST',
   handler: httpAction(async (ctx, request) => {
-    const { endpoint } = await request.json();
+    const { id } = await request.json();
 
     const headers = new Headers({
       'Access-Control-Allow-Origin': process.env.CLIENT_ORIGIN!,
@@ -167,23 +153,18 @@ http.route({
       'Access-Control-Max-Age': '86400',
     });
 
-    if (!endpoint)
+    if (!id)
       return new Response(
         JSON.stringify({
           success: false,
-          message: 'endpoint is required',
+          message: 'id is required',
         }),
-        {
-          status: 400,
-          headers,
-        }
+        { status: 400, headers }
       );
 
     const res = await ctx.runMutation(
       api.push_notification.unsubscribe,
-      {
-        endpoint,
-      }
+      { id }
     );
 
     return new Response(JSON.stringify(res), {

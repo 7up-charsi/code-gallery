@@ -7,6 +7,7 @@ import { siteConfig } from '@/config/site';
 import { portfolio } from '@repo/meta';
 import './globals.css';
 import { Bounce, ToastContainer } from 'react-toastify';
+import { ConvexClientProvider } from '@/components/convex-client-provider';
 
 export const metadata: Metadata = {
   title: siteConfig.name,
@@ -35,11 +36,13 @@ export default function RootLayout({
           storageKey={siteConfig.name.replaceAll(' ', '-')}
           attribute='class'
         >
-          <AppBar>
-            <AppBarContent />
-          </AppBar>
+          <ConvexClientProvider>
+            <AppBar>
+              <AppBarContent />
+            </AppBar>
 
-          {children}
+            {children}
+          </ConvexClientProvider>
         </ThemeProvider>
 
         <ToastContainer
