@@ -1,7 +1,8 @@
 'use client';
 
-import { transform, useScroll, useTransform } from 'framer-motion';
+import { useScroll, useTransform } from 'framer-motion';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import React from 'react';
 
 interface Section1Props {}
@@ -16,13 +17,19 @@ export const Section1 = (props: Section1Props) => {
   const position = useTransform(scrollY, [40, 800], [0, 500]);
 
   return (
-    <motion.div
-      style={{
-        backgroundPositionX: -100,
-        backgroundPositionY: position,
-      }}
-      className="h-screen bg-[url(/assets/parallax/jungle-landscape.jpg)] bg-cover bg-no-repeat"
-    ></motion.div>
+    <div className="relative isolate h-screen overflow-hidden">
+      <motion.div
+        style={{ y: position }}
+        className="absolute -z-50 h-full w-full will-change-transform"
+      >
+        <Image
+          src="/assets/parallax/jungle-landscape.jpg"
+          alt="jungle-landscape"
+          fill
+          className="object-cover object-[-100px]"
+        />
+      </motion.div>
+    </div>
   );
 };
 

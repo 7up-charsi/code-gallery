@@ -2,6 +2,7 @@
 
 import { useScroll, useTransform } from 'framer-motion';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import React from 'react';
 
 interface Section3Props {}
@@ -16,13 +17,19 @@ export const Section3 = (props: Section3Props) => {
   const position = useTransform(scrollY, [800, 1550], [-500, 0]);
 
   return (
-    <motion.div
-      style={{
-        backgroundPositionX: 'center',
-        backgroundPositionY: position,
-      }}
-      className="h-screen bg-[url(/assets/parallax/forest-landscape.jpg)] bg-cover bg-no-repeat"
-    ></motion.div>
+    <div className="relative isolate h-screen overflow-hidden">
+      <motion.div
+        style={{ y: position }}
+        className="absolute -z-50 h-full w-full will-change-transform"
+      >
+        <Image
+          src="/assets/parallax/forest-landscape.jpg"
+          alt="forest-landscape"
+          fill
+          className="object-cover object-[-100px]"
+        />
+      </motion.div>
+    </div>
   );
 };
 
