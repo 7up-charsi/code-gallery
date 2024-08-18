@@ -16,6 +16,7 @@ export const PushNotification = (props: PushNotificationProps) => {
   const {} = props;
 
   const switchRef = React.useRef<HTMLInputElement>(null);
+  const labelId = React.useId();
 
   const [disabled, setDisabled] = React.useState(true);
   const [subscribed, setSubscribed] = React.useState(false);
@@ -191,9 +192,15 @@ export const PushNotification = (props: PushNotificationProps) => {
 
   return (
     <div className='flex items-center gap-2'>
+      <label htmlFor={labelId} className='sr-only'>
+        push notifications
+      </label>
+
+      {!loading ? null : <Loader2Icon className='animate-spin' />}
+
       <Switch
+        id={labelId}
         ref={switchRef}
-        label='push notifications'
         size='sm'
         checked={subscribed}
         disabled={disabled}
@@ -216,8 +223,6 @@ export const PushNotification = (props: PushNotificationProps) => {
           }
         }}
       />
-
-      {!loading ? null : <Loader2Icon className='animate-spin' />}
     </div>
   );
 };
