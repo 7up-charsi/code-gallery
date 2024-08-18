@@ -1,9 +1,24 @@
+import { api } from './_generated/api';
 import { mutation, query } from './_generated/server';
 import { v } from 'convex/values';
 
 export const subscriptions = query({
   handler: async (ctx) => {
     return await ctx.db.query('push_notifications').collect();
+  },
+});
+
+export const subscription = query({
+  args: {
+    endpoint: v.string(),
+  },
+  handler: async (ctx, args) => {
+    return await ctx.db
+      .query('push_notifications')
+      .filter((q) =>
+        q.eq(q.field('subscription.endpoint'), args.endpoint)
+      )
+      .first();
   },
 });
 
@@ -23,15 +38,19 @@ export const subscribe = mutation({
 
       if (doc) {
         await ctx.db.patch(doc._id, {
-          subscription: {
-            endpoint: args.subscription.endpoint,
-          },
+          subscription: args.subscription,
         });
       } else {
         await ctx.db.insert('push_notifications', {
           subscription: args.subscription,
         });
       }
+
+      await ctx.scheduler.runAfter(
+        +process.env.UNSUBSCRIBE_MS!,
+        api.push_notification.unsubscribe,
+        { endpoint: doc?.subscription.endpoint }
+      );
 
       return { success: true };
     } catch (error) {

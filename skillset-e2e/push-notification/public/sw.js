@@ -6,7 +6,6 @@ self.addEventListener('push', function (event) {
       icon: payload.icon,
       badge: payload.badge,
       vibrate: payload.vibration,
-      tag: payload.tag,
     })
   );
 });

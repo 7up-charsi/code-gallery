@@ -6,7 +6,7 @@ const config: Config = {
   content: [
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
-    './node_modules/@typeweave/react/dist/**/*.styles.js',
+    '../../node_modules/@typeweave/react/dist/**/*.styles.js',
   ],
   plugins: [
     typeweave(),

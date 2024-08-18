@@ -128,19 +128,37 @@ export const PushNotification = (props: PushNotificationProps) => {
   React.useEffect(() => {
     navigator.serviceWorker.register('/sw.js', { scope: '/' });
 
-    navigator.serviceWorker.ready
-      .then((registeration) => {
-        setDisabled(false);
+    (async () => {
+      const registeration = await navigator.serviceWorker.ready;
 
-        return registeration.pushManager.getSubscription();
-      })
-      .then((subscription) => {
-        if (subscription) {
+      setDisabled(false);
+      const subscription =
+        await registeration.pushManager.getSubscription();
+
+      if (subscription) {
+        const res = await fetch(
+          'https://befitting-squid-96.convex.site/subscription',
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              endpoint: subscription?.endpoint,
+            }),
+          }
+        );
+
+        const data = await res.json();
+
+        if (data.subscribed) {
           setSubscribed(true);
         } else {
           setSubscribed(false);
+          subscription.unsubscribe();
         }
-      });
+      } else {
+        setSubscribed(false);
+      }
+    })();
   }, []);
 
   return (
