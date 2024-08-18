@@ -6,7 +6,8 @@ const config: Config = {
   content: [
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
-    '../../node_modules/@typeweave/react/dist/**/*.styles.js',
+    '../node_modules/@typeweave/react/dist/**/*.styles.js',
+    '../node_modules/@repo/ui/src/*.tsx',
   ],
   plugins: [
     typeweave(),
@@ -19,4 +20,3 @@ const config: Config = {
 };
 
 export default config;
-

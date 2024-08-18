@@ -35,16 +35,16 @@ export const ThemeSwitcher = (props: ThemeSwitcherProps) => {
   return (
     <>
       {!isMounted && (
-        <Skeleton variant="rounded" className="h-9 w-14" />
+        <Skeleton variant='rounded' className='h-9 w-14' />
       )}
 
       {isMounted && (
         <MenuRoot>
           <MenuTrigger>
             <Button
-              aria-label="theme switcher"
+              aria-label='theme switcher'
               endContent={<ChevronDownIcon />}
-              className="w-14 gap-1"
+              className='w-14 gap-1'
             >
               {theme === 'light' && <SunIcon size={20} />}
               {theme === 'dark' && <MoonStarIcon size={20} />}
@@ -53,17 +53,17 @@ export const ThemeSwitcher = (props: ThemeSwitcherProps) => {
           </MenuTrigger>
 
           <MenuPortal>
-            <MenuContent className="z-50">
+            <MenuContent className='z-50'>
               <MenuArrow />
 
               <MenuRadioGroup
                 value={theme}
-                label="themes"
+                label='themes'
                 hideLabel
                 onChange={setTheme}
               >
                 <MenuRadioItem
-                  value="light"
+                  value='light'
                   classNames={{
                     itemContent: 'flex gap-3 capitalize items-center',
                   }}
@@ -73,7 +73,7 @@ export const ThemeSwitcher = (props: ThemeSwitcherProps) => {
                 </MenuRadioItem>
 
                 <MenuRadioItem
-                  value="dark"
+                  value='dark'
                   classNames={{
                     itemContent: 'flex gap-3 capitalize items-center',
                   }}
@@ -83,7 +83,7 @@ export const ThemeSwitcher = (props: ThemeSwitcherProps) => {
                 </MenuRadioItem>
 
                 <MenuRadioItem
-                  value="system"
+                  value='system'
                   classNames={{
                     itemContent: 'flex gap-3 capitalize items-center',
                   }}
