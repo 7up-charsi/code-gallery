@@ -26,7 +26,7 @@ export const Section3 = (props: Section3Props) => {
           src="/assets/parallax/forest-landscape.jpg"
           alt="forest-landscape"
           fill
-          className="object-cover object-[-100px]"
+          className="object-cover object-top max-md:object-[-100px_top]"
         />
       </motion.div>
     </div>
