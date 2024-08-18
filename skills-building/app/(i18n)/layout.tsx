@@ -1,5 +1,5 @@
-import { SharedStuff } from '@/components/shared-stuff';
 import { rootMetadata } from '@/config/root-meta';
+import { ToastifyContainer } from '@repo/ui';
 import { Inter } from 'next/font/google';
 import type { Metadata } from 'next';
 import '@/styles/globals.css';
@@ -22,7 +22,7 @@ export default function RootLayout({
       >
         {children}
 
-        <SharedStuff />
+        <ToastifyContainer />
       </body>
     </html>
   );

@@ -1,4 +1,4 @@
-import { OpenGraphImage } from '@/components/open-graph-image';
+import { OpenGraphImage } from '@/config/open-graph';
 import { openGraphConfig } from '@/config/open-graph';
 import { siteConfig } from './site.config';
 import { ImageResponse } from 'next/og';
