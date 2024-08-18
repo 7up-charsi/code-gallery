@@ -10,11 +10,11 @@ interface ConvexClientProviderProps {
 const displayName = 'ConvexClientProvider';
 
 const convex = new ConvexReactClient(
-  process.env.NEXT_PUBLIC_CONVEX_URL!
+  process.env.NEXT_PUBLIC_CONVEX_URL!,
 );
 
 export const ConvexClientProvider = (
-  props: ConvexClientProviderProps
+  props: ConvexClientProviderProps,
 ) => {
   const { children } = props;
 

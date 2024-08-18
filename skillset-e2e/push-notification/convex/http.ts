@@ -1,5 +1,5 @@
-import { httpRouter } from 'convex/server';
 import { httpAction } from './_generated/server';
+import { httpRouter } from 'convex/server';
 import { api } from './_generated/api';
 
 const http = httpRouter();
@@ -57,13 +57,13 @@ http.route({
           success: false,
           message: 'endpoint is required',
         }),
-        { status: 400, headers }
+        { status: 400, headers },
       );
     }
 
     const subscription = await ctx.runQuery(
       api.push_notification.subscription,
-      { endpoint }
+      { endpoint },
     );
 
     return new Response(JSON.stringify({ id: subscription?._id }), {
@@ -107,12 +107,12 @@ http.route({
           success: false,
           message: 'subscription is required',
         }),
-        { status: 400, headers }
+        { status: 400, headers },
       );
 
     const res = await ctx.runMutation(
       api.push_notification.subscribe,
-      { subscription }
+      { subscription },
     );
 
     return new Response(JSON.stringify(res), {
@@ -159,12 +159,12 @@ http.route({
           success: false,
           message: 'id is required',
         }),
-        { status: 400, headers }
+        { status: 400, headers },
       );
 
     const res = await ctx.runMutation(
       api.push_notification.unsubscribe,
-      { id }
+      { id },
     );
 
     return new Response(JSON.stringify(res), {

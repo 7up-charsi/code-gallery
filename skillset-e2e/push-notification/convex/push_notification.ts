@@ -1,5 +1,5 @@
-import { api } from './_generated/api';
 import { mutation, query } from './_generated/server';
+import { api } from './_generated/api';
 import { v } from 'convex/values';
 
 export const subscriptions = query({
@@ -16,7 +16,7 @@ export const subscription = query({
     return await ctx.db
       .query('push_notifications')
       .filter((q) =>
-        q.eq(q.field('subscription.endpoint'), args.endpoint)
+        q.eq(q.field('subscription.endpoint'), args.endpoint),
       )
       .first();
   },
@@ -44,7 +44,7 @@ export const subscribe = mutation({
       const schedulerId = await ctx.scheduler.runAfter(
         +process.env.UNSUBSCRIBE_MS! ?? 600000, // 10 minutes
         api.push_notification.schedualUnsubscribe,
-        { id }
+        { id },
       );
 
       await ctx.db.patch(id, { schedulerId });

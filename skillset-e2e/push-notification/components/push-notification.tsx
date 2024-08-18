@@ -1,12 +1,12 @@
 'use client';
 
-import { api } from '@/convex/_generated/api';
 import { Id } from '@/convex/_generated/dataModel';
 import { Switch } from '@typeweave/react/switch';
-import { useQuery } from 'convex/react';
+import { api } from '@/convex/_generated/api';
 import { Loader2Icon } from 'lucide-react';
-import React from 'react';
+import { useQuery } from 'convex/react';
 import { toast } from 'react-toastify';
+import React from 'react';
 
 interface PushNotificationProps {}
 
@@ -22,7 +22,7 @@ export const PushNotification = (props: PushNotificationProps) => {
   const [subscribed, setSubscribed] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const [id, setId] = React.useState<Id<'push_notifications'> | null>(
-    null
+    null,
   );
 
   const query = useQuery(api.push_notification.getSubsWIthId, { id });
@@ -35,7 +35,7 @@ export const PushNotification = (props: PushNotificationProps) => {
       const registeration = await navigator.serviceWorker.ready;
 
       const res = await fetch(
-        'https://befitting-squid-96.convex.site/vapid-public-key'
+        'https://befitting-squid-96.convex.site/vapid-public-key',
       );
 
       const data = (await res.json()) as {
@@ -62,7 +62,7 @@ export const PushNotification = (props: PushNotificationProps) => {
           headers: {
             'Content-type': 'application/json',
           },
-        }
+        },
       );
 
       const subData = await subRes.json();
@@ -109,7 +109,7 @@ export const PushNotification = (props: PushNotificationProps) => {
             headers: {
               'Content-Type': 'application/json',
             },
-          }
+          },
         );
 
         const data = await res.json();
@@ -169,7 +169,7 @@ export const PushNotification = (props: PushNotificationProps) => {
             body: JSON.stringify({
               endpoint: subscription?.endpoint,
             }),
-          }
+          },
         );
 
         const data = await res.json();
@@ -191,17 +191,17 @@ export const PushNotification = (props: PushNotificationProps) => {
   }, []);
 
   return (
-    <div className='flex items-center gap-2'>
-      <label htmlFor={labelId} className='sr-only'>
+    <div className="flex items-center gap-2">
+      <label htmlFor={labelId} className="sr-only">
         push notifications
       </label>
 
-      {!loading ? null : <Loader2Icon className='animate-spin' />}
+      {!loading ? null : <Loader2Icon className="animate-spin" />}
 
       <Switch
         id={labelId}
         ref={switchRef}
-        size='sm'
+        size="sm"
         checked={subscribed}
         disabled={disabled}
         onChange={async (e) => {

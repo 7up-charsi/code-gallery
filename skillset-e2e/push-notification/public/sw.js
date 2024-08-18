@@ -6,7 +6,7 @@ self.addEventListener('push', function (event) {
       icon: payload.icon,
       badge: payload.badge,
       vibrate: payload.vibration,
-    })
+    }),
   );
 });
 
@@ -19,7 +19,7 @@ self.addEventListener('pushsubscriptionchange', function (event) {
       .then(function (subscription) {
         console.log(
           'Subscribed after expiration',
-          subscription.endpoint
+          subscription.endpoint,
         );
 
         return fetch('register', {
@@ -31,6 +31,6 @@ self.addEventListener('pushsubscriptionchange', function (event) {
             subscription,
           }),
         });
-      })
+      }),
   );
 });

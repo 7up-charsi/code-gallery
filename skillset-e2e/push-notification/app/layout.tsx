@@ -1,13 +1,13 @@
+import { ConvexClientProvider } from '@/components/convex-client-provider';
 import { AppBarContent } from '../components/app-bar-content';
+import { Bounce, ToastContainer } from 'react-toastify';
 import { AppBar } from '../components/app-bar';
 import { ThemeProvider } from 'next-themes';
-import { Inter } from 'next/font/google';
-import type { Metadata } from 'next';
 import { siteConfig } from '@/config/site';
+import { Inter } from 'next/font/google';
 import { portfolio } from '@repo/meta';
+import type { Metadata } from 'next';
 import './globals.css';
-import { Bounce, ToastContainer } from 'react-toastify';
-import { ConvexClientProvider } from '@/components/convex-client-provider';
 
 export const metadata: Metadata = {
   title: siteConfig.name,
@@ -28,13 +28,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='eng' dir='ltr'>
+    <html lang="eng" dir="ltr">
       <body
-        className={`${inter.className} text-foreground bg-background`}
+        className={`${inter.className} bg-background text-foreground`}
       >
         <ThemeProvider
           storageKey={siteConfig.name.replaceAll(' ', '-')}
-          attribute='class'
+          attribute="class"
         >
           <ConvexClientProvider>
             <AppBar>
@@ -46,7 +46,7 @@ export default function RootLayout({
         </ThemeProvider>
 
         <ToastContainer
-          position='bottom-right'
+          position="bottom-right"
           autoClose={2000}
           hideProgressBar={false}
           newestOnTop={false}
@@ -55,7 +55,7 @@ export default function RootLayout({
           pauseOnFocusLoss
           draggable
           pauseOnHover
-          theme='colored'
+          theme="colored"
           transition={Bounce}
         />
       </body>
