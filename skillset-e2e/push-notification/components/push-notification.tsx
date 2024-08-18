@@ -131,7 +131,6 @@ export const PushNotification = (props: PushNotificationProps) => {
     (async () => {
       const registeration = await navigator.serviceWorker.ready;
 
-      setDisabled(false);
       const subscription =
         await registeration.pushManager.getSubscription();
 
@@ -158,6 +157,8 @@ export const PushNotification = (props: PushNotificationProps) => {
       } else {
         setSubscribed(false);
       }
+
+      setDisabled(false);
     })();
   }, []);
 
