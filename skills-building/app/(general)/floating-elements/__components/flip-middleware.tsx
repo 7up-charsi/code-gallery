@@ -2,6 +2,7 @@
 
 import {
   autoUpdate,
+  flip,
   offset,
   useFloating,
 } from '@floating-ui/react-dom';
@@ -9,25 +10,29 @@ import { Button } from '@typeweave/react/button';
 import { FloatingCard } from './floating-card';
 import React from 'react';
 
-interface DefaultBehaviourProps {}
+interface FlipMiddlewareProps {}
 
-const displayName = 'DefaultBehaviour';
+const displayName = 'FlipMiddleware';
 
-export const DefaultBehaviour = (props: DefaultBehaviourProps) => {
+export const FlipMiddleware = (props: FlipMiddlewareProps) => {
   const {} = props;
 
   const { refs, floatingStyles } = useFloating({
     transform: true,
     whileElementsMounted: autoUpdate,
+    placement: 'bottom-end',
     middleware: [
       offset({
         mainAxis: 10,
+      }),
+      flip({
+        rootBoundary: 'document',
       }),
     ],
   });
 
   return (
-    <FloatingCard heading="default behaviour">
+    <FloatingCard heading="flip middleware">
       <Button ref={refs.setReference}>reference</Button>
 
       <div
@@ -41,4 +46,4 @@ export const DefaultBehaviour = (props: DefaultBehaviourProps) => {
   );
 };
 
-DefaultBehaviour.displayName = displayName;
+FlipMiddleware.displayName = displayName;

@@ -102,6 +102,9 @@ importers:
       '@repo/meta':
         specifier: workspace:*
         version: link:../packages/meta
+      '@typeweave/react-utils':
+        specifier: ^1.1.5
+        version: 1.1.5(react@18.3.1)
       embla-carousel:
         specifier: ^8.1.8
         version: 8.1.8

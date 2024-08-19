@@ -13,6 +13,7 @@
     "@formatjs/intl-localematcher": "^0.5.4",
     "@hookform/resolvers": "^3.9.0",
     "@repo/meta": "workspace:*",
+    "@typeweave/react-utils": "^1.1.5",
     "embla-carousel": "^8.1.8",
     "embla-carousel-react": "^8.1.8",
     "framer-motion": "^11.3.24",

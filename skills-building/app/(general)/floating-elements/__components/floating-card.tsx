@@ -1,18 +1,22 @@
 'use client';
 
+import { mergeRefs } from '@typeweave/react-utils';
 import { AnimatePresence } from 'framer-motion';
 import { motion } from 'framer-motion';
 import React from 'react';
 
 interface FloatingCardProps {
   children?: React.ReactNode;
-  // isHidden: boolean;
+  heading: string;
 }
 
 const displayName = 'FloatingCard';
 
-export const FloatingCard = (props: FloatingCardProps) => {
-  const { children } = props;
+export const FloatingCard = React.forwardRef<
+  HTMLDivElement,
+  FloatingCardProps
+>((props, forwardedRef) => {
+  const { children, heading } = props;
 
   const scrollAnsectorRef = React.useRef<HTMLDivElement>(null);
   const [isHidden, setIsHidden] = React.useState(true);
@@ -45,16 +49,22 @@ export const FloatingCard = (props: FloatingCardProps) => {
         ) : null}
       </AnimatePresence>
 
-      <div
-        ref={scrollAnsectorRef}
-        className="h-full w-full overflow-auto [scrollbar-width:_thin]"
-      >
-        <div className="flex h-[2000px] w-[2000px] items-center justify-center">
-          {children}
+      <div className="flex h-full w-full flex-col">
+        <div className="h-10 shrink-0 content-center border-b text-center font-medium capitalize">
+          {heading}
+        </div>
+
+        <div
+          ref={mergeRefs(forwardedRef, scrollAnsectorRef)}
+          className="grow overflow-auto [scrollbar-width:_thin]"
+        >
+          <div className="flex h-[2000px] w-[2000px] items-center justify-center">
+            {children}
+          </div>
         </div>
       </div>
     </section>
   );
-};
+});
 
 FloatingCard.displayName = displayName;
