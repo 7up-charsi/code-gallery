@@ -46,12 +46,12 @@ export const InlineMiddleware = (props: InlineMiddlewareProps) => {
       setIsHidden(true);
     };
 
-    ele.addEventListener('pointerover', onPointerOver);
-    ele.addEventListener('pointerout', onPointerOut);
+    ele.addEventListener('pointerenter', onPointerOver);
+    ele.addEventListener('pointerleave', onPointerOut);
 
     return () => {
-      ele.removeEventListener('pointerover', onPointerOver);
-      ele.removeEventListener('pointerout', onPointerOut);
+      ele.removeEventListener('pointerenter', onPointerOver);
+      ele.removeEventListener('pointerleave', onPointerOut);
     };
   }, []);
 

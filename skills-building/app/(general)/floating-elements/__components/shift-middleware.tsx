@@ -3,18 +3,20 @@
 import {
   autoUpdate,
   flip,
+  limitShift,
   offset,
+  shift,
   useFloating,
 } from '@floating-ui/react-dom';
 import { Button } from '@typeweave/react/button';
 import { FloatingCard } from './floating-card';
 import React from 'react';
 
-interface FlipMiddlewareProps {}
+interface ShiftMiddlewareProps {}
 
-const displayName = 'FlipMiddleware';
+const displayName = 'ShiftMiddleware';
 
-export const FlipMiddleware = (props: FlipMiddlewareProps) => {
+export const ShiftMiddleware = (props: ShiftMiddlewareProps) => {
   const {} = props;
 
   const { refs, floatingStyles } = useFloating({
@@ -27,11 +29,15 @@ export const FlipMiddleware = (props: FlipMiddlewareProps) => {
       flip({
         rootBoundary: 'document',
       }),
+      shift({
+        limiter: limitShift(),
+        rootBoundary: 'document',
+      }),
     ],
   });
 
   return (
-    <FloatingCard heading="flip middleware">
+    <FloatingCard heading="shift middleware">
       <Button ref={refs.setReference}>reference</Button>
 
       <div
@@ -45,4 +51,4 @@ export const FlipMiddleware = (props: FlipMiddlewareProps) => {
   );
 };
 
-FlipMiddleware.displayName = displayName;
+ShiftMiddleware.displayName = displayName;
