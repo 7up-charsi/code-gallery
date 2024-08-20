@@ -12,7 +12,6 @@ import {
 } from '@floating-ui/react-dom';
 import { Button } from '@typeweave/react/button';
 import { FloatingCard } from './floating-card';
-import { ChevronUpIcon } from 'lucide-react';
 import React from 'react';
 
 interface ArrowMiddlewareProps {}
@@ -75,7 +74,7 @@ export const ArrowMiddleware = (props: ArrowMiddlewareProps) => {
             left: middlewareData.arrow?.x,
           }}
           data-side={side}
-          className="absolute border-4 border-transparent border-b-black text-black data-[side=bottom]:bottom-full data-[side=left]:left-full data-[side=right]:right-full data-[side=top]:top-full data-[side=left]:rotate-90 data-[side=right]:-rotate-90 data-[side=top]:rotate-180"
+          className="absolute border-4 border-transparent border-b-black data-[side=bottom]:bottom-full data-[side=left]:left-full data-[side=right]:right-full data-[side=top]:top-full data-[side=left]:rotate-90 data-[side=right]:-rotate-90 data-[side=top]:rotate-180"
         ></span>
       </div>
     </FloatingCard>
