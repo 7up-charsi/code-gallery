@@ -33,7 +33,7 @@ export const OrderConfirmedItem = (
 
         <dl className="grow content-center space-x-3">
           <dt className="sr-only">amount in cart</dt>
-          <dd className="font-semibold text-primary-11">{amount}x</dd>
+          <dd className="text-primary-11 font-semibold">{amount}x</dd>
 
           <dt className="sr-only">price</dt>
           <dd className="">@{price}</dd>

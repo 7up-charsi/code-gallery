@@ -44,23 +44,23 @@ export const OrderConfirmed = (props: OrderConfirmedProps) => {
     <aside
       aria-labelledby={titleIdProp ?? titleId}
       aria-describedby={descIdProp ?? descId}
-      className="grid w-full grid-cols-[20px_1fr_20px] overflow-auto rounded bg-background py-5"
+      className="bg-background grid w-full grid-cols-[20px_1fr_20px] overflow-auto rounded py-5"
     >
       <div className="col-start-2 flex items-center gap-3">
         <CheckCircleIcon className="text-success-11" />
         <h2
           id={titleId}
-          className="whitespace-nowrap text-lg font-semibold capitalize text-primary-11"
+          className="text-primary-11 whitespace-nowrap text-lg font-semibold capitalize"
         >
           {dictionary.orderConfirmed}
         </h2>
       </div>
 
-      <div id={descId} className="col-start-2 mt-2 text-muted-11/80">
+      <div id={descId} className="text-muted-11/80 col-start-2 mt-2">
         {dictionary.orderConfirmedDesc}
       </div>
 
-      <div className="col-span-3 mt-5 overflow-auto border-b border-muted-6 pb-2">
+      <div className="border-muted-6 col-span-3 mt-5 overflow-auto border-b pb-2">
         <div className="scrollbar-thin h-full space-y-3 overflow-auto px-5">
           {items.map(({ id, amount }, i, arr) => {
             const item = data.find((ele) => ele.id === id)!;

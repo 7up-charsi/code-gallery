@@ -19,7 +19,7 @@ export const ProductImage = (props: ProductImageProps) => {
   return (
     <div
       data-selected={!!item}
-      className="relative aspect-video w-full select-none overflow-hidden rounded border-transparent data-[selected=true]:border-2 data-[selected=true]:border-primary-9 md:aspect-square"
+      className="data-[selected=true]:border-primary-9 relative aspect-video w-full select-none overflow-hidden rounded border-transparent data-[selected=true]:border-2 md:aspect-square"
     >
       <Image
         src={image.thumbnail}

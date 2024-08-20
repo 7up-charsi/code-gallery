@@ -35,24 +35,24 @@ export const InlineMiddleware = (props: InlineMiddlewareProps) => {
 
     if (!ele) return;
 
-    const onPointerOver = (e: PointerEvent) => {
+    const onPointerEnter = (e: PointerEvent) => {
       setInlineX(e.clientX);
       setInlineY(e.clientY);
       setIsHidden(false);
     };
 
-    const onPointerOut = (e: PointerEvent) => {
+    const onPointerLeave = (e: PointerEvent) => {
       setInlineX(undefined);
       setInlineY(undefined);
       setIsHidden(true);
     };
 
-    ele.addEventListener('pointerenter', onPointerOver);
-    ele.addEventListener('pointerleave', onPointerOut);
+    ele.addEventListener('pointerenter', onPointerEnter);
+    ele.addEventListener('pointerleave', onPointerLeave);
 
     return () => {
-      ele.removeEventListener('pointerenter', onPointerOver);
-      ele.removeEventListener('pointerleave', onPointerOut);
+      ele.removeEventListener('pointerenter', onPointerEnter);
+      ele.removeEventListener('pointerleave', onPointerLeave);
     };
   }, []);
 
@@ -72,7 +72,7 @@ export const InlineMiddleware = (props: InlineMiddlewareProps) => {
 
   return (
     <FloatingCard heading="inline middleware">
-      <div className="max-w-sm">
+      <p className="w-full max-w-sm">
         Lorem ipsum dolor, sit amet consectetur adipisicing elit.
         <span
           ref={mergeRefs(refs.setReference, inlineEleRef)}
@@ -83,7 +83,7 @@ export const InlineMiddleware = (props: InlineMiddlewareProps) => {
         </span>
         facere quaerat autem voluptates magnam sapiente provident
         praesentium. Incidunt, praesentium nesciunt!
-      </div>
+      </p>
 
       {isHidden ? null : (
         <div

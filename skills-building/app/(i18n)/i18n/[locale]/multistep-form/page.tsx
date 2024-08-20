@@ -87,14 +87,14 @@ export default function Home() {
 
   return (
     <main className="flex min-h-[calc(100vh-105px)] justify-center md:items-center md:px-8 md:py-5">
-      <div className="w-full max-w-screen-md grid-cols-1 border-muted-6 bg-background max-md:pb-5 md:grid md:min-h-[70vh] md:grid-cols-[theme(spacing.64),1fr] md:overflow-hidden md:rounded-xl md:border md:p-3 md:shadow-md">
+      <div className="border-muted-6 bg-background w-full max-w-screen-md grid-cols-1 max-md:pb-5 md:grid md:min-h-[70vh] md:grid-cols-[theme(spacing.64),1fr] md:overflow-hidden md:rounded-xl md:border md:p-3 md:shadow-md">
         <FormProvider {...formMethods}>
           <FormIndicators />
 
           <form
             ref={formRef}
             onSubmit={formMethods.handleSubmit(onSubmit)}
-            className="mx-auto -mt-20 flex w-[calc(100%-40px)] flex-col gap-1 rounded border border-muted-6 bg-background p-5 max-md:shadow-md md:mt-0 md:h-full md:w-full md:border-0 md:py-0 md:pl-5 md:pr-2"
+            className="border-muted-6 bg-background mx-auto -mt-20 flex w-[calc(100%-40px)] flex-col gap-1 rounded border p-5 max-md:shadow-md md:mt-0 md:h-full md:w-full md:border-0 md:py-0 md:pl-5 md:pr-2"
           >
             <div className="grow overflow-auto">
               <Step1 />

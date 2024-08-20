@@ -8,7 +8,7 @@ export default function Home() {
 
       <section className="bg-background p-5">
         <div className="mx-auto max-w-lg">
-          <h2 className="text-center text-2xl font-medium capitalize text-muted-12">
+          <h2 className="text-muted-12 text-center text-2xl font-medium capitalize">
             Dummy Heading 1
           </h2>
 
@@ -28,7 +28,7 @@ export default function Home() {
             assumenda totam, itaque, fuga suscipit soluta.
           </p>
 
-          <h2 className="mt-5 text-center text-2xl font-medium capitalize text-muted-12">
+          <h2 className="text-muted-12 mt-5 text-center text-2xl font-medium capitalize">
             Dummy Heading 2
           </h2>
 

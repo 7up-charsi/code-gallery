@@ -116,7 +116,7 @@ export const Form = (props: FormProps) => {
   };
 
   return (
-    <div className="grid w-full max-w-screen-md grid-cols-1 overflow-hidden rounded border-muted-6 md:grid-cols-2 md:border md:shadow-md">
+    <div className="border-muted-6 grid w-full max-w-screen-md grid-cols-1 overflow-hidden rounded md:grid-cols-2 md:border md:shadow-md">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="p-5 md:col-start-1"

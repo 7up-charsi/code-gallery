@@ -11,10 +11,10 @@ export default function Home() {
   const setOperator = useCalculator((state) => state.setOperator);
 
   return (
-    <div className="mx-auto mt-20 w-full max-w-xs rounded border border-muted-6 bg-paper p-3 shadow-md">
+    <div className="border-muted-6 bg-paper mx-auto mt-20 w-full max-w-xs rounded border p-3 shadow-md">
       <Screen />
 
-      <div className="mt-3 grid grid-cols-4 grid-rows-[repeat(5,35px)] gap-3 [&_button]:content-center [&_button]:rounded [&_button]:bg-muted-3 [&_button]:text-center [&_button]:font-bold [&_button]:shadow-[0_3px] [&_button]:shadow-muted-8 [&_button]:outline-none focus-visible:[&_button]:ring-2 active:[&_button]:shadow-none">
+      <div className="[&_button]:bg-muted-3 [&_button]:shadow-muted-8 mt-3 grid grid-cols-4 grid-rows-[repeat(5,35px)] gap-3 [&_button]:content-center [&_button]:rounded [&_button]:text-center [&_button]:font-bold [&_button]:shadow-[0_3px] [&_button]:outline-none focus-visible:[&_button]:ring-2 active:[&_button]:shadow-none">
         {/* row 1 */}
         <button type="button" onClick={() => insert(7)}>
           7
@@ -79,14 +79,14 @@ export default function Home() {
         {/* row 4 */}
         <button
           type="button"
-          className="col-span-2 !bg-primary-3 text-primary-11 !shadow-primary-8"
+          className="!bg-primary-3 text-primary-11 !shadow-primary-8 col-span-2"
           onClick={reset}
         >
           Reset
         </button>
         <button
           type="button"
-          className="col-span-2 !bg-primary-3 text-primary-11 !shadow-primary-8"
+          className="!bg-primary-3 text-primary-11 !shadow-primary-8 col-span-2"
           onClick={getResult}
         >
           =

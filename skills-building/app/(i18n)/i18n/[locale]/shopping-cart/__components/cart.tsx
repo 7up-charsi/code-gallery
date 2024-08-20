@@ -52,7 +52,7 @@ export const Cart = (props: CartProps) => {
       <div className="col-start-2 flex items-center justify-between">
         <h2
           id={titleId}
-          className="whitespace-nowrap text-lg font-semibold capitalize text-primary-11"
+          className="text-primary-11 whitespace-nowrap text-lg font-semibold capitalize"
         >
           {itemsInCart
             ? `${dictionary.yourCart} (${itemsInCart})`
@@ -73,7 +73,7 @@ export const Cart = (props: CartProps) => {
 
       <div
         data-have-items={!!items.length}
-        className="col-span-3 mt-5 overflow-auto border-muted-6 pb-2 data-[have-items=true]:border-b"
+        className="border-muted-6 col-span-3 mt-5 overflow-auto pb-2 data-[have-items=true]:border-b"
       >
         <div className="scrollbar-thin h-full space-y-3 overflow-auto px-5">
           {items.map(({ id, amount }, i, arr) => {
@@ -117,7 +117,7 @@ export const Cart = (props: CartProps) => {
           </div>
 
           <div
-            className="col-start-2 mt-2 flex justify-center gap-2 rounded bg-primary-2 px-3 py-5 text-center text-sm"
+            className="bg-primary-2 col-start-2 mt-2 flex justify-center gap-2 rounded px-3 py-5 text-center text-sm"
             aria-labelledby="carbon-neutral"
           >
             <TreeDeciduousIcon className="text-success-11" />

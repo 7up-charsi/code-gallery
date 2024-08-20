@@ -13,8 +13,8 @@ import { Button } from '@typeweave/react/button';
 export default function Home() {
   return (
     <div className="grid grid-cols-1 gap-2 md:grid-cols-[1fr_280px] lg:grid-cols-[250px_1fr_280px]">
-      <div className="sticky top-[104px] h-[calc(100vh-40px-64px)] border-r border-muted-6 p-2 max-lg:hidden">
-        <aside className="h-full w-full rounded bg-muted-3"></aside>
+      <div className="border-muted-6 sticky top-[104px] h-[calc(100vh-40px-64px)] border-r p-2 max-lg:hidden">
+        <aside className="bg-muted-3 h-full w-full rounded"></aside>
       </div>
 
       <DrawerRoot>
@@ -34,7 +34,7 @@ export default function Home() {
             placement="bottom"
             className="flex max-h-[calc(100vh-100px)] flex-col overflow-hidden rounded-t-2xl md:hidden"
           >
-            <div className="flex items-center justify-between gap-2 border-b border-muted-6 px-5 py-3">
+            <div className="border-muted-6 flex items-center justify-between gap-2 border-b px-5 py-3">
               <h2 className="text-muted-12">Table of Content</h2>
 
               <DrawerClose>
@@ -217,7 +217,7 @@ export default function Home() {
                           ? `${Math.floor(Math.random() * (70 - 10 + 1)) + 10}%`
                           : '100%',
                     }}
-                    className="h-3 rounded bg-muted-5"
+                    className="bg-muted-5 h-3 rounded"
                   ></div>
                 ))}
               </div>
@@ -226,9 +226,9 @@ export default function Home() {
         })}
       </main>
 
-      <aside className="sticky top-[104px] flex h-[calc(100vh-40px-64px)] flex-col border-l border-muted-6 max-md:hidden">
+      <aside className="border-muted-6 sticky top-[104px] flex h-[calc(100vh-40px-64px)] flex-col border-l max-md:hidden">
         <div className="px-5">
-          <h2 className="border-b border-muted-6 bg-background py-2 text-sm">
+          <h2 className="border-muted-6 bg-background border-b py-2 text-sm">
             Table of Content
           </h2>
         </div>

@@ -31,20 +31,20 @@ export const FormIndicators = (props: FormIndicatorsProps) => {
     >
       <div
         data-disabled={isThankYouStep}
-        className="mt-5 flex items-center justify-center gap-4 data-[disabled=true]:disabled md:flex-col md:items-start md:px-5"
+        className="data-[disabled=true]:disabled mt-5 flex items-center justify-center gap-4 md:flex-col md:items-start md:px-5"
       >
         {Array.from({ length: totalSteps }).map((_, i) => (
           <div
             key={i}
             data-disabled={i === 3 && (!submitCount || hasErrors)}
-            className="flex items-center gap-3 data-[disabled=true]:disabled"
+            className="data-[disabled=true]:disabled flex items-center gap-3"
           >
             <PointerEvents onPress={() => updateStep(i + 1)}>
               <button
                 aria-label={`${i + 1} step`}
                 color="primary"
                 data-active={currentStep === i + 1}
-                className="size-9 cursor-pointer rounded-full border border-white text-white outline-none ring-focus hover:bg-white/20 focus-visible:ring-2 active:bg-white/40 data-[active=true]:bg-white data-[active=true]:text-primary-11"
+                className="ring-focus data-[active=true]:text-primary-11 size-9 cursor-pointer rounded-full border border-white text-white outline-none hover:bg-white/20 focus-visible:ring-2 active:bg-white/40 data-[active=true]:bg-white"
                 disabled={isThankYouStep}
               >
                 {i + 1}

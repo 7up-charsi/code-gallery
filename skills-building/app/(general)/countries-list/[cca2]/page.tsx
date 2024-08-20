@@ -52,7 +52,7 @@ const CountryPage = async (props: { params: { cca2: string } }) => {
       <article
         key={country.cca2}
         aria-labelledby={country.cca2}
-        className="mx-auto mt-5 w-full gap-5 overflow-hidden rounded bg-background p-5"
+        className="bg-background mx-auto mt-5 w-full gap-5 overflow-hidden rounded p-5"
       >
         <div className="relative mx-auto aspect-video w-full max-w-md">
           <Image
@@ -129,7 +129,7 @@ const CountryPage = async (props: { params: { cca2: string } }) => {
                   <li key={i}>
                     <Link
                       href={`${siteConfig.pathname}/${ele}`}
-                      className="flex h-9 min-w-20 items-center justify-center rounded bg-muted-4 px-3"
+                      className="bg-muted-4 flex h-9 min-w-20 items-center justify-center rounded px-3"
                     >
                       {ele}
                     </Link>

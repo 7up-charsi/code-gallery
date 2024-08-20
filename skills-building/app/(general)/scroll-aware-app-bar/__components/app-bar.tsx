@@ -26,7 +26,7 @@ export const AppBar = (props: AppBarProps) => {
     <header
       data-hide={isHideRef.current}
       data-scrolled={isAtTop === null ? false : !isAtTop}
-      className="sticky -top-10 left-0 right-0 border-b border-muted-6 bg-background transition-transform data-[hide=true]:-translate-y-full data-[hide=false]:data-[scrolled=true]:shadow-md"
+      className="border-muted-6 bg-background sticky -top-10 left-0 right-0 border-b transition-transform data-[hide=true]:-translate-y-full data-[hide=false]:data-[scrolled=true]:shadow-md"
     >
       {children}
     </header>

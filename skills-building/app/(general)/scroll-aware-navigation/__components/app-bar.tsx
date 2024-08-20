@@ -70,11 +70,11 @@ export const AppBar = (props: AppBarProps) => {
   return (
     <header
       data-scrolled={isAtTop === null ? false : !isAtTop}
-      className="sticky -top-10 left-0 right-0 z-50 border-b border-muted-6 bg-background data-[scrolled=true]:shadow-md"
+      className="border-muted-6 bg-background sticky -top-10 left-0 right-0 z-50 border-b data-[scrolled=true]:shadow-md"
     >
       <PortfolioHeader />
 
-      <div className="flex h-16 items-center gap-3 border-b border-muted-6 px-5 md:px-8">
+      <div className="border-muted-6 flex h-16 items-center gap-3 border-b px-5 md:px-8">
         <Branding href={siteConfig.pathname}>
           {siteConfig.name}
         </Branding>
@@ -94,7 +94,7 @@ export const AppBar = (props: AppBarProps) => {
               key={i}
               data-active={activeSectionId === i + 1}
               href={`#${i + 1}`}
-              className="relative flex h-full shrink-0 select-none items-center px-2 capitalize outline-none before:absolute before:bottom-0 before:left-1/2 before:hidden before:h-1 before:w-1/3 before:-translate-x-1/2 before:rounded-full before:bg-primary-9 hover:bg-muted-3 focus-visible:ring-2 active:bg-muted-4 data-[active=true]:before:block"
+              className="before:bg-primary-9 hover:bg-muted-3 active:bg-muted-4 relative flex h-full shrink-0 select-none items-center px-2 capitalize outline-none before:absolute before:bottom-0 before:left-1/2 before:hidden before:h-1 before:w-1/3 before:-translate-x-1/2 before:rounded-full focus-visible:ring-2 data-[active=true]:before:block"
             >
               section {i + 1}
             </Link>

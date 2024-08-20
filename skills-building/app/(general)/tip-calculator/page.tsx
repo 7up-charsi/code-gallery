@@ -42,7 +42,7 @@ export default function Home() {
   return (
     <FormProvider {...formMethods}>
       <main className="flex h-full min-h-[calc(100vh-105px)] items-center p-5">
-        <form className="mx-auto grid w-full max-w-screen-md grid-cols-1 gap-5 rounded-2xl border border-primary-6 bg-background p-5 md:grid-cols-2 md:shadow-md">
+        <form className="border-primary-6 bg-background mx-auto grid w-full max-w-screen-md grid-cols-1 gap-5 rounded-2xl border p-5 md:grid-cols-2 md:shadow-md">
           <div className="space-y-5">
             <CustomInput
               label="bill"
@@ -61,7 +61,7 @@ export default function Home() {
               label="number of people"
               {...register('people')}
               startContent={
-                <UserIcon className="fill-transparent stroke-primary-11 !text-xl" />
+                <UserIcon className="stroke-primary-11 fill-transparent !text-xl" />
               }
               error={!!errors.people}
               helperText={errors.people?.message ?? ''}

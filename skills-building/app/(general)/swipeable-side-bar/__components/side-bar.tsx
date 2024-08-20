@@ -5,11 +5,11 @@ import { PointerEvents } from '@typeweave/react/pointer-events';
 import { useIsMounted } from '@typeweave/react/use-is-mounted';
 import { navLinks } from '../__constants/nav-links';
 import { Button } from '@typeweave/react/button';
-import { Branding } from '@repo/ui';
 import { MenuIcon, XIcon } from 'lucide-react';
 import { siteConfig } from '../site.config';
 import { createPortal } from 'react-dom';
 import { NavLink } from './nav-link';
+import { Branding } from '@repo/ui';
 import React from 'react';
 
 interface SideBarProps {}
@@ -164,7 +164,7 @@ export const SideBar = (props: SideBarProps) => {
               <motion.div
                 style={{ opacity: overlayOpacity, display }}
                 transition={{ duration: 0.2, type: 'tween' }}
-                className="fixed inset-0 z-40 bg-overlay lg:hidden"
+                className="bg-overlay fixed inset-0 z-40 lg:hidden"
               />
             </PointerEvents>
 
@@ -176,7 +176,7 @@ export const SideBar = (props: SideBarProps) => {
               }}
               transition={{ duration: 0.2, type: 'tween' }}
               style={{ x, display }}
-              className="fixed left-0 top-0 z-50 h-screen w-[280px] bg-paper lg:hidden"
+              className="bg-paper fixed left-0 top-0 z-50 h-screen w-[280px] lg:hidden"
             >
               <div className="flex h-16 items-center justify-between px-5">
                 <Branding href={siteConfig.pathname}>
@@ -202,9 +202,9 @@ export const SideBar = (props: SideBarProps) => {
                   <NavLink
                     key={i}
                     href={`${siteConfig.pathname}${href}`}
-                    className="group relative grid h-12 w-full grid-cols-[48px_1fr] items-center overflow-hidden whitespace-nowrap rounded capitalize outline-none ring-focus before:absolute before:bottom-0 before:left-0 before:top-1/2 before:hidden before:h-1/3 before:w-1 before:-translate-y-1/2 before:rounded-full before:bg-primary-9 hover:bg-muted-3 focus-visible:ring-2 active:bg-muted-4 data-[active=true]:before:block"
+                    className="ring-focus before:bg-primary-9 hover:bg-muted-3 active:bg-muted-4 group relative grid h-12 w-full grid-cols-[48px_1fr] items-center overflow-hidden whitespace-nowrap rounded capitalize outline-none before:absolute before:bottom-0 before:left-0 before:top-1/2 before:hidden before:h-1/3 before:w-1 before:-translate-y-1/2 before:rounded-full focus-visible:ring-2 data-[active=true]:before:block"
                   >
-                    <span className="mx-auto group-data-[active=true]:text-primary-11">
+                    <span className="group-data-[active=true]:text-primary-11 mx-auto">
                       {icon}
                     </span>
                     <span>{label}</span>

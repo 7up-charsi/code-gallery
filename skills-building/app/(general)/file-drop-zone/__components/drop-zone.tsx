@@ -122,15 +122,15 @@ export const DropZone = (props: DropZoneProps) => {
             Browse
           </Button>
 
-          <span className="text-2xl text-muted-9">
+          <span className="text-muted-9 text-2xl">
             or drag a file here
           </span>
         </div>
       )}
 
       {!dragEnter ? null : (
-        <div className="absolute inset-0 z-50 bg-success-9/30 backdrop-blur-[2px]">
-          <div className="absolute bottom-5 left-1/2 -translate-x-1/2 content-center whitespace-nowrap rounded border border-success-9 bg-background px-5 py-2 text-lg text-success-11 transition-colors">
+        <div className="bg-success-9/30 absolute inset-0 z-50 backdrop-blur-[2px]">
+          <div className="border-success-9 bg-background text-success-11 absolute bottom-5 left-1/2 -translate-x-1/2 content-center whitespace-nowrap rounded border px-5 py-2 text-lg transition-colors">
             Drop here to start processing
           </div>
         </div>
@@ -165,14 +165,14 @@ export const DropZone = (props: DropZoneProps) => {
               <tr className="">
                 <th
                   scope="col"
-                  className="h-12 border-y border-muted-6 px-5 text-left font-medium capitalize"
+                  className="border-muted-6 h-12 border-y px-5 text-left font-medium capitalize"
                 >
                   name
                 </th>
 
                 <th
                   scope="col"
-                  className="h-12 w-28 border-y border-muted-6 px-5 font-medium capitalize"
+                  className="border-muted-6 h-12 w-28 border-y px-5 font-medium capitalize"
                 >
                   actions
                 </th>
@@ -182,11 +182,11 @@ export const DropZone = (props: DropZoneProps) => {
             <tbody>
               {files.map(({ id, file }) => (
                 <tr key={id} className="group">
-                  <td className="h-12 truncate border-b border-muted-6 px-5 group-last:border-0">
+                  <td className="border-muted-6 h-12 truncate border-b px-5 group-last:border-0">
                     {file.name}
                   </td>
 
-                  <td className="h-12 border-b border-muted-6 text-center group-last:border-0">
+                  <td className="border-muted-6 h-12 border-b text-center group-last:border-0">
                     <Button
                       isIconOnly
                       aria-label="remove file"

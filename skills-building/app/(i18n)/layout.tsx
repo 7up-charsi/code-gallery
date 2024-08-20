@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang={locale} dir="ltr">
       <body
-        className={`${inter.className} mx-auto max-w-screen-2xl bg-background text-foreground`}
+        className={`${inter.className} bg-background text-foreground mx-auto max-w-screen-2xl`}
       >
         {children}
 
@@ -27,4 +27,3 @@ export default function RootLayout({
     </html>
   );
 }
-

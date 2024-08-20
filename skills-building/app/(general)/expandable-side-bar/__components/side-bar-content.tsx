@@ -69,9 +69,9 @@ export const SideBarContent = (props: SideBarContentProps) => {
             <NavLink
               href={`${siteConfig.pathname}${href}`}
               data-expanded={isExpanded}
-              className="group relative grid h-12 w-full grid-flow-col grid-cols-[48px] items-center overflow-hidden whitespace-nowrap rounded capitalize outline-none ring-focus before:absolute before:bottom-0 before:left-0 before:top-1/2 before:hidden before:h-1/3 before:w-1 before:-translate-y-1/2 before:rounded-full before:bg-primary-9 hover:bg-muted-3 focus-visible:ring-2 active:bg-muted-4 data-[expanded=true]:grid-cols-[48px_1fr] data-[active=true]:before:block"
+              className="ring-focus before:bg-primary-9 hover:bg-muted-3 active:bg-muted-4 group relative grid h-12 w-full grid-flow-col grid-cols-[48px] items-center overflow-hidden whitespace-nowrap rounded capitalize outline-none before:absolute before:bottom-0 before:left-0 before:top-1/2 before:hidden before:h-1/3 before:w-1 before:-translate-y-1/2 before:rounded-full focus-visible:ring-2 data-[expanded=true]:grid-cols-[48px_1fr] data-[active=true]:before:block"
             >
-              <span className="mx-auto group-data-[active=true]:text-primary-11">
+              <span className="group-data-[active=true]:text-primary-11 mx-auto">
                 {icon}
               </span>
               <span>{label}</span>

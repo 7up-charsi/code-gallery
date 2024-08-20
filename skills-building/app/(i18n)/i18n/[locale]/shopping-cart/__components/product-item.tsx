@@ -24,7 +24,7 @@ export const ProductItem = (props: ProductItemProps) => {
       <div className="mt-7 space-y-1">
         <dl>
           <dt className="sr-only">category</dt>
-          <dd className="inline-block leading-none text-foreground/85 first-letter:uppercase">
+          <dd className="text-foreground/85 inline-block leading-none first-letter:uppercase">
             {item.category}
           </dd>
         </dl>
@@ -38,7 +38,7 @@ export const ProductItem = (props: ProductItemProps) => {
 
         <dl>
           <dt className="sr-only">price</dt>
-          <dd className="inline-block text-xl font-semibold text-primary-11">
+          <dd className="text-primary-11 inline-block text-xl font-semibold">
             $ {item.price}
           </dd>
         </dl>

@@ -15,7 +15,7 @@ export const ScrollProgressBar = (props: ScrollProgressBarProps) => {
   return !scrollYProgress ? null : (
     <div
       style={{ scale: `${scrollYProgress} 1` }}
-      className="fixed left-0 top-0 z-[999] h-1 w-full origin-left bg-primary-9 transition-[width] data-[full=true]:rounded-none"
+      className="bg-primary-9 fixed left-0 top-0 z-[999] h-1 w-full origin-left transition-[width] data-[full=true]:rounded-none"
     ></div>
   );
 };

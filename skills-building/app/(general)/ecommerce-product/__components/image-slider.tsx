@@ -72,7 +72,7 @@ export const ImageSlider = (props: ImageSliderProps) => {
             >
               <div
                 data-selected={i === selectedIndex}
-                className="w-22 group flex aspect-square shrink-0 grow-0 cursor-pointer items-center justify-center rounded border-2 border-transparent data-[selected=true]:border-primary-8"
+                className="w-22 data-[selected=true]:border-primary-8 group flex aspect-square shrink-0 grow-0 cursor-pointer items-center justify-center rounded border-2 border-transparent"
               >
                 <Image
                   src={src}

@@ -35,7 +35,7 @@ export const AddToCart = (props: AddToCartProps) => {
         <PointerEvents onPress={() => addItem(id)}>
           <button
             aria-label={`add to cart ${name}`}
-            className="outline-one flex h-11 items-center justify-center gap-2 whitespace-pre rounded-full border border-muted-9 bg-white px-5 outline-none ring-focus hover:bg-muted-3 focus-visible:ring-2 active:bg-muted-4 dark:text-muted-2"
+            className="outline-one border-muted-9 ring-focus hover:bg-muted-3 active:bg-muted-4 dark:text-muted-2 flex h-11 items-center justify-center gap-2 whitespace-pre rounded-full border bg-white px-5 outline-none focus-visible:ring-2"
           >
             <ShoppingBasketIcon
               size={20}
@@ -47,11 +47,11 @@ export const AddToCart = (props: AddToCartProps) => {
       )}
 
       {!itemAmount ? null : (
-        <div className="flex h-11 items-center rounded-full bg-primary-9 px-5">
+        <div className="bg-primary-9 flex h-11 items-center rounded-full px-5">
           <PointerEvents onPress={() => updateItem(id, 'minus')}>
             <button
               aria-label={`remove 1 ${name}`}
-              className="flex size-6 items-center justify-center rounded-full border border-white bg-transparent text-white outline-none ring-focus hover:bg-primary-8/80 focus-visible:ring-2 active:bg-primary-8"
+              className="ring-focus hover:bg-primary-8/80 active:bg-primary-8 flex size-6 items-center justify-center rounded-full border border-white bg-transparent text-white outline-none focus-visible:ring-2"
             >
               <MinusIcon size={17} />
             </button>
@@ -64,7 +64,7 @@ export const AddToCart = (props: AddToCartProps) => {
           <PointerEvents onPress={() => updateItem(id, 'add')}>
             <button
               aria-label={`add 1 ${name}`}
-              className="flex size-6 items-center justify-center rounded-full border border-white bg-transparent text-white outline-none ring-focus hover:bg-primary-8/80 focus-visible:ring-2 active:bg-primary-8"
+              className="ring-focus hover:bg-primary-8/80 active:bg-primary-8 flex size-6 items-center justify-center rounded-full border border-white bg-transparent text-white outline-none focus-visible:ring-2"
             >
               <PlusIcon size={17} />
             </button>

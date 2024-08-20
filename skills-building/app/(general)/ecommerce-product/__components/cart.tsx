@@ -59,7 +59,7 @@ export const Cart = (props: CartProps) => {
         >
           <div
             id={titleId}
-            className="border-b border-muted-6 px-5 py-3"
+            className="border-muted-6 border-b px-5 py-3"
           >
             Cart
           </div>

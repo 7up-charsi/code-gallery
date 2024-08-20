@@ -28,7 +28,7 @@ export const AppBarContent = (props: AppBarContentProps) => {
             <NavLink
               key={i}
               href={`${siteConfig.pathname}${ele.href}`}
-              className="relative h-9 content-center rounded px-4 capitalize outline-none ring-focus before:absolute before:bottom-0 before:left-1/2 before:hidden before:h-1 before:w-1/3 before:-translate-x-1/2 before:rounded-full before:bg-primary-9 hover:bg-muted-3 focus-visible:ring-2 active:bg-muted-4 data-[active=true]:before:block"
+              className="ring-focus before:bg-primary-9 hover:bg-muted-3 active:bg-muted-4 relative h-9 content-center rounded px-4 capitalize outline-none before:absolute before:bottom-0 before:left-1/2 before:hidden before:h-1 before:w-1/3 before:-translate-x-1/2 before:rounded-full focus-visible:ring-2 data-[active=true]:before:block"
             >
               {ele.label}
             </NavLink>

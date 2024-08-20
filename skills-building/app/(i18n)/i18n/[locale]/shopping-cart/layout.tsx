@@ -44,7 +44,7 @@ export default async function RootLayout(props: RootLayoutProps) {
         >
           {children}
 
-          <div className="sticky top-[calc(theme(spacing.16)+theme(spacing.5))] flex max-h-[calc(100vh-(theme(spacing.5)*2_+_theme(spacing.16)))] w-80 place-self-start rounded bg-background max-lg:hidden">
+          <div className="bg-background sticky top-[calc(theme(spacing.16)+theme(spacing.5))] flex max-h-[calc(100vh-(theme(spacing.5)*2_+_theme(spacing.16)))] w-80 place-self-start rounded max-lg:hidden">
             <Cart />
           </div>
         </div>

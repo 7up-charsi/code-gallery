@@ -21,7 +21,7 @@ export default function RootLayout({
       storageKey={siteConfig.name.replaceAll(' ', '-')}
       attribute="class"
     >
-      <div className="min-h-screen bg-muted-3 text-foreground">
+      <div className="bg-muted-3 text-foreground min-h-screen">
         <SearchFieldsProvider>
           <AppBar>
             <AppBarContent />

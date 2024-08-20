@@ -21,7 +21,7 @@ export default function Home() {
             sneaker company
           </span>
 
-          <h1 className="mt-1 text-2xl font-semibold capitalize text-muted-12">
+          <h1 className="text-muted-12 mt-1 text-2xl font-semibold capitalize">
             fall limited edition sneakers
           </h1>
 
@@ -34,7 +34,7 @@ export default function Home() {
           <dl className="mt-5 flex max-md:items-center md:flex-col">
             <div className="flex items-center gap-3">
               <dt className="sr-only">price</dt>
-              <dd className="text-2xl font-semibold text-muted-12">
+              <dd className="text-muted-12 text-2xl font-semibold">
                 $125.00
               </dd>
 
@@ -53,25 +53,25 @@ export default function Home() {
           </dl>
 
           <div className="mt-5 flex h-10 items-center gap-5">
-            <div className="flex h-full grow items-center rounded bg-muted-3">
+            <div className="bg-muted-3 flex h-full grow items-center rounded">
               <PointerEvents onPress={() => updateInputValue('dec')}>
                 <button
                   aria-label="remove 1 from cart"
                   disabled={inputValue === 1}
-                  className="flex h-full w-10 cursor-pointer items-center justify-center rounded-l text-primary-11 outline-none ring-focus hover:bg-primary-4 focus-visible:ring-2 active:bg-primary-5 disabled:disabled"
+                  className="text-primary-11 ring-focus hover:bg-primary-4 active:bg-primary-5 disabled:disabled flex h-full w-10 cursor-pointer items-center justify-center rounded-l outline-none focus-visible:ring-2"
                 >
                   <MinusIcon size={20} />
                 </button>
               </PointerEvents>
 
-              <span className="min-w-16 grow select-none px-1 text-center font-bold text-muted-12">
+              <span className="text-muted-12 min-w-16 grow select-none px-1 text-center font-bold">
                 {inputValue}
               </span>
 
               <PointerEvents onPress={() => updateInputValue('inc')}>
                 <button
                   aria-label="add 1 in cart"
-                  className="flex h-full w-10 cursor-pointer items-center justify-center rounded-r text-primary-11 outline-none ring-focus hover:bg-primary-4 focus-visible:ring-2 active:bg-primary-5 disabled:disabled"
+                  className="text-primary-11 ring-focus hover:bg-primary-4 active:bg-primary-5 disabled:disabled flex h-full w-10 cursor-pointer items-center justify-center rounded-r outline-none focus-visible:ring-2"
                 >
                   <PlusIcon size={20} />
                 </button>

@@ -38,7 +38,7 @@ export const CartItem = (props: CartItemProps) => {
 
         <dl className="flex grow items-center gap-3">
           <dt className="sr-only">amount in cart</dt>
-          <dd className="font-semibold text-primary-11">{amount}x</dd>
+          <dd className="text-primary-11 font-semibold">{amount}x</dd>
 
           <dt className="sr-only">price</dt>
           <dd className="">@{price}</dd>

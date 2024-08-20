@@ -42,7 +42,7 @@ export const Step2 = (props: Step2Props) => {
       {errors.plan ? (
         <div
           id="plan-error"
-          className="mb-3 text-sm text-danger-11 first-letter:uppercase"
+          className="text-danger-11 mb-3 text-sm first-letter:uppercase"
         >
           {dictionary.errors.selectOne}
         </div>
@@ -94,7 +94,7 @@ export const Step2 = (props: Step2Props) => {
                 type="radio"
                 id={inputId}
                 aria-describedby={descId}
-                className="pointer-events-auto absolute inset-0 -z-50 cursor-pointer appearance-none rounded border border-muted-6 outline-none ring-focus checked:border-primary-8 checked:bg-primary-3 hover:bg-muted-3 checked:hover:bg-primary-4 focus-visible:ring-2"
+                className="border-muted-6 ring-focus checked:border-primary-8 checked:bg-primary-3 hover:bg-muted-3 checked:hover:bg-primary-4 pointer-events-auto absolute inset-0 -z-50 cursor-pointer appearance-none rounded border outline-none focus-visible:ring-2"
                 name="plan.billing"
                 checked={plan.id === id}
                 onChange={() => {
@@ -110,7 +110,7 @@ export const Step2 = (props: Step2Props) => {
                 {/* @ts-ignore */}
                 {dictionary.step2.fields[label].label}
               </label>
-              <span id={descId} className="text-sm text-muted-11/80">
+              <span id={descId} className="text-muted-11/80 text-sm">
                 ${price}/{/* @ts-ignore */}
                 {dictionary.step2.fields.billing[plan.billing]}
               </span>
@@ -133,7 +133,7 @@ export const Step2 = (props: Step2Props) => {
               aria-controls={switchId}
               aria-label="select monthly payment"
               data-active={plan.billing === 'monthly'}
-              className="text-sm font-medium capitalize text-muted-11/60 outline-none data-[active=true]:text-primary-11"
+              className="text-muted-11/60 data-[active=true]:text-primary-11 text-sm font-medium capitalize outline-none"
             >
               {dictionary.step2.fields.billing.monthly}
             </button>
@@ -167,7 +167,7 @@ export const Step2 = (props: Step2Props) => {
               aria-controls={switchId}
               aria-label="select yearly payment"
               data-active={plan.billing === 'yearly'}
-              className="text-sm font-medium capitalize text-muted-11/60 outline-none data-[active=true]:text-primary-11"
+              className="text-muted-11/60 data-[active=true]:text-primary-11 text-sm font-medium capitalize outline-none"
             >
               {dictionary.step2.fields.billing.yearly}
             </button>

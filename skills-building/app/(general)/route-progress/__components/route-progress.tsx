@@ -197,7 +197,7 @@ export const RouteProgress = (props: RouteProgressProps) => {
         style={{
           clipPath: `inset(0 ${100 - progress}% 0 0)`,
         }}
-        className="h-full w-full bg-gradient-to-r from-primary-9 to-secondary-9"
+        className="from-primary-9 to-secondary-9 h-full w-full bg-gradient-to-r"
       ></div>
     </div>
   );

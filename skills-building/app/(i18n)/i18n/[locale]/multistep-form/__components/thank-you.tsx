@@ -30,7 +30,7 @@ export const ThankYou = (props: ThankYouProps) => {
         {dictionary.thankYou.heading}
       </h1>
 
-      <p className="mb-10 mt-3 text-balance text-center text-muted-11/80">
+      <p className="text-muted-11/80 mb-10 mt-3 text-balance text-center">
         {dictionary.thankYou.description}
       </p>
     </div>

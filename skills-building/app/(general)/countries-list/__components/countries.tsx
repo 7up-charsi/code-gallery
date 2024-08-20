@@ -47,14 +47,14 @@ export const Countries = (props: CountriesProps) => {
         <section className="flex flex-col items-center justify-center gap-3">
           <h1
             aria-describedby="error-desc"
-            className="text-xl font-semibold capitalize text-danger-11"
+            className="text-danger-11 text-xl font-semibold capitalize"
           >
             something went wrong
           </h1>
 
           <span
             id="error-desc"
-            className="text-lg capitalize text-muted-11/80"
+            className="text-muted-11/80 text-lg capitalize"
           >
             try another time
           </span>
@@ -65,7 +65,7 @@ export const Countries = (props: CountriesProps) => {
         <section className="">
           <Loader2
             size={35}
-            className="mx-auto animate-spin text-muted-11"
+            className="text-muted-11 mx-auto animate-spin"
           />
         </section>
       )}
@@ -76,7 +76,7 @@ export const Countries = (props: CountriesProps) => {
             No country found
           </h1>
 
-          <span className="text-lg text-muted-11/80">
+          <span className="text-muted-11/80 text-lg">
             Search valid country name
           </span>
         </section>

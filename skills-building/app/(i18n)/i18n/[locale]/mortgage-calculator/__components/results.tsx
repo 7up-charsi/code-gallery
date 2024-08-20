@@ -67,7 +67,7 @@ export const Results = (props: ResultsProps) => {
                   {dictionary.emptyResultHeading}
                 </h2>
 
-                <p className="mb-5 mt-3 max-w-80 text-balance text-center text-foreground/90">
+                <p className="text-foreground/90 mb-5 mt-3 max-w-80 text-balance text-center">
                   {dictionary.emptyResultDescription}
                 </p>
               </div>
@@ -83,7 +83,7 @@ export const Results = (props: ResultsProps) => {
                   {dictionary.resultHeading}
                 </h2>
 
-                <p className="mb-5 mt-3 text-foreground/90">
+                <p className="text-foreground/90 mb-5 mt-3">
                   {dictionary.resultDescription}
                 </p>
               </>
@@ -96,7 +96,7 @@ export const Results = (props: ResultsProps) => {
                 </h3>
 
                 <p className="mc-results-scrollbar overflow-x-auto py-2 font-mono">
-                  <span className="flex min-w-fit items-center justify-center text-6xl font-semibold text-primary-9">
+                  <span className="text-primary-9 flex min-w-fit items-center justify-center text-6xl font-semibold">
                     <EuroIcon size={43} />
                     {interestOnlyPayment}
                   </span>
@@ -111,7 +111,7 @@ export const Results = (props: ResultsProps) => {
                 </h3>
 
                 <p className="mc-results-scrollbar overflow-x-auto py-2 font-mono">
-                  <span className="flex min-w-fit items-center justify-center text-6xl font-semibold text-primary-9">
+                  <span className="text-primary-9 flex min-w-fit items-center justify-center text-6xl font-semibold">
                     <EuroIcon size={43} className="shrink-0" />
                     {monthlyRepayment}
                   </span>

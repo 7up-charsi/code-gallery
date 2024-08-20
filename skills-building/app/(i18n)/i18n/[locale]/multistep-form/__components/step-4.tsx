@@ -58,8 +58,8 @@ export const Step4 = (props: Step4Props) => {
         desc={dictionary.step4.description}
       />
 
-      <table className="w-full border-collapse rounded bg-primary-3">
-        <thead className="font-semibold text-primary-11">
+      <table className="bg-primary-3 w-full border-collapse rounded">
+        <thead className="text-primary-11 font-semibold">
           <tr
             data-has-addons={
               !!onlineServiceAddon ||
@@ -78,7 +78,7 @@ export const Step4 = (props: Step4Props) => {
                 </span>
 
                 <PointerEvents onPress={() => updateStep(2)}>
-                  <button className="font-normal text-muted-11/80 underline">
+                  <button className="text-muted-11/80 font-normal underline">
                     {dictionary.buttons.change}
                   </button>
                 </PointerEvents>
@@ -90,33 +90,33 @@ export const Step4 = (props: Step4Props) => {
         <tbody>
           {onlineServiceAddon && (
             <tr className="*:py-1 [&:first-child>td]:pt-7 [&:last-child>td]:pb-7">
-              <td className="pl-10 pr-3 capitalize text-muted-11/85">
+              <td className="text-muted-11/85 pl-10 pr-3 capitalize">
                 {dictionary.step3.fields.onlineService.label}
               </td>
-              <td className="pl-3 pr-10 text-right capitalize text-primary-11">
+              <td className="text-primary-11 pl-3 pr-10 text-right capitalize">
                 +${onlineServiceAddon.price}
               </td>
             </tr>
           )}
           {largerStorageAddon && (
             <tr className="*:py-1 [&:first-child>td]:pt-7 [&:last-child>td]:pb-7">
-              <td className="pl-10 pr-3 capitalize text-muted-11/85">
+              <td className="text-muted-11/85 pl-10 pr-3 capitalize">
                 {
                   // @ts-ignore
                   dictionary.step3.fields.largerStorage.label
                 }
               </td>
-              <td className="pl-3 pr-10 text-right capitalize text-primary-11">
+              <td className="text-primary-11 pl-3 pr-10 text-right capitalize">
                 +${largerStorageAddon.price}
               </td>
             </tr>
           )}
           {customizableProfileAddon && (
             <tr className="*:py-1 [&:first-child>td]:pt-7 [&:last-child>td]:pb-7">
-              <td className="pl-10 pr-3 capitalize text-muted-11/85">
+              <td className="text-muted-11/85 pl-10 pr-3 capitalize">
                 {dictionary.step3.fields.customizableProfile.label}
               </td>
-              <td className="pl-3 pr-10 text-right capitalize text-primary-11">
+              <td className="text-primary-11 pl-3 pr-10 text-right capitalize">
                 +${customizableProfileAddon.price}
               </td>
             </tr>
@@ -125,7 +125,7 @@ export const Step4 = (props: Step4Props) => {
       </table>
 
       <div className="my-5 flex items-center justify-between px-10 capitalize">
-        <span className="font-medium text-muted-11/85">
+        <span className="text-muted-11/85 font-medium">
           {dictionary.step4.total} ({' '}
           <span className="text-primary-11">
             {/* @ts-ignore */}
@@ -133,7 +133,7 @@ export const Step4 = (props: Step4Props) => {
           </span>{' '}
           )
         </span>
-        <span className="font-semibold text-primary-11">
+        <span className="text-primary-11 font-semibold">
           ${total}
         </span>
       </div>

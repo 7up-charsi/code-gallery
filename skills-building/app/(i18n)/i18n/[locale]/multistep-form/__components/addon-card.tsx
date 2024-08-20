@@ -31,7 +31,7 @@ export const AddonCard = (props: AddonCardProps) => {
       <div className="absolute left-8 -translate-x-1/2">
         <div
           data-active={selected}
-          className="flex size-5 items-center justify-center rounded border border-muted-8 text-white data-[active=true]:border-transparent data-[active=true]:bg-primary-9"
+          className="border-muted-8 data-[active=true]:bg-primary-9 flex size-5 items-center justify-center rounded border text-white data-[active=true]:border-transparent"
         >
           {selected ? <CheckIcon size={15} /> : null}
         </div>
@@ -44,17 +44,17 @@ export const AddonCard = (props: AddonCardProps) => {
           aria-describedby={descId}
           checked={selected}
           onChange={onChange}
-          className="pointer-events-auto absolute inset-0 -z-50 cursor-pointer appearance-none rounded border border-muted-6 outline-none ring-focus checked:border-primary-8 checked:bg-primary-3 hover:bg-muted-3 checked:hover:bg-primary-4 focus-visible:ring-2"
+          className="border-muted-6 ring-focus checked:border-primary-8 checked:bg-primary-3 hover:bg-muted-3 checked:hover:bg-primary-4 pointer-events-auto absolute inset-0 -z-50 cursor-pointer appearance-none rounded border outline-none focus-visible:ring-2"
         />
         <label htmlFor={inputId} className="font-semibold capitalize">
           {name}
         </label>
-        <span id={descId} className="text-sm text-muted-11/80">
+        <span id={descId} className="text-muted-11/80 text-sm">
           {desc}
         </span>
       </div>
 
-      <div className="font-medium text-primary-11">
+      <div className="text-primary-11 font-medium">
         {/* @ts-ignore */}${price}/
         {dictionary.step2.fields.billing[billing as string]}
       </div>
