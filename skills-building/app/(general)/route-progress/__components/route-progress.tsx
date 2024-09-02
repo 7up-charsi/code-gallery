@@ -10,56 +10,17 @@ export const RouteProgress = (props: RouteProgressProps) => {
   const {} = props;
 
   const progressRef = React.useRef(0);
+  const doneAnimationFrameRef = React.useRef(0);
+  const startAnimationFrameRef = React.useRef(0);
 
   const [progress, setProgress] = React.useState(0);
   const [hide, setHide] = React.useState(true);
 
   React.useEffect(() => {
-    let doneAnimationFrame = 0;
-    let startAnimationFrame = 0;
-
-    const stop = () => {
-      cancelAnimationFrame(doneAnimationFrame);
-      cancelAnimationFrame(startAnimationFrame);
-
-      progressRef.current = 0;
-      setHide(true);
-      setProgress(0);
-    };
-
-    const done = () => {
-      /*
-       "I want to cancel the previously executing 'done' function because there are situations where 'done' is executed multiple times. For example, when a user clicks a link and a page download occurs from the server, Next.js pushes the URL into the browser's history stack, resulting in 'history.pushState' being called, which executes 'done'. However, if 'done' is still executing and the user interacts with the back/forth browser buttons, it calls 'history.replaceState', leading to 'done' being executed again. To prevent this, I need to stop the previous 'done' execution
-       */
-      cancelAnimationFrame(doneAnimationFrame);
-      cancelAnimationFrame(startAnimationFrame);
-
-      const speed = 3;
-
-      const updateProgress = () => {
-        const currProgress = progressRef.current;
-
-        if (currProgress > 100) {
-          cancelAnimationFrame(doneAnimationFrame);
-          setHide(true);
-          return;
-        }
-
-        const nextProgress = currProgress + speed;
-
-        progressRef.current = nextProgress;
-        setProgress(Math.min(100, nextProgress));
-
-        doneAnimationFrame = requestAnimationFrame(updateProgress);
-      };
-
-      updateProgress();
-    };
-
     const start = () => {
       // A similar explanation as previously mentioned in "done"
-      cancelAnimationFrame(doneAnimationFrame);
-      cancelAnimationFrame(startAnimationFrame);
+      cancelAnimationFrame(doneAnimationFrameRef.current);
+      cancelAnimationFrame(startAnimationFrameRef.current);
 
       progressRef.current = 0;
 
@@ -69,7 +30,7 @@ export const RouteProgress = (props: RouteProgressProps) => {
         const currProgress = progressRef.current;
 
         if (currProgress < 10) {
-          speed = 0.5; // Fast speed
+          speed = 0.5; // Slow speed
         } else if (currProgress < 20) {
           speed = 2; // Fast speed
         } else if (currProgress < 30) {
@@ -80,7 +41,7 @@ export const RouteProgress = (props: RouteProgressProps) => {
           speed = 2; // Fast speed
         } else {
           // at 80%
-          cancelAnimationFrame(startAnimationFrame);
+          cancelAnimationFrame(startAnimationFrameRef.current);
           return;
         }
 
@@ -90,7 +51,38 @@ export const RouteProgress = (props: RouteProgressProps) => {
         setProgress(nextProgress);
         setHide(false);
 
-        startAnimationFrame = requestAnimationFrame(updateProgress);
+        startAnimationFrameRef.current =
+          requestAnimationFrame(updateProgress);
+      };
+
+      updateProgress();
+    };
+
+    const done = () => {
+      /*
+       "I want to cancel the previously executing 'done' function because there are situations where 'done' is executed multiple times. For example, when a user clicks a link and a page download occurs from the server, Next.js pushes the URL into the browser's history stack, resulting in 'history.pushState' being called, which executes 'done'. However, if 'done' is still executing and the user interacts with the back/forth browser buttons, it calls 'history.replaceState', leading to 'done' being executed again. To prevent this, I need to stop the previous 'done' execution
+       */
+      cancelAnimationFrame(doneAnimationFrameRef.current);
+      cancelAnimationFrame(startAnimationFrameRef.current);
+
+      const speed = 3;
+
+      const updateProgress = () => {
+        const currProgress = progressRef.current;
+
+        if (currProgress > 100) {
+          cancelAnimationFrame(doneAnimationFrameRef.current);
+          setHide(true);
+          return;
+        }
+
+        const nextProgress = currProgress + speed;
+
+        progressRef.current = nextProgress;
+        setProgress(Math.min(100, nextProgress));
+
+        doneAnimationFrameRef.current =
+          requestAnimationFrame(updateProgress);
       };
 
       updateProgress();
@@ -168,26 +160,25 @@ export const RouteProgress = (props: RouteProgressProps) => {
     };
 
     const handlePageHide = () => {
-      stop();
-    };
+      cancelAnimationFrame(doneAnimationFrameRef.current);
+      cancelAnimationFrame(startAnimationFrameRef.current);
 
-    const handleBackAndForth = () => {
-      start();
+      progressRef.current = 0;
+      setHide(true);
+      setProgress(0);
     };
 
     // Add the global click event listener
     document.addEventListener('click', handleClick);
-    window.addEventListener('popstate', handleBackAndForth);
     window.addEventListener('pagehide', handlePageHide);
 
     // Clean up the global click event listener when the component is unmounted
     return (): void => {
       document.removeEventListener('click', handleClick);
-      window.removeEventListener('popstate', handleBackAndForth);
       window.removeEventListener('pagehide', handlePageHide);
 
-      cancelAnimationFrame(doneAnimationFrame);
-      cancelAnimationFrame(startAnimationFrame);
+      cancelAnimationFrame(doneAnimationFrameRef.current);
+      cancelAnimationFrame(startAnimationFrameRef.current);
     };
   }, []);
 
