@@ -27,7 +27,7 @@
   },
   "packageManager": "pnpm@9.7.1",
   "engines": {
-    "node": "22.6.0"
+    "node": "20.x"
   },
   "dependencies": {
     "@typeweave/react": "^4.1.9",
@@ -40,3 +40,4 @@
     "tailwind-merge": "^2.5.2"
   }
 }
+
