@@ -4,6 +4,7 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import { ClerkProvider } from '@clerk/nextjs';
 import { siteConfig } from '@/config/site';
 import { Inter } from 'next/font/google';
+import { portfolio } from '@repo/meta';
 import type { Metadata } from 'next';
 import '@/styles/globals.css';
 
@@ -13,22 +14,10 @@ export const metadata: Metadata = {
   title: siteConfig.name,
   description: siteConfig.description,
   applicationName: siteConfig.name,
-  authors: [{ name: siteConfig.author, url: siteConfig.portfolio }],
-  keywords: ['todo', 'todo management', siteConfig.name],
-  icons: { icon: '/favicon.svg' },
-  openGraph: {
-    type: 'website',
-    siteName: siteConfig.name,
-    title: siteConfig.name,
-    description: siteConfig.description,
-    emails: siteConfig.email,
-    images: [
-      {
-        width: 1200,
-        height: 630,
-        url: siteConfig.ogImage,
-      },
-    ],
+  authors: [{ name: portfolio.name, url: portfolio.url }],
+  keywords: [portfolio.name, siteConfig.name, 'push notification'],
+  icons: {
+    icon: '/favicon.svg',
   },
 };
 
