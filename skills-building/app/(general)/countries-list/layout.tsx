@@ -1,4 +1,3 @@
-import { SearchFieldsProvider } from './__components/search-fields-provider';
 import { AppBarContent } from './__components/app-bar-content';
 import { createMetadata } from '@/utils/metadata';
 import { AppBar } from './__components/app-bar';
@@ -22,13 +21,11 @@ export default function RootLayout({
       attribute="class"
     >
       <div className="bg-muted-3 text-foreground min-h-screen">
-        <SearchFieldsProvider>
-          <AppBar>
-            <AppBarContent />
-          </AppBar>
+        <AppBar>
+          <AppBarContent />
+        </AppBar>
 
-          {children}
-        </SearchFieldsProvider>
+        {children}
       </div>
     </ThemeProvider>
   );

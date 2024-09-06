@@ -1,8 +1,7 @@
 import { PortfolioHeader, ThemeSwitcher } from '@repo/ui';
-import { SearchRegion } from './search-region';
 import { siteConfig } from '../site.config';
-import { SearchName } from './search-name';
 import { Branding } from '@repo/ui';
+import { Search } from './search';
 import React from 'react';
 
 interface AppBarContentProps {}
@@ -25,10 +24,9 @@ export const AppBarContent = (props: AppBarContentProps) => {
           <ThemeSwitcher />
         </div>
 
-        <search className="col-span-2 grid grid-cols-2 items-center justify-center gap-3 md:grid-cols-[2fr_1fr] lg:col-span-1 lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2 lg:grid-cols-[auto_auto] lg:justify-end">
-          <SearchName />
-          <SearchRegion />
-        </search>
+        <React.Suspense>
+          <Search />
+        </React.Suspense>
       </div>
     </>
   );
