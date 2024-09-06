@@ -11,8 +11,11 @@ const CountryPage = async (props: { params: { cca2: string } }) => {
   } = props;
 
   const res = await fetch(
-    `https://restcountries.com/v3.1/alpha?codes=${cca2}&fields=cca2,name,population,region,subregion,capital,tld,currencies,languages,borders`,
+    cca2
+      ? `https://restcountries.com/v3.1/alpha?codes=${cca2}&fields=cca2,name,population,region,subregion,capital,tld,currencies,languages,borders`
+      : 'https://restcountries.com/v3.1/all',
   );
+
   const data = (await res.json()) as Country[];
 
   const country = data[0];
