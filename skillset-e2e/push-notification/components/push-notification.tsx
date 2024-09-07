@@ -35,7 +35,7 @@ export const PushNotification = (props: PushNotificationProps) => {
       const registeration = await navigator.serviceWorker.ready;
 
       const res = await fetch(
-        'https://befitting-squid-96.convex.site/vapid-public-key',
+        `${process.env.NEXT_PUBLIC_CONVEX_ACTIONS_URL}/vapid-public-key`,
       );
 
       const data = (await res.json()) as {
@@ -55,7 +55,7 @@ export const PushNotification = (props: PushNotificationProps) => {
       });
 
       const subRes = await fetch(
-        'https://befitting-squid-96.convex.site/subscribe',
+        `${process.env.NEXT_PUBLIC_CONVEX_ACTIONS_URL}/subscribe`,
         {
           method: 'POST',
           body: JSON.stringify({ subscription }),
@@ -102,7 +102,7 @@ export const PushNotification = (props: PushNotificationProps) => {
         subscription.unsubscribe();
 
         const res = await fetch(
-          'https://befitting-squid-96.convex.site/unsubscribe',
+          `${process.env.NEXT_PUBLIC_CONVEX_ACTIONS_URL}/unsubscribe`,
           {
             method: 'POST',
             body: JSON.stringify({ id }),
@@ -162,7 +162,7 @@ export const PushNotification = (props: PushNotificationProps) => {
 
       if (subscription) {
         const res = await fetch(
-          'https://befitting-squid-96.convex.site/subscription',
+          `${process.env.NEXT_PUBLIC_CONVEX_ACTIONS_URL}/subscription`,
           {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
