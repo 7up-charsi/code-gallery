@@ -1,7 +1,7 @@
-import { i18nConfig as mortgageCalculatorI18nConfig } from '@/mortgage-calculator/i18n.config';
-import { i18nConfig as multistepFormI18nConfig } from '@/multistep-form/i18n.config';
-import { i18nConfig as shoppingCartI18nConfig } from '@/shopping-cart/i18n.config';
-import { i18nConfig as contactFormI18nConfig } from '@/contact-form/i18n.config';
+import { i18nConfig as mortgageCalculatorI18nConfig } from './app/(i18n)/i18n/[locale]/mortgage-calculator/i18n.config';
+import { i18nConfig as multistepFormI18nConfig } from './app/(i18n)/i18n/[locale]/multistep-form/i18n.config';
+import { i18nConfig as shoppingCartI18nConfig } from './app/(i18n)/i18n/[locale]/shopping-cart/i18n.config';
+import { i18nConfig as contactFormI18nConfig } from './app/(i18n)/i18n/[locale]/contact-form/i18n.config';
 import { createI18nRouter, createRouteChecker } from './utils/i18n';
 import { I18nConfig } from './types/i18n';
 import { NextRequest } from 'next/server';
