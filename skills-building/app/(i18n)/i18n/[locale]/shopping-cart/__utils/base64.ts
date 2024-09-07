@@ -1,6 +1,6 @@
 import { getPlaiceholder } from 'plaiceholder';
 
-const siteUrl = process.env.SITE_URL;
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
 
 export const getBase64 = async (url: string) => {
   const buffer = await fetch(
