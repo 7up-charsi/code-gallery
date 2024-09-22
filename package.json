@@ -5,7 +5,8 @@
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "clean:node_modules": "pnpm rimraf ./skillset-e2e/**/node_modules ./skills-building/node_modules -g && rm -rf ./node_modules",
-    "clean:lock": "rm -fr ./pnpm-lock.yaml"
+    "clean:lock": "rm -fr ./pnpm-lock.yaml",
+    "typecheck": "turbo typecheck"
   },
   "devDependencies": {
     "@repo/meta": "workspace:*",
@@ -26,7 +27,6 @@
     "typescript": "^5.5.4",
     "vercel": "^37.4.0"
   },
-  "packageManager": "pnpm@9.7.1",
   "engines": {
     "node": ">=20"
   },
@@ -39,5 +39,7 @@
     "react-dom": "^18.3.1",
     "react-toastify": "^10.0.5",
     "tailwind-merge": "^2.5.2"
-  }
+  },
+  "packageManager": "pnpm@9.11.0"
 }
+

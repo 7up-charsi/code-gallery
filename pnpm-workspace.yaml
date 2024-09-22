@@ -1,4 +1,4 @@
 packages:
-  - 'skills-building'
-  - 'skillset-e2e/*'
+  - 'front-end'
+  - 'full-stack/*'
   - 'packages/*'
