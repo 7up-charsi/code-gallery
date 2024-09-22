@@ -1,13 +1,13 @@
 'use client';
 
 import {
-  MenuRoot,
   MenuArrow,
-  MenuTrigger,
-  MenuPortal,
   MenuContent,
+  MenuPortal,
   MenuRadioGroup,
   MenuRadioItem,
+  MenuRoot,
+  MenuTrigger,
 } from '@typeweave/react/menu';
 import {
   ChevronDownIcon,
@@ -28,69 +28,74 @@ const displayName = 'ThemeSwitcher';
 export const ThemeSwitcher = (props: ThemeSwitcherProps) => {
   const {} = props;
 
-  const { setTheme, theme } = useTheme();
+  const { theme, setTheme } = useTheme();
 
   const isMounted = useIsMounted();
 
   return (
     <>
       {!isMounted && (
-        <Skeleton variant='rounded' className='h-9 w-14' />
+        <Skeleton variant="rounded" className="h-9 w-14 rounded" />
       )}
 
       {isMounted && (
         <MenuRoot>
           <MenuTrigger>
             <Button
-              aria-label='theme switcher'
-              endContent={<ChevronDownIcon />}
-              className='w-14 gap-1'
+              isIconOnly
+              aria-label="locale switcher"
+              variant="text"
+              className="data-[open=true]:bg-muted-4 w-14 justify-between p-2"
             >
-              {theme === 'light' && <SunIcon size={20} />}
-              {theme === 'dark' && <MoonStarIcon size={20} />}
-              {theme === 'system' && <MonitorIcon size={20} />}
+              {theme === 'light' && <SunIcon />}
+              {theme === 'dark' && <MoonStarIcon />}
+              {theme === 'system' && <MonitorIcon />}
+
+              <ChevronDownIcon size={20} />
             </Button>
           </MenuTrigger>
 
           <MenuPortal>
-            <MenuContent className='z-50'>
+            <MenuContent className="z-[999]">
               <MenuArrow />
 
               <MenuRadioGroup
-                value={theme}
-                label='themes'
-                hideLabel
                 onChange={setTheme}
+                value={theme}
+                label="locale"
+                hideLabel
               >
-                <MenuRadioItem
-                  value='light'
-                  classNames={{
-                    itemContent: 'flex gap-3 capitalize items-center',
-                  }}
-                >
-                  <SunIcon size={18} />
-                  <span>light</span>
-                </MenuRadioItem>
-
-                <MenuRadioItem
-                  value='dark'
-                  classNames={{
-                    itemContent: 'flex gap-3 capitalize items-center',
-                  }}
-                >
-                  <MoonStarIcon size={18} />
-                  <span>dark</span>
-                </MenuRadioItem>
-
-                <MenuRadioItem
-                  value='system'
-                  classNames={{
-                    itemContent: 'flex gap-3 capitalize items-center',
-                  }}
-                >
-                  <MonitorIcon size={18} />
-                  <span>system</span>
-                </MenuRadioItem>
+                {[
+                  {
+                    label: 'light',
+                    value: 'light',
+                    icon: <SunIcon size={18} />,
+                  },
+                  {
+                    label: 'dark',
+                    value: 'dark',
+                    icon: <MoonStarIcon size={18} />,
+                  },
+                  {
+                    label: 'system',
+                    value: 'system',
+                    icon: <MonitorIcon size={18} />,
+                  },
+                ].map((ele, i) => (
+                  <MenuRadioItem
+                    value={ele.value}
+                    key={i}
+                    className="data-[checked=true]:bg-muted-3 max-md:h-10"
+                    classNames={{
+                      itemIcon: 'hidden',
+                      itemContent:
+                        'flex justify-between items-center',
+                    }}
+                  >
+                    <span className="capitalize">{ele.label}</span>
+                    {ele.icon}
+                  </MenuRadioItem>
+                ))}
               </MenuRadioGroup>
             </MenuContent>
           </MenuPortal>
