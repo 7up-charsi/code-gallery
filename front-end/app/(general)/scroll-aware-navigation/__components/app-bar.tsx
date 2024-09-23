@@ -55,7 +55,7 @@ export const AppBar = (props: AppBarProps) => {
           }
         });
       },
-      { threshold: [0.5, 1], rootMargin: '-152px 0px 0px 0px' },
+      { threshold: [0.7, 1], rootMargin: '-112px 0px 0px 0px' },
     );
 
     toObserve.forEach((element) => {
