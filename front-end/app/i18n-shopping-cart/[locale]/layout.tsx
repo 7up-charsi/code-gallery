@@ -1,14 +1,15 @@
-import { OrderConfirmedDrawer } from './_components/order-confirmed-drawer';
-import { OrderConfirmedDialog } from './_components/order-confirmed-dialog';
-import { DictionaryProvider } from './_components/dictionary-provider';
-import { AppBarContent } from './_components/app-bar-content';
-import { getDictionary } from './_utils/dictionary';
 import { createMetadata } from '@/utils/metadata';
 import { Red_Hat_Text } from 'next/font/google';
-import { AppBar } from './_components/app-bar';
-import { Locales } from './_types/dictionary';
-import { siteConfig } from './site.config';
-import { Cart } from './_components/cart';
+
+import { OrderConfirmedDrawer } from '../_components/order-confirmed-drawer';
+import { OrderConfirmedDialog } from '../_components/order-confirmed-dialog';
+import { DictionaryProvider } from '../_components/dictionary-provider';
+import { AppBarContent } from '../_components/app-bar-content';
+import { getDictionary } from '../_utils/dictionary';
+import { AppBar } from '../_components/app-bar';
+import { Locales } from '../_types/dictionary';
+import { siteConfig } from '../site.config';
+import { Cart } from '../_components/cart';
 import type { Metadata } from 'next';
 
 const font = Red_Hat_Text({ subsets: ['latin'] });

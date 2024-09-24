@@ -1,6 +1,7 @@
 'use client';
 
 import { useScroll } from '@typeweave/react/use-scroll';
+import { useMobileDrawerState } from './mobile-drawer';
 import { siteConfig } from '../site.config';
 import { TocLink } from './toc-link';
 import React from 'react';
@@ -19,6 +20,8 @@ export const TocContent = (props: TocContentProps) => {
   const [activeHeadings, setActiveHeadings] = React.useState<
     string[]
   >([]);
+
+  const handleClose = useMobileDrawerState((s) => s.handleClose);
 
   const dirYRef = React.useRef(0);
 
@@ -80,6 +83,7 @@ export const TocContent = (props: TocContentProps) => {
               isActive={isActive}
               href={`${siteConfig.pathname}#${id}`}
               data-active={isActive}
+              handleClose={handleClose}
               className="before:bg-primary-9 hover:bg-muted-4 active:bg-muted-5 relative block rounded px-2 py-1 text-sm before:absolute before:left-0 before:top-1/2 before:hidden before:h-1/3 before:w-1 before:-translate-y-1/2 before:rounded-full data-[depth=3]:ml-2 max-md:text-base md:data-[active=true]:before:block"
             >
               {innerText}

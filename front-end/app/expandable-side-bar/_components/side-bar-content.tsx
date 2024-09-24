@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Building2Icon,
   CalendarIcon,
@@ -12,6 +14,7 @@ import {
   TooltipRoot,
   TooltipTrigger,
 } from '@typeweave/react/tooltip';
+import { useMobileDrawerState } from './mobile-drawer';
 import { siteConfig } from '../site.config';
 import { NavLink } from './nav-link';
 import React from 'react';
@@ -24,6 +27,8 @@ const displayName = 'SideBarContent';
 
 export const SideBarContent = (props: SideBarContentProps) => {
   const { isExpanded } = props;
+
+  const handleClose = useMobileDrawerState((s) => s.handleClose);
 
   return (
     <nav
@@ -67,6 +72,7 @@ export const SideBarContent = (props: SideBarContentProps) => {
         <TooltipRoot key={i} disabled={isExpanded}>
           <TooltipTrigger>
             <NavLink
+              handleClose={handleClose}
               href={`${siteConfig.pathname}${href}`}
               data-expanded={isExpanded}
               className="ring-focus before:bg-primary-9 hover:bg-muted-3 active:bg-muted-4 group relative grid h-12 w-full grid-flow-col grid-cols-[48px] items-center overflow-hidden whitespace-nowrap rounded capitalize outline-none before:absolute before:bottom-0 before:left-0 before:top-1/2 before:hidden before:h-1/3 before:w-1 before:-translate-y-1/2 before:rounded-full focus-visible:ring-2 data-[expanded=true]:grid-cols-[48px_1fr] data-[active=true]:before:block"

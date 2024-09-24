@@ -1,14 +1,10 @@
 'use client';
 
+import { DrawerLink, DrawerLinkProps } from '@repo/ui';
 import { usePathname } from 'next/navigation';
-import Link, { LinkProps } from 'next/link';
 import React from 'react';
 
-interface NavLinkProps extends LinkProps {
-  className?: string;
-  children?: React.ReactNode;
-  href: string;
-}
+interface NavLinkProps extends DrawerLinkProps {}
 
 const displayName = 'NavLink';
 
@@ -21,7 +17,7 @@ export const NavLink = React.forwardRef<
   const pathname = usePathname();
 
   return (
-    <Link
+    <DrawerLink
       ref={forwardedRef}
       {...restProps}
       href={href}

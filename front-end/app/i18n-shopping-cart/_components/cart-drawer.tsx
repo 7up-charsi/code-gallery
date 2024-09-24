@@ -5,14 +5,9 @@ import {
   DrawerOverlay,
   DrawerPortal,
   DrawerRoot,
-  DrawerTrigger,
 } from '@typeweave/react/drawer';
-import { useCartDrawer } from '../_hooks/cart-drawer';
 import { CartDrawerButton } from './cart-drawer-button';
-import { ShoppingBasketIcon } from 'lucide-react';
-import { Button } from '@typeweave/react/button';
-import { Badge } from '@typeweave/react/badge';
-import { useCart } from '../_hooks/cart';
+import { useCartDrawer } from '../_hooks/cart-drawer';
 import { Cart } from './cart';
 import React from 'react';
 

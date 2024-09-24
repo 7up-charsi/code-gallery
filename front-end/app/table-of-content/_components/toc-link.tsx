@@ -1,12 +1,10 @@
 'use client';
 
-import Link, { LinkProps } from 'next/link';
+import { DrawerLink, DrawerLinkProps } from '@repo/ui';
 import React from 'react';
 
-interface TocLinkProps extends LinkProps {
+interface TocLinkProps extends DrawerLinkProps {
   isActive: boolean;
-  children?: React.ReactNode;
-  className?: string;
 }
 
 const displayName = 'TocLink';
@@ -25,7 +23,7 @@ export const TocLink = (props: TocLinkProps) => {
     }
   }, [isActive]);
 
-  return <Link ref={linkRef} {...restProps} />;
+  return <DrawerLink ref={linkRef} {...restProps} />;
 };
 
 TocLink.displayName = displayName;

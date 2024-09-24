@@ -1,14 +1,5 @@
-import {
-  DrawerClose,
-  DrawerContent,
-  DrawerOverlay,
-  DrawerPortal,
-  DrawerRoot,
-  DrawerTrigger,
-} from '@typeweave/react/drawer';
+import { MobileDrawer } from './_components/mobile-drawer';
 import { TocContent } from './_components/toc-content';
-import { ChevronDown, XIcon } from 'lucide-react';
-import { Button } from '@typeweave/react/button';
 
 export default function Home() {
   return (
@@ -17,46 +8,7 @@ export default function Home() {
         <aside className="bg-muted-3 h-full w-full rounded"></aside>
       </div>
 
-      <DrawerRoot>
-        <DrawerTrigger>
-          <Button
-            className="mx-5 my-3 justify-between md:hidden"
-            endContent={<ChevronDown />}
-          >
-            Table of Content
-          </Button>
-        </DrawerTrigger>
-
-        <DrawerPortal>
-          <DrawerOverlay className="md:hidden" />
-
-          <DrawerContent
-            placement="bottom"
-            className="flex max-h-[calc(100vh-100px)] flex-col overflow-hidden rounded-t-2xl md:hidden"
-          >
-            <div className="border-muted-6 flex items-center justify-between gap-2 border-b px-5 py-3">
-              <h2 className="text-muted-12">Table of Content</h2>
-
-              <DrawerClose>
-                <Button
-                  isIconOnly
-                  aria-label="close"
-                  color="danger"
-                  variant="text"
-                  className="text-xl"
-                  size="sm"
-                >
-                  <XIcon />
-                </Button>
-              </DrawerClose>
-            </div>
-
-            <div className="grow overflow-auto px-5 py-3">
-              <TocContent />
-            </div>
-          </DrawerContent>
-        </DrawerPortal>
-      </DrawerRoot>
+      <MobileDrawer />
 
       <main
         id="main-content"

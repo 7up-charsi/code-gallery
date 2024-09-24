@@ -2,9 +2,9 @@
 
 import { useOrderConfirmedDialog } from '../_hooks/order-confirmed-dialog';
 import { useOrderConfirmedDrawer } from '../_hooks/order-confirmed-drawer';
-import { useCartDrawer } from '../_hooks/cart-drawer';
 import { useDictionaryCtx } from './dictionary-provider';
 import { TreeDeciduousIcon, XIcon } from 'lucide-react';
+import { useCartDrawer } from '../_hooks/cart-drawer';
 import { Button } from '@typeweave/react/button';
 import { useCart } from '../_hooks/cart';
 import React, { Fragment } from 'react';
