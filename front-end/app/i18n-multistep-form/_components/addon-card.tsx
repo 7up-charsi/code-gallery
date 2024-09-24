@@ -1,5 +1,5 @@
+import { FormValues } from '../[locale]/skill-demo/page';
 import { useDictionaryCtx } from './dictionary-provider';
-import { FormValues } from '../[locale]/page';
 import { useWatch } from 'react-hook-form';
 import { CheckIcon } from 'lucide-react';
 import React from 'react';

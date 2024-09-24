@@ -42,7 +42,7 @@ export const subscribe = mutation({
       });
 
       const schedulerId = await ctx.scheduler.runAfter(
-        +process.env.UNSUBSCRIBE_MS! ?? 600000, // 10 minutes
+        +process.env.UNSUBSCRIBE_MS! || 600000, // 10 minutes
         api.push_notification.schedualUnsubscribe,
         { id },
       );

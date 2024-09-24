@@ -2,9 +2,9 @@
 
 import { useFormContext, useWatch } from 'react-hook-form';
 import { InputProps } from '@typeweave/react/input';
+import { FormValues } from '../skill-demo/page';
 import { CustomInput } from './custom-input';
 import { TipButton } from './tip-button';
-import { FormValues } from '../page';
 import React from 'react';
 
 interface TipInputProps extends InputProps<false> {}

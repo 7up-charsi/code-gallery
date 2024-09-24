@@ -2,10 +2,10 @@
 
 import { PointerEvents } from '@typeweave/react/pointer-events';
 import { useFormContext, useWatch } from 'react-hook-form';
+import { FormValues } from '../[locale]/skill-demo/page';
 import { useDictionaryCtx } from './dictionary-provider';
 import { useFormSteps } from '../_hooks/form-steps';
 import { Switch } from '@typeweave/react/switch';
-import { FormValues } from '../[locale]/page';
 import { StepHeader } from './step-header';
 import Image from 'next/image';
 import React from 'react';

@@ -1,6 +1,6 @@
 import { useFormContext, useWatch } from 'react-hook-form';
+import { FormValues } from '../[locale]/skill-demo/page';
 import { useDictionaryCtx } from './dictionary-provider';
-import { FormValues } from '../[locale]/page';
 import { AddonCard } from './addon-card';
 import React from 'react';
 

@@ -1,9 +1,9 @@
 'use client';
 
 import { PointerEvents } from '@typeweave/react/pointer-events';
+import { FormValues } from '../[locale]/skill-demo/page';
 import { useDictionaryCtx } from './dictionary-provider';
 import { useFormSteps } from '../_hooks/form-steps';
-import { FormValues } from '../[locale]/page';
 import { useWatch } from 'react-hook-form';
 import { StepHeader } from './step-header';
 import React from 'react';

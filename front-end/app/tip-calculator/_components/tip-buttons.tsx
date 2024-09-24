@@ -2,9 +2,9 @@
 
 import { useFormContext, useWatch } from 'react-hook-form';
 import { inputStyles } from '@typeweave/react/input';
+import { FormValues } from '../skill-demo/page';
 import { TipButton } from './tip-button';
 import { TipInput } from './tip-input';
-import { FormValues } from '../page';
 import React from 'react';
 
 interface TipButtonsProps {}

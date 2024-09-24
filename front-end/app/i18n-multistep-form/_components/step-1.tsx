@@ -1,10 +1,10 @@
 'use client';
 
+import { FormValues } from '../[locale]/skill-demo/page';
 import { useDictionaryCtx } from './dictionary-provider';
 import { useFormSteps } from '../_hooks/form-steps';
 import { useFormContext } from 'react-hook-form';
 import { Input } from '@typeweave/react/input';
-import { FormValues } from '../[locale]/page';
 import { StepHeader } from './step-header';
 import React from 'react';
 

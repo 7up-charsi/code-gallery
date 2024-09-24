@@ -2,7 +2,7 @@
 
 import { useFormContext, useWatch } from 'react-hook-form';
 import { Button } from '@typeweave/react/button';
-import { FormValues } from '../page';
+import { FormValues } from '../skill-demo/page';
 import React from 'react';
 
 interface ResultProps {}
