@@ -12,9 +12,11 @@ export const rootMetadata: Metadata = {
   creator: portfolio.name,
   icons: { icon: '/favicon.svg' },
   keywords: [
-    'skill-building',
     'exercises',
     'learning',
+    'front-end',
     'front-end exercises',
+    'full-stack',
+    'full-stack exercises',
   ],
 };

@@ -10,7 +10,4 @@ export const createMetadata = (
   applicationName: config.name,
   authors: [{ name: portfolio.name, url: portfolio.url }],
   keywords: [...(keywords ?? []), portfolio.name, config.name],
-  icons: {
-    icon: '/favicon.svg',
-  },
 });
