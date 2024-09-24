@@ -3,28 +3,14 @@ import { match } from '@formatjs/intl-localematcher';
 import { I18nConfig } from '@/types/i18n';
 import Negotiator from 'negotiator';
 
-export const createRouteChecker =
-  (pathname: string) => (name: string) => {
-    if (
-      new RegExp(`/i18n/.+/${name}.*`).test(pathname) ||
-      new RegExp(`/i18n/${name}.*`).test(pathname)
-    )
-      return true;
-
-    return false;
-  };
-
 export const createI18nRouter =
   (request: NextRequest) => (name: string, config: I18nConfig) => {
     const pathname = request.nextUrl.pathname;
 
     const { 1: currentLocale = '' } =
-      pathname.match(new RegExp(`/i18n/([^/]+)/${name}`)) || [];
+      pathname.match(new RegExp(`/${name}/([^/]+)`)) || [];
 
-    if (
-      currentLocale &&
-      config.locales.includes(currentLocale as never)
-    )
+    if (currentLocale && config.locales.includes(currentLocale))
       return;
 
     const negotiatorHeaders: Record<string, string> = {};
@@ -41,7 +27,7 @@ export const createI18nRouter =
 
     const newLocale = match(languages, locales, defaultLocale);
 
-    const newPathname = `/i18n/${newLocale}/${name}`;
+    const newPathname = `/${name}/${newLocale}`;
 
     const newUrl = new URL(newPathname, request.url);
 

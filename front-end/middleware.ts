@@ -1,30 +1,31 @@
 import { i18nConfig as mortgageCalculatorI18nConfig } from './app/(i18n)/i18n/[locale]/mortgage-calculator/i18n.config';
 import { i18nConfig as multistepFormI18nConfig } from './app/(i18n)/i18n/[locale]/multistep-form/i18n.config';
 import { i18nConfig as shoppingCartI18nConfig } from './app/(i18n)/i18n/[locale]/shopping-cart/i18n.config';
-import { i18nConfig as contactFormI18nConfig } from './app/(i18n)/i18n/[locale]/contact-form/i18n.config';
-import { createI18nRouter, createRouteChecker } from './utils/i18n';
+import { i18nConfig as contactFormI18nConfig } from './app/i18n-contact-form/i18n.config';
+import { createI18nRouter } from './utils/i18n';
 import { I18nConfig } from './types/i18n';
 import { NextRequest } from 'next/server';
 
 const configs: Record<string, I18nConfig> = {
-  'contact-form': contactFormI18nConfig,
-  'shopping-cart': shoppingCartI18nConfig,
-  'mortgage-calculator': mortgageCalculatorI18nConfig,
-  'multistep-form': multistepFormI18nConfig,
+  'i18n-contact-form': contactFormI18nConfig,
+  'i18n-shopping-cart': shoppingCartI18nConfig,
+  'i18n-mortgage-calculator': mortgageCalculatorI18nConfig,
+  'i18n-multistep-form': multistepFormI18nConfig,
 };
 
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
-  const checkRoute = createRouteChecker(pathname);
-  const i18nRouter = createI18nRouter(request);
+  if (/^\/i18n/.test(pathname)) {
+    const i18nRouter = createI18nRouter(request);
 
-  for (const name in configs) {
-    if (Object.prototype.hasOwnProperty.call(configs, name)) {
-      const config = configs[name];
+    for (const name in configs) {
+      if (Object.prototype.hasOwnProperty.call(configs, name)) {
+        const config = configs[name];
 
-      if (checkRoute(name)) {
-        return i18nRouter(name, config);
+        if (new RegExp(`/${name}.*`).test(pathname)) {
+          return i18nRouter(name, config);
+        }
       }
     }
   }
