@@ -1,6 +1,6 @@
-import { i18nConfig as mortgageCalculatorI18nConfig } from './app/(i18n)/i18n/[locale]/mortgage-calculator/i18n.config';
-import { i18nConfig as multistepFormI18nConfig } from './app/(i18n)/i18n/[locale]/multistep-form/i18n.config';
-import { i18nConfig as shoppingCartI18nConfig } from './app/(i18n)/i18n/[locale]/shopping-cart/i18n.config';
+import { i18nConfig as mortgageCalculatorI18nConfig } from './app/i18n-mortgage-calculator/i18n.config';
+import { i18nConfig as multistepFormI18nConfig } from './app/i18n-multistep-form/i18n.config';
+import { i18nConfig as shoppingCartI18nConfig } from './app/i18n-shopping-cart/i18n.config';
 import { i18nConfig as contactFormI18nConfig } from './app/i18n-contact-form/i18n.config';
 import { createI18nRouter } from './utils/i18n';
 import { I18nConfig } from './types/i18n';
@@ -23,6 +23,7 @@ export function middleware(request: NextRequest) {
       if (Object.prototype.hasOwnProperty.call(configs, name)) {
         const config = configs[name];
 
+        // regexp is faster than startsWith
         if (new RegExp(`/${name}.*`).test(pathname)) {
           return i18nRouter(name, config);
         }

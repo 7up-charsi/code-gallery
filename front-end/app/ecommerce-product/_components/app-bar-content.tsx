@@ -1,5 +1,5 @@
-import { Branding, PortfolioHeader, ThemeSwitcher } from '@repo/ui';
 import { AvatarImage, AvatarRoot } from '@typeweave/react/avatar';
+import { Branding, ThemeSwitcher } from '@repo/ui';
 import { siteConfig } from '../site.config';
 import { Cart } from './cart';
 import React from 'react';
@@ -12,25 +12,21 @@ export const AppBarContent = (props: AppBarContentProps) => {
   const {} = props;
 
   return (
-    <>
-      <PortfolioHeader />
+    <div className="flex h-16 items-center gap-3 px-5 md:px-8">
+      <Branding href={siteConfig.pathname}>
+        {siteConfig.name}
+      </Branding>
 
-      <div className="flex h-16 items-center gap-3 px-5 md:px-8">
-        <Branding href={siteConfig.pathname}>
-          {siteConfig.name}
-        </Branding>
+      <div className="grow"></div>
 
-        <div className="grow"></div>
+      <Cart />
 
-        <Cart />
+      <ThemeSwitcher />
 
-        <ThemeSwitcher />
-
-        <AvatarRoot>
-          <AvatarImage src="https://avatar.iran.liara.run/public/48" />
-        </AvatarRoot>
-      </div>
-    </>
+      <AvatarRoot>
+        <AvatarImage src="https://avatar.iran.liara.run/public/48" />
+      </AvatarRoot>
+    </div>
   );
 };
 
