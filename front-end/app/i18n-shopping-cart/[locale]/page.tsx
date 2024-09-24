@@ -1,22 +1,21 @@
-'use client';
+import { SkillLandingCard } from '@/components/skill-landing-card';
+import { createMetadata } from '@/utils/metadata';
+import { siteConfig } from '../site.config';
+import { Metadata } from 'next';
 
-import { useDictionaryCtx } from '../_components/dictionary-provider';
-import { ProductItem } from '../_components/product-item';
+export const metadata: Metadata = createMetadata(siteConfig);
 
-const HomePage = () => {
-  const dictionary = useDictionaryCtx('Home page');
-
+export default function SkillLandingPage({
+  params: { locale },
+}: {
+  params: { locale: string };
+}) {
   return (
-    <main className="">
-      <h1 className="sr-only">{dictionary.title}</h1>
-
-      <div className="mt-5 grid grid-cols-1 gap-5 gap-y-7 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
-        {dictionary.data.map((item) => (
-          <ProductItem key={item.id} {...item} />
-        ))}
-      </div>
+    <main className="bg-muted-1 flex min-h-screen items-center justify-center p-5 md:px-8">
+      <SkillLandingCard
+        {...siteConfig}
+        pathname={`${siteConfig.pathname.replace(/\/+$/, '')}/${locale}`}
+      />
     </main>
   );
-};
-
-export default HomePage;
+}

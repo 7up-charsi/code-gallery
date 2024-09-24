@@ -1,6 +1,7 @@
 'use client';
 
 import { useRouteProgress } from '@typeweave/react/use-route-progress';
+import { usePathname } from 'next/navigation';
 import React from 'react';
 
 interface RouteProgressProps {}
@@ -11,6 +12,10 @@ export const RouteProgress = (props: RouteProgressProps) => {
   const {} = props;
 
   const { progress, hide } = useRouteProgress();
+
+  const pathname = usePathname();
+
+  if (/^\/route-progress.*/.test(pathname)) return;
 
   return (
     <div

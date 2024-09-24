@@ -81,7 +81,7 @@ export const TocContent = (props: TocContentProps) => {
             <TocLink
               data-depth={dataset.depth}
               isActive={isActive}
-              href={`${siteConfig.pathname}#${id}`}
+              href={`${siteConfig.pathname}/skill-demo#${id}`}
               data-active={isActive}
               handleClose={handleClose}
               className="before:bg-primary-9 hover:bg-muted-4 active:bg-muted-5 relative block rounded px-2 py-1 text-sm before:absolute before:left-0 before:top-1/2 before:hidden before:h-1/3 before:w-1 before:-translate-y-1/2 before:rounded-full data-[depth=3]:ml-2 max-md:text-base md:data-[active=true]:before:block"

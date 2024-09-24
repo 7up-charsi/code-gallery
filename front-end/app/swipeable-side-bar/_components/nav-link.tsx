@@ -26,7 +26,7 @@ export const NavLink = React.forwardRef<
       {...restProps}
       href={href}
       data-active={
-        href.replace(/\/$/, '') === pathname.replace(/\/$/, '')
+        href.replace(/\/+$/, '') === pathname.replace(/\/+$/, '')
       }
     />
   );

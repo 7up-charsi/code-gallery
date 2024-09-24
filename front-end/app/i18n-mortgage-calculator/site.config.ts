@@ -1,6 +1,6 @@
 export const siteConfig = {
-  pathname: '/mortgage-calculator',
-  name: 'mortgage calculator',
+  pathname: '/i18n-mortgage-calculator',
+  name: 'Mortgage Calculator',
   description:
-    'Mortgage Calculator - Developed to demonstrate my expertise in web front-end development, showcasing my skills in creating interactive and user-friendly financial tools with robust calculation capabilities and responsive design',
+    'Showcasing my skills in creating interactive and user-friendly financial tools with robust calculation capabilities and responsive design',
 };

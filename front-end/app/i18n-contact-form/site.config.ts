@@ -1,6 +1,6 @@
 export const siteConfig = {
-  pathname: '/contact-from',
+  pathname: '/i18n-contact-form',
   name: 'Contact Form',
   description:
-    'Contact Form - Developed to showcase my expertise in web front-end development, particularly in creating forms with advanced error handling and validation using Zod.js',
+    'Particularly in creating forms with advanced error handling and validation using Zod.js',
 };

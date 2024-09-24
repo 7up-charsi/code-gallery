@@ -28,7 +28,9 @@ export const SkillLandingCard = (props: SkillLandingCardProps) => {
         <p>Ready to see my skill in action?</p>
 
         <Button endContent={<ArrowRightIcon />} asChild>
-          <Link href={`${pathname}/skill-demo`}>View Demo</Link>
+          <Link href={`${pathname.replace(/\/+$/, '')}/skill-demo`}>
+            View Demo
+          </Link>
         </Button>
       </div>
 

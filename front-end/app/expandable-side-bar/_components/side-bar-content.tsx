@@ -73,7 +73,7 @@ export const SideBarContent = (props: SideBarContentProps) => {
           <TooltipTrigger>
             <NavLink
               handleClose={handleClose}
-              href={`${siteConfig.pathname}${href}`}
+              href={`${siteConfig.pathname}/skill-demo${href}`}
               data-expanded={isExpanded}
               className="ring-focus before:bg-primary-9 hover:bg-muted-3 active:bg-muted-4 group relative grid h-12 w-full grid-flow-col grid-cols-[48px] items-center overflow-hidden whitespace-nowrap rounded capitalize outline-none before:absolute before:bottom-0 before:left-0 before:top-1/2 before:hidden before:h-1/3 before:w-1 before:-translate-y-1/2 before:rounded-full focus-visible:ring-2 data-[expanded=true]:grid-cols-[48px_1fr] data-[active=true]:before:block"
             >

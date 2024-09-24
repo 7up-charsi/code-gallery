@@ -1,24 +1,21 @@
-import { getDictionary } from '../_utils/get-dictionary';
-import { Locales } from '../_types/dictionary';
-import { Form } from '../_components/form';
+import { SkillLandingCard } from '@/components/skill-landing-card';
+import { createMetadata } from '@/utils/metadata';
+import { siteConfig } from '../site.config';
+import { Metadata } from 'next';
 
-interface HomePageProps {
-  params: { locale: Locales };
-}
+export const metadata: Metadata = createMetadata(siteConfig);
 
-const HomePage = async (props: HomePageProps) => {
-  const {
-    params: { locale },
-  } = props;
-
-  const dictionary = await getDictionary(locale);
-
+export default function SkillLandingPage({
+  params: { locale },
+}: {
+  params: { locale: string };
+}) {
   return (
-    <main className="flex min-h-[calc(100vh-105px)] items-center justify-center md:p-8">
-      <h1 className="sr-only">contact form</h1>
-      <Form dictionary={dictionary} />
+    <main className="bg-muted-1 flex min-h-screen items-center justify-center p-5 md:px-8">
+      <SkillLandingCard
+        {...siteConfig}
+        pathname={`${siteConfig.pathname.replace(/\/+$/, '')}/${locale}`}
+      />
     </main>
   );
-};
-
-export default HomePage;
+}

@@ -1,6 +1,6 @@
 export const siteConfig = {
   pathname: '/parallax',
-  name: 'parallax',
+  name: 'Parallax',
   description:
-    'parallax - Developed to demonstrate my expertise in web front-end development, featuring a design that utilizes the parallax effect, where users experience captivating animations on scroll.',
+    'Featuring a design that utilizes the parallax effect, where users experience captivating animations on scroll.',
 };

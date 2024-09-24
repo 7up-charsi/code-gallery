@@ -1,5 +1,9 @@
 import { SkillLandingCard } from '@/components/skill-landing-card';
+import { createMetadata } from '@/utils/metadata';
 import { siteConfig } from './site.config';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = createMetadata(siteConfig);
 
 export default function SkillLandingPage() {
   return (

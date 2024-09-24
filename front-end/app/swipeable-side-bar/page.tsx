@@ -1,24 +1,14 @@
-export default function Home() {
+import { SkillLandingCard } from '@/components/skill-landing-card';
+import { createMetadata } from '@/utils/metadata';
+import { siteConfig } from './site.config';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = createMetadata(siteConfig);
+
+export default function SkillLandingPage() {
   return (
-    <main className="touch-pan-y p-5 md:px-8">
-      {Array.from({ length: 10 }).map((_, i) => (
-        <div key={i} className="my-5 space-y-3 first:mt-0 last:mb-0">
-          {Array.from({
-            length: Math.floor(Math.random() * (15 - 4 + 1)) + 4,
-          }).map((_, i, arr) => (
-            <div
-              key={i}
-              style={{
-                width:
-                  i + 1 === arr.length
-                    ? `${Math.floor(Math.random() * (70 - 10 + 1)) + 10}%`
-                    : '100%',
-              }}
-              className="bg-muted-5 h-3 rounded"
-            ></div>
-          ))}
-        </div>
-      ))}
+    <main className="bg-muted-1 flex min-h-screen items-center justify-center p-5 md:px-8">
+      <SkillLandingCard {...siteConfig} />
     </main>
   );
 }
