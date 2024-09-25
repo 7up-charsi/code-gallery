@@ -9,19 +9,19 @@ import {
   DrawerTrigger,
 } from '@typeweave/react/drawer';
 import { PointerEvents } from '@typeweave/react/pointer-events';
+import { ShoppingCartIcon, XIcon } from 'lucide-react';
 import { Button } from '@typeweave/react/button';
-import { ShoppingCartIcon } from 'lucide-react';
 import { Badge } from '@typeweave/react/badge';
 import { useCart } from '../_hooks/cart';
 import { toast } from 'react-toastify';
 import { CartItem } from './cart-item';
 import React from 'react';
 
-interface CartProps {}
+interface CartDrawerProps {}
 
-const displayName = 'Cart';
+const displayName = 'CartDrawer';
 
-export const Cart = (props: CartProps) => {
+export const CartDrawer = (props: CartDrawerProps) => {
   const {} = props;
 
   const titleId = React.useId();
@@ -39,9 +39,9 @@ export const Cart = (props: CartProps) => {
           >
             <Button
               isIconOnly
-              aria-label="menu"
+              aria-label="cart drawer open"
               variant="text"
-              className="overflow-visible"
+              className="text-xl"
             >
               <ShoppingCartIcon />
             </Button>
@@ -55,13 +55,25 @@ export const Cart = (props: CartProps) => {
         <DrawerContent
           placement="right"
           aria-labelledby={titleId}
-          className="w-[320px]"
+          className="sm:w-[350px]"
         >
           <div
             id={titleId}
-            className="border-muted-6 border-b px-5 py-3"
+            className="border-muted-6 flex items-center justify-between border-b px-5 py-3"
           >
-            Cart
+            <span>Cart</span>
+
+            <DrawerClose>
+              <Button
+                isIconOnly
+                aria-label="cart drawer close"
+                variant="text"
+                color="danger"
+                className="text-xl"
+              >
+                <XIcon />
+              </Button>
+            </DrawerClose>
           </div>
 
           <div className="p-5">
@@ -97,4 +109,4 @@ export const Cart = (props: CartProps) => {
   );
 };
 
-Cart.displayName = displayName;
+CartDrawer.displayName = displayName;

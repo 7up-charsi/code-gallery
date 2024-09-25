@@ -9,6 +9,7 @@
     "typecheck": "turbo typecheck"
   },
   "devDependencies": {
+    "@radix-ui/colors": "^3.0.0",
     "@repo/meta": "workspace:*",
     "@repo/ui": "workspace:*",
     "@types/node": "^22.6.1",

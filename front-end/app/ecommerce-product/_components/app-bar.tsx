@@ -17,7 +17,7 @@ export const AppBar = (props: AppBarProps) => {
   return (
     <header
       data-scrolled={isAtTop === null ? false : !isAtTop}
-      className="border-muted-6 bg-background sticky left-0 right-0 top-0 z-50 border-b data-[scrolled=true]:shadow-md"
+      className="border-muted-6 bg-background/70 sticky left-0 right-0 top-0 z-50 border-b backdrop-blur-md data-[scrolled=true]:shadow-md"
     >
       {children}
     </header>

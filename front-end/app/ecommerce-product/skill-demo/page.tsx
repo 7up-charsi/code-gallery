@@ -1,102 +1,86 @@
-'use client';
-
-import { MinusIcon, PlusIcon, ShoppingCart } from 'lucide-react';
-import { PointerEvents } from '@typeweave/react/pointer-events';
+import { AddToCartButton } from '../_components/add-to-cart-button';
+import { AmountButtons } from '../_components/amount-buttons';
 import { ImageSlider } from '../_components/image-slider';
-import { Button } from '@typeweave/react/button';
-import { useCart } from '../_hooks/cart';
-import { toast } from 'react-toastify';
 
 export default function Home() {
-  const { updateInputValue, inputValue, amount, updateCart } =
-    useCart();
-
   return (
     <main className="p-5 md:px-8">
-      <article className="mx-auto grid max-w-screen-md grid-cols-1 gap-5 md:grid-cols-[1fr_1.3fr]">
+      <article className="mx-auto grid max-w-md grid-cols-1 gap-5 md:max-w-[calc(theme(screens.md)+100px)] md:grid-cols-[minmax(300px,400px)_minmax(370px,1fr)]">
         <ImageSlider />
 
         <div className="">
           <span className="text-sm font-semibold uppercase">
             sneaker company
           </span>
-
           <h1 className="text-muted-12 mt-1 text-2xl font-semibold capitalize">
             fall limited edition sneakers
           </h1>
-
-          <p className="mt-4 text-sm">
-            These low-profile sneakers are your perfect casual wear
-            companion. Featuring a durable rubber outer sale,
-            ther&apos;ll withstand everything the weather can offer.
+          <p className="mt-4 max-w-lg text-sm">
+            Elevate your casual style with our exclusive fall limited
+            edition sneakers, expertly crafted for the ultimate blend
+            of comfort, durability, and sophistication. These
+            low-profile sneakers are designed to be your perfect
+            companion for everyday adventures.
           </p>
 
-          <dl className="mt-5 flex max-md:items-center md:flex-col">
-            <div className="flex items-center gap-3">
-              <dt className="sr-only">price</dt>
-              <dd className="text-muted-12 text-2xl font-semibold">
-                $125.00
-              </dd>
+          <div className="text-muted-12 mt-3 text-sm font-medium">
+            Key Features:
+          </div>
 
-              <dt className="sr-only">off percentage</dt>
-              <dd className="rounded-lg bg-black px-2 py-px text-sm text-white">
-                50%
-              </dd>
-            </div>
+          <ul className="list-inside list-disc space-y-1">
+            <li>
+              <span className="text-muted-12 font-medium">
+                Durable Rubber Outsole:
+              </span>{' '}
+              Withstand the unpredictable fall weather with our rugged
+              rubber outsole, providing traction and protection
+              against rain, snow, and everything in between.
+            </li>
+            <li>
+              <span className="text-muted-12 font-medium">
+                Premium Materials:
+              </span>{' '}
+              Our carefully selected materials ensure a soft,
+              breathable, and lightweight wear, keeping your feet
+              comfortable all day long.
+            </li>
+            <li>
+              <span className="text-muted-12 font-medium">
+                Timeless Design:
+              </span>{' '}
+              Clean lines, subtle colorways, and a low-profile
+              silhouette make these sneakers versatile enough to pair
+              with any outfit, from casual jeans to dress pants.
+            </li>
+            <li>
+              <span className="text-muted-12 font-medium">
+                Limited Edition:
+              </span>{' '}
+              Exclusive to our fall collection, these sneakers are
+              available for a limited time only, making them a unique
+              addition to your shoe rotation.
+            </li>
+          </ul>
 
-            <div className="grow"></div>
+          <dl className="mt-10 flex flex-wrap items-center justify-center">
+            <dt className="sr-only">price</dt>
+            <dd className="text-muted-12 text-2xl font-semibold">
+              $125.00
+            </dd>
+
+            <dt className="sr-only">off percentage</dt>
+            <dd className="ml-3 rounded-lg bg-black px-2 py-px text-sm text-white">
+              50%
+            </dd>
 
             <dt className="sr-only">total price was</dt>
-            <dd className="font-semibold md:mt-3">
+            <dd className="ml-3 font-semibold">
               <del>$250.00</del>
             </dd>
           </dl>
-
-          <div className="mt-5 flex h-10 items-center gap-5">
-            <div className="bg-muted-3 flex h-full grow items-center rounded">
-              <PointerEvents onPress={() => updateInputValue('dec')}>
-                <button
-                  aria-label="remove 1 from cart"
-                  disabled={inputValue === 1}
-                  className="text-primary-11 ring-focus hover:bg-primary-4 active:bg-primary-5 disabled:disabled flex h-full w-10 cursor-pointer items-center justify-center rounded-l outline-none focus-visible:ring-2"
-                >
-                  <MinusIcon size={20} />
-                </button>
-              </PointerEvents>
-
-              <span className="text-muted-12 min-w-16 grow select-none px-1 text-center font-bold">
-                {inputValue}
-              </span>
-
-              <PointerEvents onPress={() => updateInputValue('inc')}>
-                <button
-                  aria-label="add 1 in cart"
-                  className="text-primary-11 ring-focus hover:bg-primary-4 active:bg-primary-5 disabled:disabled flex h-full w-10 cursor-pointer items-center justify-center rounded-r outline-none focus-visible:ring-2"
-                >
-                  <PlusIcon size={20} />
-                </button>
-              </PointerEvents>
-            </div>
-
-            <Button
-              variant="solid"
-              color="primary"
-              className="h-full grow rounded"
-              startContent={<ShoppingCart />}
-              onPress={() => {
-                updateCart();
-
-                if (amount === inputValue) return;
-
-                if (amount) {
-                  toast.success('cart updated');
-                } else {
-                  toast.success('added into cart');
-                }
-              }}
-            >
-              {amount ? 'update cart' : 'add to cart'}
-            </Button>
+          <div className="mx-auto mt-5 flex max-w-sm flex-wrap items-center gap-x-5 gap-y-3">
+            <AmountButtons />
+            <AddToCartButton />
           </div>
         </div>
       </article>

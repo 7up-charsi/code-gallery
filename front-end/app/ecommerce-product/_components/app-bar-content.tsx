@@ -1,7 +1,7 @@
 import { AvatarImage, AvatarRoot } from '@typeweave/react/avatar';
 import { Branding, ThemeSwitcher } from '@repo/ui';
 import { siteConfig } from '../site.config';
-import { Cart } from './cart';
+import { CartDrawer } from './cart-drawer';
 import React from 'react';
 
 interface AppBarContentProps {}
@@ -12,20 +12,20 @@ export const AppBarContent = (props: AppBarContentProps) => {
   const {} = props;
 
   return (
-    <div className="flex h-16 items-center gap-3 px-5 md:px-8">
+    <div className="flex min-h-16 flex-wrap items-center justify-center gap-3 px-5 py-2 md:px-8">
       <Branding href={siteConfig.pathname}>
         {siteConfig.name}
       </Branding>
 
-      <div className="grow"></div>
+      <div className="flex grow items-center justify-end gap-3">
+        <CartDrawer />
 
-      <Cart />
+        <ThemeSwitcher />
 
-      <ThemeSwitcher />
-
-      <AvatarRoot>
-        <AvatarImage src="https://avatar.iran.liara.run/public/48" />
-      </AvatarRoot>
+        <AvatarRoot>
+          <AvatarImage src="https://avatar.iran.liara.run/public/48" />
+        </AvatarRoot>
+      </div>
     </div>
   );
 };

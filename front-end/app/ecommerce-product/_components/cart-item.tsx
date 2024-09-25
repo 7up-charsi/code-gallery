@@ -21,24 +21,26 @@ export const CartItem = (props: CartItemProps) => {
         Fall Limited Edition Sneakers
       </h2>
 
-      <div className="mt-1 flex h-full gap-2">
+      <div className="mt-2 flex h-full gap-2">
         <Image
           src="/assets/ecommerce-product/image-product-1.jpg"
           alt="product image"
-          width={50}
-          height={50}
+          width={60}
+          height={60}
           className="rounded"
         />
 
-        <dl className="flex grow flex-wrap gap-3">
-          <dt className="sr-only">price</dt>
-          <dd>$125.00</dd>
+        <dl className="flex grow flex-col justify-center">
+          <div className="flex gap-2">
+            <dt className="sr-only">price</dt>
+            <dd>$125.00</dd>
 
-          <dt className="sr-only">amount in cart</dt>
-          <dd className="font-semibold">x{amount}</dd>
+            <dt className="sr-only">amount in cart</dt>
+            <dd className="font-semibold">x{amount}</dd>
+          </div>
 
           <dt className="sr-only">total</dt>
-          <dd className="font-semibold">${amount * 125}.00</dd>
+          <dd className="font-semibold"> = ${amount * 125}.00</dd>
         </dl>
 
         <Button
