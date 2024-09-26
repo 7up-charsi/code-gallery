@@ -1,5 +1,4 @@
 import { Branding, ThemeSwitcher } from '@repo/ui';
-import { MobileDrawer } from './mobile-drawer';
 import { siteConfig } from '../site.config';
 import React from 'react';
 
@@ -19,8 +18,6 @@ export const AppBarContent = (props: AppBarContentProps) => {
       <div className="grow"></div>
 
       <ThemeSwitcher />
-
-      <MobileDrawer />
     </div>
   );
 };

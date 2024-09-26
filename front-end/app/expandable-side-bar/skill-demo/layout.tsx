@@ -13,10 +13,10 @@ export default function RootLayout({
         <AppBarContent />
       </AppBar>
 
-      <div className="grid grid-cols-[auto_1fr] max-md:grid-cols-1">
+      <div className="grid grid-cols-[minmax(var(--side-bar-collapsed-width),auto)_1fr] [--side-bar-collapsed-width:73px]">
         <SideBar />
 
-        {children}
+        <div className="col-start-2">{children}</div>
       </div>
     </>
   );
