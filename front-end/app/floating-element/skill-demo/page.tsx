@@ -87,7 +87,7 @@ export default function Home() {
         Reference
       </Button>
 
-      {createPortal(floatingElement, document.body)}
+      {createPortal(floatingElement, globalThis.document?.body)}
     </main>
   );
 }
