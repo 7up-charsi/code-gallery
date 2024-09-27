@@ -11,6 +11,8 @@ import {
   size,
   useFloating,
 } from '@floating-ui/react-dom';
+import { useIsMounted } from '@typeweave/react/use-is-mounted';
+import { Loader2Icon, SmileIcon } from 'lucide-react';
 import { mergeRefs } from '@typeweave/react-utils';
 import { Button } from '@typeweave/react/button';
 import { createPortal } from 'react-dom';
@@ -19,6 +21,8 @@ import React from 'react';
 export default function Home() {
   const referenceRef = React.useRef<HTMLButtonElement>(null);
   const arrowRef = React.useRef<HTMLDivElement>(null);
+
+  const isMounted = useIsMounted();
 
   const { floatingStyles, refs, middlewareData, placement } =
     useFloating({
@@ -83,11 +87,21 @@ export default function Home() {
 
   return (
     <main className="flex h-[300vh] w-[300vw] items-center justify-center">
-      <Button ref={mergeRefs(referenceRef, refs.setReference)}>
+      <Button
+        ref={mergeRefs(referenceRef, refs.setReference)}
+        startContent={
+          isMounted ? (
+            <SmileIcon />
+          ) : (
+            <Loader2Icon className="animate-spin" />
+          )
+        }
+      >
         Reference
       </Button>
 
-      {createPortal(floatingElement, globalThis.document?.body)}
+      {isMounted &&
+        createPortal(floatingElement, globalThis.document?.body)}
     </main>
   );
 }
