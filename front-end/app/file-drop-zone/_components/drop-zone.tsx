@@ -41,6 +41,9 @@ export const DropZone = (props: DropZoneProps) => {
 
       const files: { id: string; file: File }[] = [];
 
+      let haveDirectories = false;
+      let haveCorruptedFiles = false;
+
       for (const item of Array.from(data.items)) {
         const entry = item.webkitGetAsEntry();
 
@@ -50,19 +53,16 @@ export const DropZone = (props: DropZoneProps) => {
         }
 
         if (entry.isDirectory) {
-          toast.error(`Directory is not acceptable`, {
-            autoClose: 2000,
-          });
-
-          return;
+          haveDirectories = true;
+          continue;
         }
 
         if (item.kind === 'file') {
           const file = item.getAsFile();
 
           if (!file) {
-            toast.error('No file data.');
-            return;
+            haveCorruptedFiles = true;
+            continue;
           }
 
           if (
@@ -84,11 +84,20 @@ export const DropZone = (props: DropZoneProps) => {
         }
       }
 
+      if (haveDirectories) {
+        toast.info('Directories excluded from the process');
+      }
+      if (haveCorruptedFiles) {
+        toast.info(
+          'Warning: Corrupted files were ignored for safety reasons.',
+        );
+      }
+
       setFiles((prev) => [...prev, ...files]);
     };
 
     const handleDragLeave = (event: DragEvent) => {
-      if (!document.contains(event.relatedTarget as Node)) {
+      if (!event.relatedTarget) {
         setDragEnter(false);
       }
     };
