@@ -19,8 +19,8 @@ export const AppBarContent = (props: AppBarContentProps) => {
 
       <LocaleSwitcher
         locales={[
-          { label: 'English', value: 'en-US' },
-          { label: 'Portuguese', value: 'pt-PT' },
+          { short: 'en', label: 'English', value: 'en-US' },
+          { short: 'pt', label: 'Portuguese', value: 'pt-PT' },
         ]}
       />
       <ThemeSwitcher />
