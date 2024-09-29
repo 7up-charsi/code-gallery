@@ -69,11 +69,11 @@ export default function Home() {
         className="absolute left-0 border-[6px] border-transparent [--arrow-color:theme(colors.muted-9)] data-[side=bottom]:bottom-full data-[side=left]:left-full data-[side=right]:right-full data-[side=top]:top-full data-[side=bottom]:border-b-[var(--arrow-color)] data-[side=left]:border-l-[var(--arrow-color)] data-[side=right]:border-r-[var(--arrow-color)] data-[side=top]:border-t-[var(--arrow-color)]"
       ></div>
 
-      <div className="text-muted-12 text-balance text-center font-medium">
+      <p className="text-muted-12 text-balance text-center font-medium">
         Hi, I&apos;m a floating element!
-      </div>
+      </p>
 
-      <div className="mt-2">To ensure a smooth experience:</div>
+      <p className="mt-2">To ensure a smooth experience:</p>
 
       <ul className="mt-1 list-inside list-disc">
         <li>I adjust vertically to fit available space</li>
@@ -81,7 +81,7 @@ export default function Home() {
         <li>I hide when my reference element is hidden</li>
       </ul>
 
-      <div className="mt-2">Enjoy seamless interactions!</div>
+      <p className="mt-2">Enjoy seamless interactions!</p>
     </div>
   );
 
