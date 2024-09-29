@@ -1,12 +1,16 @@
 'use client';
 
-import { Input, inputStyles } from '@typeweave/react/input';
+import { AlertDialog } from '@/components/alert-dialog';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { DialogClose } from '@typeweave/react/dialog';
+import { Controller, useForm } from 'react-hook-form';
 import { Checkbox } from '@typeweave/react/checkbox';
+import { Combobox } from '@typeweave/react/combobox';
+import { mergeRefs } from '@typeweave/react-utils';
 import { Dictionary } from '../_types/dictionary';
 import { Button } from '@typeweave/react/button';
-import { CustomRadio } from './custom-radio';
-import { useForm } from 'react-hook-form';
+import { Input } from '@typeweave/react/input';
+import { Loader2Icon } from 'lucide-react';
 import { toast } from 'react-toastify';
 import React from 'react';
 import { z } from 'zod';
@@ -22,7 +26,7 @@ const formSchema = z.object({
   lastName: z.string().min(1, 'required'),
   email: z.string().min(1, 'required').email('invalidEmail'),
   queryType: z
-    .enum(['general query', 'support request'])
+    .enum(['general-query', 'support-request'])
     .nullable()
     .refine((arg) => !!arg, { message: 'required' }),
   message: z.string().min(1, 'required'),
@@ -34,15 +38,14 @@ type FormValues = z.input<typeof formSchema>;
 export const Form = (props: FormProps) => {
   const { dictionary } = props;
 
-  const queryTypeId = React.useId();
-
-  const styles = React.useMemo(() => inputStyles({}), []);
+  const formRef = React.useRef<HTMLFormElement>(null);
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     reset,
+    control,
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -51,26 +54,45 @@ export const Form = (props: FormProps) => {
       firstName: '',
       lastName: '',
       message: '',
+      queryType: null,
     },
   });
 
-  const onSubmit = (values: FormValues) => {
-    toast.success(
-      'Thank you for your submission! We will be in touch shortly.',
-    );
+  const onSubmit = async () => {
+    const toastId = toast(dictionary.submittingMessage, {
+      autoClose: false,
+      type: 'info',
+      isLoading: true,
+      icon: <Loader2Icon className="animate-spin" />,
+    });
+
+    await new Promise((resolve) => {
+      setTimeout(resolve, 3000);
+    });
+
+    toast.update(toastId, {
+      render: dictionary.submittedMessage,
+      type: 'success',
+      autoClose: 2000,
+      isLoading: false,
+      icon: undefined,
+    });
+
     reset();
   };
 
   return (
     <form
+      ref={formRef}
       onSubmit={handleSubmit(onSubmit)}
-      className="border-muted-6 mx-auto grid w-full max-w-screen-md grid-cols-1 gap-x-4 rounded p-5 md:grid-cols-2 md:border md:shadow-md"
+      className="mx-auto mt-10 grid w-full max-w-screen-md grid-cols-1 gap-x-4 md:grid-cols-2"
     >
       <Input
         required
         label={dictionary.firstName}
         {...register('firstName')}
         error={!!errors.firstName}
+        disabled={isSubmitting}
         helperText={
           dictionary.zod?.[errors.firstName?.message!] ?? ' '
         }
@@ -82,6 +104,7 @@ export const Form = (props: FormProps) => {
         label={dictionary.lastName}
         {...register('lastName')}
         error={!!errors.lastName}
+        disabled={isSubmitting}
         helperText={
           dictionary.zod?.[errors.lastName?.message!] ?? ' '
         }
@@ -93,85 +116,145 @@ export const Form = (props: FormProps) => {
         label={dictionary.email}
         inputMode="email"
         {...register('email')}
+        disabled={isSubmitting}
         error={!!errors.email}
         helperText={dictionary.zod?.[errors.email?.message!] ?? ' '}
-        className="w-full md:col-span-2"
+        className="w-full"
       />
 
-      <fieldset
-        aria-invalid={!!errors.queryType}
-        aria-describedby={errors.queryType ? queryTypeId : undefined}
-        className="space-y-1 md:col-span-2"
-      >
-        <legend
-          className={styles.label({
-            className: errors.queryType
-              ? 'text-danger-11'
-              : undefined,
-          })}
-        >
-          {dictionary.queryType}
-        </legend>
-
-        <div className="flex flex-col gap-2 md:flex-row">
-          <CustomRadio
-            {...register('queryType')}
-            label={dictionary.generalQuery}
-            value="general query"
+      <Controller
+        control={control}
+        name="queryType"
+        disabled={isSubmitting}
+        render={({
+          field: { name, onBlur, onChange, ref, value, disabled },
+        }) => (
+          <Combobox
+            value={value}
+            onChange={(newValue) => {
+              onChange({ target: { value: newValue } });
+            }}
+            options={['general-query', 'support-request']}
+            disabled={disabled}
+            getOptionLabel={(option) =>
+              option === 'general-query'
+                ? dictionary.generalQuery!
+                : dictionary.supportRequest!
+            }
+            renderInput={(props) => (
+              <Input
+                {...props}
+                name={name}
+                onBlur={(e) => {
+                  onBlur?.();
+                  props.onBlur?.(e);
+                }}
+                ref={mergeRefs(ref, props.ref)}
+                required
+                label={dictionary.queryType}
+                error={!!errors.queryType}
+                helperText={
+                  dictionary.zod?.[errors.queryType?.message!] ?? ' '
+                }
+                className="w-full"
+              />
+            )}
           />
-
-          <CustomRadio
-            {...register('queryType')}
-            label={dictionary.supportRequest}
-            value="support request"
-          />
-        </div>
-
-        <div id={queryTypeId} className={styles.helperText({})}>
-          {errors.queryType
-            ? dictionary.zod?.[errors.queryType?.message!]
-            : ' '}
-        </div>
-      </fieldset>
+        )}
+      />
 
       <Input
         required
         multiline
         label={dictionary.message}
         {...register('message')}
+        disabled={isSubmitting}
         error={!!errors.message}
         helperText={dictionary.zod?.[errors.message?.message!] ?? ' '}
         className="w-full md:col-span-2"
+        classNames={{ textarea: 'min-h-60' }}
       />
 
       <Checkbox
         label={dictionary.consent}
         {...register('consent')}
+        color="success"
         className="mt-2 md:col-span-2"
+        disabled={isSubmitting}
         aria-invalid={!!errors.consent}
         classNames={{
           label: errors.consent ? 'text-danger-11' : undefined,
         }}
       />
 
-      <div className="mt-5 flex items-center gap-4 md:col-span-2">
-        <Button
-          variant="solid"
-          color="primary"
-          className="grow"
-          type="submit"
+      <div className="mt-5 flex items-center justify-end gap-4 md:col-span-2">
+        <AlertDialog
+          title={dictionary.resetConfirmation?.title ?? ''}
+          description={
+            dictionary.resetConfirmation?.description ?? ''
+          }
+          trigger={
+            <Button
+              type="button"
+              variant="text"
+              color="danger"
+              disabled={isSubmitting}
+            >
+              {dictionary.resetButton}
+            </Button>
+          }
         >
-          {dictionary.submitButton}
-        </Button>
+          <DialogClose>
+            <Button variant="text" color="success">
+              {dictionary.cancel}
+            </Button>
+          </DialogClose>
 
-        <Button
-          type="button"
-          onPress={() => {
-            reset();
-          }}
+          <DialogClose>
+            <Button
+              color="danger"
+              onPress={() => {
+                reset();
+              }}
+            >
+              {dictionary.ok}
+            </Button>
+          </DialogClose>
+        </AlertDialog>
+
+        <AlertDialog
+          title={dictionary.submitConfirmation?.title ?? ''}
+          description={
+            dictionary.submitConfirmation?.description ?? ''
+          }
+          trigger={
+            <Button
+              type="button"
+              variant="solid"
+              color="success"
+              disabled={isSubmitting}
+            >
+              {dictionary.submitButton}
+            </Button>
+          }
         >
-          {dictionary.resetButton}
-        </Button>
+          <DialogClose>
+            <Button variant="text" color="danger">
+              {dictionary.cancel}
+            </Button>
+          </DialogClose>
+
+          <DialogClose>
+            <Button
+              color="success"
+              onPress={() => {
+                formRef.current?.requestSubmit();
+              }}
+            >
+              {dictionary.ok}
+            </Button>
+          </DialogClose>
+        </AlertDialog>
       </div>
     </form>
   );

@@ -9,12 +9,7 @@ import {
   MenuRoot,
   MenuTrigger,
 } from '@typeweave/react/menu';
-import {
-  useParams,
-  usePathname,
-  useRouter,
-  useSearchParams,
-} from 'next/navigation';
+import { useParams, usePathname, useRouter } from 'next/navigation';
 import { useIsMounted } from '@typeweave/react/use-is-mounted';
 import { ChevronDownIcon, LanguagesIcon } from 'lucide-react';
 import { Skeleton } from '@typeweave/react/skeleton';
@@ -22,7 +17,7 @@ import { Button } from '@typeweave/react/button';
 import React from 'react';
 
 interface LocaleSwitcherProps {
-  locales: { label: string; value: string }[];
+  locales: { short: string; label: string; value: string }[];
 }
 
 const displayName = 'LocaleSwitcher';
@@ -32,7 +27,6 @@ export const LocaleSwitcher = (props: LocaleSwitcherProps) => {
 
   const isMounted = useIsMounted();
   const router = useRouter();
-  const searchParams = useSearchParams();
   const pathname = usePathname();
   const { locale } = useParams<{ locale: string }>();
 
@@ -46,16 +40,19 @@ export const LocaleSwitcher = (props: LocaleSwitcherProps) => {
         <MenuRoot>
           <MenuTrigger>
             <Button
+              variant="text"
               aria-label="theme switcher"
+              startContent={<LanguagesIcon />}
               endContent={<ChevronDownIcon />}
-              className="w-14 gap-1"
+              className="data-[open=true]:bg-muted-4 w-[83px] gap-1 p-0 px-2"
+              classNames={{ content: 'grow', startContent: 'mr-1' }}
             >
-              <LanguagesIcon size={20} />
+              {locales.find((ele) => ele.value === locale)?.short}
             </Button>
           </MenuTrigger>
 
           <MenuPortal>
-            <MenuContent className="z-50">
+            <MenuContent className="z-50 min-w-[130px]">
               <MenuArrow />
 
               <MenuRadioGroup
@@ -65,9 +62,7 @@ export const LocaleSwitcher = (props: LocaleSwitcherProps) => {
                 onChange={(value) => {
                   const newPathname = pathname.replace(locale, value);
 
-                  router.push(
-                    `${newPathname}?${searchParams.toString()}`,
-                  );
+                  router.push(newPathname);
                 }}
               >
                 {locales.map((ele) => (
@@ -76,6 +71,7 @@ export const LocaleSwitcher = (props: LocaleSwitcherProps) => {
                     value={ele.value}
                     classNames={{
                       itemContent: ' capitalize',
+                      itemIcon: 'hidden',
                     }}
                   >
                     {ele.label}

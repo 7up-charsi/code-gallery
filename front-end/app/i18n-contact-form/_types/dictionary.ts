@@ -4,6 +4,7 @@ export type Locales = (typeof i18nConfig.locales)[number];
 
 export type Dictionary = Partial<{
   title: string;
+  description: string;
   firstName: string;
   lastName: string;
   email: string;
@@ -15,4 +16,16 @@ export type Dictionary = Partial<{
   submitButton: string;
   resetButton: string;
   zod: Record<string, string>;
+  ok: string;
+  cancel: string;
+  submitConfirmation: {
+    title: string;
+    description: string;
+  };
+  resetConfirmation: {
+    title: string;
+    description: string;
+  };
+  submittingMessage: string;
+  submittedMessage: string;
 }>;

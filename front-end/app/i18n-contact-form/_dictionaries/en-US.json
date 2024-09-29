@@ -1,5 +1,6 @@
 {
-  "title": "Contact Form",
+  "title": "We're Here to Help!",
+  "description": "Share your concerns, and our dedicated support team will assist you promptly.",
   "firstName": "first name",
   "lastName": "last name",
   "email": "email",
@@ -14,5 +15,17 @@
     "required": "this field is required",
     "invalidEmail": "invalid email",
     "consent": "you must agree consent"
-  }
+  },
+  "ok": "ok",
+  "cancel": "cancel",
+  "submitConfirmation": {
+    "title": "Submit Confirmation",
+    "description": "Please confirm that you want to submit the form."
+  },
+  "resetConfirmation": {
+    "title": "Reset Confirmation",
+    "description": "Please confirm that you want to reset the form."
+  },
+  "submittingMessage": "Form is Submitting",
+  "submittedMessage": "Thank you for your submission! We will be in touch shortly."
 }

@@ -1,5 +1,6 @@
 {
-  "title": "Formulário de Contato",
+  "title": "Estamos Aqui para Ajudar!",
+  "description": "Partilhe as suas preocupações e a nossa equipa de apoio dedicada irá assisti-lo rapidamente.",
   "firstName": "primeiro nome",
   "lastName": "sobrenome",
   "email": "e-mail",
@@ -14,5 +15,17 @@
     "required": "este campo é obrigatório",
     "invalidEmail": "e-mail inválido",
     "consent": "você deve consentir"
-  }
+  },
+  "ok": "ok",
+  "cancel": "Cancelar",
+  "submitConfirmation": {
+    "title": "Confirmação de Submissão",
+    "description": "Por favor, confirme que deseja submeter o formulário."
+  },
+  "resetConfirmation": {
+    "title": "Confirmação de Reinicialização",
+    "description": "Por favor, confirme que deseja reinicializar o formulário."
+  },
+  "submittingMessage": "O formulário está a ser submetido.",
+  "submittedMessage": "Obrigado pela sua submissão! Entraremos em contacto brevemente."
 }
