@@ -1,8 +1,9 @@
 import { RouteProgress } from '@/components/route-progress';
 import { Bounce, ToastContainer } from 'react-toastify';
-import { rootMetadata } from '@/config/root-meta';
 import { ThemeProvider } from 'next-themes';
+import { siteConfig } from '@/site.config';
 import { Inter } from 'next/font/google';
+import { portfolio } from '@repo/meta';
 import type { Metadata } from 'next';
 import '@/styles/globals.css';
 
@@ -10,7 +11,24 @@ const inter = Inter({
   subsets: ['latin'],
 });
 
-export const metadata: Metadata = rootMetadata;
+export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL!),
+  title: siteConfig.name,
+  description: siteConfig.description,
+  applicationName: siteConfig.name,
+  category: siteConfig.category,
+  authors: [{ name: portfolio.name, url: portfolio.url }],
+  creator: portfolio.name,
+  icons: { icon: '/favicon.svg' },
+  keywords: [
+    'exercises',
+    'learning',
+    'front-end',
+    'front-end exercises',
+    'full-stack',
+    'full-stack exercises',
+  ],
+};
 
 export default function RootLayout({
   children,
