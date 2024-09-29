@@ -1,9 +1,9 @@
 'use client';
 
 import { Control, useFormState, useWatch } from 'react-hook-form';
-import { CalculatorIcon, EuroIcon, Loader2 } from 'lucide-react';
 import { useIsMounted } from '@typeweave/react/use-is-mounted';
 import { useDictionaryCtx } from './dictionary-provider';
+import { EuroIcon, Loader2 } from 'lucide-react';
 import { createPortal } from 'react-dom';
 import { FormValues } from './form';
 import React from 'react';
@@ -43,10 +43,10 @@ export const Results = (props: ResultsProps) => {
     <>
       <article
         ref={articleRef}
-        className="bg-muted-3 px-5 py-5 max-md:mt-5 md:col-start-2 md:row-span-2 md:row-start-1"
+        className="bg-background rounded p-5 md:col-span-2"
       >
         {!isSubmitting ? null : (
-          <div className="flex h-full items-center justify-center">
+          <div className="flex min-h-[124px] items-center justify-center">
             <Loader2 size={60} className="animate-spin" />
           </div>
         )}
@@ -56,21 +56,15 @@ export const Results = (props: ResultsProps) => {
             {interestOnlyPayment ||
             totalRepayment ||
             monthlyRepayment ? null : (
-              <div className="flex h-full flex-col items-center justify-center gap-2">
-                <CalculatorIcon
-                  size={150}
-                  absoluteStrokeWidth
-                  className="mx-auto"
-                />
-
-                <h2 className="text-xl font-semibold capitalize">
+              <>
+                <h2 className="text-balance text-center text-2xl font-semibold capitalize">
                   {dictionary.emptyResultHeading}
                 </h2>
 
-                <p className="text-foreground/90 mb-5 mt-3 max-w-80 text-balance text-center">
+                <p className="mx-auto mt-3 w-full max-w-lg text-balance text-center text-sm">
                   {dictionary.emptyResultDescription}
                 </p>
-              </div>
+              </>
             )}
 
             {!(
@@ -79,11 +73,11 @@ export const Results = (props: ResultsProps) => {
               monthlyRepayment
             ) ? null : (
               <>
-                <h2 className="text-xl font-semibold capitalize">
+                <h2 className="text-balance text-center text-2xl font-semibold capitalize">
                   {dictionary.resultHeading}
                 </h2>
 
-                <p className="text-foreground/90 mb-5 mt-3">
+                <p className="mx-auto mt-3 w-full max-w-lg text-balance text-center text-sm">
                   {dictionary.resultDescription}
                 </p>
               </>
@@ -91,7 +85,7 @@ export const Results = (props: ResultsProps) => {
 
             {!interestOnlyPayment ? null : (
               <>
-                <h3 className="text-center font-semibold capitalize">
+                <h3 className="mt-10 text-center font-semibold capitalize">
                   {dictionary.interestOnlyHeading}
                 </h3>
 
@@ -106,7 +100,7 @@ export const Results = (props: ResultsProps) => {
 
             {!monthlyRepayment ? null : (
               <>
-                <h3 className="text-center font-semibold capitalize">
+                <h3 className="mt-10 text-center font-semibold capitalize">
                   {dictionary.monthlyHeading}
                 </h3>
 

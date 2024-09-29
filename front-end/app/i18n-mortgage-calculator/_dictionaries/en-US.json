@@ -1,12 +1,12 @@
 {
   "title": "mortgage calculator",
+  "description": "Easily calculate repayment or interest-only mortgage payments",
   "mortgageAmount": "mortgage amount",
   "mortgageTerm": "mortgage term",
   "interestRate": "interest rate",
-  "calculateButton": "calculate",
-  "resetButton": "reset",
   "mortgageType": "mortgage type",
   "repayment": "repayment",
+  "type": "type",
   "interestOnly": "interest only",
   "emptyResultHeading": "Results Shown Here",
   "emptyResultDescription": "Complete the form and click \"CALCULATE\" button to see what our monthly repayments would be.",
@@ -22,5 +22,21 @@
     "number.max100": "must be less than or equal to 100",
     "number.int": "must be integer",
     "number.number": "must be number"
+  },
+  "submitButton": "submit",
+  "resetButton": "reset",
+  "ok": "ok",
+  "cancel": "cancel",
+  "submitConfirmation": {
+    "title": "Submit Confirmation",
+    "description": "Please confirm that you want to submit the form."
+  },
+  "resetConfirmation": {
+    "title": "Reset Confirmation",
+    "description": "Please confirm that you want to reset the form."
+  },
+  "typeOptions": {
+    "repayment": "repayment",
+    "interestOnly": "interest only"
   }
 }

@@ -1,5 +1,5 @@
 import { AppBarContent } from '../../_components/app-bar-content';
-import { AppBar } from '@typeweave/react/app-bar';
+import { AppBar } from '../../_components/app-bar';
 
 interface RootLayoutProps {
   children?: React.ReactNode;

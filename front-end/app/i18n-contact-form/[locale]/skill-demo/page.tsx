@@ -17,7 +17,7 @@ const HomePage = async (props: HomePageProps) => {
   const dictionary = await getDictionary(locale);
 
   return (
-    <main className="bg-muted-2 min-h-[calc(100vh-65px)] p-5 md:px-8">
+    <main className="bg-muted-2 min-h-[calc(100vh-64px)] p-5 md:px-8">
       <h1
         aria-describedby={descId}
         className="from-muted-12 to-muted-11 mt-5 text-balance bg-gradient-to-t bg-clip-text text-center text-3xl font-bold text-transparent first-letter:uppercase"

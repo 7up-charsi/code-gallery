@@ -1,26 +1,42 @@
 {
-  "title": "calculadora de hipoteca",
-  "mortgageAmount": "valor da hipoteca",
-  "mortgageTerm": "prazo da hipoteca",
-  "interestRate": "taxa de juros",
-  "calculateButton": "calcular",
-  "resetButton": "reiniciar",
-  "mortgageType": "tipo de hipoteca",
-  "repayment": "amortização",
-  "interestOnly": "juros somente",
-  "emptyResultHeading": "Resultados Exibidos Aqui",
-  "emptyResultDescription": "Preencha o formulário e clique no botão \"CALCULAR\" para ver quais seriam nossas parcelas mensais.",
+  "title": "Calculadora de Hipoteca",
+  "description": "Calcule facilmente pagamentos de hipoteca a reembolso ou apenas juros",
+  "mortgageAmount": "Montante da Hipoteca",
+  "mortgageTerm": "Prazo da Hipoteca",
+  "interestRate": "Taxa de Juro",
+  "mortgageType": "Tipo de Hipoteca",
+  "repayment": "Reembolso",
+  "type": "Tipo",
+  "interestOnly": "Juros Apenas",
+  "emptyResultHeading": "Resultados Aqui",
+  "emptyResultDescription": "Preencha o formulário e clique no botão \"CALCULAR\" para ver o que seriam as nossas prestações mensais.",
   "resultHeading": "Seus Resultados",
-  "resultDescription": "Seus resultados são mostrados abaixo com base nas informações fornecidas. Para ajustar os resultados, edite o formulário e clique no botão \"CALCULAR\" novamente.",
-  "monthlyHeading": "Seus Pagamentos Mensais",
-  "totalHeading": "Total que Você Pagará ao Longo do Prazo",
-  "interestOnlyHeading": "Seu pagamento somente de juros",
+  "resultDescription": "Os seus resultados são apresentados abaixo com base nas informações fornecidas. Para ajustar os resultados, edite o formulário e clique no botão \"CALCULAR\" novamente.",
+  "monthlyHeading": "Suas Prestações Mensais",
+  "totalHeading": "Total a Repagar ao Longo do Prazo",
+  "interestOnlyHeading": "Sua prestação apenas de juros",
   "zod": {
     "required": "este campo é obrigatório",
     "number.positive": "deve ser positivo",
     "number.minZero": "deve ser maior que 0",
     "number.max100": "deve ser menor ou igual a 100",
-    "number.int": "deve ser inteiro",
+    "number.int": "deve ser um número inteiro",
     "number.number": "deve ser um número"
+  },
+  "submitButton": "enviar",
+  "resetButton": "reiniciar",
+  "ok": "ok",
+  "cancel": "cancelar",
+  "submitConfirmation": {
+    "title": "Confirmação de Envio",
+    "description": "Por favor, confirme que deseja enviar o formulário."
+  },
+  "resetConfirmation": {
+    "title": "Confirmação de Reinício",
+    "description": "Por favor, confirme que deseja reiniciar o formulário."
+  },
+  "typeOptions": {
+    "repayment": "Reembolso",
+    "interestOnly": "Juros Apenas"
   }
 }
