@@ -8,11 +8,11 @@ import {
 import { Input, NumberInput } from '@typeweave/react/input';
 import { useDictionaryCtx } from './dictionary-provider';
 import { AlertDialog } from '@/components/alert-dialog';
+import { Loader2Icon, PercentIcon } from 'lucide-react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { DialogClose } from '@typeweave/react/dialog';
 import { Controller, useForm } from 'react-hook-form';
 import { Combobox } from '@typeweave/react/combobox';
-import { EuroIcon, PercentIcon } from 'lucide-react';
 import { mergeRefs } from '@typeweave/react-utils';
 import { Button } from '@typeweave/react/button';
 import { Results } from './results';
@@ -50,9 +50,9 @@ const formSchema = z.object({
 });
 
 export type FormValues = z.input<typeof formSchema> & {
-  monthlyRepayment?: number;
-  totalRepayment?: number;
-  interestOnlyPayment?: number;
+  monthlyRepayment?: string;
+  totalRepayment?: string;
+  interestOnlyPayment?: string;
 };
 
 interface FormProps {}
@@ -79,6 +79,10 @@ export const Form = (props: FormProps) => {
       interestRate: '',
       term: '',
       type: null,
+
+      interestOnlyPayment: '',
+      monthlyRepayment: '',
+      totalRepayment: '',
     },
   });
 
@@ -101,8 +105,8 @@ export const Form = (props: FormProps) => {
     const totalPayment = getTotalPayment(monthlyPayment, term);
 
     if (type === 'repayment') {
-      setValue('monthlyRepayment', monthlyPayment);
-      setValue('totalRepayment', totalPayment);
+      setValue('monthlyRepayment', monthlyPayment + '');
+      setValue('totalRepayment', totalPayment + '');
       setValue('interestOnlyPayment', undefined);
     } else {
       const interestOnlyPayment = getInterestOnlyPayment(
@@ -110,7 +114,7 @@ export const Form = (props: FormProps) => {
         amount,
       );
 
-      setValue('interestOnlyPayment', interestOnlyPayment);
+      setValue('interestOnlyPayment', interestOnlyPayment + '');
       setValue('monthlyRepayment', undefined);
       setValue('totalRepayment', undefined);
     }
@@ -136,7 +140,6 @@ export const Form = (props: FormProps) => {
             label={dictionary.mortgageAmount}
             min={0}
             inputMode="numeric"
-            startContent={<EuroIcon />}
             disabled={isSubmitting}
             className="w-full"
             error={!!error}
@@ -238,7 +241,7 @@ export const Form = (props: FormProps) => {
 
       <Results control={control} />
 
-      <div className="mt-5 flex items-center justify-end gap-4 md:col-span-2">
+      <div className="flex items-center justify-end gap-4 md:col-span-2">
         <AlertDialog
           title={dictionary.resetConfirmation?.title ?? ''}
           description={
@@ -284,6 +287,11 @@ export const Form = (props: FormProps) => {
               variant="solid"
               color="success"
               disabled={isSubmitting}
+              startContent={
+                isSubmitting ? (
+                  <Loader2Icon className="animate-spin" />
+                ) : undefined
+              }
             >
               {dictionary.submitButton}
             </Button>

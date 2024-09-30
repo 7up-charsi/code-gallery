@@ -13,10 +13,6 @@ export type Dictionary = Partial<{
   mortgageType: string;
   repayment: string;
   interestOnly: string;
-  emptyResultHeading: string;
-  emptyResultDescription: string;
-  resultHeading: string;
-  resultDescription: string;
   monthlyHeading: string;
   totalHeading: string;
   interestOnlyHeading: string;
