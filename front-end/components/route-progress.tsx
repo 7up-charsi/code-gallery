@@ -15,7 +15,7 @@ export const RouteProgress = (props: RouteProgressProps) => {
 
   const pathname = usePathname();
 
-  if (/^\/route-progress.*/.test(pathname)) return;
+  if (/^\/route-progress\/skill-demo.*/.test(pathname)) return;
 
   return (
     <div

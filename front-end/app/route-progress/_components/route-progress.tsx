@@ -182,15 +182,11 @@ export const RouteProgress = (props: RouteProgressProps) => {
     };
   }, []);
 
-  return hide ? null : (
-    <div className="fixed left-0 right-0 top-0 z-[9999] h-1">
-      <div
-        style={{
-          clipPath: `inset(0 ${100 - progress}% 0 0)`,
-        }}
-        className="from-primary-9 to-secondary-9 h-full w-full bg-gradient-to-r"
-      ></div>
-    </div>
+  return (
+    <div
+      style={{ scale: hide ? 0 : `${progress / 100} 1` }}
+      className="fixed left-0 right-0 top-0 z-[999] h-1 w-full origin-left bg-black transition-transform dark:bg-white"
+    ></div>
   );
 };
 

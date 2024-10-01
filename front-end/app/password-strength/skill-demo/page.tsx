@@ -2,8 +2,8 @@ import { Input } from '../_components/input';
 
 export default function Home() {
   return (
-    <main className="p-5 md:px-8">
-      <article className="mx-auto w-full max-w-lg">
+    <main className="bg-muted-2 flex min-h-[calc(100vh-64px)] items-center justify-center p-5 md:px-8">
+      <article className="bg-background mx-auto w-full max-w-lg rounded p-5">
         <Input />
 
         <div className="mt-10">
