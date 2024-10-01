@@ -1,3 +1,4 @@
+import { useOrderConfirmedDialogState } from './order-confirmed-dialog';
 import { DrawerClose, DrawerContent } from '@typeweave/react/drawer';
 import { useDictionaryCtx } from './dictionary-provider';
 import { Button } from '@typeweave/react/button';
@@ -18,7 +19,12 @@ export const CartDrawerContent = (props: CartDrawerContentProps) => {
 
   const { data, ...dictionary } = useDictionaryCtx(displayName);
 
+  const { handleOpen: handleOpenConfirmedDialog } =
+    useOrderConfirmedDialogState();
+
   const items = useCart((s) => s.items);
+
+  const emptyCart = useCart((s) => s.emptyCart);
 
   const itemsInCart = items.reduce(
     (acc, item) => ((acc += item.amount), acc),
@@ -43,7 +49,7 @@ export const CartDrawerContent = (props: CartDrawerContentProps) => {
           id={titleId}
           className="text-muted-12 whitespace-nowrap text-lg font-normal capitalize"
         >
-          Cart{' '}
+          {dictionary.cart}{' '}
           {!itemsInCart ? null : (
             <span className="text-muted-12 font-medium">
               ( {itemsInCart} )
@@ -102,7 +108,10 @@ export const CartDrawerContent = (props: CartDrawerContentProps) => {
             <Button
               variant="solid"
               className="mx-5 mt-5"
-              // TODO: open thanks dialog
+              onPress={() => {
+                emptyCart();
+                handleOpenConfirmedDialog();
+              }}
             >
               {dictionary.confirmOrderButton}
             </Button>

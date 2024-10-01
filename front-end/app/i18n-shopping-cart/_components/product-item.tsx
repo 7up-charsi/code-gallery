@@ -19,7 +19,7 @@ export const ProductItem = (props: ProductItemProps) => {
       aria-labelledby={titleId}
       className="bg-background overflow-hidden rounded"
     >
-      <div className="relative aspect-video w-full select-none overflow-hidden md:aspect-square">
+      <div className="relative aspect-video w-full select-none overflow-hidden">
         <Image
           src={item.image.thumbnail}
           alt={item.name}

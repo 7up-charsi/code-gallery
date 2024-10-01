@@ -10,7 +10,7 @@ export type Dictionary = {
   emptyCart: string;
   total: string;
   confirmOrderButton: string;
-  newOrderButton: string;
   orderConfirmed: string;
   orderConfirmedDesc: string;
+  cart: string;
 };

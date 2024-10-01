@@ -123,7 +123,7 @@
   "emptyCart": "seu carrinho está vazio",
   "total": "total",
   "confirmOrderButton": "confirmar pedido",
-  "newOrderButton": "iniciar novo pedido",
   "orderConfirmed": "seu pedido foi confirmado",
-  "orderConfirmedDesc": "Esperamos que você aproveite sua comida!"
+  "orderConfirmedDesc": "Esperamos que você aproveite sua comida!",
+  "cart": "carrinho"
 }

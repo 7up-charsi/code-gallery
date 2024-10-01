@@ -123,7 +123,7 @@
   "emptyCart": "your cart is empty",
   "total": "total",
   "confirmOrderButton": "confirm order",
-  "newOrderButton": "start new Order",
   "orderConfirmed": "your order confirmed",
-  "orderConfirmedDesc": "We hope you enjoy your food!"
+  "orderConfirmedDesc": "We hope you enjoy your food!",
+  "cart": "cart"
 }

@@ -1,3 +1,4 @@
+import { OrderConfirmedDialog } from '../../_components/order-confirmed-dialog';
 import { DictionaryProvider } from '../../_components/dictionary-provider';
 import { AppBarContent } from '../../_components/app-bar-content';
 import { getDictionary } from '../../_utils/dictionary';
@@ -24,6 +25,8 @@ export default async function RootLayout(props: RootLayoutProps) {
       </AppBar>
 
       {children}
+
+      <OrderConfirmedDialog />
     </DictionaryProvider>
   );
 }
