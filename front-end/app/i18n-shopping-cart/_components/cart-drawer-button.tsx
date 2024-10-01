@@ -1,6 +1,4 @@
-'use client';
-
-import { useCartDrawer } from '../_hooks/cart-drawer';
+import { DrawerTrigger } from '@typeweave/react/drawer';
 import { ShoppingBasketIcon } from 'lucide-react';
 import { Button } from '@typeweave/react/button';
 import { Badge } from '@typeweave/react/badge';
@@ -14,9 +12,7 @@ const displayName = 'CartDrawerButton';
 export const CartDrawerButton = (props: CartDrawerButtonProps) => {
   const {} = props;
 
-  const onOpen = useCartDrawer((state) => state.onOpen);
-
-  const items = useCart((state) => state.items);
+  const items = useCart((s) => s.items);
 
   const itemsInCart = items.reduce(
     (acc, item) => ((acc += item.amount), acc),
@@ -24,22 +20,18 @@ export const CartDrawerButton = (props: CartDrawerButtonProps) => {
   );
 
   return (
-    <Badge
-      className="lg:hidden"
-      content={itemsInCart}
-      placement="bottom-center"
-    >
-      <Button
-        isIconOnly
-        aria-label={
-          itemsInCart ? `cart has ${itemsInCart} items` : 'cart'
-        }
-        color="primary"
-        variant="text"
-        onPress={onOpen}
-      >
-        <ShoppingBasketIcon />
-      </Button>
+    <Badge content={itemsInCart} placement="bottom-center">
+      <DrawerTrigger>
+        <Button
+          variant="text"
+          isIconOnly
+          aria-label={
+            itemsInCart ? `cart has ${itemsInCart} items` : 'cart'
+          }
+        >
+          <ShoppingBasketIcon />
+        </Button>
+      </DrawerTrigger>
     </Badge>
   );
 };

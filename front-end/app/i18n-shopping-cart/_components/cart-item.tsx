@@ -21,44 +21,45 @@ export const CartItem = (props: CartItemProps) => {
   const removeItem = useCart((state) => state.removeItem);
 
   return (
-    <article aria-labelledby={titleId} className="flex w-full gap-3">
-      <div className="relative aspect-square w-16 shrink-0 overflow-hidden rounded">
+    <article aria-labelledby={titleId} className="flex flex-col">
+      <div id={titleId} className="truncate font-medium">
+        {name}
+      </div>
+
+      <div className="mt-1 flex gap-1">
         <Image
           src={image.thumbnail}
           alt={name}
-          fill
-          className="object-cover"
+          width={60}
+          height={60}
+          className="mr-2 rounded"
         />
-      </div>
-
-      <div className="flex grow flex-col overflow-hidden">
-        <h3 id={titleId} className="grow truncate font-semibold">
-          {name}
-        </h3>
 
         <dl className="flex grow items-center gap-3">
-          <dt className="sr-only">amount in cart</dt>
-          <dd className="text-primary-11 font-semibold">{amount}x</dd>
-
           <dt className="sr-only">price</dt>
-          <dd className="">@{price}</dd>
+          <dd className="">${price}</dd>
+
+          <dt className="sr-only">amount in cart</dt>
+          <dd className="font-medium">x{amount}</dd>
 
           <dt className="sr-only">price of {amount} items</dt>
-          <dd className="font-semibold">${price * amount}</dd>
+          <dd className="text-muted-12 font-medium">
+            ${price * amount}
+          </dd>
         </dl>
-      </div>
 
-      <Button
-        size="sm"
-        isIconOnly
-        aria-label="remove item"
-        color="danger"
-        variant="text"
-        className="shrink-0 self-center"
-        onPress={() => removeItem(id)}
-      >
-        <XIcon />
-      </Button>
+        <Button
+          size="sm"
+          isIconOnly
+          aria-label="remove item"
+          color="danger"
+          variant="text"
+          className="shrink-0 self-center"
+          onPress={() => removeItem(id)}
+        >
+          <XIcon />
+        </Button>
+      </div>
     </article>
   );
 };

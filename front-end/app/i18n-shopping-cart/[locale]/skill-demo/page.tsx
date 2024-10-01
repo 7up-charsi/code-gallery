@@ -7,10 +7,10 @@ const HomePage = () => {
   const dictionary = useDictionaryCtx('Home page');
 
   return (
-    <main className="">
+    <main className="bg-muted-2 min-h-[calc(100vh-64px)] p-5">
       <h1 className="sr-only">{dictionary.title}</h1>
 
-      <div className="mt-5 grid grid-cols-1 gap-5 gap-y-7 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-x-5 gap-y-7">
         {dictionary.data.map((item) => (
           <ProductItem key={item.id} {...item} />
         ))}

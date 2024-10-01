@@ -1,8 +1,8 @@
 'use client';
 
 import { ProductItem as ProductItemType } from '../_types/product';
-import { ProductImage } from './product-image';
 import { AddToCart } from './add-to-cart';
+import Image from 'next/image';
 import React from 'react';
 
 interface ProductItemProps extends ProductItemType {}
@@ -15,33 +15,57 @@ export const ProductItem = (props: ProductItemProps) => {
   const titleId = React.useId();
 
   return (
-    <article aria-labelledby={titleId}>
-      <div className="relative">
-        <ProductImage {...item} />
-        <AddToCart {...item} />
+    <article
+      aria-labelledby={titleId}
+      className="bg-background overflow-hidden rounded"
+    >
+      <div className="relative aspect-video w-full select-none overflow-hidden md:aspect-square">
+        <Image
+          src={item.image.thumbnail}
+          alt={item.name}
+          loader={({ width }) => {
+            if (width < 768) return item.image.mobile;
+            if (width >= 768 && width < 1024)
+              return item.image.tablet;
+
+            return item.image.desktop;
+          }}
+          fill
+          placeholder="blur"
+          blurDataURL={item.blurDataURL}
+          className="object-cover"
+        />
       </div>
 
-      <div className="mt-7 space-y-1">
-        <dl>
-          <dt className="sr-only">category</dt>
-          <dd className="text-foreground/85 inline-block leading-none first-letter:uppercase">
-            {item.category}
-          </dd>
-        </dl>
+      <div className="p-5">
+        <div className="flex items-center gap-3">
+          <h2
+            id={titleId}
+            className="grow truncate text-lg first-letter:uppercase"
+          >
+            {item.name}
+          </h2>
 
-        <h2
-          id={titleId}
-          className="truncate text-xl font-medium leading-none first-letter:uppercase"
-        >
-          {item.name}
-        </h2>
-
-        <dl>
-          <dt className="sr-only">price</dt>
-          <dd className="text-primary-11 inline-block text-xl font-semibold">
+          <span
+            aria-label="price"
+            className="text-muted-12 shrink-0 text-lg font-medium"
+          >
             $ {item.price}
-          </dd>
-        </dl>
+          </span>
+        </div>
+
+        <div className="mt-3 flex flex-wrap items-center justify-end gap-3">
+          <div
+            aria-label="category"
+            className="bg-muted-3 shrink-0 rounded-full p-3 py-1 text-sm font-medium first-letter:uppercase"
+          >
+            {item.category}
+          </div>
+
+          <div className="grow"></div>
+
+          <AddToCart id={item.id} name={item.name} />
+        </div>
       </div>
     </article>
   );

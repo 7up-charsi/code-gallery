@@ -120,10 +120,8 @@
     }
   ],
   "addToCart": "add to cart",
-  "yourCart": "your cart",
   "emptyCart": "your cart is empty",
-  "emptyCartDesc": "Your added items will appear here",
-  "orderTotal": "order total",
+  "total": "total",
   "confirmOrderButton": "confirm order",
   "newOrderButton": "start new Order",
   "orderConfirmed": "your order confirmed",

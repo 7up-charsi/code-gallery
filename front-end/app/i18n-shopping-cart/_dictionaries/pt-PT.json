@@ -120,10 +120,8 @@
     }
   ],
   "addToCart": "adicionar ao carrinho",
-  "yourCart": "seu carrinho",
   "emptyCart": "seu carrinho está vazio",
-  "emptyCartDesc": "Seus itens adicionados aparecerão aqui",
-  "orderTotal": "total do pedido",
+  "total": "total",
   "confirmOrderButton": "confirmar pedido",
   "newOrderButton": "iniciar novo pedido",
   "orderConfirmed": "seu pedido foi confirmado",

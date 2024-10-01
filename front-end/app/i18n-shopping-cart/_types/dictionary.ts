@@ -7,10 +7,8 @@ export type Dictionary = {
   title: string;
   data: ProductItem[];
   addToCart: string;
-  yourCart: string;
   emptyCart: string;
-  emptyCartDesc: string;
-  orderTotal: string;
+  total: string;
   confirmOrderButton: string;
   newOrderButton: string;
   orderConfirmed: string;
