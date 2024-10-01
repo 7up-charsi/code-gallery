@@ -10,20 +10,21 @@ export const AppBarContent = (props: AppBarContentProps) => {
   const {} = props;
 
   return (
-    <div className="flex h-16 items-center gap-3 px-5 md:px-8">
+    <div className="flex min-h-16 flex-wrap items-center justify-center gap-3 px-5 py-2 md:px-8">
       <Branding href={siteConfig.pathname}>
         {siteConfig.name}
       </Branding>
 
-      <div className="grow"></div>
+      <div className="flex grow items-center justify-end gap-3">
+        <LocaleSwitcher
+          locales={[
+            { short: 'en', label: 'English', value: 'en-US' },
+            { short: 'pt', label: 'Portuguese', value: 'pt-PT' },
+          ]}
+        />
 
-      <LocaleSwitcher
-        locales={[
-          { short: 'en', label: 'English', value: 'en-US' },
-          { short: 'pt', label: 'Portuguese', value: 'pt-PT' },
-        ]}
-      />
-      <ThemeSwitcher />
+        <ThemeSwitcher />
+      </div>
     </div>
   );
 };

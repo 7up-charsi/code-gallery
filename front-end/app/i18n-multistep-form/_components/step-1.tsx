@@ -5,7 +5,6 @@ import { useDictionaryCtx } from './dictionary-provider';
 import { useFormSteps } from '../_hooks/form-steps';
 import { useFormContext } from 'react-hook-form';
 import { Input } from '@typeweave/react/input';
-import { StepHeader } from './step-header';
 import React from 'react';
 
 interface Step1Props {}
@@ -22,17 +21,12 @@ export const Step1 = (props: Step1Props) => {
 
   const dictionary = useDictionaryCtx(displayName);
 
-  const { currentStep, isThankYouStep } = useFormSteps();
+  const { currentStep } = useFormSteps();
 
-  if (currentStep !== 1 || isThankYouStep) return null;
+  if (currentStep !== 1) return null;
 
   return (
-    <>
-      <StepHeader
-        heading={dictionary.step1.heading}
-        desc={dictionary.step1.description}
-      />
-
+    <div className="bg-background rounded p-5 pb-0">
       <Input
         label={dictionary.step1.fields.name.label}
         {...register('name')}
@@ -63,7 +57,7 @@ export const Step1 = (props: Step1Props) => {
           dictionary.errors[errors.phoneNumber?.message!] ?? ' '
         }
       />
-    </>
+    </div>
   );
 };
 

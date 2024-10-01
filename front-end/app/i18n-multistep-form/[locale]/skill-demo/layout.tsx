@@ -1,7 +1,7 @@
 import { DictionaryProvider } from '../../_components/dictionary-provider';
 import { AppBarContent } from '../../_components/app-bar-content';
 import { getDictionary } from '../../_utils/dictionary';
-import { AppBar } from '@typeweave/react/app-bar';
+import { AppBar } from '../../_components/app-bar';
 import { Locales } from '../../_types/dictionary';
 import React from 'react';
 
@@ -15,14 +15,12 @@ export default async function RootLayout({
   const dictionary = await getDictionary(locale);
 
   return (
-    <>
-      <DictionaryProvider dictionary={dictionary}>
-        <AppBar>
-          <AppBarContent />
-        </AppBar>
+    <DictionaryProvider dictionary={dictionary}>
+      <AppBar>
+        <AppBarContent />
+      </AppBar>
 
-        {children}
-      </DictionaryProvider>
-    </>
+      {children}
+    </DictionaryProvider>
   );
 }

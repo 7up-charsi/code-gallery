@@ -3,7 +3,6 @@
 import { useDictionaryCtx } from './dictionary-provider';
 import { useFormSteps } from '../_hooks/form-steps';
 import { Button } from '@typeweave/react/button';
-import { useFormContext } from 'react-hook-form';
 import React from 'react';
 
 interface StepperProps {
@@ -17,22 +16,7 @@ export const Stepper = (props: StepperProps) => {
 
   const dictionary = useDictionaryCtx(displayName);
 
-  const {
-    formState: { submitCount, errors },
-  } = useFormContext();
-
-  const hasErrors = !!Object.keys(errors).length;
-
-  const {
-    currentStep,
-    nextStep,
-    prevStep,
-    totalSteps,
-    isThankYouStep,
-    thankYouSetp,
-  } = useFormSteps();
-
-  if (isThankYouStep) return;
+  const { currentStep, nextStep, prevStep } = useFormSteps();
 
   return (
     <div className="flex items-center gap-3 pt-10">
@@ -49,32 +33,23 @@ export const Stepper = (props: StepperProps) => {
 
       <div className="grow"></div>
 
-      {currentStep !== totalSteps && (
+      {currentStep !== 4 && (
         <Button
           type="button"
           variant="solid"
           color="primary"
-          onPress={() => {
-            if (currentStep === 3 && (!submitCount || hasErrors))
-              onSubmit?.();
-            else nextStep();
-          }}
+          onPress={nextStep}
         >
-          {currentStep === 3 && (!submitCount || hasErrors)
-            ? dictionary.buttons.validate
-            : dictionary.buttons.next}
+          {dictionary.buttons.next}
         </Button>
       )}
 
-      {currentStep === totalSteps && (
+      {currentStep === 4 && (
         <Button
           type="button"
           variant="solid"
           color="primary"
-          onPress={() => {
-            onSubmit?.();
-            thankYouSetp();
-          }}
+          onPress={onSubmit}
         >
           {dictionary.buttons.confirm}
         </Button>

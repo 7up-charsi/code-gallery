@@ -4,26 +4,29 @@ import { PointerEvents } from '@typeweave/react/pointer-events';
 import { FormValues } from '../[locale]/skill-demo/page';
 import { useDictionaryCtx } from './dictionary-provider';
 import { useFormSteps } from '../_hooks/form-steps';
-import { useWatch } from 'react-hook-form';
-import { StepHeader } from './step-header';
+import { Control, useWatch } from 'react-hook-form';
 import React from 'react';
 
-interface Step4Props {}
+interface Step4Props {
+  control?: Control<FormValues>;
+}
 
 const displayName = 'Step4';
 
 export const Step4 = (props: Step4Props) => {
-  const {} = props;
+  const { control } = props;
 
   const dictionary = useDictionaryCtx(displayName);
 
-  const { currentStep, isThankYouStep, updateStep } = useFormSteps();
+  const { currentStep, updateStep } = useFormSteps();
+
   const [
-    __plan,
-    __onlineServiceAddon,
-    __largerStorageAddon,
-    __customizableProfileAddon,
-  ] = useWatch<FormValues>({
+    plan,
+    onlineServiceAddon,
+    largerStorageAddon,
+    customizableProfileAddon,
+  ] = useWatch({
+    control,
     name: [
       'plan',
       'onlineServiceAddon',
@@ -32,111 +35,123 @@ export const Step4 = (props: Step4Props) => {
     ],
   });
 
-  const plan = __plan as FormValues['plan'];
-
-  const onlineServiceAddon =
-    __onlineServiceAddon as FormValues['onlineServiceAddon'];
-
-  const largerStorageAddon =
-    __largerStorageAddon as FormValues['largerStorageAddon'];
-
-  const customizableProfileAddon =
-    __customizableProfileAddon as FormValues['customizableProfileAddon'];
-
   const total =
     (plan.price || 0) +
     ((onlineServiceAddon?.price || 0) +
       (largerStorageAddon?.price || 0) +
       (customizableProfileAddon?.price || 0));
 
-  if (currentStep !== 4 || isThankYouStep) return null;
+  if (currentStep !== 4) return null;
+
+  const hasAddons =
+    !!onlineServiceAddon ||
+    !!largerStorageAddon ||
+    !!customizableProfileAddon;
 
   return (
     <>
-      <StepHeader
-        heading={dictionary.step4.heading}
-        desc={dictionary.step4.description}
-      />
+      {plan.id && (
+        <>
+          <table className="bg-background w-full border-collapse rounded">
+            <thead>
+              <tr className="border-muted-6 border-b *:px-5 *:py-3">
+                <th className="text-left">
+                  <div className="flex flex-wrap items-start gap-x-2 gap-y-1">
+                    <span className="font-medium capitalize">
+                      {dictionary.step2.fields[plan.name].label} (
+                      {dictionary.step2.fields.billing[plan.billing]}{' '}
+                      )
+                    </span>
 
-      <table className="bg-primary-3 w-full border-collapse rounded">
-        <thead className="text-primary-11 font-semibold">
-          <tr
-            data-has-addons={
-              !!onlineServiceAddon ||
-              !!largerStorageAddon ||
-              !!customizableProfileAddon
-            }
-            className="border-muted-6 data-[has-addons=true]:border-b"
-          >
-            <th className="py-3 pl-10 pr-3 text-left">
-              <div className="flex flex-col items-start">
-                <span className="capitalize">
-                  {/* @ts-ignore */}
-                  {dictionary.step2.fields[plan.name].label} ({' '}
-                  {/* @ts-ignore */}
-                  {dictionary.step2.fields.billing[plan.billing]} )
-                </span>
+                    <PointerEvents onPress={() => updateStep(2)}>
+                      <button className="text-foreground/80 font-normal underline">
+                        {dictionary.buttons.change}
+                      </button>
+                    </PointerEvents>
+                  </div>
+                </th>
 
-                <PointerEvents onPress={() => updateStep(2)}>
-                  <button className="text-muted-11/80 font-normal underline">
-                    {dictionary.buttons.change}
-                  </button>
-                </PointerEvents>
-              </div>
-            </th>
-            <th className="pl-3 pr-10 text-right">${plan.price}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {onlineServiceAddon && (
-            <tr className="*:py-1 [&:first-child>td]:pt-7 [&:last-child>td]:pb-7">
-              <td className="text-muted-11/85 pl-10 pr-3 capitalize">
-                {dictionary.step3.fields.onlineService.label}
-              </td>
-              <td className="text-primary-11 pl-3 pr-10 text-right capitalize">
-                +${onlineServiceAddon.price}
-              </td>
-            </tr>
-          )}
-          {largerStorageAddon && (
-            <tr className="*:py-1 [&:first-child>td]:pt-7 [&:last-child>td]:pb-7">
-              <td className="text-muted-11/85 pl-10 pr-3 capitalize">
-                {
-                  // @ts-ignore
-                  dictionary.step3.fields.largerStorage.label
-                }
-              </td>
-              <td className="text-primary-11 pl-3 pr-10 text-right capitalize">
-                +${largerStorageAddon.price}
-              </td>
-            </tr>
-          )}
-          {customizableProfileAddon && (
-            <tr className="*:py-1 [&:first-child>td]:pt-7 [&:last-child>td]:pb-7">
-              <td className="text-muted-11/85 pl-10 pr-3 capitalize">
-                {dictionary.step3.fields.customizableProfile.label}
-              </td>
-              <td className="text-primary-11 pl-3 pr-10 text-right capitalize">
-                +${customizableProfileAddon.price}
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+                <th className="whitespace-nowrap text-right font-medium">
+                  $ {plan.price}
+                </th>
+              </tr>
+            </thead>
 
-      <div className="my-5 flex items-center justify-between px-10 capitalize">
-        <span className="text-muted-11/85 font-medium">
-          {dictionary.step4.total} ({' '}
-          <span className="text-primary-11">
-            {/* @ts-ignore */}
-            {dictionary.step2.fields.billing[plan.billing]}
-          </span>{' '}
-          )
-        </span>
-        <span className="text-primary-11 font-semibold">
-          ${total}
-        </span>
-      </div>
+            <tbody>
+              {[
+                onlineServiceAddon && {
+                  id: 1,
+                  label: dictionary.step3.fields.onlineService.label,
+                  value: onlineServiceAddon.price,
+                },
+                largerStorageAddon && {
+                  id: 2,
+                  label: dictionary.step3.fields.largerStorage.label,
+                  value: largerStorageAddon.price,
+                },
+                customizableProfileAddon && {
+                  id: 3,
+                  label:
+                    dictionary.step3.fields.customizableProfile.label,
+                  value: customizableProfileAddon.price,
+                },
+              ].map((ele) =>
+                !ele ? null : (
+                  <tr
+                    key={ele.id}
+                    className="*:px-5 *:py-2 *:first:pt-7 [&:nth-last-child(2)>td]:pb-7"
+                  >
+                    <td className="text-left first-letter:uppercase">
+                      {ele.label}
+                    </td>
+                    <td className="whitespace-nowrap text-right">
+                      +$ {ele.value}
+                    </td>
+                  </tr>
+                ),
+              )}
+
+              {hasAddons ? null : (
+                <tr className="">
+                  <td colSpan={2} className="h-32 p-5">
+                    <div className="text-foreground/70 flex items-center justify-center font-medium">
+                      <span className="text-balance text-center">
+                        {dictionary.step4.noAddons}
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              )}
+
+              <tr className="border-muted-6 text-muted-12 border-t *:px-5 *:py-3">
+                <td className="font-medium first-letter:uppercase">
+                  {dictionary.step4.total} ({' '}
+                  <span>
+                    {dictionary.step2.fields.billing[plan.billing]}
+                  </span>{' '}
+                  )
+                </td>
+
+                <td className="whitespace-nowrap text-right font-medium">
+                  $ {total}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </>
+      )}
+
+      {plan.id ? null : (
+        <p className="text-balance text-center text-lg">
+          {dictionary.step4.noPlanSelected}{' '}
+          <PointerEvents onPress={() => updateStep(2)}>
+            <button className="hover:text-muted-12 underline hover:underline-offset-2">
+              {dictionary.step4.step2}
+            </button>
+          </PointerEvents>
+          .
+        </p>
+      )}
     </>
   );
 };

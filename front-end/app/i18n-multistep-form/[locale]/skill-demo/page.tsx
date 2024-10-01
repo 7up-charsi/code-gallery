@@ -1,8 +1,10 @@
 'use client';
 
+import {
+  ThankYouDialog,
+  useThankYouDialogState,
+} from '../../_components/thank-you-dialog';
 import { FieldErrors, FormProvider, useForm } from 'react-hook-form';
-import { FormIndicators } from '../../_components/form-indicators';
-import { ThankYou } from '../../_components/thank-you';
 import { useFormSteps } from '../../_hooks/form-steps';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Stepper } from '../../_components/stepper';
@@ -10,6 +12,7 @@ import { Step1 } from '../../_components/step-1';
 import { Step2 } from '../../_components/step-2';
 import { Step3 } from '../../_components/step-3';
 import { Step4 } from '../../_components/step-4';
+import { Steps } from '../../_components/steps';
 import React from 'react';
 import { z } from 'zod';
 
@@ -80,29 +83,36 @@ export default function Home() {
     context: { currentStep },
   });
 
+  const { control } = formMethods;
+
+  const thankYouDialog = useThankYouDialogState((s) => s.handleOpen);
+
+  const { handleSubmit } = formMethods;
+
   const onSubmit = (values: FormValues) => {
     // Do any action here
     console.log(values);
+
+    thankYouDialog();
   };
 
   return (
-    <main className="flex min-h-[calc(100vh-105px)] justify-center md:items-center md:px-8 md:py-5">
-      <div className="border-muted-6 bg-background w-full max-w-screen-md grid-cols-1 max-md:pb-5 md:grid md:min-h-[70vh] md:grid-cols-[theme(spacing.64),1fr] md:overflow-hidden md:rounded-xl md:border md:p-3 md:shadow-md">
+    <main className="bg-muted-2 min-h-[calc(100vh-64px)] p-5 md:px-8">
+      <div className="mx-auto mt-10 w-full max-w-md">
         <FormProvider {...formMethods}>
-          <FormIndicators />
+          <ThankYouDialog />
+
+          <Steps />
 
           <form
             ref={formRef}
-            onSubmit={formMethods.handleSubmit(onSubmit)}
-            className="border-muted-6 bg-background mx-auto -mt-20 flex w-[calc(100%-40px)] flex-col gap-1 rounded border p-5 max-md:shadow-md md:mt-0 md:h-full md:w-full md:border-0 md:py-0 md:pl-5 md:pr-2"
+            onSubmit={handleSubmit(onSubmit)}
+            className=""
           >
-            <div className="grow overflow-auto">
-              <Step1 />
-              <Step2 />
-              <Step3 />
-              <Step4 />
-              <ThankYou />
-            </div>
+            <Step1 />
+            <Step2 />
+            <Step3 />
+            <Step4 control={control} />
 
             <Stepper
               onSubmit={() => {

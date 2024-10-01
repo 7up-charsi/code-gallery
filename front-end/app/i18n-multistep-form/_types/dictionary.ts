@@ -4,9 +4,7 @@ export type Locales = (typeof i18nConfig.locales)[number];
 
 export type Dictionary = {
   step1: {
-    indicator: string;
-    indicatorHeading: string;
-    heading: string;
+    title: string;
     description: string;
     fields: {
       name: { label: string };
@@ -15,24 +13,14 @@ export type Dictionary = {
     };
   };
   step2: {
-    indicator: string;
-    indicatorHeading: string;
-    heading: string;
+    title: string;
     description: string;
-    fields: {
-      arcade: { label: string };
-      advanced: { label: string };
-      pro: { label: string };
-      billing: {
-        monthly: string;
-        yearly: string;
-      };
+    fields: Record<string, { label: string }> & {
+      billing: Record<string, string>;
     };
   };
   step3: {
-    indicator: string;
-    indicatorHeading: string;
-    heading: string;
+    title: string;
     description: string;
     fields: {
       onlineService: {
@@ -50,22 +38,22 @@ export type Dictionary = {
     };
   };
   step4: {
-    indicator: string;
-    indicatorHeading: string;
-    heading: string;
+    title: string;
     description: string;
     total: string;
+    noAddons: string;
+    noPlanSelected: string;
+    step2: string;
   };
   buttons: {
     previous: string;
     next: string;
     confirm: string;
     change: string;
-    validate: string;
   };
   errors: Record<string, string>;
   thankYou: {
-    heading: string;
+    title: string;
     description: string;
   };
 };

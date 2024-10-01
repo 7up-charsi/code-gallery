@@ -6,7 +6,7 @@ import { FormValues } from '../[locale]/skill-demo/page';
 import { useDictionaryCtx } from './dictionary-provider';
 import { useFormSteps } from '../_hooks/form-steps';
 import { Switch } from '@typeweave/react/switch';
-import { StepHeader } from './step-header';
+import { CircleIcon } from 'lucide-react';
 import Image from 'next/image';
 import React from 'react';
 
@@ -28,21 +28,16 @@ export const Step2 = (props: Step2Props) => {
   const __plan = useWatch<FormValues>({ name: 'plan' });
   const plan = __plan as FormValues['plan'];
 
-  const { currentStep, isThankYouStep } = useFormSteps();
+  const { currentStep } = useFormSteps();
 
-  if (currentStep !== 2 || isThankYouStep) return null;
+  if (currentStep !== 2) return null;
 
   return (
-    <>
-      <StepHeader
-        heading={dictionary.step2.heading}
-        desc={dictionary.step2.description}
-      />
-
+    <div className="bg-background rounded p-5">
       {errors.plan ? (
         <div
           id="plan-error"
-          className="text-danger-11 mb-3 text-sm first-letter:uppercase"
+          className="text-danger-11 mb-1 text-sm first-letter:uppercase"
         >
           {dictionary.errors.selectOne}
         </div>
@@ -51,7 +46,7 @@ export const Step2 = (props: Step2Props) => {
       <fieldset
         aria-required={!!errors.plan}
         aria-describedby={errors.plan ? 'plan-error' : undefined}
-        className="space-y-3"
+        className=""
       >
         <legend className="sr-only">
           {dictionary.step2.description}
@@ -86,23 +81,25 @@ export const Step2 = (props: Step2Props) => {
           <div
             key={id}
             role="group"
-            className="pointer-events-none relative isolate flex h-16 select-none items-center gap-3 px-3"
+            className="pointer-events-none relative isolate flex select-none items-center gap-3 px-3 py-3"
           >
             <Image src={icon} alt="icon" width={35} height={35} />
-            <div className="flex flex-col">
-              <input
-                type="radio"
-                id={inputId}
-                aria-describedby={descId}
-                className="border-muted-6 ring-focus checked:border-primary-8 checked:bg-primary-3 hover:bg-muted-3 checked:hover:bg-primary-4 pointer-events-auto absolute inset-0 -z-50 cursor-pointer appearance-none rounded border outline-none focus-visible:ring-2"
-                name="plan.billing"
-                checked={plan.id === id}
-                onChange={() => {
-                  setValue('plan.name', label);
-                  setValue('plan.price', price);
-                  setValue('plan.id', id);
-                }}
-              />
+
+            <input
+              type="radio"
+              id={inputId}
+              aria-describedby={descId}
+              className="ring-focus hover:bg-muted-3 peer pointer-events-auto absolute inset-0 -z-50 cursor-pointer appearance-none rounded outline-none focus-visible:ring-2"
+              name="plan.billing"
+              checked={plan.id === id}
+              onChange={() => {
+                setValue('plan.name', label);
+                setValue('plan.price', price);
+                setValue('plan.id', id);
+              }}
+            />
+
+            <div className="flex grow flex-col">
               <label
                 htmlFor={inputId}
                 className="font-semibold capitalize"
@@ -115,12 +112,17 @@ export const Step2 = (props: Step2Props) => {
                 {dictionary.step2.fields.billing[plan.billing]}
               </span>
             </div>
+
+            <CircleIcon
+              size={18}
+              className="peer-checked:fill-muted-9 peer-checked:stroke-muted-9"
+            />
           </div>
         ))}
 
         <div
           role="group"
-          className="flex items-center justify-center gap-3 py-2"
+          className="mt-5 flex items-center justify-center gap-3 py-2"
         >
           <PointerEvents
             onPress={() => {
@@ -174,7 +176,7 @@ export const Step2 = (props: Step2Props) => {
           </PointerEvents>
         </div>
       </fieldset>
-    </>
+    </div>
   );
 };
 

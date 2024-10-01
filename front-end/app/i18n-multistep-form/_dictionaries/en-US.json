@@ -1,8 +1,6 @@
 {
   "step1": {
-    "indicator": "step 1",
-    "indicatorHeading": "your info",
-    "heading": "personal info",
+    "title": "your info",
     "description": "Please provide your name, email, address and phone number.",
     "fields": {
       "name": { "label": "name" },
@@ -11,9 +9,7 @@
     }
   },
   "step2": {
-    "indicator": "step 2",
-    "indicatorHeading": "select plan",
-    "heading": "select your plan",
+    "title": "select plan",
     "description": "You have the option of monthly or yearly billing.",
     "fields": {
       "arcade": { "label": "arcade" },
@@ -26,9 +22,7 @@
     }
   },
   "step3": {
-    "indicator": "step 3",
-    "indicatorHeading": "add-ons",
-    "heading": "pick add-ons",
+    "title": "add-ons",
     "description": "Add-ons help enhance your gaming experience.",
     "fields": {
       "onlineService": {
@@ -46,18 +40,18 @@
     }
   },
   "step4": {
-    "indicator": "step 4",
-    "indicatorHeading": "summary",
-    "heading": "Finishing up",
+    "title": "summary",
     "description": "Double-check everything looks OK before confirming.",
-    "total": "total"
+    "total": "total",
+    "noAddons": "No addons selected.",
+    "noPlanSelected": "You must select any plan in",
+    "step2": "step 2"
   },
   "buttons": {
     "previous": "previous",
     "next": "next",
     "confirm": "confirm",
-    "change": "change",
-    "validate": "validate"
+    "change": "change"
   },
   "errors": {
     "required": "this filed is required",
@@ -65,7 +59,7 @@
     "selectOne": "select one plan"
   },
   "thankYou": {
-    "heading": "thank you!",
+    "title": "thank you!",
     "description": "Thanks for confirming your subscription! We hope you have fun using our plarform. If you ever need support please feel free to email us at support@loremgaming.com"
   }
 }

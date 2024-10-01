@@ -1,8 +1,6 @@
 {
   "step1": {
-    "indicator": "passo 1",
-    "indicatorHeading": "suas informações",
-    "heading": "informações pessoais",
+    "title": "suas informações",
     "description": "Por favor, forneça seu nome, email, endereço e número de telefone.",
     "fields": {
       "name": { "label": "nome" },
@@ -11,9 +9,7 @@
     }
   },
   "step2": {
-    "indicator": "passo 2",
-    "indicatorHeading": "selecionar plano",
-    "heading": "selecione o seu plano",
+    "title": "selecionar plano",
     "description": "Você tem a opção de cobrança mensal ou anual.",
     "fields": {
       "arcade": { "label": "arcade" },
@@ -26,9 +22,7 @@
     }
   },
   "step3": {
-    "indicator": "passo 3",
-    "indicatorHeading": "extras",
-    "heading": "escolha extras",
+    "title": "extras",
     "description": "Os extras ajudam a melhorar sua experiência de jogo.",
     "fields": {
       "onlineService": {
@@ -46,18 +40,18 @@
     }
   },
   "step4": {
-    "indicator": "passo 4",
-    "indicatorHeading": "resumo",
-    "heading": "Finalizando",
+    "title": "resumo",
     "description": "Verifique se tudo está correto antes de confirmar.",
-    "total": "total"
+    "total": "total",
+    "noAddons": "Nenhum complemento selecionado.",
+    "noPlanSelected": "É necessário seleccionar um plano na",
+    "step2": "etapa 2"
   },
   "buttons": {
     "previous": "anterior",
     "next": "próximo",
     "confirm": "confirmar",
-    "change": "alterar",
-    "validate": "validar"
+    "change": "alterar"
   },
   "errors": {
     "required": "este campo é obrigatório",
@@ -65,7 +59,7 @@
     "selectOne": "selecione um plano"
   },
   "thankYou": {
-    "heading": "obrigado!",
+    "title": "De nada!",
     "description": "Obrigado por confirmar sua inscrição! Esperamos que se divirta usando nossa plataforma. Se precisar de suporte, por favor, sinta-se à vontade para nos enviar um email para support@loremgaming.com"
   }
 }
