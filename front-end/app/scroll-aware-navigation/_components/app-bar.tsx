@@ -70,9 +70,9 @@ export const AppBar = (props: AppBarProps) => {
   return (
     <header
       data-scrolled={isAtTop === null ? false : !isAtTop}
-      className="border-muted-6 bg-background sticky left-0 right-0 top-0 z-50 border-b data-[scrolled=true]:shadow-md"
+      className="bg-background sticky left-0 top-0 z-50 w-full data-[scrolled=true]:shadow-md"
     >
-      <div className="border-muted-6 flex h-16 items-center gap-3 border-b px-5 md:px-8">
+      <div className="border-muted-4 flex h-16 items-center gap-3 border-b px-5 md:px-8">
         <Branding href={siteConfig.pathname}>
           {siteConfig.name}
         </Branding>

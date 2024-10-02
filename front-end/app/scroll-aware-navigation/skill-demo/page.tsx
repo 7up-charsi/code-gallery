@@ -1,6 +1,6 @@
 export default function Home() {
   return (
-    <main className="space-y-5 p-5 md:px-8">
+    <main className="bg-muted-2 min-h-[calc(100vh-64px)] space-y-5 p-5 md:px-8">
       {Array.from({ length: 10 }).map((_, i) => (
         <section
           key={i}
@@ -13,7 +13,7 @@ export default function Home() {
 
           <div
             key={i}
-            className="bg-muted-3 mt-3 h-[70vh] rounded"
+            className="bg-background border-muted-6 mt-3 h-[70vh] rounded border"
           ></div>
         </section>
       ))}

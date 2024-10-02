@@ -14,7 +14,7 @@ export default function Layout(props: LayoutProps) {
         <AppBarContent />
       </AppBar>
 
-      <div className="mt-[120px]">{children}</div>
+      {children}
     </>
   );
 }
