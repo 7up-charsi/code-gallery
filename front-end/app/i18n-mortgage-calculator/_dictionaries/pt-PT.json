@@ -34,5 +34,6 @@
   "typeOptions": {
     "repayment": "Reembolso",
     "interestOnly": "Juros Apenas"
-  }
+  },
+  "resultsTitle": "Os Seus Resultados"
 }

@@ -32,4 +32,5 @@ export type Dictionary = Partial<{
     repayment: string;
     interestOnly: string;
   };
+  resultsTitle: string;
 }>;

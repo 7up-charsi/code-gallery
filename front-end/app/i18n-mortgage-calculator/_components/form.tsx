@@ -5,6 +5,7 @@ import {
   getMonthlyPayment,
   getTotalPayment,
 } from '../_utils/mortgage';
+import { ResultDialog, useResultDialogState } from './result-dialog';
 import { Input, NumberInput } from '@typeweave/react/input';
 import { useDictionaryCtx } from './dictionary-provider';
 import { AlertDialog } from '@/components/alert-dialog';
@@ -15,7 +16,6 @@ import { Controller, useForm } from 'react-hook-form';
 import { Combobox } from '@typeweave/react/combobox';
 import { mergeRefs } from '@typeweave/react-utils';
 import { Button } from '@typeweave/react/button';
-import { Results } from './results';
 import React from 'react';
 import { z } from 'zod';
 
@@ -66,6 +66,10 @@ export const Form = (props: FormProps) => {
 
   const { dictionary } = useDictionaryCtx(displayName);
 
+  const handleOpenResultDialog = useResultDialogState(
+    (s) => s.handleOpen,
+  );
+
   const {
     handleSubmit,
     control,
@@ -92,10 +96,6 @@ export const Form = (props: FormProps) => {
     const interestRate = +values.interestRate;
     const type = values.type;
 
-    await new Promise((resolve) => {
-      setTimeout(resolve, 2000);
-    });
-
     const monthlyPayment = getMonthlyPayment(
       amount,
       interestRate,
@@ -105,8 +105,8 @@ export const Form = (props: FormProps) => {
     const totalPayment = getTotalPayment(monthlyPayment, term);
 
     if (type === 'repayment') {
-      setValue('monthlyRepayment', monthlyPayment + '');
-      setValue('totalRepayment', totalPayment + '');
+      setValue('monthlyRepayment', monthlyPayment.toFixed(2));
+      setValue('totalRepayment', totalPayment.toFixed(2));
       setValue('interestOnlyPayment', undefined);
     } else {
       const interestOnlyPayment = getInterestOnlyPayment(
@@ -114,17 +114,23 @@ export const Form = (props: FormProps) => {
         amount,
       );
 
-      setValue('interestOnlyPayment', interestOnlyPayment + '');
+      setValue('interestOnlyPayment', interestOnlyPayment.toFixed(2));
       setValue('monthlyRepayment', undefined);
       setValue('totalRepayment', undefined);
     }
+
+    await new Promise((resolve) => {
+      setTimeout(resolve, 1000);
+    });
+
+    handleOpenResultDialog();
   };
 
   return (
     <form
       ref={formRef}
       onSubmit={handleSubmit(onSubmit)}
-      className="mx-auto mt-10 grid w-full max-w-screen-md grid-cols-1 gap-x-4 md:grid-cols-2"
+      className="mx-auto mt-10 w-full max-w-sm"
     >
       <Controller
         control={control}
@@ -239,7 +245,7 @@ export const Form = (props: FormProps) => {
         )}
       />
 
-      <Results control={control} />
+      <ResultDialog control={control} />
 
       <div className="flex items-center justify-end gap-4 md:col-span-2">
         <AlertDialog

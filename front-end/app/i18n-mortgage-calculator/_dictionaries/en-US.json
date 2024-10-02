@@ -34,5 +34,6 @@
   "typeOptions": {
     "repayment": "repayment",
     "interestOnly": "interest only"
-  }
+  },
+  "resultsTitle": "Your Results"
 }

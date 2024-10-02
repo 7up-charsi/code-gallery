@@ -53,7 +53,7 @@ export default function Home() {
     const perPersonTotal = +bill / +people + perPersonTip;
 
     await new Promise((resolve) => {
-      setTimeout(resolve, 2000);
+      setTimeout(resolve, 1000);
     });
 
     setValue('perPersonTip', perPersonTip.toFixed(2));
@@ -69,6 +69,7 @@ export default function Home() {
         <div className="space-y-5">
           <Input
             label="bill"
+            required
             disabled={isSubmitting}
             inputMode="decimal"
             {...register('bill')}
@@ -109,6 +110,7 @@ export default function Home() {
             }) => (
               <NumberInput
                 label="number of people"
+                required
                 {...field}
                 onChange={(value) => {
                   onChange({ target: { value } });
