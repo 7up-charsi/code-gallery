@@ -1,13 +1,8 @@
 import { MobileDrawer } from '../_components/mobile-drawer';
-import { TocContent } from '../_components/toc-content';
 
 export default function Home() {
   return (
-    <div className="grid grid-cols-1 gap-2 md:grid-cols-[1fr_280px] lg:grid-cols-[250px_1fr_280px]">
-      <div className="border-muted-6 sticky top-[104px] h-[calc(100vh-40px-64px)] border-r p-2 max-lg:hidden">
-        <aside className="bg-muted-3 h-full w-full rounded"></aside>
-      </div>
-
+    <>
       <MobileDrawer />
 
       <main
@@ -177,18 +172,6 @@ export default function Home() {
           );
         })}
       </main>
-
-      <aside className="border-muted-6 sticky top-[104px] flex h-[calc(100vh-40px-64px)] flex-col border-l max-md:hidden">
-        <div className="px-5">
-          <h2 className="border-muted-6 bg-background border-b py-2 text-sm">
-            Table of Content
-          </h2>
-        </div>
-
-        <div className="grow overflow-auto px-5 py-2">
-          <TocContent />
-        </div>
-      </aside>
-    </div>
+    </>
   );
 }

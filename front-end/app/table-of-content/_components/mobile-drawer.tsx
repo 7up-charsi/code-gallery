@@ -65,7 +65,7 @@ export const MobileDrawer = (props: MobileDrawerProps) => {
             </DrawerClose>
           </div>
 
-          <div className="grow overflow-auto px-5 py-3">
+          <div className="scrollbar-thin grow overflow-auto px-5 py-3">
             <TocContent />
           </div>
         </DrawerContent>

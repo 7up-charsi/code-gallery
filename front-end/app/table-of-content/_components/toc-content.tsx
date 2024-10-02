@@ -72,7 +72,7 @@ export const TocContent = (props: TocContentProps) => {
   }, []);
 
   return (
-    <ol className="h-full overflow-auto">
+    <ol className="scrollbar-thin h-full overflow-auto">
       {headings.map(({ id, dataset, innerText }) => {
         const isActive = activeHeadings.includes(id);
 
