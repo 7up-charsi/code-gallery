@@ -1,76 +1,153 @@
 'use client';
 
-import { CustomInput } from '../_components/custom-input';
-import { TipButtons } from '../_components/tip-buttons';
-import { FormProvider, useForm } from 'react-hook-form';
+import { Input, NumberInput } from '@typeweave/react/input';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { DollarSign, UserIcon } from 'lucide-react';
+import { Controller, useForm } from 'react-hook-form';
+import { Button } from '@typeweave/react/button';
 import { Result } from '../_components/result';
+import { Loader2Icon } from 'lucide-react';
 import React from 'react';
 import { z } from 'zod';
 
-const validNumberSchema = z.pipeline(
-  z.string().refine((arg) => arg.trim(), 'can not be empty'),
+const numberSchema = z.pipeline(
+  z.string().trim().min(1, 'this field is required'),
   z.coerce.number({ message: 'must be number' }).min(1, 'minimum 1'),
 );
 
 const formSchema = z.object({
-  bill: validNumberSchema,
-  people: validNumberSchema,
-  tip: z.coerce.number().gte(0).lte(100).nullable(),
-  isInput: z.boolean(),
+  bill: numberSchema,
+  people: numberSchema,
+  tip: z.pipeline(
+    z.string(),
+    z.coerce.number({ message: 'must be number' }),
+  ),
 });
 
-export type FormValues = z.input<typeof formSchema>;
+export type FormValues = z.input<typeof formSchema> & {
+  perPersonTip: string;
+  perPersonTotal: string;
+};
 
 export default function Home() {
-  const formMethods = useForm<FormValues>({
+  const {
+    register,
+    handleSubmit,
+    control,
+    reset,
+    formState: { errors, isSubmitting },
+    setValue,
+  } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
-    reValidateMode: 'onChange',
-    mode: 'onChange',
     defaultValues: {
-      tip: null,
-      isInput: false,
+      tip: '',
+      bill: '',
+      people: '',
     },
   });
 
-  const {
-    register,
-    formState: { errors },
-  } = formMethods;
+  const onSubmit = async (values: FormValues) => {
+    const { bill, tip, people } = values;
+
+    const perPersonTip = +tip ? (+bill * (+tip / 100)) / +people : 0;
+
+    const perPersonTotal = +bill / +people + perPersonTip;
+
+    await new Promise((resolve) => {
+      setTimeout(resolve, 2000);
+    });
+
+    setValue('perPersonTip', perPersonTip.toFixed(2));
+    setValue('perPersonTotal', perPersonTotal.toFixed(2));
+  };
 
   return (
-    <FormProvider {...formMethods}>
-      <main className="flex h-full min-h-[calc(100vh-105px)] items-center p-5">
-        <form className="border-primary-6 bg-background mx-auto grid w-full max-w-screen-md grid-cols-1 gap-5 rounded-2xl border p-5 md:grid-cols-2 md:shadow-md">
-          <div className="space-y-5">
-            <CustomInput
-              label="bill"
-              inputMode="decimal"
-              {...register('bill')}
-              startContent={
-                <DollarSign className="text-primary-11" />
-              }
-              error={!!errors.bill}
-              helperText={errors.bill?.message ?? ''}
-            />
+    <main className="bg-muted-2 flex min-h-[calc(100vh-64px)] items-center justify-center p-5">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="w-full max-w-sm"
+      >
+        <div className="space-y-5">
+          <Input
+            label="bill"
+            disabled={isSubmitting}
+            inputMode="decimal"
+            {...register('bill')}
+            error={!!errors.bill}
+            helperText={errors.bill?.message ?? ''}
+            className="w-full"
+          />
 
-            <TipButtons />
+          <Controller
+            control={control}
+            name="tip"
+            disabled={isSubmitting}
+            render={({
+              field: { onChange, ...field },
+              fieldState: { error },
+            }) => (
+              <NumberInput
+                label="tip in %"
+                inputMode="decimal"
+                {...field}
+                onChange={(value) => {
+                  onChange({ target: { value } });
+                }}
+                error={!!error}
+                helperText={error?.message ?? ''}
+                className="w-full"
+              />
+            )}
+          />
 
-            <CustomInput
-              label="number of people"
-              {...register('people')}
-              startContent={
-                <UserIcon className="stroke-primary-11 fill-transparent !text-xl" />
-              }
-              error={!!errors.people}
-              helperText={errors.people?.message ?? ''}
-            />
-          </div>
+          <Controller
+            control={control}
+            name="people"
+            disabled={isSubmitting}
+            render={({
+              field: { onChange, ...field },
+              fieldState: { error },
+            }) => (
+              <NumberInput
+                label="number of people"
+                {...field}
+                onChange={(value) => {
+                  onChange({ target: { value } });
+                }}
+                error={!!error}
+                helperText={error?.message ?? ''}
+                className="w-full"
+              />
+            )}
+          />
+        </div>
 
-          <Result />
-        </form>
-      </main>
-    </FormProvider>
+        <Result control={control} />
+
+        <div className="mt-5 flex items-center justify-end gap-2">
+          <Button
+            variant="text"
+            color="danger"
+            type="button"
+            disabled={isSubmitting}
+            onPress={() => {
+              reset();
+            }}
+          >
+            reset
+          </Button>
+
+          <Button
+            color="success"
+            type="submit"
+            disabled={isSubmitting}
+            startContent={
+              isSubmitting && <Loader2Icon className="animate-spin" />
+            }
+          >
+            submit
+          </Button>
+        </div>
+      </form>
+    </main>
   );
 }
