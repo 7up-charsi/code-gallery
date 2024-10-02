@@ -6,7 +6,9 @@ import Link from 'next/link';
 export default function NotFoundPage() {
   return (
     <div className="flex w-full flex-col items-center justify-center pt-20">
-      <span className="text-xl">All pages are for demo purpose.</span>
+      <span className="text-balance text-center text-xl">
+        All pages are for demo purpose.
+      </span>
 
       <Button
         asChild

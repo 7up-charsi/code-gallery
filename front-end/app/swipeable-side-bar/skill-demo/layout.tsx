@@ -12,7 +12,9 @@ export default function RootLayout({
         <AppBarContent />
       </AppBar>
 
-      {children}
+      <div className="bg-muted-2 min-h-[calc(100vh-64px)]">
+        {children}
+      </div>
     </>
   );
 }
