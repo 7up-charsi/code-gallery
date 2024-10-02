@@ -10,33 +10,21 @@ const displayName = 'Screen';
 export const Screen = (props: ScreenProps) => {
   const {} = props;
 
-  const { operandLeft, result, operandRight, operator } =
-    useCalculator();
+  const { value } = useCalculator();
 
   return (
-    <div className="bg-muted-3 grid h-16 w-full grid-cols-1 grid-rows-2 items-center justify-items-end rounded px-5 py-3 font-bold">
-      {!operator && (
-        <span className="row-span-2 text-2xl font-bold">
-          {operandLeft}
-        </span>
-      )}
-
-      {result && (
-        <span className="row-span-2 text-2xl font-bold">
-          {result}
-        </span>
-      )}
-
-      {operator && !result && (
-        <>
-          <span className="">
-            {operandLeft} {operator}
-          </span>
-          <span className="text-xl">{operandRight}</span>
-        </>
-      )}
+    <div className="bg-muted-3 h-16 w-full content-center truncate rounded px-5 py-3 text-right text-lg font-bold [direction:rtl]">
+      {reverseString(value)}
     </div>
   );
 };
 
 Screen.displayName = displayName;
+
+const reverseString = (str: string) => {
+  let reversed = '';
+  for (let i = str.length - 1; i >= 0; i--) {
+    reversed += str[i];
+  }
+  return reversed;
+};

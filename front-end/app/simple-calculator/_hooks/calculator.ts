@@ -1,105 +1,67 @@
+import { evaluate } from 'mathjs';
 import { create } from 'zustand';
 
 type Store = {
-  operandLeft?: string;
-  operandRight?: string;
-  operator?: string;
-  result?: number;
+  value: string;
   reset: () => void;
   del: () => void;
   getResult: () => void;
-  insert: (digit: number | string) => void;
-  setOperator: (operator: string) => void;
+  insert: (toInsert: string) => void;
 };
 
+const operators = ['-', '+', '/', '*'];
+
 export const useCalculator = create<Store>((set) => ({
-  reset: () =>
-    set({
-      operandLeft: undefined,
-      operandRight: undefined,
-      operator: undefined,
-      result: undefined,
-    }),
-  setOperator: (operator) => {
-    set((state) => {
-      if (!state.operandLeft) return state;
-
-      if (state.result) {
-        return {
-          operandLeft: state.result + '',
-          result: undefined,
-          operator,
-        };
-      }
-
-      return { operator };
-    });
+  value: '',
+  reset: () => {
+    set({ value: undefined });
   },
+
   del: () => {
     set((state) => {
-      if (state.operator) {
-        return {
-          operandRight: state.operandRight?.slice(
-            0,
-            state.operandRight.length - 1,
-          ),
-        };
-      }
+      if (!state.value) return state;
 
-      return {
-        operandLeft: state.operandLeft?.slice(
-          0,
-          state.operandLeft.length - 1,
-        ),
-      };
+      return { value: state.value?.slice(0, -1).trim() };
     });
   },
   getResult: () => {
     set((state) => {
-      if (state.operandLeft && state.operandRight) {
-        let result: number | undefined = undefined;
+      const result = evaluate(state.value);
 
-        switch (state.operator) {
-          case '+':
-            result = +state.operandLeft + +state.operandRight;
-            break;
-          case '-':
-            result = +state.operandLeft - +state.operandRight;
-            break;
-          case 'x':
-            result = +state.operandLeft * +state.operandRight;
-            break;
-          case '/':
-            result = +state.operandLeft / +state.operandRight;
-            break;
-          default:
-            break;
-        }
-
-        return {
-          result,
-          operandLeft: undefined,
-          operandRight: undefined,
-          operator: undefined,
-        };
-      }
-
-      return state;
+      return { value: result + '' };
     });
   },
-  insert: (digit) => {
-    set((state) => {
-      if (state.operator) {
-        return {
-          operandRight: `${state.operandRight || ''}${digit}`,
-          result: undefined,
-        };
-      }
+  insert: (toInsert) => {
+    const isOperator = operators.includes(toInsert);
 
-      return {
-        operandLeft: `${state.operandLeft || ''}${digit}`,
-        result: undefined,
-      };
+    set((state) => {
+      // if user wants to insert minus at start e.g. -2
+      if (isOperator && !state.value && toInsert === '-')
+        return {
+          value: '-',
+        };
+
+      // ignore all other operators at start
+      if (isOperator && !state.value) return state;
+
+      if (state.value === '-' && isOperator) return state;
+
+      if (!state.value) return { value: toInsert };
+
+      const lastChar = state.value.trim().at(-1);
+
+      if (lastChar && operators.includes(lastChar) && isOperator)
+        return {
+          value:
+            state.value.trim().slice(0, -1) + ' ' + toInsert + ' ',
+        };
+
+      if (isOperator)
+        return {
+          value: state.value + ' ' + toInsert + ' ',
+        };
+
+      return { value: state.value + toInsert };
     });
   },
 }));
