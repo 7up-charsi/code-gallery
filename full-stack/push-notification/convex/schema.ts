@@ -1,10 +1,17 @@
 import { defineSchema, defineTable } from 'convex/server';
-import { Id } from './_generated/dataModel';
 import { v } from 'convex/values';
 
+export const subscriptionSchema = v.object({
+  endpoint: v.string(),
+  expirationTime: v.union(v.number(), v.null()),
+  keys: v.object({
+    auth: v.string(),
+    p256dh: v.string(),
+  }),
+});
+
 export default defineSchema({
-  push_notifications: defineTable({
-    subscription: v.optional(v.any()),
-    schedulerId: v.optional(v.id('_scheduled_functions')),
+  push_subscriptions: defineTable({
+    subscription: subscriptionSchema,
   }),
 });

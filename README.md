@@ -1,6 +1,6 @@
 # **Code Gallery**
 
-A curated collection of my personal projects and code examples, showcasing my skills and expertise in various technologies and domains. This repository serves as a portfolio of my coding journey, highlighting my passion for learning, creativity, and problem-solving.
+A curated collection of my personal practice projects, showcasing my skills and expertise in Web Front-end. This repository serves as a portfolio of my coding journey, highlighting my passion for learning, creativity, and problem-solving.
 
 Inside, you'll find a range of projects, from small experiments to full-fledged applications, demonstrating my abilities in:
 
@@ -11,6 +11,6 @@ Inside, you'll find a range of projects, from small experiments to full-fledged 
 - **...**
 
 **Explore my portfolio: [uxweaver](https://uxweaver.codes)**
-**Get in touch: [dev@uxweaver.codes](mailto:dev@uxweaver.codes)**
+**Get in touch: [7up.charsi@gmail.com](mailto:7up.charsi@gmail.com)**
 
 Feel free to explore, learn from, and use my code as inspiration for your own projects. Let's connect and build something amazing together!

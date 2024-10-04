@@ -1,10 +1,10 @@
 'use client';
 
-import { Id } from '@/convex/_generated/dataModel';
+import { useConvex, useMutation } from 'convex/react';
+import { Doc } from '@/convex/_generated/dataModel';
 import { Switch } from '@typeweave/react/switch';
 import { api } from '@/convex/_generated/api';
 import { Loader2Icon } from 'lucide-react';
-import { useQuery } from 'convex/react';
 import { toast } from 'react-toastify';
 import React from 'react';
 
@@ -18,138 +18,87 @@ export const PushNotification = (props: PushNotificationProps) => {
   const switchRef = React.useRef<HTMLInputElement>(null);
   const labelId = React.useId();
 
-  const [disabled, setDisabled] = React.useState(true);
   const [subscribed, setSubscribed] = React.useState(false);
-  const [loading, setLoading] = React.useState(false);
-  const [id, setId] = React.useState<Id<'push_notifications'> | null>(
-    null,
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  const subscribeMutation = useMutation(
+    api.push_subscriptions.subscribe,
   );
 
-  const query = useQuery(api.push_notification.getSubsWIthId, { id });
+  const unsubscribeMutation = useMutation(
+    api.push_subscriptions.unsubscribe,
+  );
+
+  const convexClient = useConvex();
 
   const subscribe = async () => {
+    if (!process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY)
+      throw new Error('VAPID_PUBLIC_KEY is not defined');
+
     try {
-      setLoading(true);
-      setDisabled(true);
+      setIsLoading(true);
 
       const registeration = await navigator.serviceWorker.ready;
 
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_CONVEX_ACTIONS_URL}/vapid-public-key`,
-      );
-
-      const data = (await res.json()) as {
-        vapidPublicKey: string;
-      } | null;
-
-      if (!data || !data.vapidPublicKey) {
-        toast.error('vapid key is not defined');
-        return;
-      }
-
-      const { vapidPublicKey } = data;
-
       const subscription = await registeration.pushManager.subscribe({
         userVisibleOnly: true,
-        applicationServerKey: vapidPublicKey,
+        applicationServerKey:
+          process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY,
       });
 
-      const subRes = await fetch(
-        `${process.env.NEXT_PUBLIC_CONVEX_ACTIONS_URL}/subscribe`,
-        {
-          method: 'POST',
-          body: JSON.stringify({ subscription }),
-          headers: {
-            'Content-type': 'application/json',
-          },
-        },
-      );
+      const { success, message } = await subscribeMutation({
+        subscription:
+          subscription.toJSON() as Doc<'push_subscriptions'>['subscription'],
+      });
 
-      const subData = await subRes.json();
-
-      if (!subData || !subData.success) {
-        toast.error('push notification subscription failed');
-        return;
-      }
+      if (!success) throw new Error(message);
 
       setSubscribed(true);
-      setDisabled(false);
-      setLoading(false);
-      setId(subData.id);
+      setIsLoading(false);
 
       toast.success('successfuly subscribed push notifications');
     } catch (error) {
-      setLoading(false);
-      setDisabled(false);
+      setIsLoading(false);
 
-      toast.error('Something went wrong...!');
-
-      console.log(error);
+      toast.error(
+        'Something went wrong while subscribing push notifications',
+      );
     }
   };
 
   const unsubscribe = async () => {
     try {
-      setLoading(true);
-      setDisabled(true);
+      setIsLoading(true);
 
       const registeration = await navigator.serviceWorker.ready;
 
       const subscription =
         await registeration.pushManager.getSubscription();
 
-      if (subscription) {
-        subscription.unsubscribe();
+      if (!subscription) return;
 
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_CONVEX_ACTIONS_URL}/unsubscribe`,
-          {
-            method: 'POST',
-            body: JSON.stringify({ id }),
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          },
-        );
+      const { message, success, error_type } =
+        await unsubscribeMutation({
+          endpoint: subscription.endpoint,
+        });
 
-        const data = await res.json();
+      if (!success && error_type !== 'not_found')
+        throw new Error(message);
 
-        if (!data || !data.success) {
-          toast.error('push notifications unsubscription failed');
-          return;
-        }
+      subscription.unsubscribe();
 
-        setSubscribed(false);
-        setDisabled(false);
-        setLoading(false);
-        setId(null);
+      setSubscribed(false);
+      setIsLoading(false);
 
-        toast.success('successfuly unsubscribed push notifications');
-      }
+      toast.success('push notifications unsubscribed successfully');
     } catch (error) {
-      setLoading(false);
-      setDisabled(false);
+      setIsLoading(false);
 
-      toast.error('Something went wrong...!');
-
-      console.log(error);
+      toast.error(
+        'Something went wrong while unsubscribing push notifications',
+      );
     }
   };
-
-  React.useEffect(() => {
-    if (query && !query.subscription) {
-      (async () => {
-        const registeration = await navigator.serviceWorker.ready;
-
-        const subscription =
-          await registeration.pushManager.getSubscription();
-
-        subscription?.unsubscribe();
-        setSubscribed(false);
-        setId(null);
-      })();
-    }
-  }, [query]);
 
   React.useEffect(() => {
     navigator.serviceWorker.register('/sw.js', { scope: '/' });
@@ -160,65 +109,60 @@ export const PushNotification = (props: PushNotificationProps) => {
       const subscription =
         await registeration.pushManager.getSubscription();
 
-      if (subscription) {
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_CONVEX_ACTIONS_URL}/subscription`,
-          {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              endpoint: subscription?.endpoint,
-            }),
-          },
-        );
-
-        const data = await res.json();
-
-        if (data.id) {
-          setSubscribed(true);
-          setId(data.id);
-        } else {
-          setSubscribed(false);
-          setId(null);
-          subscription.unsubscribe();
-        }
-      } else {
+      if (!subscription) {
         setSubscribed(false);
+        setIsLoading(false);
+        return;
       }
 
-      setDisabled(false);
+      const { success, subscribed } = await convexClient.query(
+        api.push_subscriptions.isSubscribed,
+        { endpoint: subscription.endpoint },
+      );
+
+      if (!success) {
+        setIsLoading(false);
+        setSubscribed(false);
+        toast.error('failed to check subscription');
+        return;
+      }
+
+      if (subscribed) {
+        setSubscribed(true);
+      } else {
+        setSubscribed(false);
+        subscription.unsubscribe();
+      }
+
+      setIsLoading(false);
     })();
-  }, []);
+  }, [convexClient]);
 
   return (
     <div className="flex items-center gap-2">
-      <label htmlFor={labelId} className="sr-only">
-        push notifications
-      </label>
-
-      {!loading ? null : <Loader2Icon className="animate-spin" />}
+      {!isLoading ? null : <Loader2Icon className="animate-spin" />}
 
       <Switch
         id={labelId}
         ref={switchRef}
         size="sm"
         checked={subscribed}
-        disabled={disabled}
+        disabled={isLoading}
         onChange={async (e) => {
           const checked = e.target.checked;
 
-          if (checked) {
-            const isPermitted =
-              await Notification.requestPermission();
+          if (!checked) {
+            unsubscribe();
+            return;
+          }
 
-            if (isPermitted === 'granted') {
-              subscribe();
-            }
+          const isPermitted = await Notification.requestPermission();
 
-            if (isPermitted === 'denied') {
-              unsubscribe();
-            }
-          } else {
+          if (isPermitted === 'granted') {
+            subscribe();
+          }
+
+          if (isPermitted === 'denied') {
             unsubscribe();
           }
         }}
