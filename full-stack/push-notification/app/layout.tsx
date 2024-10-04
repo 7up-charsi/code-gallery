@@ -1,9 +1,8 @@
 import { ConvexClientProvider } from '@/components/convex-client-provider';
-import { AppBarContent } from '../components/app-bar-content';
+import { RouteProgress } from '@repo/ui/route-progress';
 import { Bounce, ToastContainer } from 'react-toastify';
-import { AppBar } from '../components/app-bar';
 import { ThemeProvider } from 'next-themes';
-import { siteConfig } from '@/config/site';
+import { siteConfig } from '@/site.config';
 import { Inter } from 'next/font/google';
 import { portfolio } from '@repo/meta';
 import type { Metadata } from 'next';
@@ -32,17 +31,10 @@ export default function RootLayout({
       <body
         className={`${inter.className} bg-background text-foreground`}
       >
-        <ThemeProvider
-          storageKey={siteConfig.name.replaceAll(' ', '-')}
-          attribute="class"
-        >
-          <ConvexClientProvider>
-            <AppBar>
-              <AppBarContent />
-            </AppBar>
+        <ThemeProvider attribute="class">
+          <ConvexClientProvider>{children}</ConvexClientProvider>
 
-            {children}
-          </ConvexClientProvider>
+          <RouteProgress />
         </ThemeProvider>
 
         <ToastContainer

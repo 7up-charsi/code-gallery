@@ -1,6 +1,6 @@
 'use client';
 
-import { DrawerLink, DrawerLinkProps } from '@repo/ui';
+import { DrawerLink, DrawerLinkProps } from '@repo/ui/drawer-link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
 

@@ -1,8 +1,8 @@
 import { mutation, query } from './_generated/server';
-import { ConvexError, v } from 'convex/values';
 import { subscriptionSchema } from './schema';
 import { Doc } from './_generated/dataModel';
 import { internal } from './_generated/api';
+import { v } from 'convex/values';
 
 export const getAllSubscriptions = query({
   handler: async (ctx) => {

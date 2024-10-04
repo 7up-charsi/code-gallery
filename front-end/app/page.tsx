@@ -14,7 +14,7 @@ export default function LandingPage() {
       <p className="mt-5 text-lg font-medium">{portfolio.tagline}</p>
 
       <p className="mt-10 text-balance text-center">
-        To view my skills, please visit my{' '}
+        To view my all skills, please visit my{' '}
         <Link
           href={process.env.NEXT_PUBLIC_PORTFOLIO_URL}
           target="_blank"

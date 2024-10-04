@@ -1,4 +1,6 @@
-import { Branding, LocaleSwitcher, ThemeSwitcher } from '@repo/ui';
+import { LocaleSwitcher } from '@repo/ui/locale-switcher';
+import { ThemeSwitcher } from '@repo/ui/theme-switcher';
+import { Branding } from '@repo/ui/branding';
 import { siteConfig } from '../site.config';
 import React from 'react';
 

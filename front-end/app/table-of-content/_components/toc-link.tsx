@@ -1,6 +1,6 @@
 'use client';
 
-import { DrawerLink, DrawerLinkProps } from '@repo/ui';
+import { DrawerLink, DrawerLinkProps } from '@repo/ui/drawer-link';
 import React from 'react';
 
 interface TocLinkProps extends DrawerLinkProps {

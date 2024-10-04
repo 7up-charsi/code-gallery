@@ -1,6 +1,7 @@
+import { ThemeSwitcher } from '@repo/ui/theme-switcher';
 import { navLinks } from '../_constants/nav-links';
-import { Branding, ThemeSwitcher } from '@repo/ui';
 import { MobileDrawer } from './mobile-drawer';
+import { Branding } from '@repo/ui/branding';
 import { siteConfig } from '../site.config';
 import { NavLink } from './nav-link';
 import React from 'react';

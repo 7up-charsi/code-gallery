@@ -1,8 +1,9 @@
 'use client';
 
 import { useScroll } from '@typeweave/react/use-scroll';
+import { ThemeSwitcher } from '@repo/ui/theme-switcher';
 import useEmblaCarousel from 'embla-carousel-react';
-import { Branding, ThemeSwitcher } from '@repo/ui';
+import { Branding } from '@repo/ui/branding';
 import { siteConfig } from '../site.config';
 import Link from 'next/link';
 import React from 'react';

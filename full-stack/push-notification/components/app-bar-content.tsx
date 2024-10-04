@@ -1,5 +1,6 @@
-import { Branding, ThemeSwitcher } from '@repo/ui';
-import { siteConfig } from '@/config/site';
+import { ThemeSwitcher } from '@repo/ui/theme-switcher';
+import { Branding } from '@repo/ui/branding';
+import { siteConfig } from '@/site.config';
 import React from 'react';
 
 interface AppBarContentProps {}
