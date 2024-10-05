@@ -10,6 +10,10 @@
     "./*": {
       "import": "./src/*.tsx",
       "types": "./src/*.tsx"
+    },
+    "./skill-landing-page-content": {
+      "import": "./src/skill-landing-page-content/index.ts",
+      "types": "./src/skill-landing-page-content/index.ts"
     }
   }
 }

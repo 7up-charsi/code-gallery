@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="eng" dir="ltr">
       <body
-        className={`${inter.className} bg-background text-foreground`}
+        className={`${inter.className} bg-background text-foreground mx-auto max-w-screen-2xl`}
       >
         <ThemeProvider attribute="class">
           <ConvexClientProvider>{children}</ConvexClientProvider>
