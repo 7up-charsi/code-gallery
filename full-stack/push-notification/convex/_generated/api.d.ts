@@ -15,9 +15,7 @@ import type {
   FunctionReference,
 } from "convex/server";
 import type * as actions from "../actions.js";
-import type * as crons from "../crons.js";
-import type * as http from "../http.js";
-import type * as push_notification from "../push_notification.js";
+import type * as push_subscriptions from "../push_subscriptions.js";
 
 /**
  * A utility for referencing Convex functions in your app's API.
@@ -29,9 +27,7 @@ import type * as push_notification from "../push_notification.js";
  */
 declare const fullApi: ApiFromModules<{
   actions: typeof actions;
-  crons: typeof crons;
-  http: typeof http;
-  push_notification: typeof push_notification;
+  push_subscriptions: typeof push_subscriptions;
 }>;
 export declare const api: FilterApi<
   typeof fullApi,

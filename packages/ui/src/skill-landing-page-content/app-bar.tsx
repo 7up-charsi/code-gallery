@@ -4,7 +4,7 @@ import { useScroll } from '@typeweave/react/use-scroll';
 import React from 'react';
 
 interface AppBarProps {
-  children?: React.ReactNode;
+  children: React.ReactNode;
 }
 
 const displayName = 'AppBar';

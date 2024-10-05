@@ -3,9 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "license": "MIT",
-  "main": "./src/index.ts",
-  "types": "./src/index.ts",
   "scripts": {
     "typecheck": "tsc --noEmit"
+  },
+  "exports": {
+    "./*": {
+      "import": "./src/*.tsx",
+      "types": "./src/*.tsx"
+    },
+    "./skill-landing-page-content": {
+      "import": "./src/skill-landing-page-content/index.ts",
+      "types": "./src/skill-landing-page-content/index.ts"
+    }
   }
 }

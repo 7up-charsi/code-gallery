@@ -9,7 +9,7 @@ const config: Config = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     '../node_modules/@typeweave/react/dist/**/*.styles.js',
-    '../node_modules/@repo/ui/src/*.tsx',
+    '../node_modules/@repo/ui/src/**/*.tsx',
   ],
   plugins: [
     typeweave({

@@ -6,10 +6,10 @@ import { useIsMounted } from '@typeweave/react/use-is-mounted';
 import { navLinks } from '../_constants/nav-links';
 import { Button } from '@typeweave/react/button';
 import { MenuIcon, XIcon } from 'lucide-react';
+import { Branding } from '@repo/ui/branding';
 import { siteConfig } from '../site.config';
 import { createPortal } from 'react-dom';
 import { NavLink } from './nav-link';
-import { Branding } from '@repo/ui';
 import React from 'react';
 
 interface SideBarProps {}

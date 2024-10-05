@@ -1,17 +1,9 @@
-import { Branding } from '@repo/ui';
+import { Branding } from '@repo/ui/branding';
 import { NavLink } from '@/components/nav-link';
 import { Player } from '@/components/player';
 import { RightSidebar } from '@/components/right-sidebar';
 import { User } from '@/components/user';
 import { sidebarLinks } from '@/constants';
-import {
-  Button,
-  DrawerContent,
-  DrawerOverlay,
-  DrawerPortal,
-  DrawerRoot,
-  DrawerTrigger,
-} from '@typeweave/react';
 import { MenuIcon } from 'lucide-react';
 
 interface RootLayoutProps {

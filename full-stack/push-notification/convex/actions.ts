@@ -1,55 +1,82 @@
 'use node';
 
-import { action, internalAction } from './_generated/server';
-import { api } from './_generated/api';
+import { internalAction } from './_generated/server';
+import { api, internal } from './_generated/api';
+import { ConvexError, v } from 'convex/values';
 import webPush from 'web-push';
 
-export const vapidPublicKey = action({
-  handler: () => {
-    return process.env.VAPID_PUBLIC_KEY!;
-  },
-});
-
 export const sendNotification = internalAction({
-  handler: async (ctx) => {
-    webPush.setVapidDetails(
-      'https://example.com/',
-      process.env.VAPID_PUBLIC_KEY!,
-      process.env.VAPID_PRIVATE_KEY!,
-    );
+  args: {
+    id: v.id('push_subscriptions'),
+    reschedule: v.number(),
+  },
+  handler: async (ctx, args) => {
+    if (
+      !process.env.VAPID_SUBJECT_EMAIL ||
+      !process.env.VAPID_PRIVATE_KEY ||
+      !process.env.VAPID_PUBLIC_KEY
+    )
+      throw new ConvexError('any VAPID detail ia not defined');
 
-    const docs = await ctx.runQuery(
-      api.push_notification.subscriptions,
-    );
+    try {
+      const doc = await ctx.runQuery(
+        api.push_subscriptions.getSubscription,
+        { id: args.id },
+      );
 
-    docs.forEach(async ({ _id, subscription }) => {
-      try {
-        if (!subscription) return; // do dont any action because it will be removed by cron job which runs every 24 hours
+      if (!doc) return;
 
-        await webPush.sendNotification(
-          subscription as never,
-          JSON.stringify({
-            title: 'Service Worker',
-            text: 'Push Notification Subscription Management',
-            icon: '/favicon.svg',
-            badge: '/favicon.svg',
-            vibrate: [100, 50, 100],
-          }),
-        );
+      await webPush.sendNotification(
+        doc.subscription,
+        JSON.stringify({
+          title: 'Push Notification',
+          text: 'Service Worker Push Subscription Management',
+          icon: '/favicon.svg',
+          badge: '/favicon.svg',
+          vibrate: [100, 50, 100],
+        }),
+        {
+          vapidDetails: {
+            subject: `mailto:${process.env.VAPID_SUBJECT_EMAIL}`,
+            privateKey: process.env.VAPID_PRIVATE_KEY,
+            publicKey: process.env.VAPID_PUBLIC_KEY,
+          },
+        },
+      );
 
-        console.log(
-          'Push Notification sent to ' + subscription.endpoint,
-        );
-      } catch (error) {
-        await ctx.runMutation(api.push_notification.unsubscribe, {
-          id: _id,
-        });
+      console.log(
+        'Push Notification sent to ' + doc.subscription.endpoint,
+      );
 
-        console.log(
-          'ERROR in sending Push Notification, subscription removed ' +
-            subscription.endpoint,
+      const reschedule = args.reschedule;
+
+      if (reschedule < 10) {
+        await ctx.scheduler.runAfter(
+          60 * 1000,
+          internal.actions.sendNotification,
+          {
+            id: args.id,
+            reschedule: reschedule + 1,
+          },
         );
       }
-    });
+
+      if (reschedule >= 10) {
+        await ctx.runMutation(api.push_subscriptions.unsubscribe, {
+          id: args.id,
+        });
+      }
+    } catch (error) {
+      await ctx.runMutation(api.push_subscriptions.unsubscribe, {
+        id: args.id,
+      });
+
+      console.log(
+        'ERROR in sending Push Notification, subscription removed ' +
+          args.id,
+      );
+
+      console.error(error);
+    }
   },
 });

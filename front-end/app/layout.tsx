@@ -1,4 +1,4 @@
-import { RouteProgress } from '@/components/route-progress';
+import { RouteProgress } from '@repo/ui/route-progress';
 import { Bounce, ToastContainer } from 'react-toastify';
 import { ThemeProvider } from 'next-themes';
 import { siteConfig } from '@/site.config';

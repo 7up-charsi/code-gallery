@@ -1,6 +1,6 @@
 import { ThemeSwitcher } from '@repo/ui/theme-switcher';
 import { Branding } from '@repo/ui/branding';
-import { siteConfig } from '../site.config';
+import { portfolio } from '@repo/meta';
 import React from 'react';
 
 interface AppBarContentProps {}
@@ -11,10 +11,8 @@ export const AppBarContent = (props: AppBarContentProps) => {
   const {} = props;
 
   return (
-    <div className="flex h-16 items-center px-5 transition-colors md:px-8">
-      <Branding href={siteConfig.pathname}>
-        {siteConfig.name}
-      </Branding>
+    <div className="flex h-16 items-center gap-3 px-5 md:px-8">
+      <Branding href={portfolio.url}>{portfolio.name}</Branding>
 
       <div className="grow"></div>
 

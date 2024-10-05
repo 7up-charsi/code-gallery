@@ -1,7 +1,6 @@
 'use client';
 
-import { PortfolioHeader } from '@/components/portfolio-header';
-import { Branding } from '@repo/ui';
+import { Branding } from '@repo/ui/branding';
 import { siteConfig } from '../site.config';
 import React from 'react';
 
@@ -38,7 +37,7 @@ export const AppBar = (props: AppBarProps) => {
   return (
     <header
       data-scroll={isScrolled}
-      className="sticky -top-10 bg-background data-[scroll=true]:shadow-md"
+      className="bg-background sticky -top-10 data-[scroll=true]:shadow-md"
     >
       <PortfolioHeader />
 
@@ -47,9 +46,9 @@ export const AppBar = (props: AppBarProps) => {
 
         <div className="grow"></div>
 
-        <div className="h-7 w-12 rounded bg-muted-3"></div>
-        <div className="ml-2 h-7 w-12 rounded bg-muted-3"></div>
-        <div className="ml-2 h-7 w-12 rounded bg-muted-3"></div>
+        <div className="bg-muted-3 h-7 w-12 rounded"></div>
+        <div className="bg-muted-3 ml-2 h-7 w-12 rounded"></div>
+        <div className="bg-muted-3 ml-2 h-7 w-12 rounded"></div>
       </div>
     </header>
   );
