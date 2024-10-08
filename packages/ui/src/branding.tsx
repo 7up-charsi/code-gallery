@@ -1,5 +1,4 @@
 import Link, { LinkProps } from 'next/link';
-import { twMerge } from 'tailwind-merge';
 import React from 'react';
 
 interface BrandingProps extends LinkProps {
@@ -15,10 +14,7 @@ export const Branding = (props: BrandingProps) => {
   return (
     <Link
       {...restProps}
-      className={twMerge(
-        'text-muted-12 ring-focus whitespace-nowrap text-lg font-normal capitalize outline-none focus-visible:ring-2',
-        className,
-      )}
+      className="text-muted-12 ring-focus whitespace-nowrap text-lg font-normal capitalize outline-none focus-visible:ring-2"
     />
   );
 };
