@@ -91,6 +91,7 @@ export const TypewriterEffect = () => {
 
     return () => {
       clearTimeout(typeTimerRef.current);
+      clearTimeout(deleteTimerRef.current);
     };
   }, []);
 
