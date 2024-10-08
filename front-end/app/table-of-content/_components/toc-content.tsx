@@ -6,13 +6,9 @@ import { siteConfig } from '../site.config';
 import { TocLink } from './toc-link';
 import React from 'react';
 
-interface TocContentProps {}
-
 const displayName = 'TocContent';
 
-export const TocContent = (props: TocContentProps) => {
-  const {} = props;
-
+export const TocContent = () => {
   const [headings, setHeadings] = React.useState<
     HTMLHeadingElement[]
   >([]);

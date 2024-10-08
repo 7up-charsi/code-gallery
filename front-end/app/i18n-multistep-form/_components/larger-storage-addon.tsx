@@ -4,8 +4,6 @@ import { useDictionaryCtx } from './dictionary-provider';
 import { AddonCard } from './addon-card';
 import React from 'react';
 
-interface LargerStorageAddonProps {}
-
 const displayName = 'LargerStorageAddon';
 
 const id = '5d2d9e8b-8d0b-4c5a-8416-dcbfbe0a18a1';
@@ -14,11 +12,7 @@ const price = 20;
 const inputId = '3f4a5b6c-7d8e-9f0a-1b2c-3d4e5f6a7b8c';
 const descId = '2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e';
 
-export const LargerStorageAddon = (
-  props: LargerStorageAddonProps,
-) => {
-  const {} = props;
-
+export const LargerStorageAddon = () => {
   const dictionary = useDictionaryCtx(displayName);
 
   const { setValue } = useFormContext<FormValues>();

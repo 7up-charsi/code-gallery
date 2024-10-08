@@ -16,15 +16,11 @@ import { siteConfig } from '../site.config';
 import { NavLink } from './nav-link';
 import React from 'react';
 
-interface MobileDrawerProps {}
-
 const displayName = 'MobileDrawer';
 
 export const useMobileDrawerState = createDialogState();
 
-export const MobileDrawer = (props: MobileDrawerProps) => {
-  const {} = props;
-
+export const MobileDrawer = () => {
   const { open, handleClose, handleOpenChange } =
     useMobileDrawerState();
 

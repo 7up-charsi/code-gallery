@@ -5,13 +5,9 @@ import { MinusIcon, PlusIcon } from 'lucide-react';
 import { useCart } from '../_hooks/cart';
 import React from 'react';
 
-interface AmountButtonsProps {}
-
 const displayName = 'AmountButtons';
 
-export const AmountButtons = (props: AmountButtonsProps) => {
-  const {} = props;
-
+export const AmountButtons = () => {
   const { updateInputValue, inputValue } = useCart();
 
   return (

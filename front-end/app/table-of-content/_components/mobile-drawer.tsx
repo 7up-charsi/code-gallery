@@ -14,15 +14,11 @@ import { Button } from '@typeweave/react/button';
 import { TocContent } from './toc-content';
 import React from 'react';
 
-interface MobileDrawerProps {}
-
 const displayName = 'MobileDrawer';
 
 export const useMobileDrawerState = createDialogState();
 
-export const MobileDrawer = (props: MobileDrawerProps) => {
-  const {} = props;
-
+export const MobileDrawer = () => {
   const { open, handleClose, handleOpenChange } =
     useMobileDrawerState();
 

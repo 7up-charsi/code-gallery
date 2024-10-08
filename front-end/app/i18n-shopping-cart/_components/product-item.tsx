@@ -5,11 +5,9 @@ import { AddToCart } from './add-to-cart';
 import Image from 'next/image';
 import React from 'react';
 
-interface ProductItemProps extends ProductItemType {}
-
 const displayName = 'ProductItem';
 
-export const ProductItem = (props: ProductItemProps) => {
+export const ProductItem = (props: ProductItemType) => {
   const { ...item } = props;
 
   const titleId = React.useId();

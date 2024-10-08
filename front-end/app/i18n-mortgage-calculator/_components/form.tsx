@@ -55,13 +55,9 @@ export type FormValues = z.input<typeof formSchema> & {
   interestOnlyPayment?: string;
 };
 
-interface FormProps {}
-
 const displayName = 'Form';
 
-export const Form = (props: FormProps) => {
-  const {} = props;
-
+export const Form = () => {
   const formRef = React.useRef<HTMLFormElement>(null);
 
   const { dictionary } = useDictionaryCtx(displayName);
@@ -149,7 +145,9 @@ export const Form = (props: FormProps) => {
             disabled={isSubmitting}
             className="w-full"
             error={!!error}
-            helperText={dictionary.zod?.[error?.message!] ?? ' '}
+            helperText={
+              error?.message ? dictionary.zod?.[error.message] : ' '
+            }
           />
         )}
       />
@@ -175,7 +173,9 @@ export const Form = (props: FormProps) => {
             }
             className="w-full"
             error={!!error}
-            helperText={dictionary.zod?.[error?.message!] ?? ' '}
+            helperText={
+              error?.message ? dictionary.zod?.[error.message] : ' '
+            }
           />
         )}
       />
@@ -199,7 +199,9 @@ export const Form = (props: FormProps) => {
             endContent={<PercentIcon />}
             className="w-full"
             error={!!error}
-            helperText={dictionary.zod?.[error?.message!] ?? ' '}
+            helperText={
+              error?.message ? dictionary.zod?.[error.message] : ' '
+            }
           />
         )}
       />
@@ -220,8 +222,8 @@ export const Form = (props: FormProps) => {
             disabled={disabled}
             getOptionLabel={(option) =>
               option === 'repayment'
-                ? dictionary.typeOptions?.repayment!
-                : dictionary.typeOptions?.interestOnly!
+                ? dictionary.typeOptions?.repayment || ' '
+                : dictionary.typeOptions?.interestOnly || ' '
             }
             renderInput={(props) => (
               <Input
@@ -236,7 +238,9 @@ export const Form = (props: FormProps) => {
                 label={dictionary.type}
                 error={!!errors.type}
                 helperText={
-                  dictionary.zod?.[errors.type?.message!] ?? ' '
+                  errors.type?.message
+                    ? dictionary.zod?.[errors.type.message]
+                    : ' '
                 }
                 className="w-full"
               />

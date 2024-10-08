@@ -17,13 +17,9 @@ import { toast } from 'react-toastify';
 import { CartItem } from './cart-item';
 import React from 'react';
 
-interface CartDrawerProps {}
-
 const displayName = 'CartDrawer';
 
-export const CartDrawer = (props: CartDrawerProps) => {
-  const {} = props;
-
+export const CartDrawer = () => {
   const titleId = React.useId();
 
   const { amount, clearCart } = useCart();

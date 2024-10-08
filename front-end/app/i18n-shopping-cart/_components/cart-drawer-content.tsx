@@ -7,13 +7,9 @@ import { useCart } from '../_hooks/cart';
 import { CartItem } from './cart-item';
 import React from 'react';
 
-interface CartDrawerContentProps {}
-
 const displayName = 'CartDrawerContent';
 
-export const CartDrawerContent = (props: CartDrawerContentProps) => {
-  const {} = props;
-
+export const CartDrawerContent = () => {
   const titleId = React.useId();
   const descId = React.useId();
 

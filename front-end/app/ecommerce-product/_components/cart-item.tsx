@@ -4,13 +4,9 @@ import { XIcon } from 'lucide-react';
 import Image from 'next/image';
 import React from 'react';
 
-interface CartItemProps {}
-
 const displayName = 'CartItem';
 
-export const CartItem = (props: CartItemProps) => {
-  const {} = props;
-
+export const CartItem = () => {
   const titleId = React.useId();
 
   const { amount, clearCart } = useCart();

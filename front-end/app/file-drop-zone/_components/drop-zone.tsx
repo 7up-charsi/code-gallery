@@ -7,13 +7,9 @@ import { toast } from 'react-toastify';
 import { v4 as uuid } from 'uuid';
 import React from 'react';
 
-interface DropZoneProps {}
-
 const displayName = 'DropZone';
 
-export const DropZone = (props: DropZoneProps) => {
-  const {} = props;
-
+export const DropZone = () => {
   const inputRef = React.useRef<HTMLInputElement>(null);
 
   const [uploadLoading, setUploadLoading] = React.useState(false);

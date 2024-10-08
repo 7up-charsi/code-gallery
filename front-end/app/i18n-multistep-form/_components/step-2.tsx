@@ -10,13 +10,9 @@ import { CircleIcon } from 'lucide-react';
 import Image from 'next/image';
 import React from 'react';
 
-interface Step2Props {}
-
 const displayName = 'Step2';
 
-export const Step2 = (props: Step2Props) => {
-  const {} = props;
-
+export const Step2 = () => {
   const switchId = React.useId();
 
   const dictionary = useDictionaryCtx(displayName);
@@ -104,11 +100,10 @@ export const Step2 = (props: Step2Props) => {
                 htmlFor={inputId}
                 className="font-semibold capitalize"
               >
-                {/* @ts-ignore */}
                 {dictionary.step2.fields[label].label}
               </label>
               <span id={descId} className="text-muted-11/80 text-sm">
-                ${price}/{/* @ts-ignore */}
+                ${price}/
                 {dictionary.step2.fields.billing[plan.billing]}
               </span>
             </div>

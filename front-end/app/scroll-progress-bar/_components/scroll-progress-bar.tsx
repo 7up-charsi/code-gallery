@@ -3,13 +3,9 @@
 import { useScroll } from '@typeweave/react/use-scroll';
 import React from 'react';
 
-interface ScrollProgressBarProps {}
-
 const displayName = 'ScrollProgressBar';
 
-export const ScrollProgressBar = (props: ScrollProgressBarProps) => {
-  const {} = props;
-
+export const ScrollProgressBar = () => {
   const [{ scrollYProgress }] = useScroll();
 
   return !scrollYProgress ? null : (

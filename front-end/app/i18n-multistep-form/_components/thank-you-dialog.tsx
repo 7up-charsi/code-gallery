@@ -16,15 +16,11 @@ import { useFormContext } from 'react-hook-form';
 import { SmileIcon, XIcon } from 'lucide-react';
 import React from 'react';
 
-interface ThankYouDialogProps {}
-
 const displayName = 'ThankYouDialog';
 
 export const useThankYouDialogState = createDialogState();
 
-export const ThankYouDialog = (props: ThankYouDialogProps) => {
-  const {} = props;
-
+export const ThankYouDialog = () => {
   const { reset } = useFormContext<FormValues>();
 
   const { open, handleOpenChange } = useThankYouDialogState();

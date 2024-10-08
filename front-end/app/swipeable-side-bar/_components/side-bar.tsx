@@ -12,13 +12,9 @@ import { createPortal } from 'react-dom';
 import { NavLink } from './nav-link';
 import React from 'react';
 
-interface SideBarProps {}
-
 const displayName = 'SideBar';
 
-export const SideBar = (props: SideBarProps) => {
-  const {} = props;
-
+export const SideBar = () => {
   const [open, setOpen] = React.useState(false);
 
   const isPanningStartRef = React.useRef(false);

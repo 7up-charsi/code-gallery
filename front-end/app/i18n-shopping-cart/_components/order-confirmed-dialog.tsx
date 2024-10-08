@@ -12,17 +12,11 @@ import { Button } from '@typeweave/react/button';
 import { SmileIcon, XIcon } from 'lucide-react';
 import React from 'react';
 
-interface OrderConfirmedDialogProps {}
-
 const displayName = 'OrderConfirmedDialog';
 
 export const useOrderConfirmedDialogState = createDialogState();
 
-export const OrderConfirmedDialog = (
-  props: OrderConfirmedDialogProps,
-) => {
-  const {} = props;
-
+export const OrderConfirmedDialog = () => {
   const { open, handleOpenChange, handleClose } =
     useOrderConfirmedDialogState();
 

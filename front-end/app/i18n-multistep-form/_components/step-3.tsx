@@ -6,13 +6,9 @@ import { LargerStorageAddon } from './larger-storage-addon';
 import { useFormSteps } from '../_hooks/form-steps';
 import React from 'react';
 
-interface Step3Props {}
-
 const displayName = 'Step3';
 
-export const Step3 = (props: Step3Props) => {
-  const {} = props;
-
+export const Step3 = () => {
   const { currentStep } = useFormSteps();
 
   if (currentStep !== 3) return null;

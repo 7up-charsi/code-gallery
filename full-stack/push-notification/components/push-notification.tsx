@@ -8,13 +8,9 @@ import { Loader2Icon } from 'lucide-react';
 import { toast } from 'react-toastify';
 import React from 'react';
 
-interface PushNotificationProps {}
-
 const displayName = 'PushNotification';
 
-export const PushNotification = (props: PushNotificationProps) => {
-  const {} = props;
-
+export const PushNotification = () => {
   const switchRef = React.useRef<HTMLInputElement>(null);
   const labelId = React.useId();
 
@@ -57,6 +53,7 @@ export const PushNotification = (props: PushNotificationProps) => {
       setIsLoading(false);
 
       toast.success('successfuly subscribed push notifications');
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       setIsLoading(false);
 
@@ -91,6 +88,7 @@ export const PushNotification = (props: PushNotificationProps) => {
       setIsLoading(false);
 
       toast.success('push notifications unsubscribed successfully');
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       setIsLoading(false);
 

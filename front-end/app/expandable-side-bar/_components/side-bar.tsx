@@ -21,13 +21,9 @@ import { siteConfig } from '../site.config';
 import { NavLink } from './nav-link';
 import React from 'react';
 
-interface SideBarProps {}
-
 const displayName = 'SideBar';
 
-export const SideBar = (props: SideBarProps) => {
-  const {} = props;
-
+export const SideBar = () => {
   const [isExpanded, setIsExpanded] = React.useState(false);
 
   React.useEffect(() => {

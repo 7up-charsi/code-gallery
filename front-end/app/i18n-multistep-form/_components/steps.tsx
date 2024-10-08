@@ -5,13 +5,9 @@ import { useDictionaryCtx } from './dictionary-provider';
 import { useFormSteps } from '../_hooks/form-steps';
 import React from 'react';
 
-interface StepsProps {}
-
 const displayName = 'Steps';
 
-export const Steps = (props: StepsProps) => {
-  const {} = props;
-
+export const Steps = () => {
   const dictionary = useDictionaryCtx(displayName);
 
   const { currentStep, updateStep } = useFormSteps();
@@ -37,7 +33,7 @@ export const Steps = (props: StepsProps) => {
       </div>
 
       <h1 className="mt-5 text-2xl font-medium capitalize">
-        {/* @ts-ignore */}
+        {/* @ts-expect-error '`step${number}`' can't be used to index type 'Dictionary'. */}
         {dictionary[`step${currentStep}`].title}
       </h1>
     </aside>

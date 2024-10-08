@@ -2,13 +2,9 @@
 
 import React from 'react';
 
-interface RouteProgressProps {}
-
 const displayName = 'RouteProgress';
 
-export const RouteProgress = (props: RouteProgressProps) => {
-  const {} = props;
-
+export const RouteProgress = () => {
   const progressRef = React.useRef(0);
   const doneAnimationFrameRef = React.useRef(0);
   const startAnimationFrameRef = React.useRef(0);
@@ -154,7 +150,9 @@ export const RouteProgress = (props: RouteProgressProps) => {
 
           start();
         }
-      } catch (err) {
+
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      } catch (error) {
         done();
       }
     };

@@ -4,13 +4,11 @@ import { DrawerLink, DrawerLinkProps } from '@repo/ui/drawer-link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
 
-interface NavLinkProps extends DrawerLinkProps {}
-
 const displayName = 'NavLink';
 
 export const NavLink = React.forwardRef<
   HTMLAnchorElement,
-  NavLinkProps
+  DrawerLinkProps
 >((props, forwardedRef) => {
   const { href, ...restProps } = props;
 

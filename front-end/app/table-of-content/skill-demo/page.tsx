@@ -139,7 +139,7 @@ export default function Home() {
               key={i}
               className="data-[depth=3]:pl-5"
             >
-              {/* @ts-ignore */}
+              {/* @ts-expect-error Property 'children' does not exist on type 'IntrinsicAttributes' */}
               <Comp
                 data-depth={depth}
                 id={`${i + 1}`}

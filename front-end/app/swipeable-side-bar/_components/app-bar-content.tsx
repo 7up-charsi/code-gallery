@@ -6,13 +6,9 @@ import { SideBar } from './side-bar';
 import { NavLink } from './nav-link';
 import React from 'react';
 
-interface AppBarContentProps {}
-
 const displayName = 'AppBarContent';
 
-export const AppBarContent = (props: AppBarContentProps) => {
-  const {} = props;
-
+export const AppBarContent = () => {
   return (
     <div className="flex h-16 items-center gap-3 px-5 md:px-8">
       <Branding href={siteConfig.pathname}>

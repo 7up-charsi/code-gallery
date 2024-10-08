@@ -9,13 +9,9 @@ import { CartDrawerContent } from './cart-drawer-content';
 import { CartDrawerButton } from './cart-drawer-button';
 import React from 'react';
 
-interface CartDrawerProps {}
-
 const displayName = 'CartDrawer';
 
-export const CartDrawer = (props: CartDrawerProps) => {
-  const {} = props;
-
+export const CartDrawer = () => {
   return (
     <DrawerRoot>
       <CartDrawerButton />

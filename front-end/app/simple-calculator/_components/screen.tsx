@@ -3,13 +3,9 @@
 import { useCalculator } from '../_hooks/calculator';
 import React from 'react';
 
-interface ScreenProps {}
-
 const displayName = 'Screen';
 
-export const Screen = (props: ScreenProps) => {
-  const {} = props;
-
+export const Screen = () => {
   const { value } = useCalculator();
 
   return (

@@ -5,8 +5,6 @@ import useEmblaCarousel from 'embla-carousel-react';
 import Image from 'next/image';
 import React from 'react';
 
-interface ImageSliderProps {}
-
 const displayName = 'ImageSlider';
 
 const urls = [
@@ -16,9 +14,7 @@ const urls = [
   '/assets/ecommerce-product/image-product-4.jpg',
 ];
 
-export const ImageSlider = (props: ImageSliderProps) => {
-  const {} = props;
-
+export const ImageSlider = () => {
   const [emblaRef] = useEmblaCarousel({
     containScroll: 'trimSnaps',
     dragFree: true,

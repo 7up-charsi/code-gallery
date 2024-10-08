@@ -8,13 +8,9 @@ import { siteConfig } from '../site.config';
 import Link from 'next/link';
 import React from 'react';
 
-interface AppBarProps {}
-
 const displayName = 'AppBar';
 
-export const AppBar = (props: AppBarProps) => {
-  const {} = props;
-
+export const AppBar = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ dragFree: true });
 
   const [activeSectionId, setActiveSectionId] = React.useState(0);

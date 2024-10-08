@@ -7,13 +7,9 @@ import { useFormContext } from 'react-hook-form';
 import { Input } from '@typeweave/react/input';
 import React from 'react';
 
-interface Step1Props {}
-
 const displayName = 'Step1';
 
-export const Step1 = (props: Step1Props) => {
-  const {} = props;
-
+export const Step1 = () => {
   const {
     register,
     formState: { errors },
@@ -33,7 +29,11 @@ export const Step1 = (props: Step1Props) => {
         placeholder="e.g. Lorem Ipsum"
         className="w-full"
         error={!!errors.name}
-        helperText={dictionary.errors[errors.name?.message!] ?? ' '}
+        helperText={
+          errors.name?.message
+            ? dictionary.errors[errors.name?.message]
+            : ' '
+        }
       />
 
       <Input
@@ -43,7 +43,11 @@ export const Step1 = (props: Step1Props) => {
         placeholder="e.g. lorem.ipsum@lorem.com"
         className="w-full"
         error={!!errors.email}
-        helperText={dictionary.errors[errors.email?.message!] ?? ' '}
+        helperText={
+          errors.email?.message
+            ? dictionary.errors[errors.email?.message]
+            : ' '
+        }
       />
 
       <Input
@@ -54,7 +58,9 @@ export const Step1 = (props: Step1Props) => {
         className="w-full"
         error={!!errors.phoneNumber}
         helperText={
-          dictionary.errors[errors.phoneNumber?.message!] ?? ' '
+          errors.phoneNumber?.message
+            ? dictionary.errors[errors.phoneNumber?.message]
+            : ' '
         }
       />
     </div>

@@ -94,7 +94,9 @@ export const Form = (props: FormProps) => {
         error={!!errors.firstName}
         disabled={isSubmitting}
         helperText={
-          dictionary.zod?.[errors.firstName?.message!] ?? ' '
+          errors.firstName?.message
+            ? dictionary.zod?.[errors.firstName.message]
+            : ' '
         }
         className="w-full"
       />
@@ -106,7 +108,9 @@ export const Form = (props: FormProps) => {
         error={!!errors.lastName}
         disabled={isSubmitting}
         helperText={
-          dictionary.zod?.[errors.lastName?.message!] ?? ' '
+          errors.lastName?.message
+            ? dictionary.zod?.[errors.lastName?.message]
+            : ' '
         }
         className="w-full"
       />
@@ -118,7 +122,11 @@ export const Form = (props: FormProps) => {
         {...register('email')}
         disabled={isSubmitting}
         error={!!errors.email}
-        helperText={dictionary.zod?.[errors.email?.message!] ?? ' '}
+        helperText={
+          errors.email?.message
+            ? dictionary.zod?.[errors.email?.message]
+            : ' '
+        }
         className="w-full"
       />
 
@@ -154,7 +162,9 @@ export const Form = (props: FormProps) => {
                 label={dictionary.queryType}
                 error={!!errors.queryType}
                 helperText={
-                  dictionary.zod?.[errors.queryType?.message!] ?? ' '
+                  errors.queryType?.message
+                    ? dictionary.zod?.[errors.queryType?.message]
+                    : ' '
                 }
                 className="w-full"
               />
@@ -170,7 +180,11 @@ export const Form = (props: FormProps) => {
         {...register('message')}
         disabled={isSubmitting}
         error={!!errors.message}
-        helperText={dictionary.zod?.[errors.message?.message!] ?? ' '}
+        helperText={
+          errors.message?.message
+            ? dictionary.zod?.[errors.message?.message]
+            : ' '
+        }
         className="w-full md:col-span-2"
         classNames={{ textarea: 'min-h-60' }}
       />

@@ -6,13 +6,9 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import React from 'react';
 
-interface Section3Props {}
-
 const displayName = 'Section3';
 
-export const Section3 = (props: Section3Props) => {
-  const {} = props;
-
+export const Section3 = () => {
   const [{ scrollY }] = useScroll();
 
   const imageY = transform(scrollY, [40, 1550], [-500, 0]);
