@@ -11,6 +11,21 @@ const config: Config = {
     '../node_modules/@typeweave/react/dist/**/*.styles.js',
     '../node_modules/@repo/ui/src/**/*.tsx',
   ],
+  theme: {
+    extend: {
+      animation: {
+        'blink-cursor':
+          'blink-cursor var(--cursor-blinking-duration) cubic-bezier(0.4, 0, 0.6, 1) infinite',
+      },
+      keyframes: {
+        'blink-cursor': {
+          '50%': {
+            opacity: '0.5',
+          },
+        },
+      },
+    },
+  },
   plugins: [
     typeweave({
       colorMode: 'rgb',
