@@ -7,7 +7,7 @@ import {
   DrawerRoot,
   DrawerTrigger,
 } from '@typeweave/react/drawer';
-import { createDialogState } from '@typeweave/react-utils';
+import { createDialogState } from '@typeweave/react-utils/dialog-state';
 import { navLinks } from '../_constants/nav-links';
 import { Button } from '@typeweave/react/button';
 import { MenuIcon, XIcon } from 'lucide-react';

@@ -6,6 +6,7 @@ import {
   getTotalPayment,
 } from '../_utils/mortgage';
 import { ResultDialog, useResultDialogState } from './result-dialog';
+import { mergeRefs } from '@typeweave/react-utils/merge-refs';
 import { Input, NumberInput } from '@typeweave/react/input';
 import { useDictionaryCtx } from './dictionary-provider';
 import { Loader2Icon, PercentIcon } from 'lucide-react';
@@ -14,7 +15,6 @@ import { DialogClose } from '@typeweave/react/dialog';
 import { Controller, useForm } from 'react-hook-form';
 import { Combobox } from '@typeweave/react/combobox';
 import { AlertDialog } from '@repo/ui/alert-dialog';
-import { mergeRefs } from '@typeweave/react-utils';
 import { Button } from '@typeweave/react/button';
 import React from 'react';
 import { z } from 'zod';

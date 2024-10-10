@@ -8,7 +8,7 @@ import {
   DrawerRoot,
   DrawerTrigger,
 } from '@typeweave/react/drawer';
-import { createDialogState } from '@typeweave/react-utils';
+import { createDialogState } from '@typeweave/react-utils/dialog-state';
 import { ChevronDown, XIcon } from 'lucide-react';
 import { Button } from '@typeweave/react/button';
 import { TocContent } from './toc-content';

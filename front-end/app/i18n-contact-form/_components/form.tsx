@@ -1,12 +1,12 @@
 'use client';
 
+import { mergeRefs } from '@typeweave/react-utils/merge-refs';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { DialogClose } from '@typeweave/react/dialog';
 import { Controller, useForm } from 'react-hook-form';
 import { Checkbox } from '@typeweave/react/checkbox';
 import { Combobox } from '@typeweave/react/combobox';
 import { AlertDialog } from '@repo/ui/alert-dialog';
-import { mergeRefs } from '@typeweave/react-utils';
 import { Dictionary } from '../_types/dictionary';
 import { Button } from '@typeweave/react/button';
 import { Input } from '@typeweave/react/input';

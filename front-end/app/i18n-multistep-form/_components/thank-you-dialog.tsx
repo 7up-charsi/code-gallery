@@ -7,7 +7,7 @@ import {
   DialogPortal,
   DialogRoot,
 } from '@typeweave/react/dialog';
-import { createDialogState } from '@typeweave/react-utils';
+import { createDialogState } from '@typeweave/react-utils/dialog-state';
 import { FormValues } from '../[locale]/skill-demo/page';
 import { useDictionaryCtx } from './dictionary-provider';
 import { useFormSteps } from '../_hooks/form-steps';

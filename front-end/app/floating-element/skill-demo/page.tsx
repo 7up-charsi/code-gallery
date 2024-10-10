@@ -12,8 +12,8 @@ import {
   useFloating,
 } from '@floating-ui/react-dom';
 import { useIsMounted } from '@typeweave/react/use-is-mounted';
+import { mergeRefs } from '@typeweave/react-utils/merge-refs';
 import { Loader2Icon, SmileIcon } from 'lucide-react';
-import { mergeRefs } from '@typeweave/react-utils';
 import { Button } from '@typeweave/react/button';
 import { createPortal } from 'react-dom';
 import React from 'react';

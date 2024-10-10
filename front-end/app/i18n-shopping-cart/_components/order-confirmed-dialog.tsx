@@ -6,7 +6,7 @@ import {
   DialogPortal,
   DialogRoot,
 } from '@typeweave/react/dialog';
-import { createDialogState } from '@typeweave/react-utils';
+import { createDialogState } from '@typeweave/react-utils/dialog-state';
 import { useDictionaryCtx } from './dictionary-provider';
 import { Button } from '@typeweave/react/button';
 import { SmileIcon, XIcon } from 'lucide-react';
