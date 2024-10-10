@@ -1,4 +1,5 @@
-import { typeweave } from '@typeweave/plugin';
+import { createColorScale, typeweave } from '@typeweave/plugin';
+import { gray, grayDark } from '@radix-ui/colors';
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
@@ -8,7 +9,15 @@ const config: Config = {
     '../../node_modules/@typeweave/react/dist/**/*.styles.js',
     '../../node_modules/@repo/ui/src/**/*.tsx',
   ],
-  plugins: [typeweave()],
+  plugins: [
+    typeweave({
+      colorMode: 'rgb',
+      themes: {
+        light: { colors: { primary: createColorScale(gray) } },
+        dark: { colors: { primary: createColorScale(grayDark) } },
+      },
+    }),
+  ],
 };
 
 export default config;

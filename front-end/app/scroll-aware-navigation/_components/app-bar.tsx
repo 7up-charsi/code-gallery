@@ -89,7 +89,7 @@ export const AppBar = () => {
               key={i}
               data-active={activeSectionId === i + 1}
               href={`#${i + 1}`}
-              className="before:bg-primary-9 hover:bg-muted-3 active:bg-muted-4 relative flex h-full shrink-0 select-none items-center px-2 capitalize outline-none before:absolute before:bottom-0 before:left-1/2 before:hidden before:h-1 before:w-1/3 before:-translate-x-1/2 before:rounded-full focus-visible:ring-2 data-[active=true]:before:block"
+              className="before:bg-muted-9 hover:bg-muted-3 active:bg-muted-4 relative flex h-full shrink-0 select-none items-center px-2 capitalize outline-none before:absolute before:bottom-0 before:left-1/2 before:hidden before:h-1 before:w-1/3 before:-translate-x-1/2 before:rounded-full focus-visible:ring-2 data-[active=true]:before:block"
             >
               section {i + 1}
             </Link>

@@ -130,7 +130,7 @@ export const Step2 = () => {
               aria-controls={switchId}
               aria-label="select monthly payment"
               data-active={plan.billing === 'monthly'}
-              className="text-muted-11/60 data-[active=true]:text-primary-11 text-sm font-medium capitalize outline-none"
+              className="text-muted-11/60 data-[active=true]:text-muted-11 text-sm font-medium capitalize outline-none"
             >
               {dictionary.step2.fields.billing.monthly}
             </button>
@@ -148,7 +148,7 @@ export const Step2 = () => {
               }
             }}
             classNames={{
-              input: 'border-transparent bg-primary-9',
+              input: 'border-transparent bg-muted-9',
               indicator: 'text-white',
             }}
           />
@@ -164,7 +164,7 @@ export const Step2 = () => {
               aria-controls={switchId}
               aria-label="select yearly payment"
               data-active={plan.billing === 'yearly'}
-              className="text-muted-11/60 data-[active=true]:text-primary-11 text-sm font-medium capitalize outline-none"
+              className="text-muted-11/60 data-[active=true]:text-muted-11 text-sm font-medium capitalize outline-none"
             >
               {dictionary.step2.fields.billing.yearly}
             </button>

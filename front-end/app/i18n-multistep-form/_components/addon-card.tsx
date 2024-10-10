@@ -30,7 +30,7 @@ export const AddonCard = (props: AddonCardProps) => {
     >
       <div
         data-active={selected}
-        className="border-muted-8 data-[active=true]:bg-primary-9 flex size-5 shrink-0 items-center justify-center rounded border text-white data-[active=true]:border-transparent"
+        className="border-muted-8 data-[active=true]:bg-muted-9 flex size-5 shrink-0 items-center justify-center rounded border text-white data-[active=true]:border-transparent"
       >
         {selected ? <CheckIcon size={15} /> : null}
       </div>
@@ -53,7 +53,7 @@ export const AddonCard = (props: AddonCardProps) => {
         </span>
       </div>
 
-      <div className="text-primary-11 text-balance text-center font-medium">
+      <div className="text-muted-11 text-balance text-center font-medium">
         $ {price} /{' '}
         {dictionary.step2.fields.billing[billing as string]}
       </div>

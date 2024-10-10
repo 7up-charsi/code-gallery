@@ -79,14 +79,14 @@ export default function Home() {
           {/* row 5 */}
           <button
             type="button"
-            className="!bg-primary-3 text-primary-11 !shadow-primary-8 col-span-2"
+            className="col-span-2"
             onClick={reset}
           >
             Reset
           </button>
           <button
             type="button"
-            className="!bg-primary-3 text-primary-11 !shadow-primary-8 col-span-2"
+            className="col-span-2"
             onClick={getResult}
           >
             =
