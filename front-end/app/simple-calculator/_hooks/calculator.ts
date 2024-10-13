@@ -14,7 +14,7 @@ const operators = ['-', '+', '/', '*'];
 export const useCalculator = create<Store>((set) => ({
   value: '',
   reset: () => {
-    set({ value: undefined });
+    set({ value: '' });
   },
 
   del: () => {
